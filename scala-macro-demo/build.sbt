@@ -13,7 +13,7 @@ val commonSettings = Seq(
   addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
 )
 
-lazy val root = (project in file(".")).aggregate(macros, demos)
+lazy val scalaStudy = (project in file(".")).aggregate(macros, demos)
 
 lazy val macros = project.in(file("macros")).settings(commonSettings: _*)
 
