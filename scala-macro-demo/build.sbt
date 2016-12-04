@@ -17,4 +17,8 @@ lazy val scalaStudy = (project in file(".")).aggregate(macros, demos)
 
 lazy val macros = project.in(file("macros")).settings(commonSettings: _*)
 
-lazy val demos = project.in(file("demos")).settings(commonSettings: _ *).dependsOn(macros)
+lazy val demos = project.in(file("demos")).settings(commonSettings: _ *)
+  .settings(
+    mainClass in assembly := Some("main.scala.HelloMacros")
+  )
+  .dependsOn(macros)

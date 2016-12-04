@@ -3,11 +3,13 @@
  */
 object ExtractorDemo extends  App{
   import ExtractorMacros._
-  val fname = "william"
-  val lname = "Wang"
-  val someuser = usr"$fname, $lname"
 
-  someuser match {
-    case usr"$first, $last" => println(s"hello $first $last")
-  }
+
+//  val fname = "william"
+//  val lname = "Wang"
+//  val someuser = usr"$fname, $lname"
+//
+//  someuser match {
+//    case usr"$first, $last" => println(s"hello $first $last")
+//  }
 }

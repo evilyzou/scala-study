@@ -34,9 +34,9 @@ object UserMacros {
     }
     c.Expr[Any](q"new FreeUser(..$argList)")
   }
-  def uapl(c: Context)(u: c.Tree) = {
+  def uapl(c: Context)(u: c.Expr[User]) = {
     import c.universe._
-    val params = u.tpe.members.collectFirst {
+    val params = u.actualType.members.collectFirst {
       case m: MethodSymbol if m.isPrimaryConstructor => m.asMethod
     }.get.paramss.head.map {p => p.asTerm.name.toString}
 
@@ -45,17 +45,17 @@ object UserMacros {
       case len if len == 0 =>
         (List(q""), List(q""))
       case len if len == 1 =>
-        val pn = params.head
+        val pn = newTermName(params.head)
         (List(q"def get = u.$pn"), List(q""))
       case _ =>
         val defs = List(q"def _1 = x", q"def _2 = x", q"def _3=x", q"def _4 =x")
         val qdefs = (params zip defs).collect  {
           case (p,d) =>
             val q"def $mname = $mbody" = d
-            val pn = p
+            val pn = newTermName(p)
             q"def $mname = u.$pn"
         }
-        (List(q"def get = this", qdefs))
+        (List(q"def get = this"), qdefs)
     }
 
     c.Expr[Any](q"""
@@ -66,7 +66,7 @@ object UserMacros {
             ..$qdef
           }
           def unapply(u: User) = new Matcher(u)
-        }.unapply($u
+        }.unapply($u)
       """)
   }
 }
