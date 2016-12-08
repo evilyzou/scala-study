@@ -5,6 +5,8 @@ import akka.http.scaladsl.Http
 import akka.http.scaladsl.model._
 import akka.http.scaladsl.server.Directives._
 import akka.stream.ActorMaterializer
+
+
 import scala.io.StdIn
 
 object WebServer {
@@ -25,9 +27,11 @@ object WebServer {
     val bindingFuture = Http().bindAndHandle(route, "localhost", 8080)
     import akka.event.Logging
 
-    val log = Logging(system, this.getClass.getName)
+//    val log = Logging(system, this.getClass)
 
-    log.info("good luck!")
+    val log = Logging.getLogger(system.eventStream, "my.string")
+
+    log.info("good lucxxxxk!")
 
     println(s"Server online at http://localhost:8080/\nPress RETURN to stop...")
     StdIn.readLine() // let it run until user presses return

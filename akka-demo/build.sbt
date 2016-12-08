@@ -19,14 +19,15 @@ val commonSettings = Seq(
       "com.typesafe.akka" %% "akka-http-xml" % akkaHttpVersion,
       "com.typesafe.slick" %% "slick" % slickVersion,
       "com.typesafe.slick" %% "slick-codegen" % slickVersion,
-      "org.slf4j" % "slf4j-nop" % "1.7.19" ,
+      "com.typesafe.scala-logging" %% "scala-logging" % "3.4.0",
       "mysql" % "mysql-connector-java" % "latest.release",
       "com.typesafe.akka" %% "akka-slf4j" % akkaVersion,
-      ("ch.qos.logback" % "logback-classic" % "1.0.9" % "provided").exclude("org.slf4j", "slf4j-nop")
+      "ch.qos.logback" % "logback-classic" % "1.1.7"
     )
   }
 )
 
+lazy val logback = "ch.qos.logback" % "logback-classic" % "1.0.9"
 
 lazy val akkaDemo = (project in file(".")).aggregate(akkaDemoApp)
 
