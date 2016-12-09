@@ -27,12 +27,11 @@ object WebServer {
     val bindingFuture = Http().bindAndHandle(route, "localhost", 8080)
     import akka.event.Logging
 
-//    val log = Logging(system, this.getClass)
+    val log = Logging.getLogger(system.eventStream, this.getClass)
 
-    val log = Logging.getLogger(system.eventStream, "my.string")
-
-    log.info("good lucxxxxk!")
-
+    for(i <- 1 to 10000000) {
+      log.info("good lucxxxxk!")
+    }
     println(s"Server online at http://localhost:8080/\nPress RETURN to stop...")
     StdIn.readLine() // let it run until user presses return
     bindingFuture

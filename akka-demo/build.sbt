@@ -8,6 +8,7 @@ val commonSettings = Seq(
     val akkaVersion = "2.4.14"
     val akkaHttpVersion = "10.0.0"
     val slickVersion = "3.1.1"
+    val Json4sVersion     = "3.2.11"
     Seq(
       "com.typesafe.akka" %% "akka-actor" % akkaVersion,
       "com.typesafe.akka" %% "akka-stream" % akkaVersion,
@@ -22,7 +23,10 @@ val commonSettings = Seq(
       "com.typesafe.scala-logging" %% "scala-logging" % "3.4.0",
       "mysql" % "mysql-connector-java" % "latest.release",
       "com.typesafe.akka" %% "akka-slf4j" % akkaVersion,
-      "ch.qos.logback" % "logback-classic" % "1.1.7"
+      "ch.qos.logback" % "logback-classic" % "1.1.7",
+      "org.json4s"        %% "json4s-native"   % Json4sVersion,
+      "org.json4s"        %% "json4s-ext"      % Json4sVersion,
+      "de.heikoseeberger" %% "akka-http-json4s" % "1.4.2"
     )
   }
 )
