@@ -1,14 +1,12 @@
 package com.ravel
 
-import akka.actor.{Props, ActorSystem}
+import akka.actor.ActorSystem
+import akka.event.Logging
 import akka.http.scaladsl.Http
 import akka.stream.ActorMaterializer
 import akka.util.Timeout
-import com.ravel.services.AccountService
 import com.typesafe.config.ConfigFactory
-import akka.event.Logging
 
-import scala.concurrent.ExecutionContext
 import scala.concurrent.duration._
 import scala.io.StdIn
 
@@ -21,11 +19,12 @@ object Main extends App with RestInterface with AppEnvironment{
   val port = config.getInt("http.port")
 
 
+
   implicit val materializer = ActorMaterializer()
   implicit val timeout = Timeout(10 seconds)
   val api = routes
 
-//  AccountService.create
+
 
   Http().bindAndHandle(api, host, port) map { binding =>
     log.info(s"REST interface bound to ${binding.localAddress}")

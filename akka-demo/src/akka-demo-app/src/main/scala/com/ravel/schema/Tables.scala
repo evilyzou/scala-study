@@ -10,7 +10,6 @@ object Tables extends {
 trait Tables {
   val profile: slick.driver.JdbcProfile
   import profile.api._
-  import slick.model.ForeignKeyAction
   import slick.collection.heterogeneous._
   import slick.collection.heterogeneous.syntax._
   // NOTE: GetResult mappers for plain SQL are only generated for tables where Slick knows how to map the types of all columns.
@@ -608,40 +607,73 @@ trait Tables {
   lazy val PictureSpace = new TableQuery(tag => new PictureSpace(tag))
 
   /** Row type of table Product */
-  type ProductRow = HCons[Int,HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[Int],HCons[Option[String],HCons[Option[String],HCons[Option[Int],HCons[Option[Int],HCons[Option[Int],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[Int],HCons[Option[String],HCons[Option[java.sql.Timestamp],HCons[Option[java.sql.Timestamp],HCons[Option[String],HCons[Option[String],HCons[Option[Int],HCons[Option[java.sql.Timestamp],HCons[Option[java.sql.Timestamp],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HNil]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+//  type ProductRow = HCons[Int,HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[Int],HCons[Option[String],HCons[Option[String],HCons[Option[Int],HCons[Option[Int],HCons[Option[Int],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[Int],HCons[Option[String],HCons[Option[java.sql.Timestamp],HCons[Option[java.sql.Timestamp],HCons[Option[String],HCons[Option[String],HCons[Option[Int],HCons[Option[java.sql.Timestamp],HCons[Option[java.sql.Timestamp],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HCons[Option[String],HNil]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
   /** Constructor for ProductRow providing default values if available in the database schema. */
-  def ProductRow(id: Int, title: Option[String] = None, teamNo: Option[String] = None, pfunction: Option[String] = None, teamType: Option[String] = None, productFeatures: Option[String] = None, pcomposition: Option[String] = None, passengerInfo: Option[Int] = None, promise: Option[String] = None, productTopic: Option[String] = None, day: Option[Int] = None, night: Option[Int] = None, advanceDay: Option[Int] = None, advanceDayType: Option[String] = None, departure: Option[String] = None, arrive: Option[String] = None, arriveType: Option[String] = None, freeTripToTraffic: Option[String] = None, freeTripBackTraffic: Option[String] = None, image: Option[String] = None, recommendation: Option[String] = None, feature: Option[String] = None, visa: Option[String] = None, feeInclude: Option[String] = None, feeExclude: Option[String] = None, attention: Option[String] = None, tip: Option[String] = None, payway: Option[String] = None, servicePhone: Option[String] = None, isTaocan: Option[String] = None, taocanAdultCount: Option[String] = None, taocanChildCount: Option[String] = None, taocanRoomCount: Option[String] = None, groupMethod: Option[String] = None, assembly: Option[String] = None, refundDesc: Option[String] = None, refundId: Option[Int] = None, offlineType: Option[String] = None, offlineStartDate: Option[java.sql.Timestamp] = None, offlineEndDate: Option[java.sql.Timestamp] = None, scheduleDays: Option[String] = None, isTransparentTrip: Option[String] = None, status: Option[Int] = None, createTime: Option[java.sql.Timestamp] = None, updateTime: Option[java.sql.Timestamp] = None, cruiseRouteCode: Option[String] = None, cruiseCode: Option[String] = None, cruiseDeparture: Option[String] = None, viaPort: Option[String] = None, systemType: Option[String] = Some(""), customType: Option[String] = Some("")): ProductRow = {
-    id :: title :: teamNo :: pfunction :: teamType :: productFeatures :: pcomposition :: passengerInfo :: promise :: productTopic :: day :: night :: advanceDay :: advanceDayType :: departure :: arrive :: arriveType :: freeTripToTraffic :: freeTripBackTraffic :: image :: recommendation :: feature :: visa :: feeInclude :: feeExclude :: attention :: tip :: payway :: servicePhone :: isTaocan :: taocanAdultCount :: taocanChildCount :: taocanRoomCount :: groupMethod :: assembly :: refundDesc :: refundId :: offlineType :: offlineStartDate :: offlineEndDate :: scheduleDays :: isTransparentTrip :: status :: createTime :: updateTime :: cruiseRouteCode :: cruiseCode :: cruiseDeparture :: viaPort :: systemType :: customType :: HNil
-  }
+//  def ProductRow(id: Int, title: Option[String] = None, teamNo: Option[String] = None, pfunction: Option[String] = None, teamType: Option[String] = None, productFeatures: Option[String] = None, pcomposition: Option[String] = None, passengerInfo: Option[Int] = None, promise: Option[String] = None, productTopic: Option[String] = None, day: Option[Int] = None, night: Option[Int] = None, advanceDay: Option[Int] = None, advanceDayType: Option[String] = None, departure: Option[String] = None, arrive: Option[String] = None, arriveType: Option[String] = None, freeTripToTraffic: Option[String] = None, freeTripBackTraffic: Option[String] = None, image: Option[String] = None, recommendation: Option[String] = None, feature: Option[String] = None, visa: Option[String] = None, feeInclude: Option[String] = None, feeExclude: Option[String] = None, attention: Option[String] = None, tip: Option[String] = None, payway: Option[String] = None, servicePhone: Option[String] = None, isTaocan: Option[String] = None, taocanAdultCount: Option[String] = None, taocanChildCount: Option[String] = None, taocanRoomCount: Option[String] = None, groupMethod: Option[String] = None, assembly: Option[String] = None, refundDesc: Option[String] = None, refundId: Option[Int] = None, offlineType: Option[String] = None, offlineStartDate: Option[java.sql.Timestamp] = None, offlineEndDate: Option[java.sql.Timestamp] = None, scheduleDays: Option[String] = None, isTransparentTrip: Option[String] = None, status: Option[Int] = None, createTime: Option[java.sql.Timestamp] = None, updateTime: Option[java.sql.Timestamp] = None, cruiseRouteCode: Option[String] = None, cruiseCode: Option[String] = None, cruiseDeparture: Option[String] = None, viaPort: Option[String] = None, systemType: Option[String] = Some(""), customType: Option[String] = Some("")): ProductRow = {
+//    id :: title :: teamNo :: pfunction :: teamType :: productFeatures :: pcomposition :: passengerInfo :: promise :: productTopic :: day :: night :: advanceDay :: advanceDayType :: departure :: arrive :: arriveType :: freeTripToTraffic :: freeTripBackTraffic :: image :: recommendation :: feature :: visa :: feeInclude :: feeExclude :: attention :: tip :: payway :: servicePhone :: isTaocan :: taocanAdultCount :: taocanChildCount :: taocanRoomCount :: groupMethod :: assembly :: refundDesc :: refundId :: offlineType :: offlineStartDate :: offlineEndDate :: scheduleDays :: isTransparentTrip :: status :: createTime :: updateTime :: cruiseRouteCode :: cruiseCode :: cruiseDeparture :: viaPort :: systemType :: customType :: HNil
+//  }
+
+  case class ProductInfo1(title: Option[String], teamNo: Option[String], pfunction: Option[String], teamType: Option[String], productFeatures: Option[String], pcomposition: Option[String],
+                         passengerInfo: Option[Int], promise: Option[String], productTopic: Option[String], day: Option[Int], night: Option[Int], advanceDay: Option[Int], advanceDayType: Option[String])
+  case class ProductInfo2(departure: Option[String], arrive: Option[String], arriveType: Option[String], freeTripToTraffic: Option[String], freeTripBackTraffic: Option[String],
+                          image: Option[String], recommendation: Option[String],feature: Option[String], visa: Option[String], feeInclude: Option[String], feeExclude: Option[String], attention: Option[String],
+                           tip: Option[String], payway: Option[String], servicePhone: Option[String])
+
+  case class ProductInfo3(isTaocan: Option[String],taocanAdultCount: Option[String],  taocanChildCount: Option[String], taocanRoomCount: Option[String], groupMethod: Option[String],
+                          assembly: Option[String], refundDesc: Option[String],refundId: Option[Int], offlineType: Option[String], offlineStartDate: Option[java.sql.Timestamp],
+                          offlineEndDate: Option[java.sql.Timestamp], scheduleDays: Option[String])
+
+  case class ProductInfo4(isTransparentTrip: Option[String],status: Option[Int], createTime: Option[java.sql.Timestamp], updateTime: Option[java.sql.Timestamp],
+                          cruiseRouteCode: Option[String], cruiseCode: Option[String], cruiseDeparture: Option[String], viaPort: Option[String], systemType: Option[String], customType: Option[String])
+
+  case class ProductRow(id: Int, p1: ProductInfo1, p2: ProductInfo2, p3: ProductInfo3, p4: ProductInfo4)
+
   /** GetResult implicit for fetching ProductRow objects using plain SQL queries */
-  implicit def GetResultProductRow(implicit e0: GR[Int], e1: GR[Option[String]], e2: GR[Option[Int]], e3: GR[Option[java.sql.Timestamp]]): GR[ProductRow] = GR{
-    prs => import prs._
-    <<[Int] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[Int] :: <<?[String] :: <<?[String] :: <<?[Int] :: <<?[Int] :: <<?[Int] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[Int] :: <<?[String] :: <<?[java.sql.Timestamp] :: <<?[java.sql.Timestamp] :: <<?[String] :: <<?[String] :: <<?[Int] :: <<?[java.sql.Timestamp] :: <<?[java.sql.Timestamp] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: HNil
-  }
+//  implicit def GetResultProductRow(implicit e0: GR[Int], e1: GR[Option[Option[String]]], e2: GR[Option[Int]], e3: GR[Option[java.sql.Timestamp]]): GR[ProductRow] = GR{
+//    prs => import prs._
+//    <<[Int] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[Int] :: <<?[String] :: <<?[String] :: <<?[Int] :: <<?[Int] :: <<?[Int] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[Int] :: <<?[String] :: <<?[java.sql.Timestamp] :: <<?[java.sql.Timestamp] :: <<?[String] :: <<?[String] :: <<?[Int] :: <<?[java.sql.Timestamp] :: <<?[java.sql.Timestamp] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: <<?[String] :: HNil
+//  }
   /** Table description of table product. Objects of this class serve as prototypes for rows in queries. */
   class Product(_tableTag: Tag) extends Table[ProductRow](_tableTag, "product") {
-    def * = id :: title :: teamNo :: pfunction :: teamType :: productFeatures :: pcomposition :: passengerInfo :: promise :: productTopic :: day :: night :: advanceDay :: advanceDayType :: departure :: arrive :: arriveType :: freeTripToTraffic :: freeTripBackTraffic :: image :: recommendation :: feature :: visa :: feeInclude :: feeExclude :: attention :: tip :: payway :: servicePhone :: isTaocan :: taocanAdultCount :: taocanChildCount :: taocanRoomCount :: groupMethod :: assembly :: refundDesc :: refundId :: offlineType :: offlineStartDate :: offlineEndDate :: scheduleDays :: isTransparentTrip :: status :: createTime :: updateTime :: cruiseRouteCode :: cruiseCode :: cruiseDeparture :: viaPort :: systemType :: customType :: HNil
+//    def * = id :: title :: teamNo :: pfunction :: teamType :: productFeatures :: pcomposition :: passengerInfo :: promise :: productTopic :: day :: night :: advanceDay :: advanceDayType :: departure :: arrive :: arriveType :: freeTripToTraffic :: freeTripBackTraffic :: image :: recommendation :: feature :: visa :: feeInclude :: feeExclude :: attention :: tip :: payway :: servicePhone :: isTaocan :: taocanAdultCount :: taocanChildCount :: taocanRoomCount :: groupMethod :: assembly :: refundDesc :: refundId :: offlineType :: offlineStartDate :: offlineEndDate :: scheduleDays :: isTransparentTrip :: status :: createTime :: updateTime :: cruiseRouteCode :: cruiseCode :: cruiseDeparture :: viaPort :: systemType :: customType :: HNil
+//    def * = id :: title :: teamNo :: pfunction :: teamType :: productFeatures :: pcomposition :: passengerInfo :: promise :: productTopic :: day :: night :: advanceDay :: advanceDayType :: departure :: arrive :: arriveType :: freeTripToTraffic :: freeTripBackTraffic :: image :: recommendation :: feature :: visa :: feeInclude :: feeExclude :: attention :: tip :: payway :: servicePhone :: isTaocan :: taocanAdultCount :: taocanChildCount :: taocanRoomCount :: groupMethod :: assembly :: refundDesc :: refundId :: offlineType :: offlineStartDate :: offlineEndDate :: scheduleDays :: isTransparentTrip :: status :: createTime :: updateTime :: cruiseRouteCode :: cruiseCode :: cruiseDeparture :: viaPort :: systemType :: customType :: HNil
+    def * = (id ,
+        (title , teamNo , pfunction , teamType , productFeatures , pcomposition , passengerInfo , promise , productTopic , day , night , advanceDay , advanceDayType ),
+        (departure , arrive , arriveType , freeTripToTraffic , freeTripBackTraffic , image , recommendation , feature , visa , feeInclude , feeExclude , attention , tip , payway , servicePhone ),
+        (isTaocan , taocanAdultCount , taocanChildCount , taocanRoomCount , groupMethod , assembly , refundDesc , refundId , offlineType , offlineStartDate , offlineEndDate , scheduleDays ),
+        (isTransparentTrip , status , createTime , updateTime , cruiseRouteCode , cruiseCode , cruiseDeparture , viaPort , systemType , customType ))
+        .shaped <> ({
+          case (id, p1, p2, p3, p4) =>
+            ProductRow(id, ProductInfo1.tupled.apply(p1), ProductInfo2.tupled.apply(p2), ProductInfo3.tupled.apply(p3), ProductInfo4.tupled.apply(p4))
+        }, { p: ProductRow =>
+            def f1(p1: ProductInfo1) = ProductInfo1.unapply(p1).get
+            def f2(p2: ProductInfo2) = ProductInfo2.unapply(p2).get
+            def f3(p3: ProductInfo3) = ProductInfo3.unapply(p3).get
+            def f4(p4: ProductInfo4) = ProductInfo4.unapply(p4).get
+
+            Some((p.id, f1(p.p1), f2(p.p2), f3(p.p3), f4(p.p4)))
+        })
 
     /** Database column id SqlType(INT), AutoInc, PrimaryKey */
     val id: Rep[Int] = column[Int]("id", O.AutoInc, O.PrimaryKey)
     /** Database column title SqlType(VARCHAR), Length(255,true), Default(None) */
-    val title: Rep[Option[String]] = column[Option[String]]("title", O.Length(255,varying=true), O.Default(None))
+    val title: Rep[Option[String]] = column[Option[String]]("title", O.Length(255,varying=true))
     /** Database column team_no SqlType(VARCHAR), Length(255,true), Default(None) */
-    val teamNo: Rep[Option[String]] = column[Option[String]]("team_no", O.Length(255,varying=true), O.Default(None))
+    val teamNo: Rep[Option[String]] = column[Option[String]]("team_no", O.Length(255,varying=true))
     /** Database column pfunction SqlType(VARCHAR), Length(255,true), Default(None) */
-    val pfunction: Rep[Option[String]] = column[Option[String]]("pfunction", O.Length(255,varying=true), O.Default(None))
+    val pfunction: Rep[Option[String]] = column[Option[String]]("pfunction", O.Length(255,varying=true))
     /** Database column team_type SqlType(VARCHAR), Length(255,true), Default(None) */
-    val teamType: Rep[Option[String]] = column[Option[String]]("team_type", O.Length(255,varying=true), O.Default(None))
+    val teamType: Rep[Option[String]] = column[Option[String]]("team_type", O.Length(255,varying=true))
     /** Database column product_features SqlType(VARCHAR), Length(255,true), Default(None) */
-    val productFeatures: Rep[Option[String]] = column[Option[String]]("product_features", O.Length(255,varying=true), O.Default(None))
+    val productFeatures: Rep[Option[String]] = column[Option[String]]("product_features", O.Length(255,varying=true))
     /** Database column pcomposition SqlType(VARCHAR), Length(255,true), Default(None) */
-    val pcomposition: Rep[Option[String]] = column[Option[String]]("pcomposition", O.Length(255,varying=true), O.Default(None))
+    val pcomposition: Rep[Option[String]] = column[Option[String]]("pcomposition", O.Length(255,varying=true))
     /** Database column passenger_info SqlType(INT), Default(None) */
     val passengerInfo: Rep[Option[Int]] = column[Option[Int]]("passenger_info", O.Default(None))
     /** Database column promise SqlType(VARCHAR), Length(255,true), Default(None) */
-    val promise: Rep[Option[String]] = column[Option[String]]("promise", O.Length(255,varying=true), O.Default(None))
+    val promise: Rep[Option[String]] = column[Option[String]]("promise", O.Length(255,varying=true))
     /** Database column product_topic SqlType(VARCHAR), Length(255,true), Default(None) */
-    val productTopic: Rep[Option[String]] = column[Option[String]]("product_topic", O.Length(255,varying=true), O.Default(None))
+    val productTopic: Rep[Option[String]] = column[Option[String]]("product_topic", O.Length(255,varying=true))
     /** Database column day SqlType(INT), Default(None) */
     val day: Rep[Option[Int]] = column[Option[Int]]("day", O.Default(None))
     /** Database column night SqlType(INT), Default(None) */
@@ -699,9 +731,9 @@ trait Tables {
     /** Database column offline_type SqlType(VARCHAR), Length(255,true), Default(None) */
     val offlineType: Rep[Option[String]] = column[Option[String]]("offline_type", O.Length(255,varying=true), O.Default(None))
     /** Database column offline_start_date SqlType(DATETIME), Default(None) */
-    val offlineStartDate: Rep[Option[java.sql.Timestamp]] = column[Option[java.sql.Timestamp]]("offline_start_date", O.Default(None))
+    val offlineStartDate: Rep[Option[java.sql.Timestamp]] = column[Option[java.sql.Timestamp]]("offline_start_date")
     /** Database column offline_end_date SqlType(DATETIME), Default(None) */
-    val offlineEndDate: Rep[Option[java.sql.Timestamp]] = column[Option[java.sql.Timestamp]]("offline_end_date", O.Default(None))
+    val offlineEndDate: Rep[Option[java.sql.Timestamp]] = column[Option[java.sql.Timestamp]]("offline_end_date")
     /** Database column schedule_days SqlType(TEXT), Default(None) */
     val scheduleDays: Rep[Option[String]] = column[Option[String]]("schedule_days", O.Default(None))
     /** Database column is_transparent_trip SqlType(VARCHAR), Length(255,true), Default(None) */
@@ -709,9 +741,9 @@ trait Tables {
     /** Database column status SqlType(INT), Default(None) */
     val status: Rep[Option[Int]] = column[Option[Int]]("status", O.Default(None))
     /** Database column create_time SqlType(DATETIME), Default(None) */
-    val createTime: Rep[Option[java.sql.Timestamp]] = column[Option[java.sql.Timestamp]]("create_time", O.Default(None))
+    val createTime: Rep[Option[java.sql.Timestamp]] = column[Option[java.sql.Timestamp]]("create_time")
     /** Database column update_time SqlType(DATETIME), Default(None) */
-    val updateTime: Rep[Option[java.sql.Timestamp]] = column[Option[java.sql.Timestamp]]("update_time", O.Default(None))
+    val updateTime: Rep[Option[java.sql.Timestamp]] = column[Option[java.sql.Timestamp]]("update_time")
     /** Database column cruise_route_code SqlType(VARCHAR), Length(255,true), Default(None) */
     val cruiseRouteCode: Rep[Option[String]] = column[Option[String]]("cruise_route_code", O.Length(255,varying=true), O.Default(None))
     /** Database column cruise_code SqlType(VARCHAR), Length(255,true), Default(None) */
@@ -721,9 +753,9 @@ trait Tables {
     /** Database column via_port SqlType(VARCHAR), Length(255,true), Default(None) */
     val viaPort: Rep[Option[String]] = column[Option[String]]("via_port", O.Length(255,varying=true), O.Default(None))
     /** Database column system_type SqlType(VARCHAR), Length(255,true), Default(Some()) */
-    val systemType: Rep[Option[String]] = column[Option[String]]("system_type", O.Length(255,varying=true), O.Default(Some("")))
+    val systemType: Rep[Option[String]] = column[Option[String]]("system_type", O.Length(255,varying=true), O.Default(None))
     /** Database column custom_type SqlType(VARCHAR), Length(255,true), Default(Some()) */
-    val customType: Rep[Option[String]] = column[Option[String]]("custom_type", O.Length(255,varying=true), O.Default(Some("")))
+    val customType: Rep[Option[String]] = column[Option[String]]("custom_type", O.Length(255,varying=true), O.Default(None))
   }
   /** Collection-like TableQuery object for table Product */
   lazy val Product = new TableQuery(tag => new Product(tag))
