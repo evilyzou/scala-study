@@ -3,14 +3,10 @@ package com.ravel
 import akka.http.scaladsl.server.Route
 import com.ravel.resources.ProductResource
 
-import scala.concurrent.ExecutionContext
-
 /**
  * Created by CloudZou on 12/9/2016.
  */
-trait RestInterface extends Resources {
-  implicit def executionContext: ExecutionContext
-
+object RestInterface extends Resources {
   val routes: Route = productRoutes
 }
 

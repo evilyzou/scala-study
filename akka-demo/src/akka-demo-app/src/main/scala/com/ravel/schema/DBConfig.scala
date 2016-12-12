@@ -16,6 +16,8 @@ trait DBConfig {
 trait DAOs {
   self : DBConfig =>
 
-  val accounts = TableQuery[Account]
   val products = TableQuery[Product]
+  val productExts = TableQuery[ProductExt]
+  val productOthers = TableQuery[ProductOther]
+  val productPriceByTeams = TableQuery[ProductPriceByTeam]
 }
