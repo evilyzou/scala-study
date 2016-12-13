@@ -1,3 +1,5 @@
+import NativePackagerHelper._
+
 name := "akka-demo"
 
 version := "1.0"
@@ -43,3 +45,19 @@ lazy val akkaDemoApp = project.in(file("src/akka-demo-app")).settings(commonSett
   )
 //  .dependsOn(macros)
 
+
+enablePlugins(JavaServerAppPackaging)
+
+mainClass in Compile := Some("com.ravel.Application")
+
+mappings in Universal ++= {
+  // optional example illustrating how to copy additional directory
+  directory("scripts") ++
+  // copy configuration files to config directory
+  contentOf("src/akka-demo-app/src/main/resources").toMap.mapValues("config/" + _)
+}
+
+// add 'config' directory first in the classpath of the start script,
+// an alternative is to set the config file locations via CLI parameters
+// when starting the application
+scriptClasspath := Seq("../config/") ++ scriptClasspath.value

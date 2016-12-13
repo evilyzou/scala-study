@@ -10,9 +10,6 @@ import spray.json._
 /**
  * Created by CloudZou on 12/11/16.
  */
-case class Person(name: String, age: Int)
-
-
 object MyJsonSupport extends  DefaultJsonProtocol with ProductFormatsExtensionInstances with NullOptions{
 
   implicit object TimestampFormat extends JsonFormat[Timestamp] {
@@ -33,6 +30,5 @@ object MyJsonSupport extends  DefaultJsonProtocol with ProductFormatsExtensionIn
   implicit val productInfo3Format = jsonFormat12(ProductInfo3)
   implicit val productInfo4Format = jsonFormat10(ProductInfo4)
   implicit val productFormat = jsonFormatExtension5(ProductRow)
-  implicit val personFormat = jsonFormat2(Person)
 
 }

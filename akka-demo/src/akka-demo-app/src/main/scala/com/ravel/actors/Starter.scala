@@ -1,13 +1,13 @@
 package com.ravel.actors
 
-import akka.actor.{Actor, Props}
+import akka.actor.{Actor, ActorLogging}
 import akka.http.scaladsl.Http
-import akka.routing.{ActorRefRoutee, RoundRobinRoutingLogic, Router}
-import com.ravel.RestInterface
-import com.ravel.services.ServerSupervisor
-import com.ravel.Config._
+import akka.stream.ActorMaterializer
+import com.ravel.{Config => C, RestInterface}
 
 import scala.io.StdIn
+import scala.concurrent._
+import ExecutionContext.Implicits.global
 
 /**
  * Created by CloudZou on 12/12/16.
@@ -18,21 +18,23 @@ object Starter {
   case object Stop
 }
 
-class Starter extends Actor {
-  import Starter.Start
+class Starter extends Actor with ActorLogging{
   import RestInterface._
+  import Starter.Start
 
   implicit val system = context.system
+  implicit val materializer = ActorMaterializer()
+//  implicit val executionContext = scala.concurrent.ExecutionContext
 
   def receive: Receive = {
     case Start =>
-      Http().bindAndHandle(routes, host, port) map { binding =>
+      Http().bindAndHandle(routes, C.host, C.port) map { binding =>
         log.info(s"REST interface bound to ${binding.localAddress}")
 
         StdIn.readLine() // let it run until user presses return
         binding.unbind().onComplete(_ => system.terminate())
       } recover {
-        case ex => log.info(s"REST interface could not bind to $host:$port", ex.getMessage)
+        case ex => log.info(s"REST interface could not bind to $C.host:$C.port", ex.getMessage)
       }
   }
 }
