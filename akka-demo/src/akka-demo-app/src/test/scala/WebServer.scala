@@ -1,4 +1,9 @@
-package app;
+import akka.actor.ActorSystem
+import akka.http.scaladsl.Http
+import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
+import akka.stream.ActorMaterializer
+
+import scala.io.StdIn
 
 object WebServer {
   def main1(args: Array[String]) {

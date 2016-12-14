@@ -1,5 +1,3 @@
-package app;
-
 /**
  * Created by CloudZou on 12/4/16.
  */

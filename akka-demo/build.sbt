@@ -1,4 +1,6 @@
 import NativePackagerHelper._
+import com.typesafe.sbt.packager.archetypes.JavaAppPackaging.autoImport._
+import sbt.Keys._
 
 name := "akka-demo"
 
@@ -37,27 +39,19 @@ val commonSettings = Seq(
 
 lazy val logback = "ch.qos.logback" % "logback-classic" % "1.0.9"
 
-lazy val akkaDemo = (project in file(".")).aggregate(akkaDemoApp)
+lazy val akkaDemo = (project in file(".")).aggregate(akkaDemoApp).enablePlugins(JavaServerAppPackaging)
 
 lazy val akkaDemoApp = project.in(file("src/akka-demo-app")).settings(commonSettings: _*)
   .settings(
-    mainClass in assembly := Some("app.WebServer")
-  )
+//    mainClass in assembly := Some("app.WebServer")
+  mainClass in Compile := Some("com.ravel.Application"),
+  mappings in Universal ++= {
+    directory("scripts") ++
+      contentOf("src/akka-demo-app/src/main/resources").toMap.mapValues("config/" + _)
+  },
+  scriptClasspath := Seq("../config/") ++ scriptClasspath.value
+  ).enablePlugins(JavaServerAppPackaging)
 //  .dependsOn(macros)
+//enablePlugins(JavaServerAppPackaging)
+//
 
-
-enablePlugins(JavaServerAppPackaging)
-
-mainClass in Compile := Some("com.ravel.Application")
-
-mappings in Universal ++= {
-  // optional example illustrating how to copy additional directory
-  directory("scripts") ++
-  // copy configuration files to config directory
-  contentOf("src/akka-demo-app/src/main/resources").toMap.mapValues("config/" + _)
-}
-
-// add 'config' directory first in the classpath of the start script,
-// an alternative is to set the config file locations via CLI parameters
-// when starting the application
-scriptClasspath := Seq("../config/") ++ scriptClasspath.value
