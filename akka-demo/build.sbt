@@ -1,5 +1,6 @@
 import NativePackagerHelper._
 import com.typesafe.sbt.packager.archetypes.JavaAppPackaging.autoImport._
+import BuildEnvPlugin.autoImport._
 import sbt.Keys._
 
 name := "akka-demo"
@@ -13,6 +14,7 @@ val commonSettings = Seq(
     val akkaHttpVersion = "10.0.0"
     val slickVersion = "3.1.1"
     val Json4sVersion     = "3.2.11"
+    val elastic4sVersion = "2.0.1"
     Seq(
       "com.typesafe.akka" %% "akka-actor" % akkaVersion,
       "com.typesafe.akka" %% "akka-stream" % akkaVersion,
@@ -32,26 +34,40 @@ val commonSettings = Seq(
       "org.json4s"        %% "json4s-native"   % Json4sVersion,
       "org.json4s"        %% "json4s-ext"      % Json4sVersion,
       "de.heikoseeberger" %% "akka-http-json4s" % "1.4.2",
-      "io.spray" %%  "spray-json" % "1.3.2"
+      "io.spray" %%  "spray-json" % "1.3.2",
+      "com.sksamuel.elastic4s" %% "elastic4s-streams" % elastic4sVersion
     )
   }
 )
 
 lazy val logback = "ch.qos.logback" % "logback-classic" % "1.0.9"
 
-lazy val akkaDemo = (project in file(".")).aggregate(akkaDemoApp).enablePlugins(JavaServerAppPackaging)
+lazy val akkaDemo = (project in file(".")).aggregate(akkaDemoApp)
 
 lazy val akkaDemoApp = project.in(file("src/akka-demo-app")).settings(commonSettings: _*)
   .settings(
-//    mainClass in assembly := Some("app.WebServer")
-  mainClass in Compile := Some("com.ravel.Application"),
-  mappings in Universal ++= {
-    directory("scripts") ++
-      contentOf("src/akka-demo-app/src/main/resources").toMap.mapValues("config/" + _)
+  fork in run := true,
+  javaOptions += {
+    val devConf = "-Dconfig.resource=dev/application.conf"
+    val prodConf = "-Dconfig.file=C:/config/application.conf"
+    buildEnv.value match {
+      case BuildEnv.Production => prodConf
+      case BuildEnv.Development => devConf
+      case _ => devConf
+    }
   },
-  scriptClasspath := Seq("../config/") ++ scriptClasspath.value
-  ).enablePlugins(JavaServerAppPackaging)
-//  .dependsOn(macros)
-//enablePlugins(JavaServerAppPackaging)
-//
+  mainClass in Compile := Some("com.ravel.Application"),
+  resourceDirectory in Compile := (resourceDirectory in Compile).value,
+  excludeFilter in unmanagedResources := "*.conf" || "*.xml",
+  mappings in Universal ++= {
+    val confFile = buildEnv.value match {
+      case BuildEnv.Production => "prod"
+      case BuildEnv.Development => "dev"
+      case _ => "dev"
+    }
+    directory("scripts") ++ contentOf((resourceDirectory in Compile).value / confFile).toMap.mapValues("config/" + _)
+  })
+  .enablePlugins(JavaServerAppPackaging)
+  .enablePlugins(BuildEnvPlugin)
+
 
