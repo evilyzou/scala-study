@@ -1,6 +1,5 @@
-import NativePackagerHelper._
-import com.typesafe.sbt.packager.archetypes.JavaAppPackaging.autoImport._
 import BuildEnvPlugin.autoImport._
+import com.typesafe.sbt.SbtNativePackager.autoImport.NativePackagerHelper._
 import sbt.Keys._
 
 name := "akka-demo"
@@ -46,28 +45,26 @@ lazy val akkaDemo = (project in file(".")).aggregate(akkaDemoApp)
 
 lazy val akkaDemoApp = project.in(file("src/akka-demo-app")).settings(commonSettings: _*)
   .settings(
-  fork in run := true,
-  javaOptions += {
-    val devConf = "-Dconfig.resource=dev/application.conf"
-    val prodConf = "-Dconfig.file=C:/config/application.conf"
-    buildEnv.value match {
-      case BuildEnv.Production => prodConf
-      case BuildEnv.Development => devConf
-      case _ => devConf
-    }
-  },
+//  fork in run := true,
+//  javaOptions += {
+//    val devConf = "-Dconfig.resource=dev/application.conf"
+//    val prodConf = "-Dconfig.file=/Users/CloudZou/Documents/Work/config/application.conf"
+//    buildEnv.value match {
+//      case BuildEnv.Production => prodConf
+//      case BuildEnv.Development => devConf
+//      case _ => devConf
+//    }
+//  },
   mainClass in Compile := Some("com.ravel.Application"),
-  resourceDirectory in Compile := (resourceDirectory in Compile).value,
-  excludeFilter in unmanagedResources := "*.conf" || "*.xml",
+//  excludeFilter in  unmanagedResources := "*.conf" || "*.xml",
   mappings in Universal ++= {
     val confFile = buildEnv.value match {
       case BuildEnv.Production => "prod"
       case BuildEnv.Development => "dev"
       case _ => "dev"
     }
-    directory("scripts") ++ contentOf((resourceDirectory in Compile).value / confFile).toMap.mapValues("config/" + _)
+    directory("scripts") ++ contentOf((resourceDirectory in Compile).value / confFile).toMap.mapValues("conf/" + _)
   })
   .enablePlugins(JavaServerAppPackaging)
   .enablePlugins(BuildEnvPlugin)
-
 
