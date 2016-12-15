@@ -68,3 +68,4 @@ lazy val akkaDemoApp = project.in(file("src/akka-demo-app")).settings(commonSett
   .enablePlugins(JavaServerAppPackaging)
   .enablePlugins(BuildEnvPlugin)
 
+//http://www.scala-sbt.org/0.13/docs/Testing.html
