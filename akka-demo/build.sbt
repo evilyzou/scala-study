@@ -1,6 +1,7 @@
 import BuildEnvPlugin.autoImport._
 import com.typesafe.sbt.SbtNativePackager.autoImport.NativePackagerHelper._
 import sbt.Keys._
+import FilterKeys._
 
 name := "akka-demo"
 
@@ -44,6 +45,7 @@ lazy val logback = "ch.qos.logback" % "logback-classic" % "1.0.9"
 lazy val akkaDemo = (project in file(".")).aggregate(akkaDemoApp)
 
 lazy val akkaDemoApp = project.in(file("src/akka-demo-app")).settings(commonSettings: _*)
+  .settings(filterSettings: _*)
   .settings(
 //  fork in run := true,
 //  javaOptions += {
@@ -55,16 +57,17 @@ lazy val akkaDemoApp = project.in(file("src/akka-demo-app")).settings(commonSett
 //      case _ => devConf
 //    }
 //  },
-  mainClass in Compile := Some("com.ravel.Application"),
+  mainClass in Compile := Some("com.ravel.Application")
 //  excludeFilter in  unmanagedResources := "*.conf" || "*.xml",
-  mappings in Universal ++= {
-    val confFile = buildEnv.value match {
-      case BuildEnv.Production => "prod"
-      case BuildEnv.Development => "dev"
-      case _ => "dev"
-    }
-    directory("scripts") ++ contentOf((resourceDirectory in Compile).value / confFile).toMap.mapValues("conf/" + _)
-  })
+//  mappings in Universal ++= {
+//    val confFile = buildEnv.value match {
+//      case BuildEnv.Production => "prod"
+//      case BuildEnv.Development => "dev"
+//      case _ => "dev"
+//    }
+//    directory("scripts") ++ contentOf((resourceDirectory in Compile).value / confFile).toMap.mapValues("conf/" + _)
+//  })
+  )
   .enablePlugins(JavaServerAppPackaging)
   .enablePlugins(BuildEnvPlugin)
 
