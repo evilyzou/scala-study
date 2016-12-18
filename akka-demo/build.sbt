@@ -1,9 +1,6 @@
-import BuildEnvPlugin.autoImport._
-import com.typesafe.sbt.SbtNativePackager.autoImport.NativePackagerHelper._
 import sbt.Keys._
-import FilterKeys._
 
-name := "akka-demo"
+name := "ravel-rest-api"
 
 version := "1.0"
 
@@ -40,35 +37,9 @@ val commonSettings = Seq(
   }
 )
 
-lazy val logback = "ch.qos.logback" % "logback-classic" % "1.0.9"
-
-lazy val akkaDemo = (project in file(".")).aggregate(akkaDemoApp)
-
-lazy val akkaDemoApp = project.in(file("src/akka-demo-app")).settings(commonSettings: _*)
+lazy val ravelRestApi = project.in(file("src/ravel-rest-api")).settings(commonSettings: _*)
   .settings(filterSettings: _*)
   .settings(
-//  fork in run := true,
-//  javaOptions += {
-//    val devConf = "-Dconfig.resource=dev/application.conf"
-//    val prodConf = "-Dconfig.file=/Users/CloudZou/Documents/Work/config/application.conf"
-//    buildEnv.value match {
-//      case BuildEnv.Production => prodConf
-//      case BuildEnv.Development => devConf
-//      case _ => devConf
-//    }
-//  },
-  mainClass in Compile := Some("com.ravel.Application")
-//  excludeFilter in  unmanagedResources := "*.conf" || "*.xml",
-//  mappings in Universal ++= {
-//    val confFile = buildEnv.value match {
-//      case BuildEnv.Production => "prod"
-//      case BuildEnv.Development => "dev"
-//      case _ => "dev"
-//    }
-//    directory("scripts") ++ contentOf((resourceDirectory in Compile).value / confFile).toMap.mapValues("conf/" + _)
-//  })
+    mainClass in Compile := Some("com.ravel.Application")
   )
   .enablePlugins(JavaServerAppPackaging)
-  .enablePlugins(BuildEnvPlugin)
-
-//http://www.scala-sbt.org/0.13/docs/Testing.html

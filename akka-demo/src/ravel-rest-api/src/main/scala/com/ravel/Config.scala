@@ -2,6 +2,7 @@ package com.ravel
 
 import akka.actor.ActorSystem
 import akka.event.Logging
+import com.sksamuel.elastic4s.{ElasticsearchClientUri, ElasticClient}
 import com.typesafe.config.ConfigFactory;
 
 /**
@@ -16,5 +17,10 @@ object Config {
   implicit val system = ActorSystem("ravel-app")
   implicit val executionContext = system.dispatcher
   val log = Logging.getLogger(system.eventStream, this.getClass)
+
+  val esHost = config.getString("elasticsearch.host")
+  val esPort = config.getInt("elasticsearch.port")
+
+  val esClient = ElasticClient.transport(ElasticsearchClientUri(esHost, esPort))
 
 }

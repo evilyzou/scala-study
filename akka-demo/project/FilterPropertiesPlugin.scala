@@ -14,12 +14,16 @@ object FilterPropertiesPlugin extends sbt.Plugin {
   import FilterKeys._
   import FileFilter.globFilter
 
+  object BuildEnv extends Enumeration {
+    val Production, Development = Value
+  }
+
   object FilterKeys {
     val filterDirectoryName = Def.settingKey[String]("Default filter directory name.")
     val filterDirectory = Def.settingKey[File]("Default filter directory, used for filters.")
-    val filters = Def.taskKey[Seq[File]]("All filters")
     val extraProps = Def.settingKey[Seq[(String, String)]]("Extra filter properties")
-    val projectProps = Def.taskKey[Seq[(String, String)]]("Project filter properties")
+
+    val filters = Def.taskKey[Seq[File]]("All filters")
     val systemProps = Def.taskKey[Seq[(String, String)]]("System filter properties")
     val envProps = Def.taskKey[Seq[(String, String)]]("Environment filter properties")
     val managedProps = Def.taskKey[Seq[(String, String)]]("Managed filter properties")
@@ -28,23 +32,16 @@ object FilterPropertiesPlugin extends sbt.Plugin {
     val filterResources = Def.taskKey[Seq[(File, File)]]("Filters all resources")
   }
 
-  lazy val filterResourceTask = filterResources <<= filter(copyResources, filterResources) triggeredBy copyResources
+  lazy val filterResourceTask = filterResources <<= filter(copyResources, filterResources) triggeredBy compile
 
   def filter(resources: TaskKey[Seq[(File,File)]], task: TaskKey[Seq[(File, File)]]) = {
     (streams, resources in task, includeFilter in task, excludeFilter in task, props) map {
       (streams, resources: Seq[(File, File)], incl, excl, filterProps) =>
-        println("filter starting......")
         val props = Map.empty[String, String] ++ filterProps
         val filtered = resources filter (r => incl.accept(r._1) && !excl.accept(r._1) && !r._1.isDirectory)
         Filter(streams.log, filtered map(_._2), props)
-        println(resources)
         resources
     }
-  }
-
-  lazy val projectPropsTask = projectProps <<= (organization, name, description, version, scalaVersion, sbtVersion) map {
-    (o, n, d, v, scv, sv) =>
-      Seq("organization" -> o, "name" -> n, "description" -> d, "version" -> v, "scalaVersion" -> scv, "sbtVersion" -> sv)
   }
 
   lazy val unmanagedPropsTask = unmanagedProps <<= (streams, filters) map {
@@ -54,30 +51,46 @@ object FilterPropertiesPlugin extends sbt.Plugin {
   lazy val filterConfigPaths: Seq[Setting[_]] = Seq(
     filterDirectory <<= (sourceDirectory, filterDirectoryName) apply { (d, name) =>{println(d / name); d / name  }},
     sourceDirectories in filters <<= Seq(filterDirectory).join,
-    filters <<= collectFiles(sourceDirectories in filters, includeFilter in filters, excludeFilter in filters),
-    includeFilter in filters := "*.properties" | "*.xml" | "*.conf",
+    filters <<={
+      val files = collectFiles(sourceDirectories in filters, includeFilter in filters, excludeFilter in filters)
+      files map {
+        f =>
+          val t = propertiesSource(f)
+          println(t)
+          t
+      }
+    } ,
+    includeFilter in filters := "*.properties" ,
     excludeFilter in filters := HiddenFileFilter,
-    includeFilter in filterResources := "*.properties" | "*.xml" | "*.conf",
+    includeFilter in filterResources := "*.xml" | "*.conf",
     excludeFilter in filterResources := HiddenFileFilter || ImageFileFilter
   )
+
+  def propertiesSource(files: Seq[File]) = {
+      val env = scala.sys.props.get("env")
+        .orElse(sys.env.get("env"))
+        .getOrElse("dev")
+      val targetPropertiesFile = files filter (f => f.name.indexOf(s"${env}.properties") > 0)
+      targetPropertiesFile
+  }
+
 
   lazy val filterConfigTasks: Seq[Setting[_]] =Seq(
     filterResourceTask,
     copyResources in filterResources <<= copyResources,
-    managedProps <<= (projectProps, systemProps, envProps) map (_ ++ _ ++ _),
+    managedProps <<= (systemProps, envProps) map ( _ ++ _),
     unmanagedPropsTask,
     props <<= (extraProps, managedProps, unmanagedProps) map (_ ++ _ ++ _)
   )
 
   lazy val filterConfigSettings: Seq[Setting[_]] = filterConfigTasks ++ filterConfigPaths
 
-
   lazy val baseFilterSettings = Seq(
     filterDirectoryName := "filter",
     extraProps := Nil,
-    projectPropsTask,
     envProps := System.getenv.toSeq,
     systemProps := System.getProperties.stringPropertyNames.toSeq map (k => k -> System.getProperty(k)))
+
   lazy val filterSettings = baseFilterSettings ++ inConfig(Compile)(filterConfigSettings) ++ inConfig(Test)(filterConfigSettings)
 
   object ImageFileFilter extends FileFilter {
@@ -100,16 +113,26 @@ object FilterPropertiesPlugin extends sbt.Plugin {
     def replacer(props: Map[String, String]) = (m: Match) => {
       m.matched match {
         case s if s.startsWith("\\") =>{
-          println(s)
           Some("""\$\{%s\}""" format s.substring(3, s.length -1))
         }
         case s => props.get(s.substring(2, s.length -1))
       }
     }
-    def filter(line: String, props: Map[String, String]) = pattern.replaceSomeIn(line, replacer(props))
+    def filter(line: String, props: Map[String, String]) ={
+      try {
+        val some = replacer(props)
+        val  t=  pattern.replaceSomeIn(line, some);
+        t
+      }catch{
+        case e: Exception => {
+          println(e)
+          line
+        }
+      }
+    }
 
     def apply(log: Logger, files: Seq[File], props: Map[String, String]): Unit = {
-      log debug ("Filter properties: %s" format (props.mkString("{", ", ", "}")))
+      log.info("Filter properties: %s" format (props.mkString("{", ", ", "}")))
       IO.withTemporaryDirectory { dir =>
         files foreach { src =>
           log debug ("Filtering %s" format src.absolutePath)
@@ -118,7 +141,11 @@ object FilterPropertiesPlugin extends sbt.Plugin {
           val reader =new InputStreamReader(new FileInputStream(src),"UTF-8")
           //new FileReader(src, "UTF-8")
           val in = new BufferedReader(reader)
-          IO.foreachLine(in) { line => IO.writeLines(out, Seq(filter(line, props))) }
+          IO.foreachLine(in) { line => IO.writeLines(out, Seq({
+            val ll = filter(line, props)
+            println(line)
+            ll
+          })) }
           in.close()
           out.close()
           IO.copyFile(dest, src, true)

@@ -12,7 +12,7 @@
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <Encoding>UTF-8</Encoding>
         <!-- 指定日志文件的名称 -->
-        <file>../logs/akka.log</file>
+        <file>${logback.path}</file>
         <!--
         当发生滚动时，决定 RollingFileAppender 的行为，涉及文件移动和重命名
         TimeBasedRollingPolicy： 最常用的滚动策略，它根据时间来制定滚动策略，既负责滚动也负责出发滚动。
@@ -22,7 +22,7 @@
             滚动时产生的文件的存放位置及文件名称 %d{yyyy-MM-dd}：按天进行日志滚动
             %i：当文件大小超过maxFileSize时，按照i进行文件滚动
             -->
-            <fileNamePattern>../logs/akka-%d{yyyy-MM-dd}-%i.gz</fileNamePattern>
+            <fileNamePattern>${logback.fileNamePattern}</fileNamePattern>
             <!--
             可选节点，控制保留的归档文件的最大数量，超出数量就删除旧文件。假设设置每天滚动，
             且maxHistory是365，则只保存最近365天的文件，删除之前的旧文件。注意，删除旧文件是，
@@ -58,7 +58,7 @@
 
     <!--<logger name="slick" level="DEBUG"/>-->
 
-    <root level="DEBUG">
+    <root level="${logback.level}">
         <appender-ref ref="FILE" />
         <appender-ref ref="CONSOLE"/>
     </root>
