@@ -25,7 +25,7 @@ object ProductService{
         val sourceMap = hit.sourceAsMap
         searchProducts :+ sourceMap
       }
-      log.info(s"map:${searchProducts}")
+      log.info(s"map:${searchProducts.headOption.get}")
     }catch {
       case e => {
         println(e)
