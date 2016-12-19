@@ -23,6 +23,7 @@ object ProductService{
       log.info(s"count:${t.hits.length}")
       for( hit <- t.hits) {
         val sourceMap = hit.sourceAsMap
+        log.info(s"map:${sourceMap}")
         searchProducts :+ sourceMap
       }
     }catch {
