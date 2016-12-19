@@ -14,41 +14,42 @@ import scala.concurrent.Future
  */
 object ProductService{
   def list : Future[Seq[SearchProductView]] = {
-    esClient.execute { index into "bands" / "artists" fields "name"->"coldplay" }.await
-    Thread.sleep(2000)
-
-    // now we can search for the document we indexed earlier
-    val resp = esClient.execute { search in "bands" / "artists"}.await
-    println(resp)
-
     val searchFuture = esClient.execute {
-      search in "ravel/product"
+      search in "ravel" / "product"
     }
+    val searchProducts: Seq[SearchProductView] = Nil
     try {
       val t = searchFuture.await
+      log.info(s"count:${t.hits.length}")
+      for( hit <- t.hits) {
+        val sourceMap = hit.sourceAsMap
+        searchProducts :+ sourceMap
+      }
     }catch {
       case e => {
         println(e)
       }
     }
-
-
     Future {
-      val searchProducts: Seq[SearchProductView] = Nil
-      searchFuture  onSuccess {
-        case searchResult => {
-          log.info(s"count:${searchResult.hits.length}")
-          for( hit <- searchResult.hits) {
-            val sourceMap = hit.sourceAsMap
-            searchProducts :+ sourceMap
-          }
-        }
-      }
-      searchFuture onFailure {
-        case t => log.error("An error occured happend:", t)
-      }
       searchProducts
     }
+
+//    Future {
+//      val searchProducts: Seq[SearchProductView] = Nil
+//      searchFuture  onSuccess {
+//        case searchResult => {
+//          log.info(s"count:${searchResult.hits.length}")
+//          for( hit <- searchResult.hits) {
+//            val sourceMap = hit.sourceAsMap
+//            searchProducts :+ sourceMap
+//          }
+//        }
+//      }
+//      searchFuture onFailure {
+//        case t => log.error("An error occured happend:", t)
+//      }
+//      searchProducts
+//    }
 
   }
   def get(id: Int): Future[Option[ProductRow]] = {
