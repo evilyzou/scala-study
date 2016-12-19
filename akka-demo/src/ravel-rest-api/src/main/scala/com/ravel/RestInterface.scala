@@ -7,7 +7,7 @@ import com.ravel.resources.ProductResource
  * Created by CloudZou on 12/9/2016.
  */
 object RestInterface extends Resources {
-  val routes: Route = productRoutes
+  val routes: Route = productRoutes ~ testRoutes
 }
 
 trait Resources extends ProductResource

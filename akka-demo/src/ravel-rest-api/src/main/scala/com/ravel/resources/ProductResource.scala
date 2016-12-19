@@ -29,4 +29,12 @@ trait ProductResource extends Directives{
       }
     }
   }
+
+  def testRoutes =
+    path("hello") {
+      get {
+        complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "<h1>say hello to akka-http</h1>"))
+      }
+    }
+
 }

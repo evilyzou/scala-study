@@ -141,11 +141,7 @@ object FilterPropertiesPlugin extends sbt.Plugin {
           val reader =new InputStreamReader(new FileInputStream(src),"UTF-8")
           //new FileReader(src, "UTF-8")
           val in = new BufferedReader(reader)
-          IO.foreachLine(in) { line => IO.writeLines(out, Seq({
-            val ll = filter(line, props)
-            println(line)
-            ll
-          })) }
+          IO.foreachLine(in) { line => IO.writeLines(out, Seq(filter(line, props))) }
           in.close()
           out.close()
           IO.copyFile(dest, src, true)
