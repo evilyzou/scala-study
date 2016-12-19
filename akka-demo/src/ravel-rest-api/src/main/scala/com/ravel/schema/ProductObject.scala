@@ -27,10 +27,6 @@ object ProductObject {
              day, pfunction, productFeatures, night, images, advanceDay, arrive, onlineStatus)
     }
 
-    def apply(id: Option[AnyRef]): Unit = {
-
-    }
-
     private[this] def innerApply(id: Int, title: String, systemType: String, customType: String,
               marketPrice: Long, depature: String, dumpTime: Date,
               day: Int, pfunction: String, productFeatures: String, night: Int,
