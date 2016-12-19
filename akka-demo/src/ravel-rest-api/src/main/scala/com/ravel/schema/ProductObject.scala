@@ -37,7 +37,6 @@ object ProductObject {
     implicit def OptionAnyRefToInt(option: Option[AnyRef]):Int = convert(option, 0)
     implicit def OptionAnyRefToString(option: Option[AnyRef]):String = convert(option, "")
     implicit def OptionAnyRefToDouble(option: Option[AnyRef]): Double = convert(option, 0L)
-    implicit def OptionAnyRefToString(option: Option[AnyRef]):String = convert(option, new String(1970,1,1))
 
     private[this] def convert[T](option: Option[AnyRef], defaultValue: T): T = {
       option match {
