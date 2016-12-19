@@ -1,6 +1,5 @@
 package com.ravel.schema
 
-import java.util.Date
 
 /**
  * Created by CloudZou on 12/18/16.
@@ -15,7 +14,7 @@ object ProductObject {
   }
 
   case class SearchProductView(id: Int, title: String, systemType: String, customType: String,
-                            marketPrice: Double, depature: String, dumpTime: Date,
+                            marketPrice: Double, depature: String, dumpTime: String,
                             day: Int, pfunction: String, productFeatures: String, night: Int,
                             images: String, advanceDay: Int, arrive: String, onlineStatus: Int)
   object SearchProduct{
@@ -28,7 +27,7 @@ object ProductObject {
     }
 
     private[this] def innerApply(id: Int, title: String, systemType: String, customType: String,
-              marketPrice: Double, depature: String, dumpTime: Date,
+              marketPrice: Double, depature: String, dumpTime: String,
               day: Int, pfunction: String, productFeatures: String, night: Int,
               images: String, advanceDay: Int, arrive: String, onlineStatus: Int) = {
       new SearchProductView(id, title, systemType, customType, marketPrice, depature, dumpTime,
@@ -38,13 +37,12 @@ object ProductObject {
     implicit def OptionAnyRefToInt(option: Option[AnyRef]):Int = convert(option, 0)
     implicit def OptionAnyRefToString(option: Option[AnyRef]):String = convert(option, "")
     implicit def OptionAnyRefToDouble(option: Option[AnyRef]): Double = convert(option, 0L)
-    implicit def OptionAnyRefToDate(option: Option[AnyRef]):Date = convert(option, new Date(1970,1,1))
+    implicit def OptionAnyRefToString(option: Option[AnyRef]):String = convert(option, new String(1970,1,1))
 
     private[this] def convert[T](option: Option[AnyRef], defaultValue: T): T = {
       option match {
         case Some(x) => {
           x match {
-            case i: Date => (new Date(1970,1,1)).asInstanceOf[T]
             case i: T => x.asInstanceOf[T]
           }
         }
