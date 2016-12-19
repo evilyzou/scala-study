@@ -14,41 +14,12 @@ import scala.concurrent.Future
  */
 object ProductService{
   def list : Future[Seq[SearchProductView]] = {
-    val searchFuture = esClient.execute {
+    esClient.execute {
       search in "ravel" / "product"
-    }
-    val searchProducts: Seq[SearchProductView] = Nil
-    try {
-      val t = searchFuture.await
-      log.info(s"count:${t.hits.length}")
-      val searchProducts: Seq[SearchProductView] = t.hits.map(e => mapToSearchProduct(e.sourceAsMap))
-      log.info(s"map:${searchProducts.headOption.get}")
-    }catch {
-      case e => {
-        println(e)
+    } map { searchResult => {
+        searchResult.hits.map(e => mapToSearchProduct(e.sourceAsMap))
       }
     }
-    Future {
-      searchProducts
-    }
-
-//    Future {
-//      val searchProducts: Seq[SearchProductView] = Nil
-//      searchFuture  onSuccess {
-//        case searchResult => {
-//          log.info(s"count:${searchResult.hits.length}")
-//          for( hit <- searchResult.hits) {
-//            val sourceMap = hit.sourceAsMap
-//            searchProducts :+ sourceMap
-//          }
-//        }
-//      }
-//      searchFuture onFailure {
-//        case t => log.error("An error occured happend:", t)
-//      }
-//      searchProducts
-//    }
-
   }
   def get(id: Int): Future[Option[ProductRow]] = {
     db.run(products.filter(_.id === id).result.headOption)
