@@ -44,6 +44,7 @@ object ProductObject {
       option match {
         case Some(x) => {
           x match {
+            case i: Date => (new Date(1970,1,1)).asInstanceOf[T]
             case i: T => x.asInstanceOf[T]
           }
         }
