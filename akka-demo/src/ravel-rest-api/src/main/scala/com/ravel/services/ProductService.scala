@@ -21,10 +21,7 @@ object ProductService{
     try {
       val t = searchFuture.await
       log.info(s"count:${t.hits.length}")
-      for( hit <- t.hits) {
-        val sourceMap = hit.sourceAsMap
-        searchProducts :+ sourceMap
-      }
+      val searchProducts: Seq[SearchProductView] = t.hits.map(e => mapToSearchProduct(e.sourceAsMap))
       log.info(s"map:${searchProducts.headOption.get}")
     }catch {
       case e => {
