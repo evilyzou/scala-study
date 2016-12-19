@@ -14,20 +14,38 @@ import scala.concurrent.Future
  */
 object ProductService{
   def list : Future[Seq[SearchProductView]] = {
+    esClient.execute { index into "bands" / "artists" fields "name"->"coldplay" }.await
+    Thread.sleep(2000)
+
+    // now we can search for the document we indexed earlier
+    val resp = esClient.execute { search in "bands" / "artists"}.await
+    println(resp)
+
     val searchFuture = esClient.execute {
-      search("ravel" / "product").query("*")
+      search in "ravel/product"
     }
+    try {
+      val t = searchFuture.await
+    }catch {
+      case e => {
+        println(e)
+      }
+    }
+
 
     Future {
       val searchProducts: Seq[SearchProductView] = Nil
-      searchFuture map {
-        searchResult => {
+      searchFuture  onSuccess {
+        case searchResult => {
           log.info(s"count:${searchResult.hits.length}")
           for( hit <- searchResult.hits) {
             val sourceMap = hit.sourceAsMap
             searchProducts :+ sourceMap
           }
         }
+      }
+      searchFuture onFailure {
+        case t => log.error("An error occured happend:", t)
       }
       searchProducts
     }

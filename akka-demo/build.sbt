@@ -10,9 +10,11 @@ val commonSettings = Seq(
   libraryDependencies ++= commonDeps
 )
 
+onLoad in Global := (onLoad in Global).value andThen (Command.process("project ravelRestApi", _))
+
 lazy val ravelRestApi = project.in(file("src/ravel-rest-api")).settings(commonSettings: _*)
   .settings(filterSettings: _*)
   .settings(
-    mainClass in Compile := Some("com.ravel.Application")
+    mainClass in (Compile, run) := Some("com.ravel.Application")
   )
   .enablePlugins(JavaServerAppPackaging)
