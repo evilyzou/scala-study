@@ -22,6 +22,7 @@ object ProductService{
       val searchProducts: Seq[SearchProductView] = Nil
       searchFuture map {
         searchResult => {
+          log.info(s"count:${searchResult.hits.length}")
           for( hit <- searchResult.hits) {
             val sourceMap = hit.sourceAsMap
             searchProducts :+ sourceMap
