@@ -46,6 +46,5 @@ object Dependencies {
 
   val sslConfig = "com.typesafe" %% "ssl-config-core" % "0.2.1"
 
-  val commonDeps =Seq(scalaLogging, mysqlConnector, logback, deJson4s, sslConfig,
-                      sprayjson, elastic4s) ++ akkaDeps ++ akkaHttpDeps ++ slickDeps ++ json4sDeps
+  def commonDeps = akkaDeps ++ akkaHttpDeps ++ slickDeps ++ json4sDeps ++ Seq(scalaLogging, mysqlConnector, logback, deJson4s, sslConfig, sprayjson, elastic4s)
 }
