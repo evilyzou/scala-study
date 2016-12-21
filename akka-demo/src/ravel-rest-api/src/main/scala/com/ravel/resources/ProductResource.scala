@@ -2,10 +2,8 @@ package com.ravel.resources
 
 import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
 import akka.http.scaladsl.server.{Directives, Route}
-import com.ravel.resources.MyJsonSupport._
 import com.ravel.services.ProductService
 import spray.json._
-import com.ravel.Config._
 
 /**
  * Created by CloudZou on 12/9/2016.
@@ -28,9 +26,9 @@ trait ProductResource extends Directives{
     path("list") {
       get {
         parameters('systemType, 'customType, 'pfunction, 'start ? 0, 'size ? 10) {
-          case filter: ProductSearchFilter => {
-              log.info(s"xx:${filter}")
-              val flist = ProductService.list(filter)
+          (systemType, customType, pfunction, start, size) => {
+            val filter = ProductSearchFilter.tupled((systemType, customType, pfunction))
+            val flist = ProductService.list(filter)
               onSuccess(flist) {
                 case list => complete(HttpEntity(ContentTypes.`application/json`, list.toJson.compactPrint.getBytes("UTF-8")))
               }
