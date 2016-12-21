@@ -1,13 +1,10 @@
 package com.ravel.resources
 
-import akka.actor.ActorLogging
-import akka.http.scaladsl.model.{HttpEntity, ContentTypes}
+import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
 import akka.http.scaladsl.server.{Directives, Route}
-import akka.stream.ActorMaterializer
+import com.ravel.resources.MyJsonSupport._
 import com.ravel.services.ProductService
 import spray.json._
-import MyJsonSupport._
-import com.ravel.Config._
 
 /**
  * Created by CloudZou on 12/9/2016.
@@ -17,16 +14,24 @@ sealed trait Pagination {
   def start: Int
   def size: Int
 }
-case class ProductSearchFilter(customType: String, systemType: String, pfunction: String)
+case class ProductSearchFilter(customType: String, systemType: String, pfunction: String) extends Pagination{
+  def unapply(customType: String, systemType: String, pfunction: String, start:Int, size: Int): Option[ProductSearchFilter] = {
+    Some(ProductSearchFilter(customType, systemType, pfunction))
+  }
+  def start : Int = 0
+  def size: Int = 10
+}
 
 trait ProductResource extends Directives{
   def productRoutes: Route = pathPrefix("product"){
     path("list") {
       get {
-        parameters('systemType, 'customType, 'pfunction) { (systemType, customType, pfunction) =>
-          val flist = ProductService.list
-          onSuccess(flist) {
-            case list => complete(HttpEntity(ContentTypes.`application/json`, list.toJson.compactPrint.getBytes("UTF-8")))
+        parameters('systemType, 'customType, 'pfunction, 'start ? 0, 'size ? 10) {
+          case filter: ProductSearchFilter => {
+              val flist = ProductService.list(filter)
+              onSuccess(flist) {
+                case list => complete(HttpEntity(ContentTypes.`application/json`, list.toJson.compactPrint.getBytes("UTF-8")))
+              }
           }
         }
       }
