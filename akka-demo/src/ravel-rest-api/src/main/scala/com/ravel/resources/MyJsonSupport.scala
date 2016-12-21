@@ -3,6 +3,7 @@ package com.ravel.resources
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
 
+import com.ravel.schema.GuideObject.GuideView
 import com.ravel.schema.ProductObject._
 
 //import com.ravel.extension.spray.ProductFormatsExtensionInstances
@@ -44,5 +45,6 @@ object MyJsonSupport extends  DefaultJsonProtocol with ProductFormatsExtensionIn
   implicit val productInfo4Format = jsonFormat10(ProductInfo4)
   implicit val productFormat = jsonFormatExtension5(ProductRow)
   implicit val searchProductFormat = jsonFormat15(SearchProductView)
-  implicit val productSearchFilterFormat = jsonFormat3(ProductSearchFilter.apply)
+
+  implicit val guideViewFormat = jsonFormat8(GuideView)
 }

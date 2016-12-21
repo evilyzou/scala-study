@@ -15,8 +15,13 @@ import scala.concurrent.Future
  */
 object ProductService{
   def list(filter: ProductSearchFilter) : Future[Seq[SearchProductView]] = {
+    val start = filter.start * filter.size
     val searchFuture = esClient.execute {
-      search in esIndex / esTypeProduct query { termQuery("pfunction", filter.pfunction) }
+      search in esIndex / esTypeProduct query {
+        termQuery("pfunction", filter.pfunction)
+        termQuery("systemType", filter.systemType)
+        termQuery("customType", filter.customType)
+      } start(start) limit(filter.size)
     }
     searchFuture onFailure {
       case e => log.error("An error has occured:" + e.getMessage)

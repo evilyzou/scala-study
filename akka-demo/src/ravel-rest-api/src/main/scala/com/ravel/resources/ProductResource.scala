@@ -10,14 +10,11 @@ import spray.json._
  * Created by CloudZou on 12/9/2016.
  */
 
-sealed trait Pagination {
+trait Pagination {
   def start: Int
   def size: Int
 }
 case class ProductSearchFilter(customType: String, systemType: String, pfunction: String) extends Pagination{
-  def unapply(customType: String, systemType: String, pfunction: String, start:Int, size: Int): Option[ProductSearchFilter] = {
-    Some(ProductSearchFilter(customType, systemType, pfunction))
-  }
   def start : Int = 0
   def size: Int = 10
 }
