@@ -23,10 +23,7 @@ trait ProductResource extends Directives{
   def productRoutes: Route = pathPrefix("product"){
     path("list") {
       get {
-        import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport._
-
-        entity(as[ProductSearchFilter]) { filter =>
-          log.info(s"filter:${filter}")
+        parameters('systemType, 'customType, 'pfunction) { (systemType, customType, pfunction) =>
           val flist = ProductService.list
           onSuccess(flist) {
             case list => complete(HttpEntity(ContentTypes.`application/json`, list.toJson.compactPrint.getBytes("UTF-8")))
