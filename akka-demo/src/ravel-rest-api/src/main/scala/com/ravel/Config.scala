@@ -8,7 +8,7 @@ import com.typesafe.config.ConfigFactory;
 /**
  * Created by CloudZou on 12/12/16.
  */
-object Config {
+object Config{
   val config = ConfigFactory.load()
   val host = config.getString("http.host")
   println(host)
@@ -20,6 +20,9 @@ object Config {
 
   val esHost = config.getString("elasticsearch.host")
   val esPort = config.getInt("elasticsearch.port")
+  val esIndex = config.getString("elasticsearch.index")
+  val esTypeProduct = config.getString("elasticsearch.type.product")
+  val esTypeGuide = config.getString("elasticsearch.type.guide")
 
   val esClient = ElasticClient.transport(ElasticsearchClientUri(esHost, esPort))
 

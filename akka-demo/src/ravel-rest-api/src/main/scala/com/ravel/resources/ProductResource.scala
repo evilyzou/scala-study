@@ -1,22 +1,36 @@
 package com.ravel.resources
 
+import akka.actor.ActorLogging
 import akka.http.scaladsl.model.{HttpEntity, ContentTypes}
 import akka.http.scaladsl.server.{Directives, Route}
+import akka.stream.ActorMaterializer
 import com.ravel.services.ProductService
 import spray.json._
 import MyJsonSupport._
+import com.ravel.Config._
 
 /**
  * Created by CloudZou on 12/9/2016.
  */
+
+sealed trait Pagination {
+  def start: Int
+  def size: Int
+}
+case class ProductSearchFilter(customType: String, systemType: String, pfunction: String)
+
 trait ProductResource extends Directives{
   def productRoutes: Route = pathPrefix("product"){
     path("list") {
       get {
-        val flist = ProductService.list
-        onSuccess(flist) {
-          case list => complete(HttpEntity(ContentTypes.`application/json`, list.toJson.compactPrint.getBytes("UTF-8")))
-          //          case None => complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "<h1>Say hello to akka-http</h1>"))
+        import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport._
+
+        entity(as[ProductSearchFilter]) { filter =>
+          log.info(s"filter:${filter}")
+          val flist = ProductService.list
+          onSuccess(flist) {
+            case list => complete(HttpEntity(ContentTypes.`application/json`, list.toJson.compactPrint.getBytes("UTF-8")))
+          }
         }
       }
     }~
