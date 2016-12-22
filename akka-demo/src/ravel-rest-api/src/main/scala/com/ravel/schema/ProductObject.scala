@@ -1,5 +1,7 @@
 package com.ravel.schema
 
+import com.ravel.schema.Tables._
+
 
 /**
  * Created by CloudZou on 12/18/16.
@@ -32,5 +34,7 @@ object ProductObject {
       case None => defaultValue
     }
   }
+
+  case class ProductView(product: Option[ProductRow], productExt: Option[ProductExtRow], productOther: Option[ProductOtherRow], productPrices: Seq[ProductPriceByTeamRow])
 
 }

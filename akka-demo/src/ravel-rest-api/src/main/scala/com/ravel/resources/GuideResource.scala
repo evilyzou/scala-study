@@ -3,6 +3,7 @@ package com.ravel.resources
 import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
 import akka.http.scaladsl.server._
 import com.ravel.services.GuideService
+import MyJsonSupport._
 import spray.json._
 
 /**
@@ -14,7 +15,7 @@ case class GuideSearchFilter(customType: String, systemType: String, guideType: 
 }
 
 trait GuideResource extends Directives{
-  def productRoutes: Route = pathPrefix("guide"){
+  def guideRoutes: Route = pathPrefix("guide"){
     path("list") {
       get {
         parameters('systemType, 'customType, 'guideType, 'start ? 0, 'size ? 10) {

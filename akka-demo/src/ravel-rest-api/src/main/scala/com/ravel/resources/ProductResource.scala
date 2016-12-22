@@ -2,6 +2,7 @@ package com.ravel.resources
 
 import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
 import akka.http.scaladsl.server.{Directives, Route}
+import com.ravel.schema.ProductObject.ProductView
 import com.ravel.services.ProductService
 import MyJsonSupport._
 import spray.json._
@@ -36,8 +37,16 @@ trait ProductResource extends Directives{
     }~
     path(IntNumber) { id =>
       get {
-        val productFuture = ProductService.get(id)
-        onSuccess(productFuture) {
+        import com.ravel.Config.executionContext
+        val resultFuture = for {
+          product <- ProductService.get(id)
+          productExt <- ProductService.getProductExt(id)
+          productOther <- ProductService.getProductOther(id)
+          productPriceByTeams <- ProductService.getProductPrices(id)
+        } yield {
+          ProductView.tupled((product, productExt, productOther, productPriceByTeams))
+        }
+        onSuccess(resultFuture) {
           case product => complete(HttpEntity(ContentTypes.`application/json`, product.toJson.compactPrint.getBytes("UTF-8")))
         }
       }

@@ -1,5 +1,8 @@
 package com.ravel.services
 
+import java.sql.Timestamp
+import java.util.Date
+
 import com.ravel.Config._
 import com.ravel.resources.ProductSearchFilter
 import com.ravel.schema.Actions._
@@ -34,5 +37,17 @@ object ProductService{
   }
   def get(id: Int): Future[Option[ProductRow]] = {
     db.run(products.filter(_.id === id).result.headOption)
+  }
+  def getProductExt(id: Int): Future[Option[ProductExtRow]] = {
+    db.run(productExts.filter(_.productId === id).result.headOption)
+  }
+  def getProductOther(id: Int): Future[Option[ProductOtherRow]] = {
+    db.run(productOthers.filter(_.productId === id).result.headOption)
+  }
+
+  def getProductPrices(id: Int): Future[Seq[ProductPriceByTeamRow]] = {
+    val date = new Date()
+    val now = new Timestamp(date.getTime)
+    db.run(productPriceByTeams.filter(_.productId === id).filter(_.takeOffDate > now).result)
   }
 }

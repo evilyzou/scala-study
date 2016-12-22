@@ -47,4 +47,10 @@ object MyJsonSupport extends  DefaultJsonProtocol with ProductFormatsExtensionIn
   implicit val searchProductFormat = jsonFormat15(SearchProductView)
 
   implicit val guideViewFormat = jsonFormat8(GuideView)
+
+  implicit val productOtherFormat = jsonFormat11(ProductOtherRow)
+  implicit val productExtFormat = jsonFormat12(ProductExtRow)
+  implicit val productPriceByTeamFormat = jsonFormat21(ProductPriceByTeamRow)
+  implicit val productViewFormat = jsonFormat4(ProductView)
+
 }
