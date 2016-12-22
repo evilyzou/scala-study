@@ -56,7 +56,6 @@ object FilterPropertiesPlugin extends sbt.Plugin {
       files map {
         f =>
           val t = propertiesSource(f)
-          println(t)
           t
       }
     } ,
