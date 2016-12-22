@@ -5,9 +5,8 @@ import akka.http.scaladsl.Http
 import akka.stream.ActorMaterializer
 import com.ravel.{Config => C, RestInterface}
 
-import scala.io.StdIn
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent._
-import ExecutionContext.Implicits.global
 
 /**
  * Created by CloudZou on 12/12/16.
@@ -31,7 +30,7 @@ class Starter extends Actor with ActorLogging{
       Http().bindAndHandle(routes, C.host, C.port) map { binding =>
         log.info(s"REST interface bound to ${binding.localAddress}")
 
-        StdIn.readLine() // let it run until user presses return
+//        StdIn.readLine() // let it run until user presses return
         binding.unbind().onComplete(_ => system.terminate())
       } recover {
         case ex => log.info(s"REST interface could not bind to $C.host:$C.port", ex.getMessage)
