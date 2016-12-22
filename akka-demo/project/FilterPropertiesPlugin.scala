@@ -69,6 +69,7 @@ object FilterPropertiesPlugin extends sbt.Plugin {
       val env = scala.sys.props.get("env")
         .orElse(sys.env.get("env"))
         .getOrElse("dev")
+      println(s"env:${env}")
       val targetPropertiesFile = files filter (f => f.name.indexOf(s"${env}.properties") > 0)
       targetPropertiesFile
   }
