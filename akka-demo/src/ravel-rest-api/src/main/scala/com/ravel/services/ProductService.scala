@@ -23,7 +23,6 @@ object ProductService{
       search in esIndex / esTypeProduct query {
         termQuery("pfunction", filter.pfunction)
         termQuery("systemType", filter.systemType)
-        termQuery("customType", filter.customType)
       } start(start) limit(filter.size)
     }
     searchFuture onFailure {
