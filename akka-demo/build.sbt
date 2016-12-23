@@ -17,4 +17,4 @@ lazy val ravelRestApi = project.in(file("src/ravel-rest-api")).settings(commonSe
   .settings(
     mainClass in (Compile, run) := Some("com.ravel.Application")
   )
-  .enablePlugins(JavaServerAppPackaging)
+  .enablePlugins(JavaAppPackaging)
