@@ -30,6 +30,7 @@ class Starter extends Actor with ActorLogging{
       Http().bindAndHandle(routes, C.host, C.port) map { binding =>
         log.info(s"REST interface bound to ${binding.localAddress}")
 
+        Thread.sleep(1000 * 3)
         val s = StdIn.readLine() // let it run until user presses return
         log.info(s"xx:$s")
         binding.unbind().onComplete(e =>{
@@ -37,7 +38,7 @@ class Starter extends Actor with ActorLogging{
           system.terminate()
         } )
       } recover {
-        case ex => log.info(s"REST interface could not bind to $C.host:$C.port", ex.getMessage)
+        case ex => log.info(s"REST interface could not bind to ${C.host}:${C.port}", ex.getMessage)
       }
   }
 }
