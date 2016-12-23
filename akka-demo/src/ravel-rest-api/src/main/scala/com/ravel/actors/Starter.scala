@@ -31,7 +31,7 @@ class Starter extends Actor with ActorLogging{
         log.info(s"REST interface bound to ${binding.localAddress}")
 
         val s = StdIn.readLine() // let it run until user presses return
-        println(s"xx:$s")
+        log.info(s"xx:$s")
         binding.unbind().onComplete(e =>{
           log.error("error occured")
           system.terminate()
