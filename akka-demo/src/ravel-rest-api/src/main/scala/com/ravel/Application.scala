@@ -13,24 +13,8 @@ import scala.io.StdIn
  * Created by CloudZou on 12/12/16.
  */
 object Application extends App {
-//  val system = ActorSystem("ravel-app")
-//
-//  val starter = system.actorOf(Props[Starter], name = "main")
-//  starter ! Starter.Start
-  implicit val system = ActorSystem("my-system")
+  val system = ActorSystem("ravel-app")
 
-  import akka.stream.ActorMaterializer
-  implicit val materializer = ActorMaterializer()
-
-  Http().bindAndHandle(routes, C.host, C.port) map { binding =>
-    C.log.info(s"REST interface bound to ${binding.localAddress}")
-
-    StdIn.readLine() // let it run until user presses return
-    binding.unbind().onComplete(e =>{
-      C.log.error("error occured")
-      system.terminate()
-    } )
-  } recover {
-    case ex => C.log.info(s"REST interface could not bind to $C.host:$C.port", ex.getMessage)
-  }
+  val starter = system.actorOf(Props[Starter], name = "main")
+  starter ! Starter.Start
 }
