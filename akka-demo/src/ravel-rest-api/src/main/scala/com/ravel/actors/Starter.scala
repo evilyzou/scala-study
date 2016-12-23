@@ -38,7 +38,7 @@ class Starter extends Actor with ActorLogging{
           system.terminate()
         } )
       } recover {
-        case ex => log.info(s"REST interface could not bind to ${C.host}:${C.port}", ex.getMessage)
+        case ex => log.info(ex, s"REST interface could not bind to ${C.host}:${C.port}")
       }
   }
 }
