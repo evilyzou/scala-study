@@ -17,17 +17,16 @@ import scala.concurrent.Future
  * Created by CloudZou on 12/9/16.
  */
 object ProductService{
-  def list(filter: ProductSearchFilter) : Future[Seq[SearchProductView]] = {
-    val start = filter.start * filter.size
+  def list(f: ProductSearchFilter) : Future[Seq[SearchProductView]] = {
+    val start = f.start * f.size
     log.info(s"c:${filter}")
     val searchFuture = esClient.execute {
       search in esIndex / esTypeProduct query {
         bool {
           must {
-//            termQuery("pfunction", filter.pfunction)
-            termQuery("systemType", filter.systemType)
-//            termQuery("customType", filter.customType)
-          }
+            termQuery("pfunction", f.pfunction)
+          } filter(termQuery("systemType", f.systemType))
+
         }
       } start(start) limit(filter.size)
     }
