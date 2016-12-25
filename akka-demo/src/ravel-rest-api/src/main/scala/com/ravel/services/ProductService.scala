@@ -25,7 +25,7 @@ object ProductService{
         bool {
           must {
             termQuery("pfunction", f.pfunction)
-          } 
+          }
 
         }
       } start(start) limit(f.size)

@@ -15,6 +15,7 @@ onLoad in Global := (onLoad in Global).value andThen (Command.process("project r
 lazy val ravelRestApi = project.in(file("src/ravel-rest-api")).settings(commonSettings: _*)
   .settings(filterSettings: _*)
   .settings(
-    mainClass in (Compile, run) := Some("com.ravel.Application")
+    mainClass in (Compile, run) := Some("com.ravel.Application"),
+    logBuffered in Test := false
   )
   .enablePlugins(JavaAppPackaging)

@@ -5,6 +5,7 @@ object Dependencies {
   val akkaHttpVersion = "10.0.0"
   val slickVersion = "3.1.1"
   val json4sVersion     = "3.2.11"
+  val scalacTestVersion = "3.0.1"
 
   val akkaDeps = Seq(
     "akka-actor",
@@ -46,5 +47,12 @@ object Dependencies {
 
   val sslConfig = "com.typesafe" %% "ssl-config-core" % "0.2.1"
 
-  def commonDeps = akkaDeps ++ akkaHttpDeps ++ slickDeps ++ json4sDeps ++ Seq(scalaLogging, mysqlConnector, logback, deJson4s, sslConfig, sprayjson, elastic4s)
+  val scalacTest = Seq(
+    "org.scalactic" %% "scalactic" % scalacTestVersion,
+    "org.scalatest" %% "scalatest" % scalacTestVersion % "test"
+  )
+
+  def commonDeps = akkaDeps ++ akkaHttpDeps ++ slickDeps ++ json4sDeps ++
+                   Seq(scalaLogging, mysqlConnector, logback, deJson4s, sslConfig, sprayjson, elastic4s) ++
+                   scalacTest
 }
