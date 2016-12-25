@@ -21,9 +21,9 @@ object ProductService{
     val start = filter.start * filter.size
     val searchFuture = esClient.execute {
       search in esIndex / esTypeProduct query {
-        termQuery("pfunction", filter.pfunction)
+//        termQuery("pfunction", filter.pfunction)
         matchQuery("systemType", filter.systemType)
-        matchQuery("customType", filter.customType)
+//        matchQuery("customType", filter.customType)
       } start(start) limit(filter.size)
     }
     searchFuture onFailure {
