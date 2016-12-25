@@ -22,7 +22,7 @@ object ProductService{
     val searchFuture = esClient.execute {
       search in esIndex / esTypeProduct query {
 //        termQuery("pfunction", filter.pfunction)
-        matchQuery("systemType", filter.systemType)
+        termQuery("systemType", filter.systemType)
 //        matchQuery("customType", filter.customType)
       } start(start) limit(filter.size)
     }
