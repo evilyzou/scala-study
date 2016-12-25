@@ -24,7 +24,7 @@ object ProductService{
         bool {
           must(
             termQuery("pfunction", filter.pfunction),
-            matchQuery("systemType", "xxxx")
+            matchQuery("systemType", "system")
           )
         }
       } start(start) limit(filter.size)
