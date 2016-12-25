@@ -19,6 +19,7 @@ import scala.concurrent.Future
 object ProductService{
   def list(filter: ProductSearchFilter) : Future[Seq[SearchProductView]] = {
     val start = filter.start * filter.size
+    log.info(s"c:${filter}")
     val searchFuture = esClient.execute {
       search in esIndex / esTypeProduct query {
         bool {
