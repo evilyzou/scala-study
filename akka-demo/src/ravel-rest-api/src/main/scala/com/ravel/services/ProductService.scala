@@ -23,9 +23,9 @@ object ProductService{
       search in esIndex / esTypeProduct query {
         bool {
           must {
-            termQuery("pfunction", filter.pfunction)
+//            termQuery("pfunction", filter.pfunction)
             termQuery("systemType", filter.systemType)
-            termQuery("customType", filter.customType)
+//            termQuery("customType", filter.customType)
           }
         }
       } start(start) limit(filter.size)
