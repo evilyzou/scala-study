@@ -14,7 +14,7 @@ object ProductObject {
                   sp.get("advanceDay"), sp.get("arrive"), sp.get("onlineStatus"))
   }
 
-  case class SearchProductView(id: Int, title: String, systemType: String, customType: String,
+  case class SearchProductView(id: Int, title: String, systemType: Int, customType: Int,
                             marketPrice: Double, depature: String, dumpTime: String,
                             day: Int, pfunction: String, productFeatures: String, night: Int,
                             images: String, advanceDay: Int, arrive: String, onlineStatus: Int)
