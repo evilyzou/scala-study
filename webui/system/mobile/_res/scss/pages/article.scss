@@ -1,0 +1,23 @@
+@charset "utf-8";
+/**
+ *  Create Date: 2016-03-30
+ *  Author: zihan
+ */
+
+
+@import '../variables';
+@import '../mixins';
+
+
+.content_box {
+    
+    > .head {
+        //margin-top: -($padding-base * 6);
+        text-align: center;
+        
+        .title {
+            font-size: 16px;
+        }
+    }
+    
+}

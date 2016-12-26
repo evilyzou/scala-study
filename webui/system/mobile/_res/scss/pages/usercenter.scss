@@ -1,0 +1,86 @@
+@charset "utf-8";
+/*!
+ *  Create Date: 2016-03
+ *  Author: zihan
+ */
+
+@import '../variables';
+@import '../mixins';
+
+
+.mod_processList {
+
+    ul {
+        $show-lines-sum: 4;
+        //height: ($line-height-computed + $padding-base * 2) * $show-lines-sum;
+        //overflow: auto;
+        padding-left: $padding-base * 2;}
+
+    li {
+        position: relative;
+        //display: table;
+        //width: 100%;
+        padding-left: $padding-base * 2;
+
+        border-left: $border-base;
+        border-color: #ccc;
+
+        span {
+            //display: table-cell;
+            display: block;
+            padding-top: $padding-base;
+        }
+
+        &:before {
+            position: absolute;
+            top: $padding-base + 2;
+            left: -$padding-base;
+            display: block;
+            width: 10px;
+            height: 10px;
+            content: "";
+            border-radius: 99px;
+            background-color: #ccc;
+        }
+    }
+
+    li[data-balance="+"],
+    .income {
+        color: $brand-success;
+    }
+
+    li[data-balance="-"],
+    .pay {
+        color: $brand-warning;
+    }
+
+    .date {
+        //display: block;
+        //width: 110px;
+        color: $text-color-assistant;
+        font-size: 10px; }
+
+
+    .num {
+        width: 30%;
+        text-align: right; }
+
+    .text {
+        padding-top: 0;
+        padding-bottom: $padding-base * 2;
+    }
+
+    li:first-child,
+    .special {
+        //border-color: $color-main;
+
+        &:before {
+            background-color: $color-main;
+        }
+
+        .text {
+            color: $color-main;
+        }
+    }
+}
+// end mod_processList

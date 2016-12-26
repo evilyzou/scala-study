@@ -1,0 +1,81 @@
+@charset "utf-8";
+/*
+ *  Create Date: 2015-09-20
+ *  Author: zihan
+ */
+
+@import '../variables';
+@import '../mixins';
+
+// @import '../../../../../libs/scss/common/icons_css_cyan';
+
+
+$color-main: #0a92cb;
+
+@import '_theme_base';
+
+
+[class*="icon-"] {
+    &:before {
+        color: #333;
+    }
+}
+
+.icon.check:before {
+    border-radius: 99px;
+}
+input:checked + label.icon:before,
+.icon.radio.checked:before,
+.icon.check.checked:before {
+    // border: solid 1px $color-main;
+    background-color: $color-main; }
+
+
+.header .title,
+.header .link,
+.header .link.operation { color: #333; }
+
+// .maincontent .tabtool ul { padding-left: $padding-base * 3; padding-right: $padding-base * 3; }
+
+// .tabtool a { display: inline-block; }
+.tabtool .current a { color: #333; border-bottom-color: #333; }
+
+.product_content .main { border: 0; }
+
+.mod_photos {
+    .swiper-pagination {
+        margin-top: 5px;
+    }
+}
+.mod-content {
+
+    [class*="icon-"] {
+        &:before {
+            color: #333;
+        }
+    }
+}
+
+.mainnav {
+    [class*="icon-"] {
+        &:before {
+            color: #666;
+        }
+    }
+    a {
+        color: #999;
+    }
+    .current {
+        [class*="icon-"] {
+            &:before {
+                color: $color-main;
+            }
+        }
+
+        .icon-home:before { content: "\e60b"; }
+        .icon-plane:before { content: "\e60b"; }
+        .icon-guide:before { content: "\e60b"; }
+        .icon-manage:before { content: "\e60b"; }
+        .icon-user:before { content: "\e60b"; }
+    }
+}

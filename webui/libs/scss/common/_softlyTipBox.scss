@@ -1,0 +1,45 @@
+/* ---------------------------
+   Softly Tip Box (Create Date: 2014-10-25, Author: zihan)
+   - - - - - - - - - - - - - */
+
+.softlyTipBox {
+    position:    fixed;
+    top:         50%;
+    left:        50%;
+    z-index:     9999999;
+    width:       320px;
+    height:      0;
+    line-height: 1;
+    margin-top:  0;
+    margin-left: -160px;
+    padding:     0;
+    text-align:  center;
+    color:       #fff;
+    overflow:    hidden;
+    @include opacity(0);
+    @include linear-gradient(left, rgba(255,255,255,.0) 0, $color-main 25%, $color-main 75%, rgba(255,255,255,.0) 100%);
+    transition: all .2s ease-in-out;
+
+    &.success {
+        @include linear-gradient(left, rgba(255,255,255,.0) 0, $brand-success 25%, $brand-success 75%, rgba(255,255,255,.0) 100%); }
+
+    &.warning {
+        @include linear-gradient(left, rgba(255,255,255,.0) 0, $brand-warning 25%, $brand-warning 75%, rgba(255,255,255,.0) 100%); }
+
+    &.error {
+        @include linear-gradient(left, rgba(255,255,255,.0) 0, $brand-danger 25%, $brand-danger 75%, rgba(255,255,255,.0) 100%); }
+
+    &.info {
+        @include linear-gradient(left, rgba(255,255,255,.0) 0, $brand-info 25%, $brand-info 75%, rgba(255,255,255,.0) 100%); }
+
+    &.show {
+        height: $font-size-base;
+        margin-top: -($padding-base * 3);
+        padding: ($padding-base * 3) 0;
+        @include opacity(1);
+    }
+
+    p {
+        margin: 0;
+        white-space:nowrap; }
+}

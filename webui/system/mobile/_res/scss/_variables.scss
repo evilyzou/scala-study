@@ -1,0 +1,31 @@
+// Variables
+// --------------------------
+
+@import '../../../../libs/scss/variables';
+
+$icon-path: '../fonts';
+$box-mod:   'all';
+
+$font-family-base: $font-family-mobile;
+
+$aside-width: 240px !default;
+$header-height: 44px !default;
+$bottom-height: 49px !default;
+$font-size-large: 16px;
+$icon-size: 44px !default;
+$bar-height: 44px !default;
+$min-screen-width: 320px !default;
+$max-screen-width: 750px !default;
+
+$scroll-width: 0;
+
+//$color-main: #38b3b3;
+$color-main: #000;
+$color-main-txt: #fff;
+$link-color: #323232;
+$padding-base: 4px;
+$border-base: solid 1px #ddd;
+$input-border: #666;
+
+$border-radius: 2px;
+$input-border-focus: rgba(0,0,0,.3);

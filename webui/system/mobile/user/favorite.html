@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <title>我的收藏</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../_res/images/favicon.ico" />
+    <link rel="stylesheet" href="../_res/css/common.css?ver=1.2.1">
+    <link rel="stylesheet" id="themeStyle" href="../_res/css/theme.css?ver=1.2.1">
+    
+    <script type="text/javascript" src="../_res/js/global.js?ver=1.2.2"></script>
+    <script type="text/javascript">
+        var XLJ = window.XLJ || {}
+
+        /*
+         *  User State
+         */
+        function showBody() {
+            XLJ.docReady(function() {
+                document.body.style.display = 'block'
+            })
+        }
+
+        XLJ.isLogin = window.XLJ.isLogin || false
+        XLJ.getLoginState = window.XLJ.getLoginState || function(callback) {
+
+            function loginEd() {
+                XLJ.isLogin = true
+                if (callback) callback()
+                showBody()
+            }
+
+            if (XLJ.isLogin) return loginEd()
+            
+            XLJ.httpRequest({
+                url: '/User/isLogin',
+                type: 'POST',
+                success: function(response) {
+                    console.log(response)
+                    if (response.success) {
+                        loginEd()
+                    } else {
+                        XLJ.isLogin = false
+                        if (/\/login/.test(window.location.pathname)) return showBody()    // if in login page, don't do anything
+                        var backURL = encodeURIComponent(window.location.href)
+                        window.location.href = XLJ.rootPath + XLJ.loginPath + '?backURL=' + backURL
+                    }
+                }
+            })
+        }
+        XLJ.getLoginState()
+        /* End User State */
+    </script>
+    
+</head>
+<body class="p-user p-fav" style="display: none;">
+
+<div id="wrap" class="wrap">
+
+    <aside class="container aside" id="aside">
+        <div class="logo"></div>
+        <ul class="sidebar">
+            <li><a class="icon cssicon cart white" href="../cart/index.html">购物车</a></li>
+            <li><a href="../">首页</a></li>
+            <li><a href="../user/order.html">我的订单</a></li>
+            <li><a href="../user/myaddress.html">收货地址</a></li>
+            <li><a href="../user/index.html">登录</a></li>
+        </ul>
+    </aside>
+
+    <div class="container container-main">
+    
+        <header id="header" class="header" role="banner">
+            <a class="icon cssicon menu showaside" href="#"></a>
+            <a class="icon cssicon back" href="#">返回</a>
+            <h1 class="title">我的收藏</h1>
+            <!--<a class="link" href="#">编辑</a>-->
+        </header>
+
+        <div class="maincontent">
+
+            <div class="region product-list" id="product-list">
+            </div>
+
+            <div class="loadmore mod_loading" style="visibility: hidden;"><div class="animate"></div></div>
+        </div><!-- end main content-->
+
+        <footer id="footer">
+            <nav id="nav" class="mainnav">
+                <ul>
+                    <li><a class="icon cssicon home" href="../">首页</a></li>
+                    <li><a class="icon cssicon category" href="../nav/category.html">分类导航</a></li>
+                    <li><a class="icon cssicon cart" href="../cart/index.html">购物车</a></li>
+                    <li class="current"><a class="icon cssicon my user" href="../user/index.html">我的</a></li>
+                </ul>
+            </nav>
+        </footer>
+
+    </div>
+</div>
+
+<script id="product_item_template" type="text/html">
+    {{each result.list as item}}
+    <div class="item" data-productId="{{item.productId}}">
+        <a class="photo" href="../product/index.html?id={{item.productId}}">
+            {{if item.productImgUrl}}
+            <img src="{{item.productImgUrl}}@150w_90Q" alt="{{item.productName}}">
+            {{else}}
+            <img src="../_res/images/space.png" alt="{{item.productName}}">
+            {{/if}}
+        </a>
+        <div class="info">
+            <span class="icon delete" data-id="{{item.id}}">删除</span>
+            <a class="title" href="../product/index.html?id={{item.productId}}">
+                {{item.productName}}
+            </a>
+            <div class="desc">{{item.skuDesc}}</div>
+            <strong class="unit-price price" data-skuId="{{item.skuId}}" data-prefix="￥">{{price(item.price)}}</strong>
+            <del class="market-price price" data-prefix="￥">{{price(item.marketPrice)}}</del>
+        </div>
+    </div>
+    {{/each}}
+</script>
+
+<script type="text/javascript" src="../_res/libs/jquery/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../_res/js/art-template.js"></script>
+<script type="text/javascript" src="../_res/js/art-template-helper.js"></script>
+<script type="text/javascript" src="../_res/js/distpicker/distpicker.data.js"></script>
+<script type="text/javascript" src="../_res/js/distpicker/distpicker.js"></script>
+
+<script type="text/javascript" src="../_res/js/common/util.js"></script>
+<script type="text/javascript" src="../_res/js/common/stats.js?v1.2.0"></script>
+<script type="text/javascript" src="../_res/js/common.js?ver=1.1.0"></script>
+
+<script type="text/javascript" src="../_res/js/user/favortie.js"></script>
+<script type="text/javascript">
+    var WEBP = window.WEBP || {}
+    try {
+        WEBP.Stats().init('from_wechat');
+        WEBP.PageLoad().updatePageLoadEndTimestamp();
+        WEBP.Stats().upload(30, window.location.pathname);
+    } catch(e) {
+        console.log(e);
+    }
+</script>
+</body>
+</html>

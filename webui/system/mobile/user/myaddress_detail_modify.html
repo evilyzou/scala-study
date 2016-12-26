@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <title>我的地址</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../_res/images/favicon.ico" />
+    <link rel="stylesheet" href="../_res/css/common.css?ver=1.2.1">
+    <link rel="stylesheet" id="themeStyle" href="../_res/css/theme.css?ver=1.2.1">
+
+    <script type="text/javascript" src="../_res/js/global.js?ver=1.2.2"></script>
+    <script type="text/javascript" src="../_res/js/common/getLoginState.js?ver=1.0.1"></script>
+    <script type="text/javascript">
+        var XLJ = window.XLJ || {};
+        XLJ.isLoginCheck = true;
+        XLJ.getLoginState();
+    </script>
+    
+</head>
+<body class="p-user" style="display: none;">
+
+<div id="wrap" class="wrap">
+
+    <aside class="container aside" id="aside">
+        <div class="logo"></div>
+        <ul class="sidebar">
+            <li><a class="icon cssicon cart white" href="../cart/index.html">购物车</a></li>
+            <li><a href="../">首页</a></li>
+            <li><a href="../user/order.html">我的订单</a></li>
+            <li><a href="../user/myaddress.html">收货地址</a></li>
+            <li><a href="../user/index.html">登录</a></li>
+        </ul>
+    </aside>
+
+    <div class="container container-main">
+
+        <header id="header" class="header" role="banner">
+            <a class="icon cssicon menu showaside" href="#"></a>
+            <a class="icon cssicon back" href="#">返回</a>
+            <h1 class="title">地址编辑</h1>
+            <a class="link operation save-address" href="#" data-target="../user/myaddress.html">完成</a>
+        </header>
+
+        <div class="maincontent">
+
+            <div class="address-addbox">
+
+                <div class="line-box multi form-box modify">
+                    <div class="item">
+                        <span class="label">收货人</span>
+                        <div class="content">
+                            <input type="text" name="consignee" id="addr_consignee" value="" data-required="true">
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <span class="label">手机</span>
+                        <div class="content">
+                            <input type="text" name="mobile" id="addr_mobile" value="" data-required="true">
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <span class="label">地区</span>
+                        <div class="content distpicker" id="distpicker" data-toggle="distpicker">
+                            <div class="select">
+                                <select class="form-control" id="addr_provinceId" data-dist="province" data-required="true">
+                                    <option value="">省</option>
+                                </select>
+                            </div>
+                            <div class="select">
+                                <select class="form-control" id="addr_cityId" data-dist="city" data-required="true">
+                                    <option value="">市</option>
+                                </select>
+                            </div>
+                            <div class="select">
+                                <select class="form-control" id="addr_districtId" data-dist="district" data-required="true">
+                                    <option value="">区</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <span class="label">地址</span>
+                        <div class="content">
+                            <input type="text" name="location" id="addr_location" value="" data-required="true">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div><!-- end main content-->
+
+    </div>
+</div>
+
+<script type="text/javascript" src="../_res/libs/jquery/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../_res/js/xlj-utils.js"></script>
+<!--
+<script type="text/javascript" src="../_res/js/distpicker/distpicker.data.js"></script>
+<script type="text/javascript" src="../_res/js/distpicker/distpicker.js"></script>
+-->
+
+<script type="text/javascript" src="../_res/js/common/util.js"></script>
+<script type="text/javascript" src="../_res/js/common/stats.js?v1.2.0"></script>
+<script type="text/javascript" src="../_res/js/common.js?ver=1.1.0"></script>
+
+<script type="text/javascript" src="../_res/js/address/distselect.js"></script>
+<script type="text/javascript" src="../_res/js/address/add.js"></script>
+<script type="text/javascript">
+    var WEBP = window.WEBP || {}
+    try {
+        WEBP.Stats().init('from_wechat');
+        WEBP.PageLoad().updatePageLoadEndTimestamp();
+        WEBP.Stats().upload(30, window.location.pathname);
+    } catch(e) {
+        console.log(e);
+    }
+</script>
+</body>
+</html>

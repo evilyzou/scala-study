@@ -1,6 +1,6 @@
 package com.ravel.schema
 
-import com.ravel.schema.Tables._
+import com.ravel.schema.DBSchema._
 import slick.driver.JdbcProfile
 import slick.lifted.TableQuery
 

@@ -1,0 +1,176 @@
+
+
+/* ---------------------------
+   loading
+   - - - - - - - - - - - - - */
+%icon-loading {
+    position: relative;
+
+    &:before {
+        $icon-width: 20px;
+
+        display: block;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width:  $icon-width;
+        height: $icon-width;
+        margin-top: -($icon-width / 2);
+        margin-left: -($icon-width / 2);
+        content: "";
+        box-sizing: border-box;
+        border-radius: 99px;
+        border: solid 2px $color-main;
+        border-color: $color-main transparent $color-main transparent;
+
+        @include animation(spin 2s linear infinite);
+    }
+}
+
+.loading { @extend %icon-loading; }
+.btn.loading {
+    &:before {
+        z-index: 2;
+        border-color: #fff transparent #fff transparent;
+    }
+    &:after {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+        content: "";
+        background-color: $color-main;
+    }
+    
+    &.btn-default:before {
+        border-color: $color-main transparent $color-main transparent;
+    }
+    &.btn-default:after {
+        background-color: #fff;
+    }
+    &.btn-premary:after {
+        background-color: $color-main;
+    }
+    &.btn-success:after {
+        background-color: #21b44e;
+    }
+}
+
+@include keyframes(spin) {
+  0% { @include rotate(0deg); }
+  100% { @include rotate(360deg); }
+}
+
+%loadContent {
+    width: 150px;
+    min-height: 70px;
+    margin: auto;
+    padding: $padding-base * 2;
+    text-align: center;
+    border-radius: 5px;
+    background-color: #fff;
+
+    &:before {
+        position: static !important;
+        margin: 10px auto !important;
+    }
+}
+.loadingBox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10000;
+    text-align: center;
+    background-color: rgba(0,0,0,.5);
+
+    p {
+        @extend %loadContent;
+        position: absolute !important;
+        top: 50%;
+        left: 50%;
+        margin-top: -50px;
+        margin-left: -75px;
+    }
+}
+
+.loadContent {
+    position: relative;
+
+    p {
+        @extend %loadContent;
+    }
+}
+
+.loading-mark {
+    @extend %icon-loading;
+
+    &:before {z-index: 9;}
+
+    &:after {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 8;
+
+        display: block;
+        width: 100%;
+        height: 100%;
+        content: "";
+        background-color: rgba(255,255,255,.4);
+    }
+    
+    tr,
+    .dataTable {@include blur(4px);}
+}
+
+/* mod-loading
+ */
+.mod-loading { position: relative; margin: auto; padding: 0; min-height: 40px; }
+.mod-loading .animate { position: relative; width: 30px; height: 20px; margin: auto; z-index: 9; }
+.mod-loading .animate:before,
+.mod-loading .animate:after { position: absolute; top: 50%; left: 50%; display: block; width: 14px; height: 14px; margin-top: -6px; margin-left: -6px; border: solid 1px #000; border-radius: 100%; content: ""; background: #000; }
+
+.mod-loading .animate:before { left: 0; background: #000; -webkit-animation: loading-left 1.5s linear infinite; -o-animation: loading-left 1.5s linear infinite; animation: loading-left 1.5s linear infinite; }
+
+.mod-loading .animate:after { left: 100%; border: solid 1px #666; background: #666; -webkit-animation: loading-right 1.5s linear infinite; -o-animation: loading-right 1.5s linear infinite; animation: loading-right 1.5s linear infinite; }
+
+.mod-loading .txt { display: none; position: relative; z-indmex: 9; margin: 10px auto 0 auto; text-align: center; color: #aaa; }
+
+.mod-loading.screen { position: absolute; left: 0; top: 0; right: 0; bottom: 0; z-index: 29; }
+.mod-loading.cram { width: 100%; height: 100%; }
+
+.mod-loading:after { position: absolute; left: 0; top: 0; right: 0; bottom: 0; z-index: 8; display: block; width: 100%; height: 100%; content: ""; background-color: rgba(0,0,0,.01); @include transition(all .3s ease); }
+.mod-loading.bgmark { background-color: transparent; }
+.mod-loading.bgmark:after { background-color: rgba(255,255,255,.75); }
+
+.mod-loading .animate,
+.mod-loading .txt { position: absolute; top: 50%; }
+.mod-loading .animate { left: 50%; margin-top: -10px; margin-left: -18px; }
+.mod-loading .txt { width: 100%; text-align: center; margin-top: 0; }
+
+@include keyframes(loading-left) {
+  0% { left: 0; @include scale(1); }
+  16% { left: 20%;  @include scale(1.1); }
+  32% { left: 80%;  @include scale(1.1); }
+  48% { left: 100%; @include scale(1); }
+  64% { left: 80%;  @include scale(0.8); }
+  84% { left: 20%;  @include scale(0.8); }
+  100% { left: 0%;  @include scale(1); }
+}
+
+@include keyframes(loading-right) {
+  0% { left: 100%; @include scale(1); }
+  16% { left: 80%; @include scale(0.8); }
+  36% { left: 20%; @include scale(0.8); }
+  52% { left: 0;   @include scale(1); }
+  68% { left: 20%; @include scale(1.1); }
+  84% { left: 80%; @include scale(1.1); }
+  100% { left: 100%; @include scale(1); }
+}

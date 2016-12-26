@@ -1,0 +1,77 @@
+
+.popcontent {
+    position: fixed;
+    right: -720px;
+    top: 0;
+    bottom: 0;
+    z-index: 9;
+
+    max-width: 100%;
+    width: 700px;
+    height: 100%;
+    padding-top: 50px;
+    box-shadow: 0 0 10px rgba(0,0,0,.4);
+    box-sizing: border-box;
+    background-color: #fff;
+    transition: right .3s ease-out;
+
+    &.show {right: 0;}
+    &.noshow {right: -920px;}
+
+    > .head {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        line-height: 40px;
+        // border-bottom: solid 1px #f2f2f2;
+        background-color: #f8f8f8;
+
+        .close {
+            width: 40px;height: 40px;display: inline-block;
+            margin-right: 10px;
+            line-height: 99;
+            overflow: hidden;
+            vertical-align: middle;
+            border-right: solid 1px #f2f2f2;
+
+            &:before {
+                display: block;
+                width: 20px;
+                height: 20px;
+                margin: 10px 0 0 10px;
+                content: "";
+                background-image: url(../images/icons.png);
+                background-position: 0 -100px;
+            }
+
+            &:active {
+                background-color: rgba(0,0,0,.05);
+            }
+        }
+
+        .name,
+        .selectedCategory { margin-right: 10px; font-weight: bold; font-size: 115%; color: $color-main; }
+        .tab_titles { display: inline-block; width: auto; margin-top: 0; }
+    }
+
+    > .main {
+        height: 100%;
+        padding: 0 30px 30px 30px;
+        overflow: hidden;
+        overflow-y: auto;
+        box-sizing: border-box;
+    }
+
+    .widget-head {color: $color-main;font-size: 16px;font-weight: normal;}
+
+/*    + .popcontent {
+        width: 800px; right: -820px;
+
+        &.show {right: 0;}
+        &.noshow {right: -820px;}
+    }*/
+
+    button {
+        border: none;
+    }
+}

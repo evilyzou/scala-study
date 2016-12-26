@@ -1,0 +1,71 @@
+@charset "utf-8";
+/*!
+ *  Create Date: 2016-04
+ *  Author: zihan
+ */
+
+@import '../variables';
+@import '../mixins';
+
+
+body {
+    //background-color: #f4f2f3;
+}
+
+.p-list {
+
+     > .wrap .header+.maincontent {
+        padding-top: 85px;
+        overflow-y: hidden;
+
+        > .tabtool {
+            margin-top: -40px;
+            margin-bottom: 5px;
+        }
+    }
+    .tabs.slidepage-wrap {
+        height: 100%;
+    }
+
+    .slidepage-page {
+        overflow: hidden;
+        overflow-y: auto;
+    }
+}
+
+
+.grid-gallery {
+    h3.title {
+        width: 100%;
+        font-weight: normal;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        box-sizing: border-box;
+    }
+    .info {
+    }
+
+    .tagtxt {
+        margin-bottom: $padding-base;
+    }
+
+    .photo img {
+        min-height: 120px;
+        background-color: #f2f2f2;
+    }
+    .cell {
+        // box-shadow: 0 0 1px 1px rgba(0,0,0,0.05), 1px 1px 5px rgba(0,0,0,.05);
+        background-color: #fff;
+
+        &:hover {
+            background-color: #f8f8f8;
+        }
+
+        h2.title {
+            font-size: 14px;
+            font-weight: 300;
+            margin-bottom: $padding-base;
+        }
+    }
+}

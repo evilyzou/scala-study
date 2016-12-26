@@ -1,0 +1,47 @@
+/* ---------------------------
+   Utility classes
+   - - - - - - - - - - - - - */
+
+
+// Floats
+// -------------------------
+
+.clearfix {
+  @include clearfix();
+}
+
+
+// Toggling content
+// -------------------------
+
+// Note: Deprecated .hide in favor of .hidden or .sr-only (as appropriate) in v3.0.1
+.hide {
+  display: none;
+}
+.show {
+  display: block;
+}
+.invisible {
+  visibility: hidden;
+}
+.text-hide {
+  @include text-hide();
+}
+
+
+// Hide from screenreaders and browsers
+//
+// Credit: HTML5 Boilerplate
+
+.hidden {
+  visibility: hidden;
+}
+
+
+// For Affix plugin
+// -------------------------
+
+.affix {
+  position: fixed;
+  @include translate3d(0, 0, 0);
+}

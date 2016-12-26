@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <title>我的地址</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../_res/images/favicon.ico" />
+    <link rel="stylesheet" href="../_res/css/common.css?ver=1.2.1">
+    <link rel="stylesheet" id="themeStyle" href="../_res/css/theme.css?ver=1.2.1">
+
+    <script type="text/javascript" src="../_res/js/global.js?ver=1.2.2"></script>
+    <script type="text/javascript" src="../_res/js/common/getLoginState.js?ver=1.0.1"></script>
+    <script type="text/javascript">
+        var XLJ = window.XLJ || {};
+        XLJ.isLoginCheck = true;
+        XLJ.getLoginState();
+    </script>
+    
+</head>
+<body class="p-user">
+
+<div id="wrap" class="wrap">
+
+    <aside class="container aside" id="aside">
+        <div class="logo"></div>
+        <ul class="sidebar">
+            <li><a class="icon cssicon cart white" href="../cart/index.html">购物车</a></li>
+            <li><a href="../">首页</a></li>
+            <li><a href="../user/order.html">我的订单</a></li>
+            <li><a href="../user/myaddress.html">收货地址</a></li>
+            <li><a href="../user/index.html">登录</a></li>
+        </ul>
+    </aside>
+
+    <div class="container container-main">
+
+        <header id="header" class="header" role="banner">
+            <a class="icon cssicon menu showaside" href="#"></a>
+            <a class="icon cssicon back" href="#">返回</a>
+            <h1 class="title">我的地址</h1>
+            <a class="link operation" id="editAddress" href="#" data-target="../user/myaddress_detail_modify.html">修改</a>
+        </header>
+
+        <div class="maincontent">
+
+            <div class="region">
+
+                <div class="line-box form-box">
+                    <div class="item">
+                        <span class="label">收货人</span>
+                        <div class="content" id="addr_consignee"></div>
+                    </div>
+
+                    <div class="item">
+                        <span class="label">手机</span>
+                        <div class="content" id="addr_mobile"></div>
+                    </div>
+
+                    <div class="item">
+                        <span class="label">地区</span>
+                        <div class="content" id="addr_area"></div>
+                    </div>
+
+                    <div class="item">
+                        <span class="label">地址</span>
+                        <div class="content" id="addr_location"></div>
+                    </div>
+                </div>
+
+                <div class="foot">
+                    <a class="btn btn-second free" id="setDefault" href="#">设为默认地址</a>
+
+                    <div class="line-box">
+                        <div class="item">
+                            <span id="delAddress" class="label">删除收货地址</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div><!-- end main content-->
+
+    </div>
+</div>
+
+<script type="text/javascript" src="../_res/libs/jquery/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../_res/js/xlj-utils.js"></script>
+<script type="text/javascript" src="../_res/js/distpicker/distpicker.data.js"></script>
+<script type="text/javascript" src="../_res/js/distpicker/distpicker.js"></script>
+
+<script type="text/javascript" src="../_res/js/common/util.js"></script>
+<script type="text/javascript" src="../_res/js/common/stats.js?v1.2.0"></script>
+<script type="text/javascript" src="../_res/js/common.js?ver=1.1.0"></script>
+
+<script type="text/javascript">
+
+    var XLJ = window.XLJ || {}
+    var addressId = XLJ.getQueryString('addressId')
+
+    // modify action
+    $('#editAddress').on('click', function(e) {
+        e.preventDefault()
+        if (!addressId) return
+        
+        var _targetURL = $(this).attr('data-target') || XLJ.rootPath + 'user/myaddress_detail_modify.html'
+        window.location.href = _targetURL + '?addressId=' + addressId
+    })
+
+    // set default addresss
+    $('#setDefault').on('click', function(e) {
+        e.preventDefault()
+        if (!addressId) return
+
+        $.ajax({
+            url: '/User/defaultAddress',
+            data: JSON.stringify({addressId: addressId}),
+            type: 'POST',
+            success: function(response) {
+                console.log(response);
+                if (!response.success) return alert(response.msg);
+                if (response.success) return alert(response.msg);
+            }
+        })
+    })
+
+    // remove addresss
+    $('#delAddress').on('click', function(e) {
+        e.preventDefault()
+        if (!addressId) return
+
+        $.ajax({
+            url: '/User/deleteAddress',
+            data: JSON.stringify({addressId: addressId}),
+            type: 'POST',
+            success: function(response) {
+                console.log(response);
+                if (!response.success) return alert(response.msg);
+                if (response.success) {
+                    alert(response.msg);
+                    window.location.href = XLJ.rootPath + 'user/myaddress.html'
+                }
+            }
+        })
+    })
+
+
+    getAddressData(function(response) {
+        var data = response.result.data
+        var area = (data.province + data.city + data.district) || ''
+
+        $('#addr_consignee').text(data.consignee)
+        $('#addr_location').text(data.location)
+        $('#addr_mobile').text(data.mobile)
+
+        $('#addr_area').text(area)
+    })
+
+    function getAddressData(callback) {
+        if (!addressId) return
+
+        $.ajax({
+            url: '/User/myAddress',
+            data: JSON.stringify({addressId: addressId}),
+            type: 'POST',
+            success: function(response) {
+                console.log(response);
+                if (!response.success) return alert(response.msg);
+                if (callback) callback(response)
+            }
+        })
+    }
+</script>
+<script type="text/javascript">
+    var WEBP = window.WEBP || {}
+    try {
+        WEBP.Stats().init('from_wechat');
+        WEBP.PageLoad().updatePageLoadEndTimestamp();
+        WEBP.Stats().upload(30, window.location.pathname);
+    } catch(e) {
+        console.log(e);
+    }
+</script>
+</body>
+</html>

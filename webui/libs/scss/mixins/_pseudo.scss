@@ -1,0 +1,10 @@
+// pseudo ( :before, :after )
+// Create Data: 2014-08-16, Author: zihan
+
+@mixin pseudo($width: 0, $height: 0, $content: "") {
+    @if ($width != 0) { width:  $width; }
+    @if ($height != 0) { height:  $height; }
+
+    display: block;
+    content: $content;
+}

@@ -7,7 +7,7 @@ import com.ravel.schema.GuideObject.GuideView
 import com.ravel.schema.ProductObject._
 
 //import com.ravel.extension.spray.ProductFormatsExtensionInstances
-import com.ravel.schema.Tables._
+import com.ravel.schema.DBSchema._
 import spray.json._
 import java.util.Date
 

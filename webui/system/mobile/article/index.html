@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<title> 购票须知 - 候机楼 </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    <meta name="Keywords" content="" />
+    <meta name="Description" content="" />
+    <link rel="shortcut icon" type="image/x-icon" href="../_res/images/favicon.ico"/>
+
+    <link rel="stylesheet" href="../_res/css/common.css?ver=1.2.1">
+    <link rel="stylesheet" id="themeStyle" href="../_res/css/theme.css?ver=1.2.1">
+
+    <link rel="stylesheet" href="../_res/css/ticket.css">
+    <link rel="stylesheet" href="../_res/js/plugins/mobiscroll/2.14.4/css/mobiscroll.custom-2.14.4.min.css">
+
+    <script type="text/javascript" src="../_res/js/global.js?ver=1.2.2"></script>
+    <script type="text/javascript" src="../_res/js/common/getLoginState.js?ver=1.0.2"></script>
+    <script type="text/javascript">
+        var XLJ = window.XLJ || {};
+        XLJ.isLoginCheck = false;
+        XLJ.getLoginState();
+    </script>
+</head>
+<body class="p-article">
+
+<div id="wrap" class="wrap">
+
+    <div class="container container-main">
+
+        <header id="header" class="header" role="banner">
+            <a class="icon cssicon menu showaside" href="#"></a>
+            <a class="icon cssicon back" href="#">返回</a>
+            <h1 class="title"></h1>
+            <!--<a class="icon cssicon cart" href="../cart/index.html"></a>-->
+        </header>
+
+        <div class="maincontent">
+
+            <div class="content_box" id="article_box">
+                <!--<div class="head"><h1 class="title"></h1></div>-->
+                <div class="main">
+                    <p><p style="text-align: start; ">一、购票</p><p>1、网上售票只能预售当前时间120分钟以后班次的车票，在同一个订单中，用户预订数量最多暂订为5张，我们会按实际需要及时更改。</p><p>2、旅客必须在预订后的30分钟内完成支付操作，逾时支付则被视作支付不成功，该次订座自动取消。</p><p>3、如您是伤病旅客、残疾旅客、军人、孕妇、婴儿、儿童和免票儿童等请您直接到拱运售票网点或车站购买车票,本网站暂时不能办理您的优惠票价预订。</p><p>4、旅客在网上订票时，请如实填写取票乘客的相关个人资料和联系方法，提交订单时，请确认您输入的联系信息正确无误，并保持通讯畅通，以便我们的客户服务人员能及时与您联系。如您所留的电话号码长时间处于无人接听、忙音等状况而使我们的服务人员不能及时联系到您，由此导致的不能及时确认、无法及时出票等问题，本网站将不承担任何法律责任。</p><p>5、超过当日22:00在线支付成功的订单，系统订票日期将会默认为次日，为免造成误订错发车日期，建议您尽量在当日22:00以前完成预订支付。</p><p>6、在线支付时请务必保管好您个人银行帐号、密码、回单等资料，建议勿在网吧等公共场所使用本订票系统。</p><p>7、凡是在网上购票成功的旅客，本网站会提供相应的电子票号（一票一号），旅客须凭此电子票号和购票人有效的证件到发车站换取车票上车，故请购票人切记本网站相关的订票信息。</p><p>二、取票</p><p>1、旅客需在班车发车前半小时前到发车站的咨询窗口换取车票。</p><p>2、旅客在换取车票时，须提供电子票号和购票人有效的证件原件（该有效证件需要与网上购票时使用的证件相同），经工作人员确认后即可办理出票手续。</p><p>3、旅客前往客运站取票时，应把握好时间取票（平常应比发车时间至少提前半小时以上，黄金周/长假期应至少提前一小时以上）。</p><p>三、退票</p><p>1、网上订票系统不提供网上退票服务。</p><p>2、退票须要到相应的发车站窗口办理。</p><p>3、退票发生的相关费用按发车站的规定进行处理。</p><p>四、注意事项</p><p>1、客户应注意确保其订票信息的准确无误，如由于客户原因（包括但不限于错误提供乘车人姓名、发车班次、发车时间、联系人信息等）导致订票错误，本网站将不承担任何法律责任。</p><p>2、请勿重复提交订单（即同一位乘车人在相同日期相同发车班次上有两个或两个以上预定）。当您进行支付后，系统如没有返回电子票号或显示“服务器繁忙”、乱码或“查询不到您的电子票号”等失败信息提示时，请勿急于重复提交订单。请于30到50分钟后根据您购票时所填写的证件号码通过“订单查询”查询您的电子票号，如果没查询到您的电子票号，请及时（发车前两小时前）拨打服务热线07568285313查询，在没有最终确定购票结果前，切勿重复提交订单。如重复提交订单将会导致重复出票，由此所产生的损失将由购票人全部承担。</p>
+                </div>
+            </div>
+
+        </div><!-- end main content-->
+
+    </div>
+
+    <script id="aside_list_item_template" type="text/html">
+        <ul class="ui datalist">
+            {{each data as item}}
+            <li class="{{if item.children && item.children.length != 0}}parent{{/if}}">
+                <a href="{{if item.children && item.children.length == 0}}../article/index.html?id={{item.id}}" data-article-id="{{item.id}}{{else}}#{{/if}}">{{item.title}}</a>
+                {{if item.children && item.children.length != 0}}
+                    {{include 'aside_list_item_template' parcelData(item.children)}}
+                {{/if}}
+            </li>
+            {{/each}}
+        </ul>
+    </script>
+
+</div>
+
+
+</body>
+</html>

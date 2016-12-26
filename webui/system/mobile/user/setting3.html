@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <title>用户中心</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../_res/images/favicon.ico" />
+    <link rel="stylesheet" href="../_res/css/common.css?ver=1.2.1">
+    <link rel="stylesheet" id="themeStyle" href="../_res/css/theme.css?ver=1.2.1">
+
+    <script style="text/javascript" src="../_res/js/global.js?ver=1.2.2"></script>
+    
+</head>
+<body class="p-user">
+
+<div id="wrap" class="wrap">
+
+    <aside class="container aside" id="aside">
+        <div class="logo"></div>
+        <ul class="sidebar">
+            <li><a class="icon cssicon cart white" href="../cart/index.html">购物车</a></li>
+            <li><a href="../">首页</a></li>
+            <li><a href="order.html">我的订单</a></li>
+            <li><a href="myaddress.html">收货地址</a></li>
+            <li><a href="../user/index.html">登录</a></li>
+        </ul>
+    </aside>
+
+    <div class="container container-main">
+    
+        <header id="header" class="header" role="banner">
+            <a class="icon cssicon back" href="#">返回</a>
+            <h1 class="title">用户中心</h1>
+            <a class="link width-txt" href="#">设置</a>
+        </header>
+
+        <main id="main" role="main">
+
+            <div class="region">
+
+                <div class="line-box info">
+                    <div class="item">
+                        <span class="label">昵称</span>
+                        <span class="content">爱7的夏天</span>
+                        <div class="addon">
+                            <span class="icon arrow-right"></span>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <span class="label">我的支付宝</span>
+                        <div class="content">
+                            <div class="picon alipay">支付宝</div>
+                        </div>
+                        <div class="addon">
+                            <span class="icon arrow-right"></span>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <span class="label">昵称</span>
+                        <div class="content">139xxxx2022</div>
+                        <div class="addon">
+                            <span class="icon arrow-right"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="line-box info">
+                    <div class="item">
+                        <span class="label">修改登录密码</span>
+                        <div class="content"></div>
+                        <div class="addon">
+                            <span class="icon arrow-right"></span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+</div>
+
+<script type="text/javascript" src="../_res/libs/jquery/jquery-1.11.1.min.js"></script>
+
+<script type="text/javascript" src="../_res/js/common/util.js"></script>
+<script type="text/javascript" src="../_res/js/common/stats.js?v1.2.0"></script>
+<script type="text/javascript" src="../_res/js/common.js?ver=1.1.0"></script>
+<script type="text/javascript">
+    var WEBP = window.WEBP || {}
+    try {
+        var WEBPStats = WEBP.Stats()
+        WEBPStats.init('from_wechat');
+        WEBP.PageLoad().updatePageLoadEndTimestamp();
+        WEBPStats.upload(30, window.location.pathname);
+    } catch(e) {
+        console.log(e);
+    }
+</script>
+</body>
+</html>

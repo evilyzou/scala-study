@@ -1,0 +1,309 @@
+@charset "utf-8";
+/*!
+ *  Create Date: 2016-03
+ *  Author: zihan
+ */
+
+@import '../variables';
+@import '../mixins';
+
+
+$color-main: #38b3b3;
+
+
+.p-myaffiliate {
+    background-color: #f5f5f5;
+
+
+    .owner-list {
+        display:block;
+        width:100%;
+        padding-top:10px;
+        padding-bottom: 10px;
+        background: $color-main;
+    //	height:55px;
+        margin:0 auto;
+        text-align:center;
+        vertical-align:middle;
+
+        @include clearfix();
+
+        &.cols2 {
+            li {
+                width: 50%;
+            }
+        }
+    }
+
+    .owner-link {
+        padding: 20px;
+
+        .btn { float: left; }
+
+        p {
+            margin-left: 120px;
+            min-height: 36px;
+        }
+    }
+
+    .owner-list ul {
+        width:100%;
+        margin:0;
+    }
+
+    .owner-list li {
+        float:left;
+        width:50%;
+        border-right:1px solid rgba(255,255,255,.3);
+        box-sizing: border-box;
+    }
+
+    .owner-list span {
+
+        &.label {
+            display:block;
+            font-size:14px;
+            color: rgba(255,255,255,.65);
+        }
+
+        &.money {
+            display:block;
+            padding: 10px 0;
+            font-size: 18px;
+            color: #ffffaf;
+
+            small {
+                margin-left: 3px;
+                color: #fff;
+                font-size: 70%;
+            }
+        }
+    }
+
+
+    #searchTime {
+        font-size:15px;
+        width:90px;
+        border:0;
+        text-align: center;
+        background:#f4f4f4;
+    }
+
+    .select-tag {
+
+        &:before {
+            width: 12px;
+            height: 12px;
+        }
+    }
+
+    .tableTitle {
+        color:#333;
+        font-size:15px;
+        text-align:center;
+        background:#f4f4f4;
+        border-bottom:1px solid #ececec;
+        height:30px;
+        padding:10px 0 5px 0;
+        vertical-align:middle;
+    }
+
+    .tableTitle div {
+        display:inline-block;
+    }
+
+    .finacetable {
+        table { width:100%; }
+
+        th {
+            background:#f8f8f8;
+            border-bottom:1px solid #d2d2d2;
+            font-size:14px;
+            color:#333;
+            text-align:center;
+            vertical-align:middle;
+            height:35px;
+        }
+
+        td {
+            border-bottom:1px solid #d2d2d2;
+            font-size:14px;
+            color:#333;
+            text-align:center;
+            vertical-align:middle;
+            height:35px;
+        }
+
+        .no { width: 160px; }
+        .money { text-align:right!important; }
+        .state { width: 110px;}
+    }
+
+
+    #datetitle {
+        height: 30px;
+        line-height: 30px;
+
+        h1 {font-size: 14px;}
+    }
+
+    #datemark {
+        top: 95px;
+    }
+
+    #datescroll {
+        div {
+            margin-top: 0;
+        }
+    }
+
+    .line-box {
+        margin-top: 15px;
+        margin-bottom: 15px;
+
+        .item {
+            border-bottom: solid 1px #f2f2f2;
+        }
+
+        .unfinalMoney {
+            margin-right: 0;
+
+            .price {
+                color: #999;
+            }
+        }
+
+        .content.remark {
+            @include flex(1 0 20%);
+            margin-right: 0;
+            color: #999;
+        }
+
+        .content .desc {
+
+        }
+
+        .orderNo,
+        .date,
+        .status {
+            color: #999;
+            font-size: 12px;
+        }
+
+        .status {
+            margin-right: 5px;
+        }
+
+        .name,
+        .price {
+            font-size: 15px;
+        }
+    }
+
+    .price.text-danger {
+
+    }
+}
+// end page-myaffiliate
+
+.show-panel {
+    padding: 25px 20px;
+    text-align: center;
+    color: mix($color-main-txt, $color-main, 80%);
+    background-color: $color-main;
+
+    .money {
+        font-size: 45px;
+        color: $color-main-txt;
+    }
+
+    .operation {
+        margin-top: 10px;
+
+        .btn {
+            height: 30px;
+            padding-left: 15px;
+            padding-right: 15px;
+            line-height: 28px;
+            border-radius: 99px;
+            border: solid 1px rgba($color-main-txt, .75);
+            color: $color-main-txt;
+            background-color: transparent;
+        }
+    }
+}
+
+.withdraw-box {
+    padding: $padding-base * 4;
+    background-color: #fff;
+
+    .label {
+        padding-bottom: $padding-base * 3;
+        color: #999;
+        // border-bottom: solid 1px #eee;
+    }
+
+    .input {
+        position: relative;
+        margin-top: $padding-base * 3;
+        margin-bottom: $padding-base * 3;
+        padding-left: 20px;
+    }
+
+    input {
+        width: 100%;
+        //margin-left: $padding-base * 5;
+        border: none;
+        height: 50px;
+        font-size: 32px;
+    }
+
+    .prefix {
+        position: absolute;
+        height: 58px;
+        margin-left: -20px;
+        line-height: 58px;
+        font-size: 28px;
+    }
+
+    .other {
+        padding-top: $padding-base * 3;
+        border-top: solid 1px #eee;
+        color: #999;
+    }
+
+    + .foot {
+        padding: $padding-base * 4;
+    }
+}
+
+
+.blank-info {
+    .blank-icon {
+        margin-right: $padding-base * 3;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+        &:before { display: none; }
+    }
+
+    .card {
+        color: #999;
+    }
+
+    .content {
+        margin-top: -$padding-base * 2;
+        margin-bottom: -$padding-base * 2;
+    }
+}
+
+.blank-addbox {
+    .line-box .content {
+        position: relative;
+    }
+
+    .form-box {
+
+    }
+}

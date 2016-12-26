@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <title>设置</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../_res/images/favicon.ico" />
+    <link rel="stylesheet" href="../_res/css/common.css?ver=1.2.1">
+    <link rel="stylesheet" id="themeStyle" href="../_res/css/theme.css?ver=1.2.1">
+
+    <script style="text/javascript" src="../_res/js/global.js?ver=1.2.2"></script>
+    
+</head>
+<body class="p-user">
+
+<div id="wrap" class="wrap">
+
+    <aside class="container aside" id="aside">
+        <div class="logo"></div>
+        <ul class="sidebar">
+            <li><a class="icon cssicon cart white" href="../cart/index.html">购物车</a></li>
+            <li><a href="../">首页</a></li>
+            <li><a href="order.html">我的订单</a></li>
+            <li><a href="myaddress.html">收货地址</a></li>
+            <li><a href="../user/index.html">登录</a></li>
+        </ul>
+    </aside>
+
+    <div class="container container-main">
+    
+        <header id="header" class="header" role="banner">
+            <a class="icon cssicon back" href="#">返回</a>
+            <h1 class="title">设置</h1>
+            <a class="icon cssicon cart" href="../cart/index.html"></a>
+        </header>
+
+        <main id="main" role="main">
+
+            <div class="region">
+
+                <div class="line-box multi">
+                    <a class="item" href="setting2.html">
+                        <span class="label-icon member"></span>
+                        <span class="content">个人资料</span>
+                        <div class="addon">
+                            <span class="icon arrow-right"></span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="line-box multi">
+                    <a class="item" href="password.html">
+                        <span class="label-icon account"></span>
+                        <span class="content">账号与安全</span>
+                        <div class="addon">
+                            <span class="icon arrow-right"></span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="line-box multi">
+                    <a class="item" href="myaddress.html">
+                        <span class="label-icon address"></span>
+                        <span class="content">外卖地址</span>
+                        <div class="addon">
+                            <span class="icon arrow-right"></span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="foot">
+                    <button class="btn btn-second" type="button">退出登录</button>
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+</div>
+
+<script type="text/javascript" src="../_res/libs/jquery/jquery-1.11.1.min.js"></script>
+
+<script type="text/javascript" src="../_res/js/common/util.js"></script>
+<script type="text/javascript" src="../_res/js/common/stats.js?v1.2.0"></script>
+<script type="text/javascript" src="../_res/js/common.js?ver=1.1.0"></script>
+<script type="text/javascript">
+    var WEBP = window.WEBP || {}
+    try {
+        WEBP.Stats().init('from_wechat');
+        WEBP.PageLoad().updatePageLoadEndTimestamp();
+        WEBP.Stats().upload(30, window.location.pathname);
+    } catch(e) {
+        console.log(e);
+    }
+</script>
+</body>
+</html>

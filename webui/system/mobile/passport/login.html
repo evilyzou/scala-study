@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <title>账号登录</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../_res/images/favicon.ico" />
+    <link rel="stylesheet" href="../_res/css/common.css?ver=1.2.1">
+    <link rel="stylesheet" id="themeStyle" href="../_res/css/theme.css?ver=1.2.1">
+
+    <script type="text/javascript" src="../_res/js/global.js?ver=1.2.2"></script>
+    <script type="text/javascript" src="../_res/js/common/getLoginState.js?ver=1.0.1"></script>
+    <script type="text/javascript">
+        var XLJ = window.XLJ || {};
+        XLJ.isLoginCheck = false;
+        var autoState = XLJ.getQueryString('auto') || 'true'
+        // if logout or relogin, don't autologin
+        if (autoState != 'true') {
+            XLJ.docReady(function() {
+                document.body.style.display = 'block';
+            })
+        } else {
+            XLJ.getLoginState(function(isLogin) {
+                if (isLogin === true) {
+                    var ly = XLJ.getQueryString('ly') || ''
+                    if (ly) ly = '?ly=' + ly
+                    window.location.href = XLJ.getQueryString('backURL') || XLJ.rootPath + 'user/index.html' + ly
+                }
+            })
+        }
+    </script>
+</head>
+<body class="p-login" style="display: none;">
+
+<div id="wrap" class="wrap">
+
+    <div class="container container-main">
+
+        <header id="header" class="header" role="banner">
+            <a class="icon cssicon back" href="#"></a>
+            <h1 class="title">
+                账号登录
+            </h1>
+            <a class="link register" href="reg.html">注册</a>
+        </header>
+
+        <div class="maincontent">
+
+            <div class="region">
+                <form action="" id="login">
+                    <div class="tool line-box form-box">
+                        <div class="item">
+                            <span class="label">账号 </span>
+                            <span class="content"><input type="text" id="username" placeholder="手机号/用户名"></span>
+                        </div>
+                        <div class="item">
+                            <span class="label">密码 </span>
+                            <span class="content"><input type="password" id="password"></span>
+                        </div>
+                    </div>
+
+                    <div class="foot">
+                        <button class="btn" id="submit-login" type="submit">登录</button>
+                        <a class="link" href="getPassword.html">忘记密码</a>
+                    </div>
+                </form>
+            </div>
+
+        <!--
+            <div class="region" id="other-login">
+                <div class="center-title">
+                    <h4 class="title">其它方式</h4>
+                </div>
+                <ul class="ui">
+                    <li><div class="picon qq">QQ</div></li>
+                    <li><div class="picon wx">微信</div></li>
+                    <li><div class="picon alipay">支付宝</div></li>
+                </ul>
+            </div>
+        -->
+
+        </div><!-- end main content-->
+
+        <footer id="footer">
+            <nav id="nav" class="mainnav">
+                <ul>
+                    <li><a class="icon cssicon home" href="../">首页</a></li>
+                    <li><a class="icon cssicon category" href="../nav/category.html">分类导航</a></li>
+                    <li><a class="icon cssicon cart" href="../cart/index.html">购物车</a></li>
+                    <li class="current"><a class="icon cssicon my user" href="../user/index.html">我的</a></li>
+                </ul>
+            </nav>
+        </footer>
+
+    </div>
+</div>
+
+<script type="text/javascript" src="../_res/libs/jquery/jquery-1.11.1.min.js"></script>
+
+<script type="text/javascript" src="../_res/js/common/util.js"></script>
+<script type="text/javascript" src="../_res/js/common/stats.js?v1.2.0"></script>
+<script type="text/javascript" src="../_res/js/common.js?ver=1.1.0"></script>
+
+<script type="text/javascript" src="../_res/js/user/login.js?ver=1.0.1"></script>
+<script type="text/javascript">
+    var WEBP = window.WEBP || {}
+    try {
+        WEBP.Stats().init('from_wechat');
+        WEBP.PageLoad().updatePageLoadEndTimestamp();
+        WEBP.Stats().upload(30, window.location.pathname);
+    } catch(e) {
+        console.log(e);
+    }
+</script>
+</body>
+</html>

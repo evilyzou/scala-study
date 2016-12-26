@@ -1,0 +1,38 @@
+
+/* nothingbox
+ */
+.nothingbox {
+    padding: $padding-base * 8;
+    text-align: center;
+
+    .main {
+        max-width: 320px;
+        width: 100%;
+        margin: auto;
+        font-size: 14px;
+        //background: url(#{$path-img}/vmeiMM_tipbox.png) no-repeat center center;
+        //background-size: 100%;
+    }
+
+    p {
+        display: inline-block;
+        max-width: 280px;
+        height: 60px;
+        //margin-bottom: $padding-base * 6;
+        //padding-top: 150px;
+        padding-top: 50px;
+    }
+    
+    .foot {
+        width: 320px;
+        margin: auto;
+    }
+    
+    &.container {
+        position: relative;
+        z-index: 1;
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+// end nothingbox

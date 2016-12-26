@@ -1,0 +1,69 @@
+// Use rem unit in old IE (lte IE 8)
+// Create Data: 2014-08-16, Author: zihan
+
+@function rem($font-size, $dpi: $dpi-base) {
+
+    // set base
+    $size:      "" !default;
+    $size-unit: unit($font-size);
+    $dpi:       if ($dpi-base != "", $dpi-base, 96);
+
+    // set size number
+    @if ($size-unit == "px") {
+        $size: $font-size / $html-default-font-size;
+    }
+    @else if ($size-unit == "pt") {
+        $size: ($font-size * 72 / $dpi) / 1pt / $html-default-font-size;
+    }
+    @else if ($size-unit == "em") {
+        $size: $font-size / 1em;
+    }
+    @else {
+        @warn "Unrecognized font-size: #{$font-size}";
+    }
+
+    // apply size
+    @return #{$size}rem;
+}
+
+@mixin font-size-rem($font-size, $dpi: $dpi-base) {
+
+    // set base
+    $size:      "" !default;
+    $size-unit: unit($font-size);
+    $dpi:       if ($dpi-base != "", $dpi-base, 96);
+
+    // set size number
+    @if ($size-unit == "px") {
+        $size: $font-size / $html-default-font-size;
+    }
+    @else if ($size-unit == "pt") {
+        $size: ($font-size * 72 / $dpi) / 1pt / $html-default-font-size;
+    }
+    @else if ($size-unit == "em") {
+        $size: $font-size / 1em;
+    }
+    @else {
+        @warn "Unrecognized font-size: #{$font-size}";
+    }
+
+    // apply size
+    @if ($legacy-support-for-ie < 9) {
+        font-size: floor($size * $html-default-font-size);
+        font-size: #{$size}rem;
+    } 
+    @else {
+        font-size: #{$size}rem;
+    }
+}
+
+@mixin font-size($font-size) {
+
+    @if ($font-unit == "rem") {
+        @include font-size-rem($font-size);
+    }
+
+    @else {
+        font-size: $font-size;
+    }
+}

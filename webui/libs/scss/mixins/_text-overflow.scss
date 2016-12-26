@@ -1,0 +1,22 @@
+// Text overflow
+// Requires inline-block or block for proper styling
+// Create Data: 2014-08-16, Author: zihan
+
+
+%text-overflow-clamp {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+@mixin text-overflow() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin text-overflow-clamp($clamp: 2) {
+  @extend %text-overflow-clamp;
+  -webkit-line-clamp: $clamp;
+}

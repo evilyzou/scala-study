@@ -1,0 +1,190 @@
+
+.joinform-box {
+
+    input,button {
+        border-radius: 4px;
+    }
+
+    input::-webkit-input-placeholder {
+        color:#999089;
+    }
+
+    input {
+        width: 100%;
+        height: 37px;
+        padding: 6px 8px;
+        font-size: 14px;
+        line-height: 23px;
+        // color: #fff;
+        border: solid 1px rgba(255,255,255,.5);
+        background-color: transparent;
+    }
+
+    .congratulations {
+        font-size: 21px;
+        text-align: center;
+        color: $color-main;
+        margin-top: 50px;
+        padding-bottom: 10px;
+    }
+
+    .friend-show {
+        padding: 20px;
+
+        .face {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            vertical-align: middle;
+
+            border-radius: 99px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            background-color: rgba(255,255,255,.75);
+            background-image: url(../../../_res/images/user.png);
+            background-size: 60%;
+        }
+
+        .content {
+            display: inline-block;
+            color: rgba(255,255,255,.75);
+            vertical-align: text-top;
+        }
+    }
+
+    .info-show {
+        margin-top: 20px;
+        text-align: center;
+
+        .title {
+            font-size: 2rem;
+            font-weight: 100;
+            margin-top: 10px;
+        }
+
+        .logo {
+            width: 64px;
+            height: 64px;
+            margin: auto;
+            padding: 10px;
+            border-radius: 15px;
+            background-color: #fff;
+
+            img {
+                width: 44px;
+                height: auto;
+            }
+        }
+
+        .info {
+            width: 80%;
+            margin: auto;
+            padding: 20px 0;
+            font-size: 12px;
+            color: rgba(255,255,255,.4);
+
+            strong { color: rgba(255,255,255,.8); }
+        }
+    }
+
+    .download-box {
+        width: 200px;
+        margin: auto;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .title {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .form-box {
+        //width: 220px;
+        margin: auto;
+        margin-top: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+
+        .item {
+            @include flexbox();
+            position: relative;
+            width: 220px;
+            margin-bottom: 15px;
+            margin-left: auto;
+            margin-right: auto;
+
+            .content {
+                @include flex(1);
+            }
+        }
+
+        .label { display: none; }
+
+        .btn {
+            height: auto;
+        }
+
+        .addon {
+            margin-left: -1px;
+            .btn {
+                color: #fff;
+                background-color: #bba389;
+                border: solid 1px #bba389;
+                border-radius: 4px;
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+        }
+
+        [name="checkCode"] {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .foot {
+            height: 35px;
+
+            .btn {
+                background-color: $color-main;
+            }
+        }
+
+        .namebox,.codebox {
+            &:before {
+                position: absolute;
+                display: block;
+                width: 20px;
+                height: 20px;
+                content: "";
+                margin-top: 7px;
+                margin-left: 7px;
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+            input {
+                padding-left: 30px;
+            }
+        }
+
+        .namebox {
+            &:before {
+                background-image: url(../../../_res/images/phone.png);
+            }
+        }
+
+        .codebox {
+            &:before {
+                background-image: url(../../../_res/images/verification.png);
+            }
+        }
+
+        .msg {
+            text-align: center;
+        }
+    }
+
+}

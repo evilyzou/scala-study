@@ -1,0 +1,11 @@
+// Clear margin and padding
+// Create Data: 2014-08-16, Author: zihan
+
+%no-spacing {
+  margin: 0;
+  padding: 0;
+}
+
+@mixin no-spacing() {
+  @extend %no-spacing;
+}

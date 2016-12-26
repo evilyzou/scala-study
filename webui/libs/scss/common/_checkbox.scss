@@ -1,0 +1,45 @@
+
+.inputbox [type="radio"], .inputbox [type="checkbox"] { display: none; }
+
+.icon.radio,
+.icon.check { position: relative; display: block; }
+.icon.radio:before,
+.icon.check:before {
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin: auto;
+    content: "";
+    background-repeat:no-repeat;
+    background-size: 20px auto; }
+
+.icon.radio:before,
+.icon.check:before { width: 16px; height: 16px; background-position: 0 -180px; padding: 2px; border: solid 1px #ddd; border-radius: 3px; background: #fff; }
+
+.icon.radio:before { border-radius: 99px; }
+.icon.check:before { border-radius: $border-radius; }
+
+.icon.inputbox,
+.icon.check { position: relative; overflow: hidden; }
+
+input:checked + label.icon:before,
+.icon.radio.checked:before,
+.icon.check.checked:before {
+    border: solid 1px $color-main;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg%20style%3D%22width%3A308px;height%3A308px;%22%20version%3D%221.1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%20x%3D%220px%22%20y%3D%220px%22%20width%3D%221024px%22%20height%3D%221024px%22%20viewBox%3D%220%200%201024%201024%22%20enable-background%3D%22new%200%200%201024%201024%22%20xml%3Aspace%3D%22preserve%22><path%20class%3D%22svgpath%22%20data-index%3D%22path_0%22%20fill%3D%22#ffffff%22%20d%3D%22M423.112554%20748.024551%20191.688787%20516.594645%20254.54537%20453.749318%20423.112554%20622.311385%20769.453606%20275.975449%20832.31019%20338.820776Z%22%20/></svg>');
+/*    background-position: 0 -180px;*/
+    opacity: 1;
+    background-position: 0 -180px !important;
+    background-color: $color-main;
+    background-size: 20px auto; }
+
+input[disabled] + label.icon:before,
+.icon.radio[disabled]:before,
+.icon.check[disabled]:before {
+    border: solid 1px #e5e5e5;
+    background-color: #eee; }
+
+input:checked[disabled] + label.icon:before,
+.icon.radio.checked[disabled]:before,
+.icon.check.checked[disabled]:before {
+    opacity: .65; }

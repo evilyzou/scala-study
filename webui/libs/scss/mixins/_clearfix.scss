@@ -1,0 +1,17 @@
+// Clearfix
+// Create Data: 2014-08-16, Author: zihan
+
+%clearfix {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+@mixin clearfix() {
+    @extend %clearfix;
+}

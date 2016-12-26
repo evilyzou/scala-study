@@ -1,0 +1,11 @@
+// the main layout
+// Create Data: 2014-08-16, Author: zihan
+
+%layout-width {
+  width: $layout-width-base;
+  margin: 0 auto;
+}
+
+@mixin layout-width() {
+  @extend %layout-width;
+}

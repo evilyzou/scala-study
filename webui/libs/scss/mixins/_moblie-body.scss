@@ -1,0 +1,12 @@
+// Moblie body base setting
+// Create Data: 2014-08-16, Author: zihan
+
+@mixin moblie-body($min: 320px, $max: 640px) {    
+    margin:      0 auto;
+    min-width:   $min;
+    max-width:   $max;
+
+//    -webkit-user-select: none;
+//       -moz-user-select: none;
+//            user-select: none;
+}

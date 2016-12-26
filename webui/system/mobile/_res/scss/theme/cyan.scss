@@ -1,0 +1,15 @@
+@charset "utf-8";
+/*
+ *  Create Date: 2015-09-20
+ *  Author: zihan
+ */
+
+@import '../variables';
+@import '../mixins';
+
+@import '../../../../../libs/scss/common/icons_css_cyan';
+
+
+$color-main: #38b3b3;
+
+@import '_theme_base';

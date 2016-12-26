@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <title>商品</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../_res/images/favicon.ico" />
+    <link rel="stylesheet" href="../_res/css/common.css?ver=1.2.1">
+    <link rel="stylesheet" id="themeStyle" href="../_res/css/theme.css?ver=1.2.1">
+
+    <script type="text/javascript" src="../_res/js/global.js?ver=1.2.2"></script>
+</head>
+<body class="p-list">
+
+<div id="wrap" class="wrap">
+
+    <aside class="container aside" id="aside">
+        <div class="logo"></div>
+        <ul class="sidebar">
+            <li><a class="icon cssicon cart white" href="../cart/index.html">购物车</a></li>
+            <li><a href="../">首页</a></li>
+            <li><a href="../user/order.html">我的订单</a></li>
+            <li><a href="../user/myaddress.html">收货地址</a></li>
+            <li><a href="../user/index.html">登录</a></li>
+        </ul>
+    </aside>
+
+    <div class="container container-main">
+
+        <header id="header" class="header" role="banner">
+            <a class="icon cssicon menu showaside" href="#"></a>
+            <a class="icon cssicon search" href="../product/search.html"></a>
+            <h1 class="title">009商城</h1>
+            <a class="icon cssicon cart" href="../cart/index.html"></a>
+        </header>
+
+        <div class="maincontent">
+
+            <div class="region banners">
+                <!-- Banner -->
+                <div class="mod_photos swiper-container">
+                    <div class="photos swiper-wrapper">
+                        <!--<div class="photo swiper-slide"><img src="" alt=""></div>-->
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+
+            <div class="region grid-gallery" id="product-list">
+            </div>
+
+
+        </div><!-- end main content-->
+
+        <footer id="footer" class="footer">
+            <nav id="nav" class="mainnav">
+                <ul>
+                    <li><a class="icon-homepage home" href="../"><span class="navname">首页</span></a></li>
+                    <li><a class="icon-classify category" href="../nav/category.html"><span class="navname">分类</span></a></li>
+                    <li class="current"><a class="icon-cart cart" href="../cart/index.html"><span class="navname">购物车</span></a></li>
+                    <li><a class="icon-user user" href="../user/index.html"><span class="navname">我的</span></a></li>
+                </ul>
+            </nav>
+        </footer>
+
+
+    </div>
+</div>
+
+
+<script id="product_item_template" type="text/html">
+    {{each result.list as item}}
+    <a class="item" href="../product/index.html?id={{item.id}}">
+        <div class="photo">
+            <img src="{{result.imgDomain}}/{{item.firstPic}}@320w_320h_90Q_1e_1c" alt="{{item.name}}">
+        </div>
+        <div class="info">
+            <h3 class="title">{{item.name}}</h3>
+            <strong class="price">￥{{price(item.displayPrice)}}</strong>
+            <del class="price">￥{{price(item.marketPrice)}}</del>
+        </div>
+    </a>
+    {{/each}}
+</script>
+
+<script type="text/javascript" src="../_res/libs/jquery/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../_res/libs/swiper/3.2.5/js/swiper.min.js"></script>
+<script type="text/javascript" src="../_res/js/art-template.js"></script>
+<script type="text/javascript" src="../_res/js/art-template-helper.js"></script>
+<script type="text/javascript" src="../_res/js/xlj-utils.js"></script>
+
+<script type="text/javascript" src="../_res/js/common/util.js"></script>
+<script type="text/javascript" src="../_res/js/common/stats.js?v1.2.0"></script>
+<script type="text/javascript" src="../_res/js/common.js?ver=1.1.0"></script>
+<script type="text/javascript" src="../_res/js/user/shareKey.js"></script>
+
+<script type="text/javascript" src="../_res/js/module/banner.js"></script>
+<script type="text/javascript">
+$(function() {
+
+    // data vendor
+    function vendor(data) {
+        if (!data) return
+        var html = template('product_item_template', data);
+        $('#product-list').attr('data-totalCount', data.result.totalCount).append(html);
+    }
+
+    /*
+     * scroll to load more content
+     */
+    var scrollData = new XLJ.ScrollData({
+        url: '/Search',
+        container: $('.maincontent'),
+        target: $('#product-list'),
+        success: function(response) {
+            vendor(response)
+        }
+    });
+
+});
+</script>
+<script type="text/javascript">
+    var WEBP = window.WEBP || {}
+    try {
+        WEBP.Stats().init('from_wechat');
+        WEBP.PageLoad().updatePageLoadEndTimestamp();
+        WEBP.Stats().upload(30, window.location.pathname);
+    } catch(e) {
+        console.log(e);
+    }
+</script>
+</body>
+</html>

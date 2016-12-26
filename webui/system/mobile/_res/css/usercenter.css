@@ -1,0 +1,5 @@
+/*!
+ *  Create Date: 2016-03
+ *  Author: zihan
+ */.mod_processList ul{padding-left:8px}.mod_processList li{position:relative;padding-left:8px;border-left:solid 1px #ddd;border-color:#ccc}.mod_processList li span{display:block;padding-top:4px}.mod_processList li:before{position:absolute;top:6px;left:-4px;display:block;width:10px;height:10px;content:"";border-radius:99px;background-color:#ccc}.mod_processList li[data-balance="+"],.mod_processList .income{color:#5cb85c}.mod_processList li[data-balance="-"],.mod_processList .pay{color:#f60}.mod_processList .date{color:#a3a3a3;font-size:10px}.mod_processList .num{width:30%;text-align:right}.mod_processList .text{padding-top:0;padding-bottom:8px}.mod_processList li:first-child:before,.mod_processList .special:before{background-color:#000}.mod_processList li:first-child .text,.mod_processList .special .text{color:#000}
+/*# sourceMappingURL=usercenter.css.map */

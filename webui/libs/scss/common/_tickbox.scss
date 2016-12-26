@@ -1,0 +1,42 @@
+
+/*
+ * mod-tickbox
+ */
+.mod-tickbox {
+    position: relative;
+    display: inline-block;
+    min-width: 30px;
+    margin-bottom: 15px;
+    margin-right: $padding-base * 2;
+    padding: ($padding-base * 1.5) ($padding-base * 5);
+    text-align: center;
+    border: solid 1px #ccc8ca;
+    border-radius: $border-radius;
+    cursor: pointer;
+    vertical-align: baseline;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.mod-tickbox.selected {
+    //color: $color-main;
+    color: #323232;
+    border: solid 1px #323232;
+}
+.mod-tickbox.selected:after {
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    
+    width: 15px;
+    height: 15px;
+
+    content: "";
+    background-image: url(../images/skuchecked.png);
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-size: 15px;
+}

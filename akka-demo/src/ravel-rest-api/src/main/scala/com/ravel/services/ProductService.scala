@@ -8,7 +8,7 @@ import com.ravel.resources.ProductSearchFilter
 import com.ravel.schema.Actions._
 import com.ravel.schema.Actions.jdbcDriver.api._
 import com.ravel.schema.ProductObject._
-import com.ravel.schema.Tables._
+import com.ravel.schema.DBSchema._
 import com.sksamuel.elastic4s.ElasticDsl._
 
 import scala.concurrent.Future

@@ -1,0 +1,45 @@
+// Grid Box
+// Create Data: 2014-09-24, Author: zihan
+
+// Html Demo:
+//
+//    <section class="grid-box" role="region">
+//
+//        <h2 class="title">Title</h2>
+//
+//        <ul class="content">
+//            <li class="cell"><a href="#">item1</a></li>
+//            <li class="cell"><a href="#">item2</a></li>
+//            <li class="cell"><a href="#">item3</a></li>
+//            <li class="cell"><a href="#">item4</a></li>
+//        </ul>
+//    </section>
+//
+// SCSS:
+// .grid-box { @include grid-box(2); }
+
+@mixin grid-box($colnum: 4, $colspace: $padding-base) {
+    width:      100%;
+    overflow:   hidden;
+    @include box-sizing(border-box);
+
+    > .content,
+    > ul { margin: 0 (-$colspace);
+
+        > .cell,
+        > li {
+            float:      left;
+            width:      (1 / $colnum) * 100%;
+            padding:    $colspace;
+            @include box-sizing(border-box);
+
+            > a {
+                display:    block;
+                overflow:   hidden;
+                @include box-sizing(border-box);
+
+                img { width: 100%; }
+            }
+        }
+    }
+}

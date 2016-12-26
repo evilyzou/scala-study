@@ -1,0 +1,196 @@
+@charset "utf-8";
+/*!
+ *  Create Date: 2016-03
+ *  Author: zihan
+ */
+
+@import '../variables';
+@import '../mixins';
+
+@import 'content';
+
+
+$color-main: #38b3b3;
+
+
+//body {
+//    background-color: #f4f2f3;
+//}
+
+#header {
+    background: $color-main;
+    
+    .title {
+
+        text-indent: -999px;
+        overflow: hidden;
+        background-image: url(#{$path-img}/even/logo_white.png);
+        background-repeat: no-repeat;
+        background-position: ($padding-base * 2) center;
+        background-size: contain;
+    }
+}
+
+.searchBox {
+    position: relative;
+    padding: 0 ($padding-base * 2);
+    
+    > .icon {
+        position: absolute;
+        top: 0;
+        right: $padding-base;
+        @include opacity(.5);
+    }
+    
+    input {
+        height: 22px;
+        margin-top: 7px;
+        padding-left: $padding-base * 3;
+        padding-right: $padding-base * 8;
+        line-height: 22px;
+        border: none;
+        border-radius: 99px;
+    }
+    
+}
+
+
+.title_row {
+    padding: 10px 0;
+    text-align: center;
+    font-weight: normal;
+    color: #999;
+    font-size: 12px;
+
+    .title {
+        &:before,
+        &:after {
+            display: inline-block;
+            width: 90px;
+            height: 5px;
+            margin: auto 10px;
+            content: "";
+            border-top: solid 1px #ddd;
+        }
+    }
+}
+
+.more-bar {
+    min-height: $bar-height;
+    margin-top: ($padding-base * 3);
+    margin-bottom: ($padding-base * 3);
+    line-height: $bar-height;
+    text-align: center;
+    background-color: #efefef;
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.05);
+}
+
+.grid-gallery {
+    
+    .cell {
+        border-radius: 4px;
+        overflow: hidden;
+        box-shadow: 0 0 4px rgba(0,0,0,.1), 1px 1px 1px rgba(0,0,0,.03);
+        background-color: #fff;
+        
+        .info {
+            padding-bottom: $padding-base;
+        }
+        
+        .photo {
+            position: static;
+        }
+    }
+    
+    .label {
+        color: #666;
+        font-size: 12px;
+    }
+    
+}
+
+.mod_time {
+    .ui-txt {
+        display: inline-block;
+        padding: 0 2px;
+        font-size: 14px;
+        font-weight: bold;
+    }
+    .ui-num {
+        padding: 0 2px;
+        color: #fff;
+        background-color: $color-main;
+    }
+}
+
+.tab-txt {
+    height: 26px;
+    line-height: 26px;
+    background: none;
+    
+    ul {
+        display: block;
+        text-align: center;
+    }
+    
+    li {
+        display: inline-block;
+    }
+    
+    a {
+        margin: auto $padding-base;
+        padding: 0 ($padding-base);
+    }
+    
+}
+
+.product_content {
+    
+    .head {
+        display: block;
+        min-height: 20px;
+        padding-left: $padding-base * 4;
+        padding-right: $padding-base * 4;
+    }
+    
+    .main {
+        border: none;
+        background-color: transparent;
+    }
+    
+    
+    .photo {
+        img {
+            min-height: 67.6px;
+        }
+    }
+}
+
+.start_time_show {
+    float: right;
+    padding: 2px $padding-base;
+    background-color: #fff;
+}
+
+.special-row {
+    &.grid-gallery .cell .title {
+        font-size: 15px;
+    }
+    
+    .photo {
+        img {
+            min-height: 71.5px;
+        }
+    }
+}
+
+.row-list {
+    .photo {
+
+        img {
+            min-height: 80.6px;
+        }
+    }
+}
+
+

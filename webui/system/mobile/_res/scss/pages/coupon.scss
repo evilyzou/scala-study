@@ -1,0 +1,31 @@
+
+.p-coupon {
+
+    >.wrap .header+.maincontent {
+        padding-bottom: 0;
+    }
+
+    .tabs {
+        position: absolute;
+        top: 140px;
+        right: 0;
+        left: 0;
+        bottom: 0;
+    }
+
+    .tab_content {
+        height: 100%;
+        overflow: hidden;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .mod_coupon {
+        margin-left: 10px;
+        margin-right: 10px;
+
+        .price:before {
+            font-size: 75%;
+        }
+    }
+}

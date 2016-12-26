@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <title>用户中心</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../_res/images/favicon.ico" />
+    <link rel="stylesheet" href="../_res/css/common.css?ver=1.2.1">
+    <link rel="stylesheet" id="themeStyle" href="../_res/css/theme.css?ver=1.2.1">
+
+    <script type="text/javascript" src="../_res/js/global.js?ver=1.2.2"></script>
+    <script type="text/javascript" src="../_res/js/common/getLoginState.js?ver=1.0.1"></script>
+    <script type="text/javascript">
+        var XLJ = window.XLJ || {};
+        XLJ.isLoginCheck = true;
+        XLJ.getLoginState();
+    </script>
+
+</head>
+<body class="p-user p-user-home" style="display: none;">
+
+<div id="wrap" class="wrap slidepage-wrap">
+
+    <aside class="container aside" id="aside">
+        <div class="logo"></div>
+        <ul class="sidebar">
+            <li><a class="icon cssicon cart white" href="../cart/index.html">购物车</a></li>
+            <li><a href="../">首页</a></li>
+            <li><a href="../user/order.html">我的订单</a></li>
+            <li><a href="../user/myaddress.html">收货地址</a></li>
+            <li><a href="../user/index.html">登录</a></li>
+        </ul>
+    </aside>
+
+    <div class="container container-main">
+
+        <header id="header" class="header" role="banner">
+            <a class="icon cssicon menu showaside" href="#"></a>
+            <h1 class="title">用户中心</h1>
+            <!--<a class="icon cssicon cart" href="../cart/index.html"></a>-->
+        </header>
+
+        <div class="maincontent">
+
+            <div class="region user-show">
+                <div class="head">
+                    <!--<img src="../_res/images/user/user_top.jpg" width="100%" alt="">-->
+                </div>
+                <div class="main">
+                    <a class="userbox" href="../user/setting2.html">
+                        <div class="face"><div class="img"></div></div>
+                        <div class="name"><strong></strong></div>
+                        <div class="grade"></div>
+                        <div class="integral"></div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="region">
+
+                <div class="line-box multi">
+                    <a class="item" href="../user/order.html">
+                        <!--<span class="label-icon order"></span>-->
+                        <span class="content">全部订单</span>
+                        <div class="addon">
+                            <span class="icon arrow-right"></span>
+                        </div>
+                    </a>
+                </div>
+                <div class="tabtool tabtool-icon">
+                    <ul>
+                        <li><a class="icon order_state_1" href="../user/order.html?tradeStatus=TRADE_ORDERED">待付款</a></li>
+                        <li><a class="icon order_state_2" href="../user/order.html?tradeStatus=TRADE_PAYED">待发货</a></li>
+                        <li><a class="icon order_state_3" href="../user/order.html?tradeStatus=TRADE_SHIPPED">待收货</a></li>
+                        <li><a class="icon order_state_4" href="../user/order.html?tradeStatus=TRADE_COMMENT">待评价</a></li>
+                        <li><a class="icon order_state_5" href="../user/order.html?tradeStatus=TRADE_REFUND">退款/售后</a></li>
+                    </ul>
+                </div>
+
+                <div class="line-box multi">
+                    <a class="item" href="../user/myaddress.html">
+                        <span class="label-icon icon cssicon location"></span>
+                        <span class="content">我的收货地址</span>
+                        <div class="addon">
+                            <span class="icon arrow-right"></span>
+                        </div>
+                    </a>
+                    <a class="item" href="../user/coupon.html">
+                        <span class="label-icon icon cssicon coupon"></span>
+                        <span class="content">我的优惠券</span>
+                        <div class="addon">
+                            <span class="icon arrow-right"></span>
+                        </div>
+                    </a>
+                    <a class="item" href="../user/giftCard.html">
+                        <span class="label-icon icon cssicon coupon"></span>
+                        <span class="content">我的礼品卡</span>
+                        <div class="addon">
+                            <span class="icon arrow-right"></span>
+                        </div>
+                    </a>
+                    <a class="item" href="../user/favorite.html">
+                        <span class="label-icon icon cssicon fav"></span>
+                        <span class="content">我的收藏</span>
+                        <div class="addon">
+                            <span class="icon arrow-right"></span>
+                        </div>
+                    </a>
+                    <a class="item" id="bonus" href="../user/bonus.html" style="display:none">
+                        <span class="label-icon icon cssicon money-bag"></span>
+                        <span class="content">我的分成</span>
+                        <div class="addon">
+                            <span class="icon arrow-right"></span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="foot">
+                    <button class="btn btn-nostyle btn-big logout" type="button">退出登录</button>
+                </div>
+
+            </div>
+
+        </div><!-- end main content-->
+
+        <footer id="footer">
+            <nav id="nav" class="mainnav">
+                <ul>
+                    <li><a class="icon cssicon home" href="../">首页</a></li>
+                    <li><a class="icon cssicon category" href="../nav/category.html">分类导航</a></li>
+                    <li><a class="icon cssicon cart" href="../cart/index.html">购物车</a></li>
+                    <li class="current"><a class="icon cssicon my user" href="../user/index.html">我的</a></li>
+                </ul>
+            </nav>
+        </footer>
+
+    </div>
+</div>
+
+<script type="text/javascript" src="../_res/libs/jquery/jquery-1.11.1.min.js"></script>
+
+<script type="text/javascript" src="../_res/js/common/util.js"></script>
+<script type="text/javascript" src="../_res/js/common/stats.js?v1.2.0"></script>
+<script type="text/javascript" src="../_res/js/common.js?ver=1.1.0"></script>
+
+<script type="text/javascript" src="../_res/js/user/user.js?ver=1.1.0"></script>
+<script type="text/javascript">
+    var WEBP = window.WEBP || {}
+    try {
+        WEBP.Stats().init('from_wechat');
+        WEBP.PageLoad().updatePageLoadEndTimestamp();
+        WEBP.Stats().upload(30, window.location.pathname);
+    } catch(e) {
+        console.log(e);
+    }
+</script>
+<script type='text/javascript'>
+    (function(m, ei, q, i, a, j, s) {
+        m[i] = m[i] || function() {
+                    (m[i].a = m[i].a || []).push(arguments)
+                };
+        j = ei.createElement(q),
+                s = ei.getElementsByTagName(q)[0];
+        j.async = true;
+        j.charset = 'UTF-8';
+        j.src = '//static.meiqia.com/dist/meiqia.js';
+        s.parentNode.insertBefore(j, s);
+    })(window, document, 'script', '_MEIQIA');
+    _MEIQIA('entId', 32588);
+</script>
+</body>
+</html>

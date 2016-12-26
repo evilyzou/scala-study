@@ -1,0 +1,18 @@
+// css3 icon - close
+// Create Data: 2014-08-16, Author: zihan
+
+@mixin css3icon-close($icon-color: #999, $color-start: 43%, $color-stop: 57%, $icon-size: 10px) {
+  width:  $icon-size;
+  height: $icon-size;
+  background-image: -webkit-linear-gradient(left top, transparent $color-start, $icon-color $color-start, $icon-color $color-stop, transparent $color-stop),
+                    -webkit-linear-gradient(right top, transparent $color-start, $icon-color $color-start, $icon-color $color-stop, transparent $color-stop);
+  background-image:    -moz-linear-gradient(left top, transparent $color-start, $icon-color $color-start, $icon-color $color-stop, transparent $color-stop),
+                       -moz-linear-gradient(right top, transparent $color-start, $icon-color $color-start, $icon-color $color-stop, transparent $color-stop);
+  background-image:     -ms-linear-gradient(left top, transparent $color-start, $icon-color $color-start, $icon-color $color-stop, transparent $color-stop),
+                        -ms-linear-gradient(right top, transparent $color-start, $icon-color $color-start, $icon-color $color-stop, transparent $color-stop);
+  background-image:         linear-gradient(left top, transparent $color-start, $icon-color $color-start, $icon-color $color-stop, transparent $color-stop),
+                            linear-gradient(right top, transparent $color-start, $icon-color $color-start, $icon-color $color-stop, transparent $color-stop);
+  background-size: $icon-size $icon-size;
+  background-position: center center;
+  background-repeat: no-repeat;
+}

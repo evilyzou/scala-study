@@ -1,0 +1,45 @@
+// hsl color system
+// Create Data: 2016-06-06, Author: zihan
+
+@function hslcolor($color, $hue, $saturation, $lightness, $alpha: 1) {
+    $color-hue:        if($hue != "",        $hue,        hue($color));
+    $color-saturation: if($saturation != "", $saturation, saturation($color));
+    $color-lightness:  if($lightness != "",  $lightness,  lightness($color));
+    $color-alpha:      if($alpha != "",      $alpha,      alpha($color));
+
+
+    @if ($alpha != "") {
+        @return hsla($color-hue, $color-saturation, $color-lightness, $color-alpha);
+    }
+    @else {
+        @return hsl($color-hue, $color-saturation, $color-lightness);
+    }
+}
+
+@function hslchange($color, $hue, $saturation, $lightness, $alpha: 1) {
+    $color-hue:        hue($color);
+    $color-saturation: saturation($color);
+    $color-lightness:  lightness($color);
+    $color-alpha:      alpha($color);
+
+    @if ($hue != "") {
+        $color-hue: $color-hue * (1 + $hue)
+    }
+
+    @if ($saturation != "") {
+        $color-saturation: $color-saturation * (1 + $saturation)
+    }
+
+    @if ($lightness != "") {
+        $color-lightness: $color-lightness * (1 + $lightness)
+    }
+
+    @if ($alpha != "") {
+        $color-alpha: $color-alpha * (1 + $alpha);
+        @return hsla($color-hue, $color-saturation, $color-lightness, $color-alpha);
+    }
+    @else {
+        @return hsl($color-hue, $color-saturation, $color-lightness);
+    }
+
+}

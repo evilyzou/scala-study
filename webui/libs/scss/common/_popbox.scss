@@ -1,0 +1,87 @@
+/* ---------------------------
+   Pop Box (Create Date: 2014-07-31, Author: zihan)
+   - - - - - - - - - - - - - */
+
+/* box base */
+.popbox {
+    min-width:        200px;
+    min-height:       120px;
+    display:          inline-block;
+    border:           solid 1px mix($color-border-base, rgba(0,0,0,.7));
+    background-color: $color-bg-base;
+
+    > .main { padding: ($padding-base * 3) ($padding-base * 6) ($padding-base * 6) ($padding-base * 6); }
+
+    > .head {
+        padding:  $padding-base;
+        overflow: auto;
+        cursor:   move;
+        position: relative;
+
+        .close {
+            overflow:    hidden;
+            line-height: 999px;
+            cursor:      default;
+            position:    absolute;
+            right:       $padding-base;top:$padding-base;
+
+            @include css3icon-close();}
+    }
+
+    > .foot {
+        padding: ($padding-base * 4);
+        border-top: $border-base;
+        background-color: $gray-lightest; }
+
+    /* box theme */
+    & {box-shadow:0 0 20px rgba(0, 0, 0, 0.15);}
+
+    .head {
+        color:     #389fe2;
+        @include font-size($font-size-large);
+        padding:   ($padding-base * 2) 0 ($padding-base * 2) ($padding-base * 4);
+    
+        .close {
+            padding: 11px;
+            right:   0;
+            top:     0;
+
+            &:hover  {background-color:#eee;}
+            &:active {background-color:#ccc;}
+        }
+    }
+
+    /* box extension */
+    & {
+        display:     none;
+        width:       500px;
+        margin-left: -300px;
+        margin-top:  -60px;
+        transition:  all .2s;
+        position:    fixed;
+        left:        50%;
+        top:         50%;
+        z-index:     19;
+
+        @include scale(1);}
+
+    &.show {display:block;}
+    &.hide {display:inline-block;
+            @include scale(1.2);}
+
+    &.current {z-index:9999;}
+
+    /* box extension other */
+    .bottom {
+        padding:    $padding-base;
+        text-align: center;
+
+        .btn,
+        button,
+        input[type="button"],
+        input[type="submit"] {
+            padding-left:  ($padding-base * 4);
+            padding-right: ($padding-base * 4);
+        	@include font-size($font-size-base); }
+    }
+ }
