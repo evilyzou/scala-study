@@ -23,10 +23,10 @@ object ProductService{
     val searchFuture = esClient.execute {
       search in esIndex / esTypeProduct query {
         bool {
-          must {
+          must (
+            termQuery("day", 5),
             termQuery("pfunction", f.pfunction)
-          }
-
+          )
         }
       } start(start) limit(f.size)
     }

@@ -26,7 +26,7 @@ trait ProductResource extends Directives{
       get {
         parameters('systemType, 'customType, 'pfunction, 'start ? 0, 'size ? 10) {
           (systemType, customType, pfunction, start, size) => {
-            val filter = ProductSearchFilter.tupled((systemType, customType, pfunction))
+            val filter = ProductSearchFilter.tupled((systemType,customType, pfunction))
             val flist = ProductService.list(filter)
             onSuccess(flist) {
               case list => complete(HttpEntity(ContentTypes.`application/json`, list.toJson.compactPrint.getBytes("UTF-8")))
