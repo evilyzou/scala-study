@@ -15,9 +15,24 @@ trait Pagination {
   def start: Int
   def size: Int
 }
-case class ProductSearchFilter(customType: String, systemType: String, pfunction: String) extends Pagination{
+case class ProductSearchFilter(systemType: Int, customType: Int, pfunction: String) extends Pagination{
   def start : Int = 0
   def size: Int = 10
+}
+object ProductSearchFilter {
+  val systemTypeMap = Map("SystemJapan" -> 1, "SystemJiangNan" ->2, "SystemOther" -> -1)
+  var customTypeMap: Map[String, Int] = Map()
+  customTypeMap += ("CustomGG" ->1)
+  customTypeMap += ("CustomHX" ->2)
+  customTypeMap += ("CustomDC" ->3)
+  customTypeMap += ("CustomQX" ->4)
+  customTypeMap += ("CustomQS" ->5)
+  customTypeMap += ("CustomXX" ->6)
+  customTypeMap += ("CustomXX" -> -1)
+  def apply(systemType:String, customType: String, pfunction: String): ProductSearchFilter = {
+    new ProductSearchFilter(systemTypeMap.get(systemType).getOrElse(-1),
+                          customTypeMap.get(customType).getOrElse(-1), pfunction)
+  }
 }
 
 trait ProductResource extends Directives{
@@ -26,7 +41,7 @@ trait ProductResource extends Directives{
       get {
         parameters('systemType, 'customType, 'pfunction, 'start ? 0, 'size ? 10) {
           (systemType, customType, pfunction, start, size) => {
-            val filter = ProductSearchFilter.tupled((systemType,customType, pfunction))
+            val filter = ProductSearchFilter(systemType,customType, pfunction)
             val flist = ProductService.list(filter)
             onSuccess(flist) {
               case list => complete(HttpEntity(ContentTypes.`application/json`, list.toJson.compactPrint.getBytes("UTF-8")))

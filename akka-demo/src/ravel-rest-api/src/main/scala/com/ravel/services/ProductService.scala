@@ -24,7 +24,8 @@ object ProductService{
       search in esIndex / esTypeProduct query {
         bool {
           must (
-            termQuery("day", 5),
+            termQuery("systemType", f.systemType),
+            termQuery("customType", f.customType),
             termQuery("pfunction", f.pfunction)
           )
         }
