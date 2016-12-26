@@ -28,7 +28,7 @@ object ProductSearchFilter {
   customTypeMap += ("CustomQX" ->4)
   customTypeMap += ("CustomQS" ->5)
   customTypeMap += ("CustomXX" ->6)
-  customTypeMap += ("CustomXX" -> -1)
+  customTypeMap += ("CustomOther" -> -1)
   def apply(systemType:String, customType: String, pfunction: String): ProductSearchFilter = {
     new ProductSearchFilter(systemTypeMap.get(systemType).getOrElse(-1),
                           customTypeMap.get(customType).getOrElse(-1), pfunction)
