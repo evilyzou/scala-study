@@ -52,18 +52,9 @@ object ProductSearch {
 
     val respFuture = RequestExecutor[SearchResponse].execute(builder)
 
-    respFuture onSuccess {
-      case _ => println("xxx: resp on Success")
-    }
-    respFuture onFailure {
-      case _ => println("xxx: erroror fuck")
-    }
-
-    println("xxxdsdfsdf")
 
     val responses = respFuture.map { response =>
       import com.ravel.schema.ProductObject._
-      println(s"size:${response.getHits.getHits.size}")
       response.getHits.getHits.toSeq.map(e=>mapToSearchProduct(e.sourceAsMap().toMap))
     }
     responses
