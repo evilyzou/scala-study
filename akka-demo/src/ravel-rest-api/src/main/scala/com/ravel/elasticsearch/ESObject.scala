@@ -40,13 +40,13 @@ object ProductSearch {
     boolQueryBuilder.must(QueryBuilders.termQuery("systemType", filter.systemType))
     boolQueryBuilder.must(QueryBuilders.termQuery("customType", filter.customType))
     boolQueryBuilder.must(QueryBuilders.termQuery("pfunction", filter.pfunction))
-    if(!filter.mainCategory.isEmpty) {
-      boolQueryBuilder.must(QueryBuilders.termQuery("mainCategory", filter.mainCategory))
-    }
-
-    if(!filter.subCategory.isEmpty) {
-      boolQueryBuilder.must(QueryBuilders.queryStringQuery(filter.subCategory).field("subCategory"))
-    }
+//    if(!filter.mainCategory.isEmpty) {
+//      boolQueryBuilder.must(QueryBuilders.termQuery("mainCategory", filter.mainCategory))
+//    }
+//
+//    if(!filter.subCategory.isEmpty) {
+//      boolQueryBuilder.must(QueryBuilders.queryStringQuery(filter.subCategory).field("subCategory"))
+//    }
 
     val respFuture = RequestExecutor[SearchResponse].execute(builder)
 
