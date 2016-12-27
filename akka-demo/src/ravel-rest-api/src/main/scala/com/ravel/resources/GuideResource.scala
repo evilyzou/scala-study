@@ -15,19 +15,19 @@ case class GuideSearchFilter(customType: String, systemType: String, guideType: 
 }
 
 trait GuideResource extends Directives{
-  def guideRoutes: Route = pathPrefix("guide"){
-    path("list") {
-      get {
-        parameters('systemType, 'customType, 'guideType, 'start ? 0, 'size ? 10) {
-          (systemType, customType, guideType, start, size) => {
-            val filter = GuideSearchFilter.tupled((customType, systemType, guideType))
-            val flist = GuideService.list(filter)
-            onSuccess(flist) {
-              case list => complete(HttpEntity(ContentTypes.`application/json`, list.toJson.compactPrint.getBytes("UTF-8")))
-            }
-          }
-        }
-      }
-    }
-  }
+//  def guideRoutes: Route = pathPrefix("guide"){
+//    path("list") {
+//      get {
+//        parameters('systemType, 'customType, 'guideType, 'start ? 0, 'size ? 10) {
+//          (systemType, customType, guideType, start, size) => {
+//            val filter = GuideSearchFilter.tupled((customType, systemType, guideType))
+////            val flist = GuideService.list(filter)
+//            onSuccess(flist) {
+//              case list => complete(HttpEntity(ContentTypes.`application/json`, list.toJson.compactPrint.getBytes("UTF-8")))
+//            }
+//          }
+//        }
+//      }
+//    }
+//  }
 }

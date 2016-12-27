@@ -43,9 +43,9 @@ object Dependencies {
 
   val sprayjson = "io.spray" %%  "spray-json" % "1.3.2" withSources()
 
-  val elastic4s = "com.sksamuel.elastic4s" %% "elastic4s-core" % "2.0.1" withSources()
-
   val sslConfig = "com.typesafe" %% "ssl-config-core" % "0.2.1"
+
+  val elasticSearch = "org.elasticsearch" % "elasticsearch" % "2.0.0" withSources()
 
   val scalacTest = Seq(
     "org.scalactic" %% "scalactic" % scalacTestVersion,
@@ -53,6 +53,6 @@ object Dependencies {
   )
 
   def commonDeps = akkaDeps ++ akkaHttpDeps ++ slickDeps ++ json4sDeps ++
-                   Seq(scalaLogging, mysqlConnector, logback, deJson4s, sslConfig, sprayjson, elastic4s) ++
+                   Seq(scalaLogging, mysqlConnector, logback, deJson4s, sslConfig, sprayjson, elasticSearch) ++
                    scalacTest
 }

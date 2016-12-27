@@ -1,10 +1,18 @@
 package com.ravel.actors
 
 import akka.actor.{Actor, ActorLogging}
+import akka.event.{LoggingAdapter, Logging}
+import akka.event.Logging.LogLevel
 import akka.http.scaladsl.Http
-import akka.stream.ActorMaterializer
+import akka.http.scaladsl.model.{HttpEntity, HttpRequest}
+import akka.http.scaladsl.server.RouteResult.Complete
+import akka.http.scaladsl.server._
+import akka.http.scaladsl.server.directives.{LoggingMagnet, DebuggingDirectives, LogEntry}
+import akka.stream.scaladsl.Sink
+import akka.stream.{Materializer, ActorMaterializer}
 import com.ravel.{Config => C, RestInterface}
 
+import scala.concurrent.{Future, ExecutionContext}
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.io.StdIn
 
@@ -23,7 +31,6 @@ class Starter extends Actor with ActorLogging{
 
   implicit val system = context.system
   implicit val materializer = ActorMaterializer()
-//  implicit val executionContext = scala.concurrent.ExecutionContext
 
   def receive: Receive = {
     case Start =>

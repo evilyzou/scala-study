@@ -15,7 +15,7 @@ trait Pagination {
   def start: Int
   def size: Int
 }
-case class ProductSearchFilter(systemType: Int, customType: Int, pfunction: String) extends Pagination{
+case class ProductSearchFilter(systemType: Int, customType: Int, pfunction: String, mainCategory: String, subCategory: String) extends Pagination{
   def start : Int = 0
   def size: Int = 10
 }
@@ -31,7 +31,7 @@ object ProductSearchFilter {
   customTypeMap += ("CustomOther" -> -1)
   def apply(systemType:String, customType: String, pfunction: String): ProductSearchFilter = {
     new ProductSearchFilter(systemTypeMap.get(systemType).getOrElse(-1),
-                          customTypeMap.get(customType).getOrElse(-1), pfunction)
+                          customTypeMap.get(customType).getOrElse(-1), pfunction, "", "")
   }
 }
 

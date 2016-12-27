@@ -2,7 +2,6 @@ package com.ravel
 
 import akka.actor.ActorSystem
 import akka.event.Logging
-import com.sksamuel.elastic4s.{ElasticsearchClientUri, ElasticClient}
 import com.typesafe.config.ConfigFactory;
 
 /**
@@ -23,7 +22,4 @@ object Config{
   val esIndex = config.getString("elasticsearch.index")
   val esTypeProduct = config.getString("elasticsearch.type.product")
   val esTypeGuide = config.getString("elasticsearch.type.guide")
-
-  val esClient = ElasticClient.transport(ElasticsearchClientUri(esHost, esPort))
-
 }

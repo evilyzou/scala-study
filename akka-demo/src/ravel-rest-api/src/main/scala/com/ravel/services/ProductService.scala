@@ -4,12 +4,13 @@ import java.sql.Timestamp
 import java.util.Date
 
 import com.ravel.Config._
+import com.ravel.elasticsearch.ProductSearch
 import com.ravel.resources.ProductSearchFilter
 import com.ravel.schema.Actions._
 import com.ravel.schema.Actions.jdbcDriver.api._
 import com.ravel.schema.ProductObject._
 import com.ravel.schema.DBSchema._
-import com.sksamuel.elastic4s.ElasticDsl._
+
 
 import scala.concurrent.Future
 
@@ -20,23 +21,15 @@ object ProductService{
   def list(f: ProductSearchFilter) : Future[Seq[SearchProductView]] = {
     val start = f.start * f.size
     log.info(s"c:${f}")
-    val searchFuture = esClient.execute {
-      search in esIndex / esTypeProduct query {
-        bool {
-          must (
-            termQuery("systemType", f.systemType),
-            termQuery("customType", f.customType),
-            termQuery("pfunction", f.pfunction)
-          )
-        }
-      } start(start) limit(f.size)
-    }
+    val searchFuture = ProductSearch.queryProducts(f)
     searchFuture onFailure {
       case e => log.error("An error has occured:" + e.getMessage)
     }
     searchFuture map {
       searchResult =>{
-        searchResult.hits.map(e => mapToSearchProduct(e.sourceAsMap))
+        import scala.collection.JavaConversions._
+
+        searchResult.hits.map(e => mapToSearchProduct(e.sourceAsMap().toMap))
       }
     }
   }
