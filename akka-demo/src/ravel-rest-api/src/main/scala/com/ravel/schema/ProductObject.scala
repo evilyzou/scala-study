@@ -1,8 +1,5 @@
 package com.ravel.schema
 
-import com.ravel.schema.DBSchema._
-
-
 /**
  * Created by CloudZou on 12/18/16.
  */
@@ -35,6 +32,6 @@ object ProductObject {
     }
   }
 
-  case class ProductView(product: Option[ProductRow], productExt: Option[ProductExtRow], productOther: Option[ProductOtherRow], productPrices: Seq[ProductPriceByTeamRow])
+//  case class ProductView(product: Option[ProductRow], productExt: Option[ProductExtRow], productOther: Option[ProductOtherRow], productPrices: Seq[ProductPriceByTeamRow])
 
 }

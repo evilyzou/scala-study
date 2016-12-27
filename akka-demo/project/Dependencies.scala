@@ -28,6 +28,12 @@ object Dependencies {
     "slick-codegen"
   ).map("com.typesafe.slick" %% _ % slickVersion)
 
+  val scalikejdbc = Seq(
+    "org.scalikejdbc" %% "scalikejdbc"       % "2.5.0",
+    "org.scalikejdbc"     %% "scalikejdbc-async" % "0.7.+",
+    "com.github.mauricio" %% "mysql-async"       % "0.2.+"
+  )
+
   val json4sDeps = Seq(
     "json4s-native",
     "json4s-ext"
@@ -52,7 +58,7 @@ object Dependencies {
     "org.scalatest" %% "scalatest" % scalacTestVersion % "test"
   )
 
-  def commonDeps = akkaDeps ++ akkaHttpDeps ++ slickDeps ++ json4sDeps ++
+  def commonDeps = akkaDeps ++ akkaHttpDeps ++ scalikejdbc ++ json4sDeps ++
                    Seq(scalaLogging, mysqlConnector, logback, deJson4s, sslConfig, sprayjson, elasticSearch) ++
                    scalacTest
 }
