@@ -52,6 +52,9 @@ object ProductSearch {
 
     val respFuture = RequestExecutor[SearchResponse].execute(builder)
 
+    respFuture onSuccess {
+      case _ => println("xxx: resp on Success")
+    }
 
     val responses = respFuture.map { response =>
       import com.ravel.schema.ProductObject._
