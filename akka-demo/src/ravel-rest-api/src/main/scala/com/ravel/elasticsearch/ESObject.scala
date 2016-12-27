@@ -52,9 +52,9 @@ object ProductSearch {
 
     val responses = respFuture.map { response =>
       import com.ravel.schema.ProductObject._
+      println(response.getHits.getHits.size)
       response.getHits.getHits.toSeq.map(e=>mapToSearchProduct(e.sourceAsMap().toMap))
     }
-    println(responses)
     responses
   }
 }
