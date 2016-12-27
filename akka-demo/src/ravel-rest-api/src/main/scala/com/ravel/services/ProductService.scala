@@ -21,17 +21,7 @@ object ProductService{
   def list(f: ProductSearchFilter) : Future[Seq[SearchProductView]] = {
     val start = f.start * f.size
     log.info(s"c:${f}")
-    val searchFuture = ProductSearch.queryProducts(f)
-    searchFuture onFailure {
-      case e => log.error("An error has occured:" + e.getMessage)
-    }
-    searchFuture map {
-      searchResult =>{
-        import scala.collection.JavaConversions._
-
-        searchResult.hits.map(e => mapToSearchProduct(e.sourceAsMap().toMap))
-      }
-    }
+    ProductSearch.queryProducts(f)
   }
   def get(id: Int): Future[Option[ProductRow]] = {
     db.run(products.filter(_.id === id).result.headOption)
