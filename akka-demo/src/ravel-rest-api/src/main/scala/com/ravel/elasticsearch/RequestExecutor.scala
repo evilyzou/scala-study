@@ -17,10 +17,12 @@ class RequestExecutor[T <: ActionResponse]  extends  ActionListener[T]{
   private val promise = Promise[T]()
 
   def onResponse(response: T) {
+    println("xxx: success")
     promise.success(response)
   }
 
   def onFailure(e: Throwable) {
+    println("xxx: failure")
     promise.failure(e)
   }
 

@@ -2,17 +2,17 @@ package com.ravel.elasticsearch
 
 import java.net.InetAddress
 
+import com.ravel.Config
 import com.ravel.resources.ProductSearchFilter
 import com.ravel.schema.ProductObject.SearchProductView
 import org.elasticsearch.action.search.{SearchResponse, SearchType}
 import org.elasticsearch.client.Client
 import org.elasticsearch.client.transport.TransportClient
 import org.elasticsearch.common.transport.InetSocketTransportAddress
-import com.ravel.Config
 import org.elasticsearch.index.query.QueryBuilders
-import scala.concurrent.ExecutionContext.Implicits.global
-import scala.collection.JavaConversions._
 
+import scala.collection.JavaConversions._
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
 /**
@@ -51,6 +51,7 @@ object ProductSearch {
     builder.setQuery(boolQueryBuilder)
 
     val respFuture = RequestExecutor[SearchResponse].execute(builder)
+
 
     val responses = respFuture.map { response =>
       import com.ravel.schema.ProductObject._
