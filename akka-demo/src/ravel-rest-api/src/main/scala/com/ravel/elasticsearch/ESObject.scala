@@ -3,14 +3,15 @@ package com.ravel.elasticsearch
 import java.net.InetAddress
 
 import com.ravel.resources.ProductSearchFilter
+import com.ravel.schema.ProductObject.SearchProductView
 import org.elasticsearch.action.search.{SearchResponse, SearchType}
 import org.elasticsearch.client.Client
 import org.elasticsearch.client.transport.TransportClient
 import org.elasticsearch.common.transport.InetSocketTransportAddress
 import com.ravel.Config
 import org.elasticsearch.index.query.QueryBuilders
-import org.elasticsearch.search.{SearchHits, SearchHit}
 import scala.concurrent.ExecutionContext.Implicits.global
+import scala.collection.JavaConversions._
 
 import scala.concurrent.Future
 
@@ -27,7 +28,7 @@ object ESClient {
 object ProductSearch {
   import ESClient._
 
-  def queryProducts(filter: ProductSearchFilter): Future[SearchHits] = {
+  def queryProducts(filter: ProductSearchFilter): Future[Seq[SearchProductView]] = {
     val builder = client.prepareSearch(Config.esIndex)
                   .setTypes(Config.esTypeProduct)
                   .setSearchType(SearchType.DFS_QUERY_THEN_FETCH)
@@ -49,11 +50,12 @@ object ProductSearch {
 
     val respFuture = RequestExecutor[SearchResponse].execute(builder)
 
-    val hits = respFuture.map { response =>
-      response.getHits
+    val responses = respFuture.map { response =>
+      import com.ravel.schema.ProductObject._
+      response.getHits.getHits.toSeq.map(e=>mapToSearchProduct(e.sourceAsMap().toMap))
     }
-    println(hits)
-    hits
+    println(responses)
+    responses
   }
 }
 
