@@ -55,6 +55,9 @@ object ProductSearch {
     respFuture onSuccess {
       case _ => println("xxx: resp on Success")
     }
+    respFuture onFailure {
+      case _ => println("xxx: erroror fuck")
+    }
 
     val responses = respFuture.map { response =>
       import com.ravel.schema.ProductObject._
