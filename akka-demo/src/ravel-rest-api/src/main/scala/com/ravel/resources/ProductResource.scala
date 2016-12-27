@@ -2,6 +2,7 @@ package com.ravel.resources
 
 import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
 import akka.http.scaladsl.server.{Directives, Route}
+import com.ravel.elasticsearch.ProductSearch
 import com.ravel.schema.ProductObject.ProductView
 import com.ravel.services.ProductService
 import MyJsonSupport._
@@ -42,7 +43,7 @@ trait ProductResource extends Directives{
         parameters('systemType, 'customType, 'pfunction, 'start ? 0, 'size ? 10) {
           (systemType, customType, pfunction, start, size) => {
             val filter = ProductSearchFilter(systemType,customType, pfunction)
-            val flist = ProductService.list(filter)
+            val flist = ProductSearch.queryProducts(filter)
             onSuccess(flist) {
               case list => complete(HttpEntity(ContentTypes.`application/json`, list.toJson.compactPrint.getBytes("UTF-8")))
             }
