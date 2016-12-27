@@ -59,6 +59,8 @@ object ProductSearch {
       case _ => println("xxx: erroror fuck")
     }
 
+    println("xxxdsdfsdf")
+
     val responses = respFuture.map { response =>
       import com.ravel.schema.ProductObject._
       println(s"size:${response.getHits.getHits.size}")
