@@ -1,34 +1,43 @@
 package com.ravel.services
 
+import java.sql.Timestamp
+import java.util.Date
+
 import com.ravel.Config._
 import com.ravel.elasticsearch.ProductSearch
 import com.ravel.resources.ProductSearchFilter
 import com.ravel.schema.ProductObject._
+import scalikejdbc.async.ShortenedNames
+import scalikejdbc.async._
+import scalikejdbc._
+import FutureImplicits._
+import scalikejdbc.SQLSyntaxSupportFeature._
 
 import scala.concurrent.Future
 
 /**
  * Created by CloudZou on 12/9/16.
  */
-object ProductService{
-  def list(f: ProductSearchFilter) : Future[Seq[SearchProductView]] = {
-    val start = f.start * f.size
-    log.info(s"c:${f}")
-    ProductSearch.queryProducts(f)
+case class Product(map: Map[String, Any])
+
+object ProductService extends SQLSyntaxSupport[Product] with ShortenedNames{
+  override val columnNames = Seq("id", "title")
+  override val tableName = "product"
+  lazy val p = ProductService.syntax("p")
+
+  def list(filter: ProductSearchFilter) : Future[Seq[SearchProductView]] = {
+    val start = filter.start * filter.size
+    ProductSearch.queryProducts(filter)
   }
-//  def get(id: Int): Future[Option[ProductRow]] = {
-//    db.run(products.filter(_.id === id).result.headOption)
-//  }
-//  def getProductExt(id: Int): Future[Option[ProductExtRow]] = {
-//    db.run(productExts.filter(_.productId === id).result.headOption)
-//  }
-//  def getProductOther(id: Int): Future[Option[ProductOtherRow]] = {
-//    db.run(productOthers.filter(_.productId === id).result.headOption)
-//  }
-//
-//  def getProductPrices(id: Int): Future[Seq[ProductPriceByTeamRow]] = {
-//    val date = new Date()
-//    val now = new Timestamp(date.getTime)
-//    db.run(productPriceByTeams.filter(_.productId === id).filter(_.takeOffDate > now).result)
-//  }
+
+  def get(id: Int): Future[Option[Product]] = {
+    AsyncDB withPool { implicit s =>
+      withSQL {
+        select(p.result.id, p.result.title).from(ProductService as p).where.eq(p.id, id).orderBy(p.id)
+      }.map(ProductService.apply(p)).single.future
+    }
+  }
+  def apply(p: SyntaxProvider[Product])(rs: WrappedResultSet): Product = apply(p.resultName)(rs)
+  def apply(p: ResultName[Product])(rs: WrappedResultSet): Product = new Product(rs.toMap())
+
 }

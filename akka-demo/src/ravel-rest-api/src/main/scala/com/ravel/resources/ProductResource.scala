@@ -3,7 +3,11 @@ package com.ravel.resources
 import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
 import akka.http.scaladsl.server.{Directives, Route}
 import com.ravel.elasticsearch.ProductSearch
+import com.ravel.schema.ProductObject.ProductView
+import com.ravel.services.ProductService
+import MyJsonSupport._
 import spray.json._
+
 
 /**
  * Created by CloudZou on 12/9/2016.
@@ -41,7 +45,6 @@ trait ProductResource extends Directives{
           (systemType, customType, pfunction, start, size) => {
             val filter = ProductSearchFilter(systemType,customType, pfunction)
             val listFuture = ProductSearch.queryProducts(filter)
-            import MyJsonSupport._
             onSuccess(listFuture) {
               case list => complete(HttpEntity(ContentTypes.`application/json`, list.toJson.compactPrint.getBytes("UTF-8")))
             }
@@ -49,22 +52,25 @@ trait ProductResource extends Directives{
         }
       }
     }
-//    path(IntNumber) { id =>
-//      get {
-//        import com.ravel.Config.executionContext
-//        val resultFuture = for {
-//          product <- ProductService.get(id)
+    path(IntNumber) { id =>
+      get {
+        import com.ravel.Config.executionContext
+
+        val resultFuture = for {
+          product <- ProductService.get(id)
 //          productExt <- ProductService.getProductExt(id)
 //          productOther <- ProductService.getProductOther(id)
 //          productPriceByTeams <- ProductService.getProductPrices(id)
-//        } yield {
-//          ProductView.tupled((product, productExt, productOther, productPriceByTeams))
-//        }
-//        onSuccess(resultFuture) {
-//          case product => complete(HttpEntity(ContentTypes.`application/json`, product.toJson.compactPrint.getBytes("UTF-8")))
-//        }
-//      }
-//    }
+        } yield {
+          product
+        }
+        onSuccess(resultFuture) {
+          case Some(product) =>{
+            complete(HttpEntity(ContentTypes.`application/json`, product.toJson.compactPrint.getBytes("UTF-8")))
+          }
+        }
+      }
+    }
   }
 
   def testRoutes =

@@ -1,6 +1,9 @@
 import org.scalatest.{Matchers, FlatSpec}
-import scalikejdbc.async.{AsyncDB, AsyncConnectionPool}
-import scalikejdbc._, async._,FutureImplicits._
+import scalikejdbc.{WrappedResultSet, ConnectionPool}
+import scalikejdbc.async._
+import scalikejdbc._
+import FutureImplicits._
+
 
 import scala.concurrent._, duration._, ExecutionContext.Implicits.global
 
@@ -9,24 +12,28 @@ import scala.concurrent._, duration._, ExecutionContext.Implicits.global
  */
 case class Product(id: Int) extends ShortenedNames
 
-class ScalikeJdbcSpec extends FlatSpec with Matchers {
+class ScalikeJdbcSpec extends FlatSpec with Matchers{
   "A scalike" should "xxx" in {
     Product.init
+//    implicit val session = NamedAsyncDB().sharedSession
     val products = AsyncDB withPool { implicit s =>
       Product.findAll()
     }
     Await.result(products, 5.seconds)
     val count = products.value.get.get.size
     println(s"count:${count}")
-    assert(count === 169)
+    assert(count === 182)
   }
 }
 
 object Product extends SQLSyntaxSupport[Product] with ShortenedNames {
   def init = {
-    //AsyncConnectionPool.singleton("jdbc:mysql://localhost:3306/ravel", "root", "ex299295")
-    ConnectionPool.add('mysql, "jdbc:mysql://localhost:3306/ravel", "root", "ex299295")
-    AsyncConnectionPool.add('mysql, "jdbc:mysql://localhost:3306/ravel", "root", "ex299295")
+   // AsyncConnectionPool.add("mysql", "jdbc:mysql://localhost:3306/ravel", "root", "ex299295")
+ //   ConnectionPool.add(AsyncConnectionPool.DEFAULT_NAME, "jdbc:mysql://localhost:3306/ravel", "root", "ex299295")
+//    val c = ConnectionPool.get(AsyncConnectionPool.DEFAULT_NAME)
+////    AsyncConnectionPool.singleton("jdbc:mysql://localhost:3306/ravel", "root", "ex299295")
+    ConnectionPool.singleton("jdbc:mysql://localhost:3306/ravel", "root", "ex299295")
+    AsyncConnectionPool.singleton("jdbc:mysql://localhost:3306/ravel", "root", "ex299295")
   }
 
 
@@ -39,7 +46,7 @@ object Product extends SQLSyntaxSupport[Product] with ShortenedNames {
   lazy val p = Product.syntax("p")
 
   def findAll()(implicit session: AsyncDBSession = AsyncDB.sharedSession, cxt: EC = ECGlobal): Future[List[Product]] = withSQL {
-    select.from(Product as p).orderBy(p.id)
+    select(p.field("id")).from(Product as p).orderBy(p.id)
   }.map(Product(p))
 }
 

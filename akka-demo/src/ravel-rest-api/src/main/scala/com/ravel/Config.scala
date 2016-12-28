@@ -2,7 +2,10 @@ package com.ravel
 
 import akka.actor.ActorSystem
 import akka.event.Logging
-import com.typesafe.config.ConfigFactory;
+import com.typesafe.config.ConfigFactory
+import scalikejdbc.ConnectionPool
+import scalikejdbc.async.AsyncConnectionPool
+;
 
 /**
  * Created by CloudZou on 12/12/16.
@@ -22,4 +25,7 @@ object Config{
   val esIndex = config.getString("elasticsearch.index")
   val esTypeProduct = config.getString("elasticsearch.type.product")
   val esTypeGuide = config.getString("elasticsearch.type.guide")
+
+  ConnectionPool.singleton(config.getString("mysql.jdbc.url"), config.getString("mysql.jdbc.user"), config.getString("mysql.jdbc.password"))
+  AsyncConnectionPool.singleton(config.getString("mysql.jdbc.url"), config.getString("mysql.jdbc.user"), config.getString("mysql.jdbc.password"))
 }

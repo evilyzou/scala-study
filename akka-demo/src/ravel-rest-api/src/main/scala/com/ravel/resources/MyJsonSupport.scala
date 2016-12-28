@@ -5,10 +5,12 @@ import java.text.SimpleDateFormat
 
 import com.ravel.schema.GuideObject.GuideView
 import com.ravel.schema.ProductObject._
+import com.ravel.services.Product
 
 //import com.ravel.extension.spray.ProductFormatsExtensionInstances
 import spray.json._
 import java.util.Date
+
 
 /**
  * Created by CloudZou on 12/11/16.
@@ -38,18 +40,10 @@ object MyJsonSupport extends  DefaultJsonProtocol with ProductFormatsExtensionIn
     }
   }
 
-//  implicit val productInfo1Format = jsonFormat13(ProductInfo1)
-//  implicit val productInfo2Format = jsonFormat15(ProductInfo2)
-//  implicit val productInfo3Format = jsonFormat12(ProductInfo3)
-//  implicit val productInfo4Format = jsonFormat10(ProductInfo4)
-//  implicit val productFormat = jsonFormatExtension5(ProductRow)
   implicit val searchProductFormat = jsonFormat15(SearchProductView)
 
   implicit val guideViewFormat = jsonFormat8(GuideView)
 
-//  implicit val productOtherFormat = jsonFormat11(ProductOtherRow)
-//  implicit val productExtFormat = jsonFormat12(ProductExtRow)
-//  implicit val productPriceByTeamFormat = jsonFormat21(ProductPriceByTeamRow)
-//  implicit val productViewFormat = jsonFormat4(ProductView)
+  implicit val productFormat = jsonFormat1(Product)
 
 }
