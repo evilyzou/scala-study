@@ -5,11 +5,11 @@ import java.text.SimpleDateFormat
 
 import com.ravel.schema.GuideObject.GuideView
 import com.ravel.schema.ProductObject._
-import com.ravel.services.Product
 
 //import com.ravel.extension.spray.ProductFormatsExtensionInstances
-import spray.json._
 import java.util.Date
+
+import spray.json._
 
 
 /**
@@ -40,10 +40,24 @@ object MyJsonSupport extends  DefaultJsonProtocol with ProductFormatsExtensionIn
     }
   }
 
+  implicit object AnyJsonFormat extends JsonFormat[Any] {
+    def write(x: Any) = x match {
+      case n: Int => JsNumber(n)
+      case s: String => JsString(s)
+      case b: Boolean if b == true => JsTrue
+      case b: Boolean if b == false => JsFalse
+    }
+    def read(value: JsValue) = value match {
+      case JsNumber(n) => n.intValue()
+      case JsString(s) => s
+      case JsTrue => true
+      case JsFalse => false
+    }
+  }
+
   implicit val searchProductFormat = jsonFormat15(SearchProductView)
 
   implicit val guideViewFormat = jsonFormat8(GuideView)
 
-  implicit val productFormat = jsonFormat1(Product)
 
 }

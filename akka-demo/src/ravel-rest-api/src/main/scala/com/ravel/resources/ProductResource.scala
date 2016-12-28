@@ -3,11 +3,9 @@ package com.ravel.resources
 import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
 import akka.http.scaladsl.server.{Directives, Route}
 import com.ravel.elasticsearch.ProductSearch
-import com.ravel.schema.ProductObject.ProductView
+import com.ravel.resources.MyJsonSupport._
 import com.ravel.services.ProductService
-import MyJsonSupport._
 import spray.json._
-
 
 /**
  * Created by CloudZou on 12/9/2016.
@@ -51,10 +49,12 @@ trait ProductResource extends Directives{
           }
         }
       }
-    }
+    }~
     path(IntNumber) { id =>
       get {
         import com.ravel.Config.executionContext
+        import spray.json._
+
 
         val resultFuture = for {
           product <- ProductService.get(id)
@@ -65,7 +65,7 @@ trait ProductResource extends Directives{
           product
         }
         onSuccess(resultFuture) {
-          case Some(product) =>{
+          case product =>{
             complete(HttpEntity(ContentTypes.`application/json`, product.toJson.compactPrint.getBytes("UTF-8")))
           }
         }
