@@ -30,7 +30,6 @@ object Dependencies {
 
   val scalikejdbc = Seq(
     "org.scalikejdbc" %% "scalikejdbc"       % "2.5.0",
-    "org.scalikejdbc"     %% "scalikejdbc-async" % "0.7.+",
     "com.github.mauricio" %% "mysql-async"       % "0.2.+"
   )
 

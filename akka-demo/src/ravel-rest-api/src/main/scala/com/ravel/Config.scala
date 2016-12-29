@@ -2,9 +2,9 @@ package com.ravel
 
 import akka.actor.ActorSystem
 import akka.event.Logging
+import com.ravel.async.RavelConnectionPool
 import com.typesafe.config.ConfigFactory
 import scalikejdbc.ConnectionPool
-import scalikejdbc.async.AsyncConnectionPool
 ;
 
 /**
@@ -27,5 +27,5 @@ object Config{
   val esTypeGuide = config.getString("elasticsearch.type.guide")
 
   ConnectionPool.singleton(config.getString("mysql.jdbc.url"), config.getString("mysql.jdbc.user"), config.getString("mysql.jdbc.password"))
-  AsyncConnectionPool.singleton(config.getString("mysql.jdbc.url"), config.getString("mysql.jdbc.user"), config.getString("mysql.jdbc.password"))
+  RavelConnectionPool.singleton(config.getString("mysql.jdbc.url"), config.getString("mysql.jdbc.user"), config.getString("mysql.jdbc.password"))
 }
