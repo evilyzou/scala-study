@@ -6,11 +6,12 @@ import scalikejdbc._
 import scala.collection.mutable.LinkedHashMap
 import scala.concurrent.{ExecutionContextExecutor, Future}
 import RavelGlobal._
+import com.ravel.Config.log
 
 /**
  * Created by CloudZou on 12/29/2016.
  */
-trait RavelDBSession extends LogSupport {
+trait RavelDBSession {
 
   val connection: RavelConnection
 
@@ -195,7 +196,7 @@ trait RavelDBSession extends LogSupport {
                                                  transform: (A, Seq[B1], Seq[B2], Seq[B3]) => Z
                                                  )(
                                                  implicit
-                                                 cxt: EC = ECGlobal
+                                                 context: ExecutionContextExecutor = ECGlobal
                                                  ): Future[Traversable[Z]] = {
     val _parameters = ensureAndNormalizeParameters(parameters)
     withListeners(statement, _parameters) {
@@ -301,7 +302,7 @@ trait RavelDBSession extends LogSupport {
                                                          transform: (A, Seq[B1], Seq[B2], Seq[B3], Seq[B4], Seq[B5]) => Z
                                                          )(
                                                          implicit
-                                                         cxt: EC = ECGlobal
+                                                         context: ExecutionContextExecutor = ECGlobal
                                                          ): Future[Traversable[Z]] = {
     val _parameters = ensureAndNormalizeParameters(parameters)
     withListeners(statement, _parameters) {

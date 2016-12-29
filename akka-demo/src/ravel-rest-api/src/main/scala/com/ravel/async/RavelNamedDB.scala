@@ -1,6 +1,8 @@
 package com.ravel.async
 
-import scala.concurrent.Future
+import com.ravel.async.RavelGlobal._
+
+import scala.concurrent.{ExecutionContextExecutor, Future}
 
 /**
  * Created by CloudZou on 12/29/2016.
@@ -33,7 +35,7 @@ case class RavelNamedDB(name: Any = RavelConnectionPool.DEFAULT_NAME) {
    * @tparam A return type
    * @return a future value
    */
-  def localTx[A](op: (TxRavelDBSession) => Future[A])(implicit cxt: EC = ECGlobal): Future[A] = {
+  def localTx[A](op: (TxRavelDBSession) => Future[A])(implicit context: ExecutionContextExecutor = ECGlobal): Future[A] = {
     RavelConnectionPool(name).borrow().toNonSharedConnection()
       .flatMap(conn => RavelTx.inTransaction[A](TxRavelDBSession(conn), op))
   }
