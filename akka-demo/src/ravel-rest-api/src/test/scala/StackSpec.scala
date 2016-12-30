@@ -20,4 +20,8 @@ class StackSpec extends FlatSpec with Matchers{
       emptyStack.pop()
     }
   }
+  it should "xx" in {
+    val s  = (List(1,2), List(5,5)).zipped.map(_ + _)
+    assert (1 === 1)
+  }
 }

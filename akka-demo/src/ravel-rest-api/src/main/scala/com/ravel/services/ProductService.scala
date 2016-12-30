@@ -39,10 +39,14 @@ object ProductService {
     queryFuture(query) { optionResultSet =>
       optionResultSet match {
         case Some(resultSet) if resultSet.size > 0 =>  {
-          val results: Seq[Map[String, Any]] = Seq.empty
-          resultSet.map( result =>
-            results :+ resultSet.columnNames.map(x => (capitalizeName(x), result(x)))(breakOut)
-          )
+          val t = (List(1,2), List(Map(1->"a", 2->"b"), Map(1->"x", 2->"y"))).zipped
+          val s = (List(1,2), List(Map(1->"a", 2->"b"), Map(1->"x", 2->"y"))).zipped.map((a,b) => (a, b.get(a)))
+          var results: Seq[Map[String, Any]] = Seq.empty
+//          for(columnName <- resultSet.columnNames) yield for(result <- resultSet) (columnName, result(columnName))
+
+          resultSet.map( result => {
+            results = results :+ resultSet.columnNames.map(x => (capitalizeName(x), result(x)))(breakOut).toMap
+          })
           results
         }
         case Some(resultSet) if resultSet.size == 0 => Seq.empty
