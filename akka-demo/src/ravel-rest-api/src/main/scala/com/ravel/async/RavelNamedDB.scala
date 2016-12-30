@@ -4,6 +4,8 @@ import com.ravel.async.RavelGlobal._
 
 import scala.concurrent.{ExecutionContextExecutor, Future}
 
+object RavelDB extends RavelNamedDB
+
 /**
  * Created by CloudZou on 12/29/2016.
  */
@@ -31,7 +33,7 @@ case class RavelNamedDB(name: Any = RavelConnectionPool.DEFAULT_NAME) {
    * Provides a future world within a transaction.
    *
    * @param op operation
-   * @param cxt execution context
+   * @param context execution context
    * @tparam A return type
    * @return a future value
    */

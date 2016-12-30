@@ -1,7 +1,5 @@
 package com.ravel.schema
 
-import scalikejdbc.async.ShortenedNames
-
 /**
  * Created by CloudZou on 12/18/16.
  */
@@ -34,9 +32,5 @@ object ProductObject {
     }
   }
 
-  case class ProductView(id: Int, title: String)
-//  case class ProductView(product: Option[ProductRow], productExt: Option[ProductExtRow], productOther: Option[ProductOtherRow], productPrices: Seq[ProductPriceByTeamRow])
-  case class ProductOther(productId: Int)
-  case class ProductExt(productId: Int)
-  case class ProductPrice(productId: Int)
+  case class ProductView(product: Map[String, Any], productExt: Map[String, Any], productOther: Map[String, Any], productPrices: Seq[Map[String, Any]])
 }

@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat
 
 import com.ravel.schema.GuideObject.GuideView
 import com.ravel.schema.ProductObject._
+import org.joda.time.LocalDateTime
 
 //import com.ravel.extension.spray.ProductFormatsExtensionInstances
 import java.util.Date
@@ -44,8 +45,14 @@ object MyJsonSupport extends  DefaultJsonProtocol with ProductFormatsExtensionIn
     def write(x: Any) = x match {
       case n: Int => JsNumber(n)
       case s: String => JsString(s)
-      case b: Boolean if b == true => JsTrue
-      case b: Boolean if b == false => JsFalse
+      case t: LocalDateTime => JsString(t.toString)
+      case b: Boolean => {
+        if(b == true)
+          JsTrue
+        else
+          JsFalse
+      }
+      case _ => JsString("")
     }
     def read(value: JsValue) = value match {
       case JsNumber(n) => n.intValue()
@@ -59,5 +66,6 @@ object MyJsonSupport extends  DefaultJsonProtocol with ProductFormatsExtensionIn
 
   implicit val guideViewFormat = jsonFormat8(GuideView)
 
+  implicit val productFormat = jsonFormat4(ProductView)
 
 }

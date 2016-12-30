@@ -4,6 +4,7 @@ import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
 import akka.http.scaladsl.server.{Directives, Route}
 import com.ravel.elasticsearch.ProductSearch
 import com.ravel.resources.MyJsonSupport._
+import com.ravel.schema.ProductObject.ProductView
 import com.ravel.services.ProductService
 import spray.json._
 
@@ -35,7 +36,7 @@ object ProductSearchFilter {
   }
 }
 
-trait ProductResource extends Directives{
+trait ProductResource extends Directives {
   def productRoutes: Route = pathPrefix("product"){
     path("list") {
       get {
@@ -58,11 +59,11 @@ trait ProductResource extends Directives{
 
         val resultFuture = for {
           product <- ProductService.get(id)
-//          productExt <- ProductService.getProductExt(id)
-//          productOther <- ProductService.getProductOther(id)
-//          productPriceByTeams <- ProductService.getProductPrices(id)
+          productExt <- ProductService.getProductExt(id)
+          productOther <- ProductService.getProductOther(id)
+          productPriceByTeams <- ProductService.getProductPrices(id)
         } yield {
-          product
+          ProductView.tupled(product, productExt, productOther, productPriceByTeams)
         }
         onSuccess(resultFuture) {
           case product =>{

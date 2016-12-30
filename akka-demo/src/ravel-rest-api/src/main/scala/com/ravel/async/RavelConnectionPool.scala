@@ -1,19 +1,9 @@
 package com.ravel.async
 import com.ravel.Config.log
-import scalikejdbc.ErrorMessage
-import scalikejdbc.JDBCUrl._
-
-import scala.concurrent.{ExecutionContextExecutor, ExecutionContext, Future}
-import scala.util.matching.Regex
 
 /**
  * Created by CloudZou on 12/29/2016.
  */
-object RavelGlobal {
-  val ECGlobal = ExecutionContext.Implicits.global
-}
-
-
 abstract class RavelConnectionPool(val settings: RavelConnectionPoolSettings = RavelConnectionPoolSettings()) {
 
   /**
