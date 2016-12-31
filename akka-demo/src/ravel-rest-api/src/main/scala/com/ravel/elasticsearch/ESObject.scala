@@ -3,7 +3,8 @@ package com.ravel.elasticsearch
 import java.net.InetAddress
 
 import com.ravel.Config
-import com.ravel.resources.ProductSearchFilter
+import com.ravel.resources.{GuideSearchFilter, ProductSearchFilter}
+import com.ravel.schema.GuideObject.GuideView
 import com.ravel.schema.ProductObject.SearchProductView
 import org.elasticsearch.action.search.{SearchResponse, SearchType}
 import org.elasticsearch.client.Client
@@ -40,13 +41,13 @@ object ProductSearch {
     boolQueryBuilder.must(QueryBuilders.termQuery("systemType", filter.systemType))
     boolQueryBuilder.must(QueryBuilders.termQuery("customType", filter.customType))
     boolQueryBuilder.must(QueryBuilders.termQuery("pfunction", filter.pfunction))
-//    if(!filter.mainCategory.isEmpty) {
-//      boolQueryBuilder.must(QueryBuilders.termQuery("mainCategory", filter.mainCategory))
-//    }
-//
-//    if(!filter.subCategory.isEmpty) {
-//      boolQueryBuilder.must(QueryBuilders.queryStringQuery(filter.subCategory).field("subCategory"))
-//    }
+    if(!filter.mainCategory.isEmpty) {
+      boolQueryBuilder.must(QueryBuilders.termQuery("mainCategory", filter.mainCategory))
+    }
+
+    if(!filter.subCategory.isEmpty) {
+      boolQueryBuilder.must(QueryBuilders.queryStringQuery(filter.subCategory).field("subCategory"))
+    }
 
     builder.setQuery(boolQueryBuilder)
 
@@ -62,5 +63,37 @@ object ProductSearch {
 }
 
 object GuideSearch {
+  import ESClient._
 
+  def queryGuides(filter: GuideSearchFilter): Future[Seq[GuideView]] = {
+    val builder = client.prepareSearch(Config.esIndex)
+      .setTypes(Config.esTypeGuide)
+      .setSearchType(SearchType.DFS_QUERY_THEN_FETCH)
+      .setFrom(filter.start)
+      .setSize(filter.size)
+      .setExplain(false)
+
+    val boolQueryBuilder = QueryBuilders.boolQuery()
+    boolQueryBuilder.must(QueryBuilders.termQuery("systemType", filter.systemType))
+    boolQueryBuilder.must(QueryBuilders.termQuery("customType", filter.customType))
+    boolQueryBuilder.must(QueryBuilders.termQuery("guideType", filter.guideType))
+    if(!filter.mainCategory.isEmpty) {
+      boolQueryBuilder.must(QueryBuilders.termQuery("mainCategory", filter.mainCategory))
+    }
+
+    if(!filter.subCategory.isEmpty) {
+      boolQueryBuilder.must(QueryBuilders.queryStringQuery(filter.subCategory).field("subCategory"))
+    }
+
+    builder.setQuery(boolQueryBuilder)
+
+    val respFuture = RequestExecutor[SearchResponse].execute(builder)
+
+
+    val responses = respFuture.map { response =>
+      import com.ravel.schema.GuideObject._
+      response.getHits.getHits.toSeq.map(e=>mapToSearchGuide(e.sourceAsMap().toMap))
+    }
+    responses
+  }
 }

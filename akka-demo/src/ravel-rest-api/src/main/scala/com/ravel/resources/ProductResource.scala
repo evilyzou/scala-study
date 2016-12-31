@@ -17,8 +17,8 @@ trait Pagination {
   def size: Int
 }
 case class ProductSearchFilter(systemType: Int, customType: Int, pfunction: String, mainCategory: String, subCategory: String) extends Pagination{
-  def start : Int = 0
-  def size: Int = 10
+  override def start : Int = 0
+  override def size: Int = 10
 }
 object ProductSearchFilter {
   val systemTypeMap = Map("SystemJapan" -> 1, "SystemJiangNan" ->2, "SystemOther" -> -1)
@@ -30,9 +30,12 @@ object ProductSearchFilter {
   customTypeMap += ("CustomQS" ->5)
   customTypeMap += ("CustomXX" ->6)
   customTypeMap += ("CustomOther" -> -1)
-  def apply(systemType:String, customType: String, pfunction: String): ProductSearchFilter = {
+  def apply(systemType:String, customType: String, pfunction: String,mainCategory: String = "", subCategory: String = "", start: Int = 0, size: Int = 10): ProductSearchFilter = {
     new ProductSearchFilter(systemTypeMap.get(systemType).getOrElse(-1),
-                          customTypeMap.get(customType).getOrElse(-1), pfunction, "", "")
+                          customTypeMap.get(customType).getOrElse(-1), pfunction, mainCategory, subCategory) {
+      override def start = (start -1) * size
+      override def size = size
+    }
   }
 }
 
@@ -54,8 +57,6 @@ trait ProductResource extends Directives {
     path(IntNumber) { id =>
       get {
         import com.ravel.Config.executionContext
-        import spray.json._
-
 
         val resultFuture = for {
           product <- ProductService.get(id)
