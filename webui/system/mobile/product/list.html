@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
     <title>商品</title>
-    <link rel="shortcut icon" type="image/x-icon" href="../_res/images/favicon.ico" />
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="../_res/images/favicon.ico" /> -->
     <link rel="stylesheet" href="../_res/css/common.css?ver=1.2.1">
     <link rel="stylesheet" href="../_res/css/list.css?ver=">
     <link rel="stylesheet" id="themeStyle" href="../_res/css/theme.css?ver=1.2.1">
@@ -19,7 +19,8 @@
     <div class="container container-main">
 
         <header id="header" class="header" role="banner">
-            <a class="icon-back" href="#"></a>
+            <a class="icon-back back" href="#"></a>
+            <a class="icon-area-select selectArea" data-target="#area-selector" href="#">地区</a>
             <h1 class="title">
                 日本主题旅行
             </h1>
@@ -43,14 +44,14 @@
                 <div class="tab_content slidepage-page" id="list-all" data-hash-name="#t-list1">
                     <div class="region grid-gallery cols1 datalist">
 
-                        <!-- <div class="region tipbox nothing" style="display: none;">
+                        <div class="region tipbox nothing" style="display: none;">
                             <div class="main">
                                 <p>没有内容</p>
                             </div>
-                            <a class="btn" href="../">返回首页</a>
-                        </div> -->
+                            <!-- <a class="btn" href="../">返回首页</a> -->
+                        </div>
 
-                        <a class="item" href="../product/detail.html?id={{item.id}}">
+                        <!-- <a class="item" href="../product/detail.html?id={{item.id}}">
                             <div class="cell">
                                 <div class="info">
                                     <h2 class="title">妹背秋天，日本广岛</h2>
@@ -84,7 +85,7 @@
                                     <img src="../_res/images/demo/pic03.jpg" alt="">
                                 </div>
                             </div>
-                        </a>
+                        </a> -->
                     </div>
 
                     <div class="loadmore mod_loading" style="visibility: hidden;"><div class="animate"></div></div>
@@ -121,7 +122,7 @@
                     <li class="current"><a class="icon-home-active" href="../"><span class="navname">首页</span></a></li>
                     <li><a class="icon-plane-active" href="#"><span class="navname">分类</span></a></li>
                     <li><a class="icon-guide-active" href="#"><span class="navname">购物车</span></a></li>
-                    <li><a class="icon-manage-active" href="#"><span class="navname">我的</span></a></li>
+                    <li><a class="icon-manage-active" href="#"><span class="navname">管理</span></a></li>
                     <li><a class="icon-user-active" href="#"><span class="navname">我的</span></a></li>
                 </ul>
             </nav>
@@ -131,18 +132,16 @@
     </div>
 
     <script id="search_item_template" type="text/html">
-        {{each result.list as item}}
-        <a class="item" href="../product/index.html?id={{item.id}}">
+        {{each result.data as item}}
+        <a class="item" href="../product/detail.html?id={{item.id}}">
             <div class="cell">
-            <div class="photo">
-                <img src="{{result.imgDomain}}/{{item.firstPic}}@320w_320h_90Q_1e_1c" alt="{{item.name}}">
-            </div>
-            <div class="info">
-                <h3 class="title">{{item.name}}</h3>
-                <!--<span class="subtitle">{{item.highlightName}}</span>-->
-                <strong class="price" data-prefix="￥">{{price(item.price)}}</strong>
-                <!-- <del class="price" data-prefix="￥">{{price(item.marketPrice)}}</del> -->
-            </div>
+                <div class="info">
+                    <h2 class="title">{{item.title}}</h2>
+                    <span class="tagtxt">{{item.pfunction}}</span>
+                </div>
+                <div class="photo">
+                    <img src="{{parseJson(item.images)[0]}}@750w_375h_80Q_1e_1c" alt="">
+                </div>
             </div>
         </a>
         {{/each}}
@@ -153,13 +152,14 @@
 <script type="text/javascript" src="../_res/libs/artTemplate/3.0/template.js"></script>
 <script type="text/javascript" src="../_res/libs/artTemplate/3.0/template-helper.js"></script>
 
-<script type="text/javascript" src="../_res/js/common/util.js"></script>
-<script type="text/javascript" src="../_res/js/common/stats.js?v1.2.0"></script>
+<!-- <script type="text/javascript" src="../_res/js/common/util.js"></script>
+<script type="text/javascript" src="../_res/js/common/stats.js?v1.2.0"></script> -->
 <script type="text/javascript" src="../_res/js/common.js?ver=1.1.0"></script>
 
+<script type="text/javascript" src="../_res/js/module/selectorWin.js"></script>
 <script type="text/javascript" src="../_res/js/product/list.js"></script>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     var WEBP = window.WEBP || {}
     try {
         var WEBPStats = WEBP.Stats();
@@ -172,7 +172,7 @@
     } catch(e) {
         console.log(e);
     }
-</script>
+</script> -->
 
 </body>
 </html>

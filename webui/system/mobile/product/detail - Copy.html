@@ -107,16 +107,16 @@
                         </div>
                         <div class="main">
 
-                            {{if data.productOther.feeExclude}}
+                            {{if data.productOther.feeExclude}
                             <div>
                                 <h4 class="sub-title">费用不包含</h4>
-                                <p class="">{{data.productOther.feeExclude}}</p>
+                                <p class="">{{data.productOther.feeExclude}</p>
                             </div>
                             {{/if}}
                             {{if data.productOther.feeInclude}}
                             <div>
                                 <h4 class="sub-title">费用包含</h4>
-                                <p class="cont mb20">{{data.productOther.feeInclude}}</p>
+                                <p class="cont mb20">{{data.productOther.feeInclude}</p>
                             </div>
                             {{/if}}
                         </div>
@@ -271,7 +271,6 @@
                                             </div> -->
                                             <div class="sub-txt">
                                                 <div class="bd">
-                                                {{if productScheduleDays.richText}}
                                                 {{each parseJson(productScheduleDays.richText) as productScheduleDaysRichText}}
                                                     {{if productScheduleDaysRichText.key =='textarea'}}
                                                         {{productScheduleDaysRichText.value}}
@@ -282,7 +281,6 @@
                                                         {{/each}}
                                                     {{/if}}
                                                 {{/each}}
-                                                {{/if}}
                                                 </div>
                                             </div>
                                         </div>

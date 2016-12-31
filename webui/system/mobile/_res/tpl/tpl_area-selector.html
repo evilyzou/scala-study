@@ -1,0 +1,29 @@
+<div class="selector-win popcontent">
+	<div class="header">
+		<div class="icon close"></div>
+		<h1 class="title">地区选择</h1>
+	</div>
+	<div class="main datalist line-box mod_selectBox selectBox">
+	</div>
+
+
+    <script type="text/plain" data-tpl-name="datalistTpl">
+		{{each data as item}}
+        <label class="item" for="selectitem{{item.id}}">
+            <span class="label">
+            	<input type="{{checkType}}" name="selectitem" data-id="{{item.id}}" id="selectitem{{item.id}}"
+                    data-json='{"id": "{{item.id}}", "name": "{{item.name}}", "price": "{{item.price}}", "picture": "{{imgDomain}}/{{item.firstPic}}"}'
+                    data-checkbox-group="checkgroup-product-selector" data-checkbox-type="item" style="display:none;">
+            	{{item.constValue}}
+        	</span>
+            <div class="content member-nick">
+            </div>
+            <!-- <div class="addon">
+                <span class="icon arrow-right"></span>
+            </div> -->
+        </label>
+        {{/each}}
+    </script>
+</div>
+
+

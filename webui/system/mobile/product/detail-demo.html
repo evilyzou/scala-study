@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <title>商品详情</title>
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="../_res/images/favicon.ico" /> -->
+    <link rel="stylesheet" href="../_res/css/common.css?ver=1.2.1">
+    <link rel="stylesheet" id="themeStyle" href="../_res/css/theme.css?ver=1.2.1">
+    <link rel="stylesheet" href="../_res/css/product.css?ver=1.2.1">
+
+    <script type="text/javascript" src="../_res/js/global.js?ver=1.2.2"></script>
+    <!-- <script type="text/javascript" src="../_res/js/common/getLoginState.js?ver=1.0.2"></script> -->
+    <!-- <script type="text/javascript">
+        var XLJ = window.XLJ || {};
+        XLJ.isLoginCheck = false;
+        XLJ.getLoginState();
+    </script> -->
+    <script type="text/javascript">
+        (function () {
+            var getQueryString = function(name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null) return unescape(r[2]);
+                return null;
+            }
+
+            var pid = window.pid = getQueryString('id') || ''
+            // if (!pid) return window.location.href = XLJ.rootPath
+        })();
+    </script>
+
+</head>
+<body class="p-product-detail">
+
+<div id="wrap" class="wrap">
+
+    <div class="container container-main">
+
+        <header id="header" class="header" role="banner">
+            <a class="icon-back back" href="#">返回</a>
+            <h1 class="title"></h1>
+            <!--<a class="icon cssicon cart" href="../cart/index.html"></a>-->
+        </header>
+
+        <div class="maincontent">
+
+            <div class="region" id="product">
+
+                <div class="mod_photos swiper-container">
+                    <div class="photos swiper-wrapper">
+                        <div class="photo swiper-slide"><img src="../_res/images/demo/banner01.jpg" alt=""></div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+
+                <div class="detail-box" id="product-detail">
+
+                    <h2 class="title">【滑雪季】享乐勝山滑雪自由行</h2>
+                    <span class="tagtxt">自由行</span>
+
+                </div>
+
+                <div class="line-box detail-container-params">
+                <table class="table-params">
+                    <colgroup></colgroup>
+                    <tbody>
+                        <tr>
+                            <td>参数名</td>
+                            <td>实例内容</td>
+                        </tr>
+                        <tr>
+                            <td>参数名2</td>
+                            <td>实例内容2</td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+
+            </div>
+
+            <div id="productContents">
+                
+            <div class="line-box tabtool tabtool-slide scrolltab" data-target="#contents">
+                <div class="main">
+                    <ul>
+                        <li class="current"><a href="#">费用信息</a></li>
+                        <li><a href="#">线路特色</a></li>
+                        <li><a href="#">交通信息</a></li>
+                        <li><a href="#">住宿信息</a></li>
+                        <li><a href="#">推荐行程</a></li>
+                        <li><a href="#">签证信息</a></li>
+                        <li><a href="#">预订须知</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tabs" id="tabcontents">
+                <div class="region tab_content mod-content">
+                    <div class="head">
+                        <h3 class="title">儿童/单房差以及退改签规则</h3>
+                    </div>
+                    <div class="main">
+                        <div>
+                            <h4 class="sub-title">机票说明</h4>
+                            <p class="">本产品为特价产品，机票一旦预订成功后，出行日期不得更改，签转，退票。</p>
+                        </div>
+                        <div>
+                            <h4 class="sub-title">酒店说明</h4>
+                            <p class="cont mb20">境外产品不挂星，是按照行业惯例的判定。此处所列酒店星级标准为当地酒店评定。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="region tab_content mod-content">
+                    <div class="head">
+                        <h3 class="title">线路特色</h3>
+                    </div>
+                    <div class="main content">
+                        <div>• 東急集團旗下的優質滑雪渡假村<br>• 西日本最大級滑雪場SKIJAM《勝山滑雪場》<br>• 住宿滑雪渡假村Hotel Harvest<br>• Ski in/Ski out滑雪輕鬆便利&#8203;<br><img data-lazy="http://img1.qunarzz.com/p/tts0/1610/70/02a50c18fe10c302.jpg_r_750x500x90_adae6cf8.jpg" alt="" src="http://img1.qunarzz.com/p/tts0/1610/70/02a50c18fe10c302.jpg_r_750x500x90_adae6cf8.jpg" class="loaded"><img data-lazy="http://img1.qunarzz.com/p/tts4/1610/4b/412b45f32e639502.jpg_r_750x500x90_949db0e6.jpg" alt="" src="http://img1.qunarzz.com/p/tts4/1610/4b/412b45f32e639502.jpg_r_750x500x90_949db0e6.jpg" class="loaded"><img data-lazy="http://img1.qunarzz.com/p/tts6/1610/74/9f4b7fb9aacdc202.jpg_r_750x500x90_03f3b9a6.jpg" alt="" src="http://img1.qunarzz.com/p/tts6/1610/74/9f4b7fb9aacdc202.jpg_r_750x500x90_03f3b9a6.jpg" class="loaded"></div>
+                    </div>
+                </div>
+
+                <div class="region tab_content mod-content">
+                    <div class="head">
+                        <h3 class="title">交通信息</h3>
+                        <div class="remark">由于折扣机票存在航班调整的可能，故航班仅供参考，实际出行以最终电子客票为准，请知晓</div>
+                    </div>
+                    <div class="main">
+                        <div class="mod-traffic">
+                            <h4 class="sub-title">参考往返交通</h4>
+                            <div class="list">
+                                <div class="item plane">
+                                    <div class="g-flexbox">
+                                        <div class="return">去</div>
+                                        <div class="flex dd">东方航空 MU557</div>
+                                        <div class="dd">空客319(中)</div>
+                                    </div>
+                                    <div class="g-flexbox">
+                                        <div class="dd">09:25</div>
+                                        <div class="flex ta-c">
+                                            <div class="date"><span class="before"></span>02时05分<span class="after"></span></div>
+                                        </div>
+                                        <div class="dd">12:30</div>
+                                    </div>
+                                    <div class="g-flexbox">
+                                        <div class="dd flex">上海</div>
+                                        <div class="dd">小松</div>
+                                    </div>
+                                    <div class="g-flexbox">
+                                        <div class="sub-cont flex">浦东机场T1</div>
+                                        <div class="sub-cont">小松机场</div>
+                                    </div>
+                                </div>
+                                <div class="item plane">
+                                    <div class="g-flexbox">
+                                        <div class="return">返</div>
+                                        <div class="flex dd">东方航空 MU558</div>
+                                        <div class="dd">空客319(中)</div>
+                                    </div>
+                                    <div class="g-flexbox">
+                                        <div class="dd">13:30</div>
+                                        <div class="flex ta-c">
+                                            <div class="date"><span class="before"></span>02时30分<span class="after"></span>
+                                            </div>
+                                        </div>
+                                        <div class="dd">15:00</div>
+                                    </div>
+                                    <div class="g-flexbox">
+                                        <div class="dd flex">小松</div>
+                                        <div class="dd">上海</div>
+                                    </div>
+                                    <div class="g-flexbox">
+                                        <div class="sub-cont flex">小松机场</div>
+                                        <div class="sub-cont">浦东机场</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="region tab_content mod-content">
+                    <div class="head">
+                        <h3 class="title">住宿信息</h3>
+                        <div class="remark">因酒店会受旺季高峰影响导致客房紧张，届时如遇出行高峰即酒店无房时，供应商会安排您转至同级酒店，敬请谅解</div>
+                    </div>
+                    <div class="main">
+                        <div class="mod-hotel">
+                            <div class="list">
+                                <div class="item">
+                                    <div class="name">HOTEL HARVEST</div>
+                                    <div class="imglist g-flexbox">
+                                        <img src="http://img1.qunarzz.com/p/tts2/1610/da/42d6d801cfc83e02.jpg_r_440x293x90_bec63224.jpg" alt="酒店" class="pic">
+                                        <div class="info">
+                                            <h4 class="sub-title">Tilte</h4>
+                                            <p class="sub-cont"><span class="txt">双床</span><span class="txt">双人间</span></p>
+                                            <div class="include">
+                                                <span class="icon-breakfast"></span>
+                                                <span class="sub-cont-regular">西式早餐（免费）</span>
+                                                <span class="icon-wifi"></span>
+                                                <span class="sub-cont-regular">无网络</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="location"><span class="icon-location"></span><span class="sub-cont-regular">911-0000 福井県勝山市勝山170−70</span></div>
+                                    <h4 class="sub-title">参考往返交通</h4>
+                                    <div class="desc content">
+                                        • 位於日本海側的福井縣，是西日本最大的滑雪渡假村<br>• 東急集團旗下的優質渡假村，吃好住好，渡假好悠閒<br>• 住宿Hotel Harvest可ski in/ski out輕鬆享受滑雪樂趣<br>• 溫馨的洋室或和洋式房，2~4人一室寬敞舒適<br>• SPA天然溫泉大浴場、露天風呂，硫磺炭酸塩泉質，舒緩您的身心<br>• 游泳池、休閒渡假設施完善，適合全家同遊<br>• 自助式早晚餐，日本海漁獲與在地新鮮食材精製，料理美味多樣<img data-lazy="http://img1.qunarzz.com/p/tts2/1610/da/42d6d801cfc83e02.jpg_r_750x500x90_906beed4.jpg" alt="" src="http://img1.qunarzz.com/p/tts2/1610/da/42d6d801cfc83e02.jpg_r_750x500x90_906beed4.jpg" class="loaded"><img data-lazy="http://img1.qunarzz.com/p/tts8/1610/3d/a16311a6d2677402.jpg_r_750x500x90_af7b091a.jpg" alt="" src="http://img1.qunarzz.com/p/tts8/1610/3d/a16311a6d2677402.jpg_r_750x500x90_af7b091a.jpg" class="loaded"><img data-lazy="http://img1.qunarzz.com/p/tts0/1610/12/c1cf75dcc5991902.jpg_r_750x500x90_6b46442e.jpg" alt="" src="http://img1.qunarzz.com/p/tts0/1610/12/c1cf75dcc5991902.jpg_r_750x500x90_6b46442e.jpg" class="loaded"><img data-lazy="http://img1.qunarzz.com/p/tts9/1610/18/77305ad8cb0e3302.jpg_r_750x500x90_5c06b22c.jpg" alt="" src="http://img1.qunarzz.com/p/tts9/1610/18/77305ad8cb0e3302.jpg_r_750x500x90_5c06b22c.jpg" class="loaded"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="region tab_content mod-content">
+                    <div class="head">
+                        <h3 class="title">推荐行程</h3>
+                    </div>
+                    <div class="main">
+                        <div class="mod-schedule">
+                            <div class="list">
+                                <div class="item">
+                                    <h4 class="cont-hd headtitle" data-prefix="Day1">上海出发</h4>
+                                    <div class="cont-bd">
+                                        <div class="cont-line">
+                                            <div class="mark ">酒店</div>
+                                            <div class="flex rich-text-format">HOTEL HARVEST  </div>
+                                        </div>
+                                        <div class="cont-line">
+                                            <div class="mark ">餐饮</div>
+                                            <div class=""><p>早餐 自理</p><p>中餐 自理</p><p>晚餐 定食</p></div>
+                                        </div>
+                                        <div class="sub-txt">
+                                            <div class="bd">上海飞小田机场，抵达后咨询前往福井县&#8203;酒店办理入住手续。</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="item">
+                                    <h4 class="cont-hd headtitle" data-prefix="Day2">上海出发</h4>
+                                    <div class="cont-bd">
+                                        <div class="cont-line">
+                                            <div class="mark ">酒店</div>
+                                            <div class="flex rich-text-format">HOTEL HARVEST  </div>
+                                        </div>
+                                        <div class="cont-line">
+                                            <div class="mark ">餐饮</div>
+                                            <div class=""><p>早餐 自理</p><p>中餐 自理</p><p>晚餐 定食</p></div>
+                                        </div>
+                                        <div class="sub-txt">
+                                            <div class="bd">上海飞小田机场，抵达后咨询前往福井县&#8203;酒店办理入住手续。</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="region tab_content mod-content">
+                    <div class="head">
+                        <h3 class="title">签证信息</h3>
+                    </div>
+                    <div class="main">
+                        <p>请自备赴日个人旅游签证 如需代办签证，可来电咨询。</p>
+                    </div>
+                </div>
+
+
+                <div class="region tab_content mod-content">
+                    <div class="head">
+                        <h3 class="title">预定须知</h3>
+                    </div>
+                    <div class="main">
+                        <p>特价产品，用户支付成功后，不得做任何变更，也不予退款，敬请您阅知并认清相关标签。</p>
+                    </div>
+                </div>
+
+            </div>
+            </div>
+
+
+
+            <div class="screen-box screen_width" id="sharebox">
+                <div class="bgmark cancel"><img src="../_res/images/share-pop.png" width="100%" alt=""></div>
+            </div>
+        </div><!-- end main content-->
+
+        <div class="container bottom-bar">
+            <div class="main shopping-tool">
+                <div class="txtcol">
+                    <strong class="" data-prefix="">上海-日本</strong>
+                    <small>产品编号：678909876</small>
+                </div>
+                <div class="btnbox fit">
+                    <a class="btn fit popContent" data-target="helpContent" data-content-url="/_res/tpl/tpl_helpcontent.html" href="#">咨询客服</a>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<script type="text/javascript" src="../_res/libs/jquery/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../_res/libs/swiper/3.2.5/js/swiper.min.js"></script>
+<script type="text/javascript" src="../_res/libs/artTemplate/3.0/template.js"></script>
+<script type="text/javascript" src="../_res/libs/artTemplate/3.0/template-helper.js"></script>
+
+<script type="text/javascript" src="../_res/js/common/util.js"></script>
+<script type="text/javascript" src="../_res/js/common/stats.js?v1.2.0"></script>
+
+<script type="text/javascript" src="../_res/js/common.js?ver=1.1.0"></script>
+
+<script type="text/javascript" src="../_res/js/module/loadcontent.js"></script>
+<!-- <script type="text/javascript" src="../_res/js/product/detail.js"></script> -->
+<!-- <script type="text/javascript">
+    var WEBP = window.WEBP || {}
+    try {
+        var WEBPStats = WEBP.Stats()
+        WEBPStats.init('from_wechat');
+        WEBP.PageLoad().updatePageLoadEndTimestamp();
+        WEBPStats.upload(30, window.location.pathname);
+
+        if (window.pid) WEBPStats.upload(10, pid);
+    } catch(e) {
+        console.log(e);
+    }
+</script> -->
+</body>
+</html>

@@ -4,7 +4,9 @@
  *  Author: zihan
  */
 
-@import '//at.alicdn.com/t/font_v13idmak2pytlnmi.css';
+// @import '//at.alicdn.com/t/font_6u9zefb436f4unmi.css';
+
+@import '../fonts/ofont/1.0.0/iconfont.scss';
 
 @import '../../../../libs/scss/common/normalize';
 
@@ -18,6 +20,8 @@
 @import 'common/popbox';
 @import 'common/tabtool';
 @import 'common/mod-traffic';
+// @import 'common/popcontent';
+@import 'common/selector-win-mobile';
 @import 'common/joinform';
 
 @import '../../../../libs/scss/common/table-params';

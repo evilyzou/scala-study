@@ -152,9 +152,9 @@ span.picon {display: inline-block;}
 
 .header [class*="icon-"] {
     text-align: center;
-    font-size: 24px;
 
     &:before {
+        display: block;
         font-size: 20px;
     }
 }
@@ -1704,7 +1704,7 @@ textarea.form-control { height: auto; }
     box-shadow: -1px 0 0 #ddd, 1px 0 0 #ddd;
     overflow: hidden;
     background: #fff;
-    // @include translate3d(101%, 0, 0);
+    @include translate3d(0, 0, 0);
     @include transition(all .3s ease-out);
     // @include transition(right .3s ease-out, left .3s ease-out);
     box-sizing: border-box; }
@@ -1767,6 +1767,16 @@ textarea.form-control { height: auto; }
     padding-left: $padding-base;
     padding-right: $padding-base;
 }
+
+
+/* popcontent
+ */
+.popcontent {
+    &.show {
+    }
+}
+
+
 
 
 /* tipbox.nothing

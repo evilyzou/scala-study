@@ -4,7 +4,7 @@
   {
     "createTime": "2016-12-05T21:44:13.000",
     "constComment": "guideSubCategory",
-    "constValue": "æµ™æ±Ÿ",
+    "constValue": "北海",
     "constKey": "guideSubCategory",
     "id": 30,
     "status": "",
@@ -14,7 +14,7 @@
   {
     "createTime": "2016-12-05T21:44:25.000",
     "constComment": "guideSubCategory",
-    "constValue": "ä¸Šæµ·",
+    "constValue": "是地方",
     "constKey": "guideSubCategory",
     "id": 31,
     "status": "",
@@ -24,7 +24,7 @@
   {
     "createTime": "2016-12-05T21:45:13.000",
     "constComment": "guideSubCategory",
-    "constValue": "å®‰å¾½",
+    "constValue": "看得见款",
     "constKey": "guideSubCategory",
     "id": 32,
     "status": "",
@@ -34,7 +34,7 @@
   {
     "createTime": "2016-12-05T21:45:19.000",
     "constComment": "guideSubCategory",
-    "constValue": "ç æµ·",
+    "constValue": "哈是",
     "constKey": "guideSubCategory",
     "id": 33,
     "status": "",

@@ -1,0 +1,26 @@
+{
+	"apiCode": "",
+	"result": {
+		"data": [
+			{
+				"pfunction": "group",
+				"depature": "",
+				"productFeatures": "的的的的的",
+				"marketPrice": 18000.0,
+				"night": 0,
+				"arrive": "自由行",
+				"customType": -1,
+				"id": 50129,
+				"systemType": -1,
+				"dumpTime": "2016-12-26 22:45:37",
+				"title": "妹背秋天，日本广岛",
+				"advanceDay": 2,
+				"images": "[\"http://img02.exthere.cn/201611/729DC1DA75DD43B2A33E142926220B0B.png\"]",
+				"day": 1,
+				"onlineStatus": 0
+			}
+		],
+		"totalCount": 1
+	},
+	"success": true
+}

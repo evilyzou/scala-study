@@ -1,5 +1,5 @@
 
-// ver: 1.2.0
+// ver: 1.2.1
 
 template.helper('dateFormat', function (date, format) {
     var now = new Date().getTime();
@@ -59,4 +59,8 @@ template.helper('getDay', function (data, prefix) {
     } else {
         return new Date().getDay(data);
     }
+});
+
+template.helper('parseJson', function (data) {
+    return JSON.parse(data)
 });

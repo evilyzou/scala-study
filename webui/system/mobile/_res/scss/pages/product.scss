@@ -10,6 +10,10 @@ body>.wrap .header+.maincontent {
     padding-left: 30px;
     padding-right: 30px;
     text-align: center;
+
+    .tagtxt {
+        vertical-align: middle;
+    }
 }
 
 .p-product-detail .mod_photos { min-height: 160px; /*margin-top: -$header-height;*/ }

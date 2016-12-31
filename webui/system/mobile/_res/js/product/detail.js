@@ -8,12 +8,22 @@ var PRODUCT_DETAIL = (function(root, window) {
 
     var data = {}
 
-    root.getDetail = function() {
-        console.log('main root')
+    root.getDetail = function(id, callback) {
+        return XLJ.ajaxData(XLJ.rootPath + '_res/data/product.json', function(response) {
+            if (callback) callback(response)
+        })
     }
 
-    root.vendor = function() {
+    root.vendor = function(data, callback) {
 
+        var _product_base_html = template('tpl_product_detail_base', data)
+        $('#product').html(_product_base_html)
+
+        template.config("escape", false);
+        var _product_base_html = template('tpl_product_detail_contents', data)
+        $('#productContents').html(_product_base_html)
+
+        if (callback) callback(data)
     }
 
     return root
@@ -26,6 +36,14 @@ var $skubox = $('#skubox');
 var $product = $('#product');
 
 var productID = XLJ.getQueryString('id');
+PRODUCT_DETAIL.getDetail(productID, function(response) {
+    if (!response.success) return
+
+    PRODUCT_DETAIL.vendor(response.result, function() {
+
+    });
+});
+
 
 // function failProcess(data) {
 //     if (!data) return false;

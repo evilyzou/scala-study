@@ -1408,6 +1408,89 @@ XLJ.keyCodeCheck = window.XLJ.keyCodeCheck || {
 }
 
 
+XLJ.scrolltab = window.XLJ.scrolltab || function() {
+
+    // scroll bar
+    var $win = $(window),
+        $header = $('#header'),
+        $header_h = $header.outerHeight(),
+        $maincontent = $('.maincontent'),
+        $scrolltab = $('.scrolltab'),
+        $scrolltab_w = $scrolltab.outerWidth(),
+        $scrolltab_h = $scrolltab.outerHeight(),
+        $scrolltabContainer = $scrolltab.find('> .main'),
+        $scrolltabContent = $scrolltab.find('> .main > ul'),
+        $tabcontents = $('#tabcontents'),
+        $tabitems    = $scrolltab.find('.main > ul > li')
+
+    var mc_scroll = function(e) {
+        var _stab_top = $scrolltab[0].offsetTop,
+            _mcont_scr_top   = $maincontent.scrollTop(),
+            _mcont_top = _mcont_scr_top + $header_h
+
+        if (_stab_top <= _mcont_top) {
+            $scrolltab.addClass('fixed')
+        } else {
+            $scrolltab.removeClass('fixed')
+        }
+
+        var _tab_tops = [],
+            _currentIndex = 0
+        $tabcontents.find('.tab_content').each(function(index) {
+            var _this = $(this),
+                _sub_tab_top = _this[0].offsetTop
+                _tab_tops[index] = _sub_tab_top
+        });
+
+        for (var i = 0; i < _tab_tops.length; i++) {
+            var d = _tab_tops[i]
+            if (_mcont_top < d - 150) {
+                _currentIndex = i - 1
+                break
+            }
+        }
+
+        if (_currentIndex < 0) _currentIndex = 0
+        var $currentTab = $tabitems.eq(_currentIndex)
+        $currentTab.addClass('current').siblings().removeClass('current')
+
+        var _current_w = $currentTab.outerWidth(),
+            _current_l = $currentTab.offset().left,
+            _contentLeft  = $scrolltabContent.offset().left
+
+        var _move_line = (_current_l + _current_w + 40) - $scrolltab_w - _contentLeft
+        $scrolltabContainer.scrollLeft(_move_line)
+    }
+
+    if ($scrolltab.length == 0) return
+    $maincontent.off('scroll', mc_scroll).on('scroll', mc_scroll);
+
+    var preventDefault = function(e) { e.preventDefault() }
+    $scrolltab.off('click', 'li a', preventDefault).on('click', 'li a', preventDefault)
+
+    var li_click = function(e) {
+        var _this = $(this)
+            _index = _this.index()
+
+        var $target = $tabcontents.find('.tab_content').eq(_index)
+
+        clearTimeout(_tabtool_time)
+        _tabtool_time = setTimeout(function() {
+            _this.addClass('current').siblings().removeClass('current')
+        }, 320);
+
+        if ($target.length == 0) return
+        var _target_top = $target.offset().top,
+            _mcont_scr_top   = $maincontent.scrollTop(),
+            _mcont_top = _mcont_scr_top - $header_h - $scrolltab_h
+
+        $maincontent.animate({scrollTop: _mcont_top + _target_top}, 300)
+    }
+    var _tabtool_time = ''
+    $scrolltab.off('click', 'li', li_click).on('click', 'li', li_click)
+};
+
+
 
 /* -----------------------
    Pop Box
@@ -1964,85 +2047,6 @@ $.fn.extend({
 });
 
 
-/*!
- *  Create Date: 2016-11
- *  Author: zihan
- *  version: 1.3.1
- */
-
-var USER_AGENCY = USER_AGENCY || (function(root, window) {
-
-    var ua = navigator.userAgent.toLocaleLowerCase()
-
-    root.getAgencyInfo = function(userKey, callback) {
-        return XLJ.ajaxData('/Agency/info', 'GET', {userKey: userKey}, callback)
-    }
-
-    root.action = function(callback) {
-        var _userKey = decodeURIComponent(XLJ.getQueryString('userKey')),
-            _ref_userKey = decodeURIComponent(XLJ.getQueryString('userKey', document.referrer))
-
-        if (!_userKey) {
-            if (!_ref_userKey) return
-            _userKey = _ref_userKey
-
-            if (XLJ.setUrlParam) {
-                var _newUrl = XLJ.setUrlParam(window.location.href, 'userKey', _userKey)
-                window.history.replaceState('', '', _newUrl)
-            }
-        }
-
-        var userSite = {
-            isAgency: '',
-            userKey: _userKey,
-            shopUrl: '',
-            shopName: ''
-        }
-        var getInfo = ''
-        var getInfoFn = function(_userKey) {
-            return root.getAgencyInfo(_userKey, function(response) {
-                if (!response.success || !response.result.data || response.result.data.isBlock) return
-                userSite.isAgency = response.result.isAgency || ''
-                userSite.shopUrl  = (userSite.isAgency) ? response.result.data.shopUrl  || '' : ''
-                userSite.shopName = (userSite.isAgency) ? response.result.data.shopName || '' : ''
-            })
-        }
-
-        if (XLJ.cookie) {
-            // get new use key
-            if (_userKey != XLJ.cookie('XLJ-SHARE-USERKEY') || !XLJ.cookie('XLJ-SHARE-HOMEURL') || !XLJ.cookie('XLJ-SHARE-MALLNAME')) {
-                XLJ.cookie('XLJ-SHARE-USERKEY', _userKey)
-                XLJ.cookie('XLJ-SHARE-HOMEURL', '')
-                XLJ.cookie('XLJ-SHARE-MALLNAME', '')
-                getInfo = getInfoFn(_userKey)
-            } else {
-                userSite.shopUrl  = XLJ.cookie('XLJ-SHARE-HOMEURL')
-                userSite.shopName = XLJ.cookie('XLJ-SHARE-MALLNAME')
-            }
-        } else {
-            getInfo = getInfoFn(_userKey)
-        }
-        $.when(getInfo).done(function() {
-            if (XLJ.cookie && userSite.isAgency !== false) {
-                XLJ.cookie('XLJ-SHARE-HOMEURL', userSite.shopUrl)
-                XLJ.cookie('XLJ-SHARE-MALLNAME', userSite.shopName)
-            }
-            if (callback) callback(userSite)
-        })
-    }
-
-    root.init = (function() {
-        root.action(function(userSite) {
-            if (userSite.isAgency !== false && userSite.shopUrl) $('#nav .home').attr('href', userSite.shopUrl)
-        });
-    })();
-
-    return root
-
-}(USER_AGENCY || {}, typeof window !== 'undefined' ? window : this));
-
-
-
 XLJ.docReady(function() {
 
     var $body = $(document.body)
@@ -2233,6 +2237,16 @@ XLJ.docReady(function() {
     });
 
 
+    // selectBox
+    $body.on('click', '.selectBox > .item', function() {
+        var _this = $(this),
+            _parent = _this.closest('.selectBox')
+
+        _this.addClass('selected').siblings().removeClass('selected')
+        _parent.find('.close').trigger(XLJ.clickType)
+    });
+
+
     // search bar
     var SEARCH_BAR = SEARCH_BAR || (function() {
         var $searchBar = $('#searchBar');
@@ -2329,85 +2343,8 @@ XLJ.docReady(function() {
     }());
 
 
-    !function() {
-
-        // scroll bar
-        var $win = $(window),
-            $header = $('#header'),
-            $header_h = $header.outerHeight(),
-            $maincontent = $('.maincontent'),
-            $scrolltab = $('.scrolltab'),
-            $scrolltab_w = $scrolltab.outerWidth(),
-            $scrolltab_h = $scrolltab.outerHeight(),
-            $scrolltabContainer = $scrolltab.find('> .main'),
-            $scrolltabContent = $scrolltab.find('> .main > ul'),
-            $tabcontents = $('#tabcontents'),
-            $tabitems    = $scrolltab.find('.main > ul > li')
-
-        if ($scrolltab.length == 0) return
-        $maincontent.on('scroll', function(e) {
-            var _stab_top = $scrolltab[0].offsetTop,
-                _mcont_scr_top   = $maincontent.scrollTop(),
-                _mcont_top = _mcont_scr_top + $header_h
-
-            if (_stab_top <= _mcont_top) {
-                $scrolltab.addClass('fixed')
-            } else {
-                $scrolltab.removeClass('fixed')
-            }
-
-            var _tab_tops = [],
-                _currentIndex = 0
-            $tabcontents.find('.tab_content').each(function(index) {
-                var _this = $(this),
-                    _sub_tab_top = _this[0].offsetTop
-                    _tab_tops[index] = _sub_tab_top
-            });
-
-            for (var i = 0; i < _tab_tops.length; i++) {
-                var d = _tab_tops[i]
-                if (_mcont_top < d - 150) {
-                    _currentIndex = i - 1
-                    break
-                }
-            }
-
-            if (_currentIndex < 0) _currentIndex = 0
-            var $currentTab = $tabitems.eq(_currentIndex)
-            $currentTab.addClass('current').siblings().removeClass('current')
-
-            var _current_w = $currentTab.outerWidth(),
-                _current_l = $currentTab.offset().left,
-                _contentLeft  = $scrolltabContent.offset().left
-
-            var _move_line = (_current_l + _current_w + 40) - $scrolltab_w - _contentLeft
-            $scrolltabContainer.scrollLeft(_move_line)
-        });
-
-        $scrolltab.on('click', 'li a', function(e) {
-            e.preventDefault()
-        })
-
-        var _tabtool_time = ''
-        $scrolltab.on('click', 'li', function(e) {
-            var _this = $(this)
-                _index = _this.index()
-
-            var $target = $tabcontents.find('.tab_content').eq(_index)
-
-            clearTimeout(_tabtool_time)
-            _tabtool_time = setTimeout(function() {
-                _this.addClass('current').siblings().removeClass('current')
-            }, 320);
-
-            if ($target.length == 0) return
-            var _target_top = $target.offset().top,
-                _mcont_scr_top   = $maincontent.scrollTop(),
-                _mcont_top = _mcont_scr_top - $header_h - $scrolltab_h
-
-            $maincontent.animate({scrollTop: _mcont_top + _target_top}, 300)
-        })
-    }();
+    // init scrolltab
+    XLJ.scrolltab()
 });
 
 
