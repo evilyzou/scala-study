@@ -53,11 +53,16 @@ object ProductSearch {
 
     val respFuture = RequestExecutor[SearchResponse].execute(builder)
 
+    respFuture onFailure {
+      case casue => { println("xx"); casue}
+    }
 
     val responses = respFuture.map { response =>
       import com.ravel.schema.ProductObject._
       response.getHits.getHits.toSeq.map(e=>mapToSearchProduct(e.sourceAsMap().toMap))
     }
+
+    responses recover { case cause => throw new Exception("Something went wrong", cause) }
     responses
   }
 }

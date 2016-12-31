@@ -31,10 +31,12 @@ object ProductSearchFilter {
   customTypeMap += ("CustomXX" ->6)
   customTypeMap += ("CustomOther" -> -1)
   def apply(systemType:String, customType: String, pfunction: String,mainCategory: String = "", subCategory: String = "", start: Int = 0, size: Int = 10): ProductSearchFilter = {
+    val begin = start * size
+    val nubmer = size
     new ProductSearchFilter(systemTypeMap.get(systemType).getOrElse(-1),
                           customTypeMap.get(customType).getOrElse(-1), pfunction, mainCategory, subCategory) {
-      override def start = (start -1) * size
-      override def size = size
+      override def start = begin
+      override def size = nubmer
     }
   }
 }
