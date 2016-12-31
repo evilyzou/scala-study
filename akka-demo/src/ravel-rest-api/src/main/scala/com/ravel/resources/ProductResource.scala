@@ -5,7 +5,7 @@ import akka.http.scaladsl.server.{Directives, Route}
 import com.ravel.elasticsearch.ProductSearch
 import com.ravel.resources.MyJsonSupport._
 import com.ravel.schema.ProductObject.ProductView
-import com.ravel.services.ProductService
+import com.ravel.services.{SettingService, ProductService}
 import spray.json._
 
 /**
@@ -71,6 +71,19 @@ trait ProductResource extends Directives {
         onSuccess(resultFuture) {
           case product =>{
             complete(HttpEntity(ContentTypes.`application/json`, product.toJson.compactPrint.getBytes("UTF-8")))
+          }
+        }
+      }
+    } ~
+    path("subCategorys") {
+      get {
+        parameters('mainCategory ? "guideCategoryJiangNan") {
+          mainCategory => {
+
+            val subCategoryFuture = SettingService.getSubCateogry(mainCategory)
+            onSuccess(subCategoryFuture) {
+              case list => complete(HttpEntity(ContentTypes.`application/json`, list.toJson.compactPrint.getBytes("UTF-8")))
+            }
           }
         }
       }
