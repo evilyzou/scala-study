@@ -1,0 +1,72 @@
+1.获取所有区域接口
+/product/subCategorys?mainCategory=guideCategoryJiangNan|guideCategoryJapan
+[
+  {
+    "createTime": "2016-12-05T21:44:13.000",
+    "constComment": "guideSubCategory",
+    "constValue": "æµ™æ±Ÿ",
+    "constKey": "guideSubCategory",
+    "id": 30,
+    "status": "",
+    "constCategory": "guideCategoryJiangNan",
+    "updateTime": "2016-12-05T21:50:11.000"
+  },
+  {
+    "createTime": "2016-12-05T21:44:25.000",
+    "constComment": "guideSubCategory",
+    "constValue": "ä¸Šæµ·",
+    "constKey": "guideSubCategory",
+    "id": 31,
+    "status": "",
+    "constCategory": "guideCategoryJiangNan",
+    "updateTime": "2016-12-05T21:50:16.000"
+  },
+  {
+    "createTime": "2016-12-05T21:45:13.000",
+    "constComment": "guideSubCategory",
+    "constValue": "å®‰å¾½",
+    "constKey": "guideSubCategory",
+    "id": 32,
+    "status": "",
+    "constCategory": "guideCategoryJiangNan",
+    "updateTime": "2016-12-05T21:50:21.000"
+  },
+  {
+    "createTime": "2016-12-05T21:45:19.000",
+    "constComment": "guideSubCategory",
+    "constValue": "ç æµ·",
+    "constKey": "guideSubCategory",
+    "id": 33,
+    "status": "",
+    "constCategory": "guideCategoryJiangNan",
+    "updateTime": "2016-12-05T21:50:25.000"
+  }
+]
+2.获取所有商品
+/product/list?systemType=1&customType=1&pfunction=group
+systemType: 类型,1 代表日本，2 代表中国江南
+customType: 自定义类型: 1 代表 观光, 2: 滑雪, 3: 单车, 4: 温泉, 5: 亲水, 6: 休闲, -1 其他
+
+[
+  {
+    "pfunction": "group",
+    "depature": "",
+    "productFeatures": "éƒ½å¸‚è§‚å…‰",
+    "marketPrice": 18000.0,
+    "night": 0,
+    "arrive": "ä¸Šæµ·",
+    "customType": -1,
+    "id": 50129,
+    "systemType": -1,
+    "dumpTime": "2016-12-26 22:45:37",
+    "title": "ä¸Šæµ·é­”éƒ½ä¸€æ—¥æ¸¸",
+    "advanceDay": 2,
+    "images": "[\"http://img02.exthere.cn/201611/729DC1DA75DD43B2A33E142926220B0B.png\"]",
+    "day": 1,
+    "onlineStatus": 0
+  }
+]
+3.获取单个商品
+/product/50067(id),json见 product.json
+
+
