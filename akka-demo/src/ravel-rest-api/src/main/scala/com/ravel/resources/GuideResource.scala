@@ -20,7 +20,7 @@ trait GuideResource extends Directives{
       get {
         parameters('systemType, 'customType, 'guideType, 'start ? 0, 'size ? 10) {
           (systemType, customType, guideType, start, size) => {
-            val filter = GuideSearchFilter.tupled((customType, systemType, guideType, "", ""))
+            val filter = GuideSearchFilter(customType, systemType, guideType, "", "")
             val flist = GuideService.list(filter)
             onSuccess(flist) {
               case list => complete(HttpEntity(ContentTypes.`application/json`, list.toJson.compactPrint.getBytes("UTF-8")))
