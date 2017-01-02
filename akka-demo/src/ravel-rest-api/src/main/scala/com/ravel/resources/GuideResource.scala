@@ -9,7 +9,7 @@ import spray.json._
 /**
  * Created by CloudZou on 12/21/16.
  */
-case class GuideSearchFilter(customType: Long, systemType: Long, guideType: Long,  mainCategory: String, subCategory: String) extends Pagination{
+case class GuideSearchFilter(customType: Int, systemType: Int, guideType: Int,  mainCategory: String, subCategory: String) extends Pagination{
     override def start : Int = 0
     override def size: Int = 10
 }
@@ -30,7 +30,7 @@ object GuideSearchFilter {
   def apply(systemType:String, customType: String, guideType: String,mainCategory: String = "", subCategory: String = "", start: Int = 0, size: Int = 10): GuideSearchFilter = {
     val begin = start * size
     val nubmer = size
-    new GuideSearchFilter(systemTypeMap.getOrElse(systemType, 1),customTypeMap.getOrElse(customType, 1), guideTypeMap.getOrElse(guideType, 1), mainCategory, subCategory) {
+    new GuideSearchFilter(systemTypeMap.get(systemType).getOrElse(1),customTypeMap.get(customType).getOrElse(1), guideTypeMap.get(guideType).getOrElse(1), mainCategory, subCategory) {
       override def start = begin
       override def size = nubmer
     }
