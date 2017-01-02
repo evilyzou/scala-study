@@ -9,9 +9,32 @@ import spray.json._
 /**
  * Created by CloudZou on 12/21/16.
  */
-case class GuideSearchFilter(customType: String, systemType: String, guideType: String,  mainCategory: String, subCategory: String) extends Pagination{
+case class GuideSearchFilter(customType: Long, systemType: Long, guideType: Long,  mainCategory: String, subCategory: String) extends Pagination{
     override def start : Int = 0
     override def size: Int = 10
+}
+
+object GuideSearchFilter {
+  val systemTypeMap = Map("SystemJapan" -> 1, "SystemJiangNan" ->2, "SystemOther" -> -1)
+  var customTypeMap: Map[String, Int] = Map()
+  customTypeMap += ("GuideCustomCH" ->1)
+  customTypeMap += ("GuideCustomQY" ->2)
+  customTypeMap += ("GuideCustomWM" ->3)
+  customTypeMap += ("GuideCustomMS" ->4)
+  customTypeMap += ("GuideCustomHX" ->5)
+  customTypeMap += ("GuideCustomQJ" ->6)
+  customTypeMap += ("GuideCustomQS" -> -1)
+  customTypeMap += ("GuideCustomWQ" -> -1)
+  val guideTypeMap = Map("GuideRecord" -> 1, "GuidePage" -> 2)
+
+  def apply(systemType:String, customType: String, guideType: String,mainCategory: String = "", subCategory: String = "", start: Int = 0, size: Int = 10): GuideSearchFilter = {
+    val begin = start * size
+    val nubmer = size
+    new GuideSearchFilter(systemTypeMap.getOrElse(systemType, 1),customTypeMap.getOrElse(customType, 1), guideTypeMap.getOrElse(guideType, 1), mainCategory, subCategory) {
+      override def start = begin
+      override def size = nubmer
+    }
+  }
 }
 
 trait GuideResource extends Directives{
