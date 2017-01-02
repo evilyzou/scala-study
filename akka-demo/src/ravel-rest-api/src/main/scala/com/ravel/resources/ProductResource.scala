@@ -1,12 +1,14 @@
 package com.ravel.resources
 
-import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
+import akka.http.scaladsl.model.{HttpEntity, ContentTypes}
 import akka.http.scaladsl.server.{Directives, Route}
 import com.ravel.elasticsearch.ProductSearch
-import com.ravel.resources.MyJsonSupport._
-import com.ravel.schema.ProductObject.ProductView
-import com.ravel.services.{SettingService, ProductService}
+import com.ravel.schema.ProductObject.{SearchProductView, ProductView}
+import com.ravel.services.{ProductService, SettingService}
+import com.ravel.resources.JsonResultRoute._
+import JsonResultRoute.JsonResultKeys._
 import spray.json._
+import MyJsonSupport._
 
 /**
  * Created by CloudZou on 12/9/2016.
@@ -41,16 +43,22 @@ object ProductSearchFilter {
   }
 }
 
+
 trait ProductResource extends Directives {
   def productRoutes: Route = pathPrefix("product"){
     path("list") {
       get {
         parameters('systemType, 'customType, 'pfunction, 'start ? 0, 'size ? 10) {
           (systemType, customType, pfunction, start, size) => {
+            import JsonResultRoute._
             val filter = ProductSearchFilter(systemType,customType, pfunction)
             val listFuture = ProductSearch.queryProducts(filter)
             onSuccess(listFuture) {
-              case list => complete(HttpEntity(ContentTypes.`application/json`, list.toJson.compactPrint.getBytes("UTF-8")))
+              case list =>{
+                val map = (ResultJsonWithPage zip list.productIterator.toList).toMap
+                val jsonResult: Result[Map[String, Any]]  = Right(Success(map))
+                complete(toStandardRoute(jsonResult))
+              }
             }
           }
         }
@@ -70,7 +78,9 @@ trait ProductResource extends Directives {
         }
         onSuccess(resultFuture) {
           case product =>{
-            complete(HttpEntity(ContentTypes.`application/json`, product.toJson.compactPrint.getBytes("UTF-8")))
+            val map = Map(SingleDataJson.head -> product )
+            val jsonResult: Result[Map[String, Any]]  = Right(Success(map))
+            complete(toStandardRoute(jsonResult))
           }
         }
       }
@@ -79,10 +89,13 @@ trait ProductResource extends Directives {
       get {
         parameters('mainCategory ? "guideCategoryJiangNan") {
           mainCategory => {
-
             val subCategoryFuture = SettingService.getSubCateogry(mainCategory)
             onSuccess(subCategoryFuture) {
-              case list => complete(HttpEntity(ContentTypes.`application/json`, list.toJson.compactPrint.getBytes("UTF-8")))
+              case list =>{
+                val map = Map(SingleDataJson.head -> list )
+                val jsonResult: Result[Map[String, Any]]  = Right(Success(map))
+                complete(toStandardRoute(jsonResult))
+              }
             }
           }
         }

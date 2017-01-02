@@ -14,8 +14,7 @@ import scala.collection.breakOut
  * Created by CloudZou on 12/9/16.
  */
 object ProductService extends QueryService{
-  def list(filter: ProductSearchFilter) : Future[Seq[SearchProductView]] = {
-    val start = filter.start * filter.size
+  def list(filter: ProductSearchFilter) = {
     ProductSearch.queryProducts(filter)
   }
 

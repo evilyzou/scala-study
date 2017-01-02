@@ -29,7 +29,7 @@ object ESClient {
 object ProductSearch {
   import ESClient._
 
-  def queryProducts(filter: ProductSearchFilter): Future[Seq[SearchProductView]] = {
+  def queryProducts(filter: ProductSearchFilter) = {
     val builder = client.prepareSearch(Config.esIndex)
                   .setTypes(Config.esTypeProduct)
                   .setSearchType(SearchType.DFS_QUERY_THEN_FETCH)
@@ -59,7 +59,8 @@ object ProductSearch {
 
     val responses = respFuture.map { response =>
       import com.ravel.schema.ProductObject._
-      response.getHits.getHits.toSeq.map(e=>mapToSearchProduct(e.sourceAsMap().toMap))
+      val hits = response.getHits
+      (hits.totalHits(), hits.getHits.toSeq.map(e=>mapToSearchProduct(e.sourceAsMap().toMap)))
     }
 
     responses recover { case cause => throw new Exception("Something went wrong", cause) }

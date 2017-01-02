@@ -5,6 +5,8 @@ package com.ravel.schema
  */
 object ProductObject {
 
+  abstract class BaseView {val data: Any}
+
   implicit def mapToSearchProduct(sp: Map[String, AnyRef]): SearchProductView = {
     SearchProductView(sp.get("id"), sp.get("title"), sp.get("systemType"), sp.get("customType"), sp.get("marketPrice"), sp.get("depature"),
                   sp.get("dumpTime"),sp.get("day"), sp.get("pfunction"), sp.get("productFeatures"), sp.get("night"), sp.get("images"),
