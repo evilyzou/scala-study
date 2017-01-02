@@ -1,6 +1,6 @@
 /*
  * Create by zihan on 2016-04
- * v1.0.1
+ * v1.0.2
  */
 
 XLJ.setUrlParam = window.XLJ.setUrlParam || function (url, keyname, keyval) {
@@ -23,8 +23,8 @@ XLJ.setUrlParam = window.XLJ.setUrlParam || function (url, keyname, keyval) {
         _hash = url.hash
 
     if (_search) {
-        if (_search.indexOf(keyname + '=') != -1 && replaceQueryString) {
-            _search = replaceQueryString(keyname, keyval)
+        if (_search.indexOf(keyname + '=') != -1 && XLJ.replaceQueryString) {
+            _search = XLJ.replaceQueryString(keyname, keyval)
         } else {
             _search += '&' + _shareKeyParam
         }

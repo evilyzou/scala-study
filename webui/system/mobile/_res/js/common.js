@@ -1274,8 +1274,8 @@ XLJ.setUrlParam = window.XLJ.setUrlParam || function (url, keyname, keyval) {
         _hash = url.hash
 
     if (_search) {
-        if (_search.indexOf(keyname + '=') != -1 && replaceQueryString) {
-            _search = replaceQueryString(keyname, keyval)
+        if (_search.indexOf(keyname + '=') != -1 && XLJ.replaceQueryString) {
+            _search = XLJ.replaceQueryString(keyname, keyval)
         } else {
             _search += '&' + _shareKeyParam
         }

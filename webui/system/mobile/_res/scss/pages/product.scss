@@ -26,6 +26,10 @@ body>.wrap .header+.maincontent {
 
     .header {
         background-color: rgba(255,255,255,0);
+
+        .title {
+            color: rgba(51,51,51,0);
+        }
     }
 
     .mod-content {

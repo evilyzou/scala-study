@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <title>商品</title>
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="../_res/images/favicon.ico" /> -->
+    <link rel="stylesheet" href="../_res/css/common.css?ver=1.2.1">
+    <link rel="stylesheet" href="../_res/css/list.css?ver=">
+    <link rel="stylesheet" id="themeStyle" href="../_res/css/theme.css?ver=1.2.1">
+
+    <script type="text/javascript" src="../_res/js/global.js?ver=1.2.2"></script>
+</head>
+<body class="p-list">
+
+<div id="wrap" class="wrap">
+
+    <div class="container container-main">
+
+        <header id="header" class="header" role="banner">
+            <!-- <a class="icon-back back" href="#"></a> -->
+            <a class="link selectArea" data-target="#area-selector" href="#"><span class="tagtxt">地区</span></a>
+            <div class="title">
+                <div class="tabtool tab-titles scrolltab" data-target="#contents">
+                    <div class="main">
+                        <ul>
+                            <li class="current"><a href="#p-0">自由行</a></li>
+                            <li><a href="#p-1">旅行团</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="maincontent">
+
+            <div class="tabs slidepage-wrap">
+
+                <div class="tab_content slidepage-page" id="list-travel-free" data-hash-name="#t-list1">
+                    <div class="mod_photos swiper-container">
+                        <div class="photos swiper-wrapper">
+                            <div class="photo swiper-slide"><img src="../_res/images/demo/pic01.jpg" alt=""></div>
+                            <div class="photo swiper-slide"><img src="../_res/images/demo/pic02.jpg" alt=""></div>
+                            <div class="photo swiper-slide"><img src="../_res/images/demo/pic03.jpg" alt=""></div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+
+                    <div class="region grid-gallery cols1 datalist">
+
+                        <div class="region tipbox nothing" style="display: none;">
+                            <div class="main">
+                                <p>没有内容</p>
+                            </div>
+                            <!-- <a class="btn" href="../">返回首页</a> -->
+                        </div>
+
+                        <a class="item" href="../product/detail.html?id={{item.id}}">
+                            <div class="cell">
+                                <div class="info">
+                                    <h2 class="title">妹背秋天，日本广岛</h2>
+                                    <span class="tagtxt">自由行</span>
+                                </div>
+                                <div class="photo">
+                                    <img src="../_res/images/demo/pic01.jpg" alt="">
+                                </div>
+                            </div>
+                        </a>
+
+                        <a class="item" href="../product/detail.html?id={{item.id}}">
+                            <div class="cell">
+                                <div class="info">
+                                    <h2 class="title">秋天，京都，日本的枯山水造</h2>
+                                    <span class="tagtxt">旅行团</span>
+                                </div>
+                                <div class="photo">
+                                    <img src="../_res/images/demo/pic02.jpg" alt="">
+                                </div>
+                            </div>
+                        </a>
+
+                        <a class="item" href="../product/detail.html?id={{item.id}}">
+                            <div class="cell">
+                                <div class="info">
+                                    <h2 class="title">日本關西旅行，細緻的手工藝</h2>
+                                    <span class="tagtxt">旅行团</span>
+                                </div>
+                                <div class="photo">
+                                    <img src="../_res/images/demo/pic03.jpg" alt="">
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="loadmore mod_loading" style="visibility: hidden;"><div class="animate"></div></div>
+                </div>
+
+                <div class="tab_content slidepage-page" id="list-travel-group" data-hash-name="#t-list2">
+                    <div class="mod_photos swiper-container">
+                        <div class="photos swiper-wrapper">
+                            <div class="photo swiper-slide"><img src="../_res/images/demo/pic01.jpg" alt=""></div>
+                            <div class="photo swiper-slide"><img src="../_res/images/demo/pic02.jpg" alt=""></div>
+                            <div class="photo swiper-slide"><img src="../_res/images/demo/pic03.jpg" alt=""></div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+
+                    <div class="region grid-gallery cols1 datalist">
+
+                        <div class="region tipbox nothing" style="display: none;">
+                            <div class="main">
+                                <p>没有内容</p>
+                            </div>
+                            <!-- <a class="btn" href="../">返回首页</a> -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div><!-- end main content-->
+
+        <footer id="footer" class="footer">
+            <nav id="nav" class="mainnav">
+                <ul>
+                    <li class="current"><a class="icon-home-active" href="../"><span class="navname">首页</span></a></li>
+                    <li><a class="icon-plane-active" href="#"><span class="navname">分类</span></a></li>
+                    <li><a class="icon-guide-active" href="#"><span class="navname">指南</span></a></li>
+                    <li><a class="icon-manage-active" href="#"><span class="navname">管理</span></a></li>
+                    <li><a class="icon-user-active" href="#"><span class="navname">我的</span></a></li>
+                </ul>
+            </nav>
+        </footer>
+
+
+    </div>
+
+    <script id="search_item_template" type="text/html">
+        {{each result.data as item}}
+        <a class="item" href="../product/detail.html?id={{item.id}}">
+            <div class="cell">
+                <div class="info">
+                    <h2 class="title">{{item.title}}</h2>
+                    <span class="tagtxt">{{item.pfunction}}</span>
+                </div>
+                <div class="photo">
+                    <img src="{{parseJson(item.images)[0]}}@750w_375h_80Q_1e_1c" alt="">
+                </div>
+            </div>
+        </a>
+        {{/each}}
+    </script>
+</div>
+
+<script type="text/javascript" src="../_res/libs/jquery/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../_res/libs/swiper/3.2.5/js/swiper.min.js"></script>
+<script type="text/javascript" src="../_res/libs/artTemplate/3.0/template.js"></script>
+<script type="text/javascript" src="../_res/libs/artTemplate/3.0/template-helper.js"></script>
+
+<!-- <script type="text/javascript" src="../_res/js/common/util.js"></script>
+<script type="text/javascript" src="../_res/js/common/stats.js?v1.2.0"></script> -->
+<script type="text/javascript" src="../_res/js/common.js?ver=1.1.0"></script>
+
+<script type="text/javascript" src="../_res/js/module/selectorWin.js"></script>
+<script type="text/javascript" src="../_res/js/product/list.js"></script>
+
+<!-- <script type="text/javascript">
+    var WEBP = window.WEBP || {}
+    try {
+        var WEBPStats = WEBP.Stats();
+        WEBPStats.init('from_wechat');
+        WEBP.PageLoad().updatePageLoadEndTimestamp();
+        WEBPStats.upload(30, window.location.pathname);
+
+        var kw = XLJ.getQueryString('kw') || '';
+        if (kw) WEBPStats.upload(1, kw);
+    } catch(e) {
+        console.log(e);
+    }
+</script> -->
+
+</body>
+</html>

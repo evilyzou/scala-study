@@ -1,0 +1,11 @@
+
+    <script type="text/plain" id="tpl_banners">
+	    <div class="mod_photos swiper-container">
+	        <div class="photos swiper-wrapper">
+				{{each data as item}}
+	            <a class="photo swiper-slide"><img src="{{item.cover}}" alt="{{item.title}}" href="{{item.link}}"></a>
+        		{{/each}}
+	        </div>
+	        <div class="swiper-pagination"></div>
+	    </div>
+    </script>

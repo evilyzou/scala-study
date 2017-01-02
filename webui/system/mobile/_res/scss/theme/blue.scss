@@ -79,3 +79,11 @@ input:checked + label.icon:before,
         .icon-user:before { content: "\e60b"; }
     }
 }
+
+.p-product-detail {
+    .mod-content {
+        .title {
+            color: $color-main;
+        }
+    }
+}

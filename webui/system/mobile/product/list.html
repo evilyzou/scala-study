@@ -19,100 +19,65 @@
     <div class="container container-main">
 
         <header id="header" class="header" role="banner">
-            <a class="icon-back back" href="#"></a>
-            <a class="icon-area-select selectArea" data-target="#area-selector" href="#">地区</a>
-            <h1 class="title">
-                日本主题旅行
-            </h1>
+            <!-- <a class="icon-back back" href="#"></a> -->
+            <a class="link selectArea" data-target="#area-selector" href="#"><span class="icon-location with-txt">地区</span></a>
+            <div class="title css-arrow-down popContent" data-target="pfunction"></div>
         </header>
 
         <div class="maincontent">
 
-            <div class="tabtool tab-titles scrolltab" data-target="#contents">
-                <div class="main">
-                    <ul>
-                        <li class="current"><a href="#p-0">全部</a></li>
-                        <li><a href="#p-1">自由行</a></li>
-                        <li><a href="#p-2">旅行团</a></li>
-                    </ul>
+            <div class="container" id="list-travel">
+
+                <div id="banners"></div>
+
+                <div class="region grid-gallery cols1 datalist">
+
+                    <div class="region tipbox nothing" style="display: none;">
+                        <div class="main">
+                            <p>没有内容</p>
+                        </div>
+                        <!-- <a class="btn" href="../">返回首页</a> -->
+                    </div>
+
+                    <a class="item" href="../product/detail.html?id={{item.id}}">
+                        <div class="cell">
+                            <div class="info">
+                                <h2 class="title">妹背秋天，日本广岛</h2>
+                                <span class="tagtxt">自由行</span>
+                            </div>
+                            <div class="photo">
+                                <img src="../_res/images/demo/pic01.jpg" alt="">
+                            </div>
+                        </div>
+                    </a>
+
+                    <a class="item" href="../product/detail.html?id={{item.id}}">
+                        <div class="cell">
+                            <div class="info">
+                                <h2 class="title">秋天，京都，日本的枯山水造</h2>
+                                <span class="tagtxt">旅行团</span>
+                            </div>
+                            <div class="photo">
+                                <img src="../_res/images/demo/pic02.jpg" alt="">
+                            </div>
+                        </div>
+                    </a>
+
+                    <a class="item" href="../product/detail.html?id={{item.id}}">
+                        <div class="cell">
+                            <div class="info">
+                                <h2 class="title">日本關西旅行，細緻的手工藝</h2>
+                                <span class="tagtxt">旅行团</span>
+                            </div>
+                            <div class="photo">
+                                <img src="../_res/images/demo/pic03.jpg" alt="">
+                            </div>
+                        </div>
+                    </a>
                 </div>
+
+                <div class="loadmore mod_loading" style="visibility: hidden;"><div class="animate"></div></div>
             </div>
-
-
-            <div class="tabs slidepage-wrap">
-
-                <div class="tab_content slidepage-page" id="list-all" data-hash-name="#t-list1">
-                    <div class="region grid-gallery cols1 datalist">
-
-                        <div class="region tipbox nothing" style="display: none;">
-                            <div class="main">
-                                <p>没有内容</p>
-                            </div>
-                            <!-- <a class="btn" href="../">返回首页</a> -->
-                        </div>
-
-                        <!-- <a class="item" href="../product/detail.html?id={{item.id}}">
-                            <div class="cell">
-                                <div class="info">
-                                    <h2 class="title">妹背秋天，日本广岛</h2>
-                                    <span class="tagtxt">自由行</span>
-                                </div>
-                                <div class="photo">
-                                    <img src="../_res/images/demo/pic01.jpg" alt="">
-                                </div>
-                            </div>
-                        </a>
-
-                        <a class="item" href="../product/detail.html?id={{item.id}}">
-                            <div class="cell">
-                                <div class="info">
-                                    <h2 class="title">秋天，京都，日本的枯山水造</h2>
-                                    <span class="tagtxt">旅行团</span>
-                                </div>
-                                <div class="photo">
-                                    <img src="../_res/images/demo/pic02.jpg" alt="">
-                                </div>
-                            </div>
-                        </a>
-
-                        <a class="item" href="../product/detail.html?id={{item.id}}">
-                            <div class="cell">
-                                <div class="info">
-                                    <h2 class="title">日本關西旅行，細緻的手工藝</h2>
-                                    <span class="tagtxt">旅行团</span>
-                                </div>
-                                <div class="photo">
-                                    <img src="../_res/images/demo/pic03.jpg" alt="">
-                                </div>
-                            </div>
-                        </a> -->
-                    </div>
-
-                    <div class="loadmore mod_loading" style="visibility: hidden;"><div class="animate"></div></div>
-                </div>
-
-                <div class="tab_content slidepage-page" id="list2" data-hash-name="#t-list2">
-                    <div class="region grid-gallery cols1 datalist">
-                        <div class="region tipbox nothing">
-                            <div class="main">
-                                <p>没有内容</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tab_content slidepage-page" id="list3" data-hash-name="#t-list3">
-                    <div class="region grid-gallery cols1 datalist">
-                        <div class="region tipbox nothing">
-                            <div class="main">
-                                <p>没有内容</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
 
         </div><!-- end main content-->
 
@@ -121,7 +86,7 @@
                 <ul>
                     <li class="current"><a class="icon-home-active" href="../"><span class="navname">首页</span></a></li>
                     <li><a class="icon-plane-active" href="#"><span class="navname">分类</span></a></li>
-                    <li><a class="icon-guide-active" href="#"><span class="navname">购物车</span></a></li>
+                    <li><a class="icon-guide-active" href="#"><span class="navname">指南</span></a></li>
                     <li><a class="icon-manage-active" href="#"><span class="navname">管理</span></a></li>
                     <li><a class="icon-user-active" href="#"><span class="navname">我的</span></a></li>
                 </ul>
@@ -146,9 +111,27 @@
         </a>
         {{/each}}
     </script>
+
+
+    <div class="singleContent" id="pfunction">
+        <div class="header">
+            <div class="icon close"></div>
+            <h1 class="title">选择主题</h1>
+        </div>
+        <div class="main datalist line-box">
+            <a class="item" href="#" data-pfunction="free">
+                <span class="label">自由行</span>
+            </a>
+            <a class="item" href="#" data-pfunction="group">
+                <span class="label">旅行团</span>
+            </a>
+        </div>
+    </div>
+
 </div>
 
 <script type="text/javascript" src="../_res/libs/jquery/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../_res/libs/swiper/3.2.5/js/swiper.min.js"></script>
 <script type="text/javascript" src="../_res/libs/artTemplate/3.0/template.js"></script>
 <script type="text/javascript" src="../_res/libs/artTemplate/3.0/template-helper.js"></script>
 
@@ -157,6 +140,7 @@
 <script type="text/javascript" src="../_res/js/common.js?ver=1.1.0"></script>
 
 <script type="text/javascript" src="../_res/js/module/selectorWin.js"></script>
+<script type="text/javascript" src="../_res/js/module/banner.js"></script>
 <script type="text/javascript" src="../_res/js/product/list.js"></script>
 
 <!-- <script type="text/javascript">

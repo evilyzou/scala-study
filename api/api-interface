@@ -43,7 +43,7 @@
   }
 ]
 2.获取所有商品
-/product/list?systemType=1&customType=1&pfunction=group
+/product/list?systemType=1&customType=1&pfunction=group&subCategory=北海
 systemType: 类型,1 代表日本，2 代表中国江南
 customType: 自定义类型: 1 代表 观光, 2: 滑雪, 3: 单车, 4: 温泉, 5: 亲水, 6: 休闲, -1 其他
 

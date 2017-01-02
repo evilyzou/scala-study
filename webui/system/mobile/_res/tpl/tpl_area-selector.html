@@ -2,6 +2,7 @@
 	<div class="header">
 		<div class="icon close"></div>
 		<h1 class="title">地区选择</h1>
+        <!-- <div class="link finish">完成</div> -->
 	</div>
 	<div class="main datalist line-box mod_selectBox selectBox">
 	</div>
@@ -12,8 +13,9 @@
         <label class="item" for="selectitem{{item.id}}">
             <span class="label">
             	<input type="{{checkType}}" name="selectitem" data-id="{{item.id}}" id="selectitem{{item.id}}"
-                    data-json='{"id": "{{item.id}}", "name": "{{item.name}}", "price": "{{item.price}}", "picture": "{{imgDomain}}/{{item.firstPic}}"}'
-                    data-checkbox-group="checkgroup-product-selector" data-checkbox-type="item" style="display:none;">
+                    data-constValue='{{item.constValue}}'
+                    data-json='{"id": "{{item.id}}", "constValue": "{{item.constValue}}", "constCategory": "{{item.constCategory}}"}'
+                    data-checkbox-group="checkgroup-subCategorys-selector" data-checkbox-type="item" style="display:none;">
             	{{item.constValue}}
         	</span>
             <div class="content member-nick">
@@ -25,5 +27,3 @@
         {{/each}}
     </script>
 </div>
-
-

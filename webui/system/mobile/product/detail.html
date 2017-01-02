@@ -61,8 +61,10 @@
                 <div class="detail-box" id="product-detail">
 
                     <h2 class="title">{{data.product.title}}</h2>
-                    <strong class="price" data-prefix="￥">{{data.product.price}}</strong>起
-                    <span class="tagtxt">{{data.product.pfunction}}</span>
+                    <div class="tags">
+                        <span class="tagtxt">{{data.product.pfunction}}</span>
+                    </div>
+                    <strong class="price" data-prefix="￥">{{price(data.product.price)}}</strong>起
                 </div>
 
                 {{if data.productParams}}
@@ -132,8 +134,7 @@
                             {{each parseJson(data.productExt.feature) as productFeature}}
                                 {{if productFeature.key =='textarea'}}
                                     {{productFeature.value}}
-                                {{/if}}
-                                {{if productFeature.key =='image'}}
+                                {{else if productFeature.key =='image'}}
                                     {{each productFeature.value as productFeatureImg}}
                                         <img src="{{productFeatureImg.pictureUrl}}@750w_80Q" data-picture-id="{{productFeatureImg.pictureId}}">
                                     {{/each}}
@@ -153,51 +154,56 @@
                             <div class="mod-traffic">
                                 <h4 class="sub-title">参考往返交通</h4>
                                 <div class="list">
+                                    {{each parseJson(data.productExt.toBackTraffic) as productToBackTraffic}}
                                     <div class="item plane">
                                         <div class="g-flexbox">
                                             <div class="return">去</div>
-                                            <div class="flex dd">东方航空 MU557</div>
-                                            <div class="dd">空客319(中)</div>
+                                            <div class="flex dd">
+                                                {{if productToBackTraffic.from == 'flight'}}航空{{/if}}
+                                                {{productToBackTraffic.fromFlightNo}}</div>
+                                            <div class="dd">{{productToBackTraffic.fromPlanType}}</div>
                                         </div>
                                         <div class="g-flexbox">
-                                            <div class="dd">09:25</div>
+                                            <div class="dd">{{productToBackTraffic.fromDepTime}}</div>
                                             <div class="flex ta-c">
-                                                <div class="date"><span class="before"></span>02时05分<span class="after"></span></div>
+                                                <div class="date"><span class="before"></span>{{if productToBackTraffic.fromTimeCount}}{{productToBackTraffic.fromTimeCount}}{{else}}&rarr;{{/if}}<span class="after"></span></div>
                                             </div>
-                                            <div class="dd">12:30</div>
+                                            <div class="dd">{{productToBackTraffic.fromArrTime}}</div>
                                         </div>
                                         <div class="g-flexbox">
-                                            <div class="dd flex">上海</div>
-                                            <div class="dd">小松</div>
+                                            <div class="dd flex">{{productToBackTraffic.fromDepCity}}</div>
+                                            <div class="dd">{{productToBackTraffic.fromArrCity}}</div>
                                         </div>
                                         <div class="g-flexbox">
-                                            <div class="sub-cont flex">浦东机场T1</div>
-                                            <div class="sub-cont">小松机场</div>
+                                            <div class="sub-cont flex">{{productToBackTraffic.fromDepAirPort}}</div>
+                                            <div class="sub-cont">{{productToBackTraffic.fromArrAirPort}}</div>
                                         </div>
                                     </div>
                                     <div class="item plane">
                                         <div class="g-flexbox">
                                             <div class="return">返</div>
-                                            <div class="flex dd">东方航空 MU558</div>
-                                            <div class="dd">空客319(中)</div>
+                                            <div class="flex dd">
+                                                {{if productToBackTraffic.back == 'flight'}}航空{{/if}}
+                                                {{productToBackTraffic.toFlightNo}}</div>
+                                            <div class="dd">{{productToBackTraffic.toPlanType}}</div>
                                         </div>
                                         <div class="g-flexbox">
-                                            <div class="dd">13:30</div>
+                                            <div class="dd">{{productToBackTraffic.toDepTime}}</div>
                                             <div class="flex ta-c">
-                                                <div class="date"><span class="before"></span>02时30分<span class="after"></span>
-                                                </div>
+                                                <div class="date"><span class="before"></span>{{if productToBackTraffic.toTimeCount}}{{productToBackTraffic.toTimeCount}}{{else}}&rarr;{{/if}}<span class="after"></span></div>
                                             </div>
-                                            <div class="dd">15:00</div>
+                                            <div class="dd">{{productToBackTraffic.toArrTime}}</div>
                                         </div>
                                         <div class="g-flexbox">
-                                            <div class="dd flex">小松</div>
-                                            <div class="dd">上海</div>
+                                            <div class="dd flex">{{productToBackTraffic.toDepCity}}</div>
+                                            <div class="dd">{{productToBackTraffic.toArrCity}}</div>
                                         </div>
                                         <div class="g-flexbox">
-                                            <div class="sub-cont flex">小松机场</div>
-                                            <div class="sub-cont">浦东机场</div>
+                                            <div class="sub-cont flex">{{productToBackTraffic.toDepAirPort}}</div>
+                                            <div class="sub-cont">{{productToBackTraffic.toArrAirPort}}</div>
                                         </div>
                                     </div>
+                                    {{/each}}
                                 </div>
 
                             </div>
@@ -215,26 +221,38 @@
                         <div class="main">
                             <div class="mod-hotel">
                                 <div class="list">
-                                    <div class="item">
-                                        <div class="name">HOTEL HARVEST</div>
+                                    {{each parseJson(data.productExt.hotelInfo) as productHotelInfo}}
+                                    <div class="item" data-infra-id="{{productHotelInfo.infraId}}">
+                                        <div class="name">{{productHotelInfo.infraName}}</div>
                                         <div class="imglist g-flexbox">
-                                            <img src="http://img1.qunarzz.com/p/tts2/1610/da/42d6d801cfc83e02.jpg_r_440x293x90_bec63224.jpg" alt="酒店" class="pic">
+                                            {{if productHotelInfo.infraImage}}{{productHotelInfo.infraImage}}{{/if}}
+                                            <!-- <img src="http://img1.qunarzz.com/p/tts2/1610/da/42d6d801cfc83e02.jpg_r_440x293x90_bec63224.jpg" alt="酒店" class="pic"> -->
                                             <div class="info">
-                                                <h4 class="sub-title">Tilte</h4>
-                                                <p class="sub-cont"><span class="txt">双床</span><span class="txt">双人间</span></p>
-                                                <div class="include">
+                                                <h4 class="sub-title">{{productHotelInfo.roomName}}</h4>
+                                                <p class="sub-cont"><span class="txt">{{productHotelInfo.bedType}}</span></p>
+                                                <!-- <div class="include">
                                                     <span class="icon-breakfast"></span>
                                                     <span class="sub-cont-regular">西式早餐（免费）</span>
                                                     <span class="icon-wifi"></span>
                                                     <span class="sub-cont-regular">无网络</span>
-                                                </div>
+                                                </div> -->
                                             </div>
                                         </div>
-                                        <div class="location"><span class="icon-location"></span><span class="sub-cont-regular">911-0000 福井県勝山市勝山170−70</span></div>
-                                        <h4 class="sub-title">参考往返交通</h4>
+                                        <!-- <div class="location"><span class="icon-location"></span><span class="sub-cont-regular">911-0000 福井県勝山市勝山170−70</span></div> -->
+                                        <!-- <h4 class="sub-title">参考往返交通</h4> -->
                                         <div class="desc content">
-                                            • 位於日本海側的福井縣，是西日本最大的滑雪渡假村<br>• 東急集團旗下的優質渡假村，吃好住好，渡假好悠閒<br>• 住宿Hotel Harvest可ski in/ski out輕鬆享受滑雪樂趣<br>• 溫馨的洋室或和洋式房，2~4人一室寬敞舒適<br>• SPA天然溫泉大浴場、露天風呂，硫磺炭酸塩泉質，舒緩您的身心<br>• 游泳池、休閒渡假設施完善，適合全家同遊<br>• 自助式早晚餐，日本海漁獲與在地新鮮食材精製，料理美味多樣<img data-lazy="http://img1.qunarzz.com/p/tts2/1610/da/42d6d801cfc83e02.jpg_r_750x500x90_906beed4.jpg" alt="" src="http://img1.qunarzz.com/p/tts2/1610/da/42d6d801cfc83e02.jpg_r_750x500x90_906beed4.jpg" class="loaded"><img data-lazy="http://img1.qunarzz.com/p/tts8/1610/3d/a16311a6d2677402.jpg_r_750x500x90_af7b091a.jpg" alt="" src="http://img1.qunarzz.com/p/tts8/1610/3d/a16311a6d2677402.jpg_r_750x500x90_af7b091a.jpg" class="loaded"><img data-lazy="http://img1.qunarzz.com/p/tts0/1610/12/c1cf75dcc5991902.jpg_r_750x500x90_6b46442e.jpg" alt="" src="http://img1.qunarzz.com/p/tts0/1610/12/c1cf75dcc5991902.jpg_r_750x500x90_6b46442e.jpg" class="loaded"><img data-lazy="http://img1.qunarzz.com/p/tts9/1610/18/77305ad8cb0e3302.jpg_r_750x500x90_5c06b22c.jpg" alt="" src="http://img1.qunarzz.com/p/tts9/1610/18/77305ad8cb0e3302.jpg_r_750x500x90_5c06b22c.jpg" class="loaded"></div>
+                                            {{each productHotelInfo.richText as productHotelInfoRichText}}
+                                                {{if productHotelInfoRichText.key =='textarea'}}
+                                                    {{productHotelInfoRichText.value}}
+                                                {{else if productHotelInfoRichText.key =='image'}}
+                                                    {{each productHotelInfoRichText.value as productHotelInfoRichTextImg}}
+                                                        <img src="{{productHotelInfoRichTextImg.pictureUrl}}@750w_80Q" data-picture-id="{{productHotelInfoRichTextImg.pictureId}}">
+                                                    {{/each}}
+                                                {{/if}}
+                                            {{/each}}
+                                        </div>
                                     </div>
+                                    {{/each}}
                                 </div>
 
                             </div>
@@ -272,11 +290,10 @@
                                             <div class="sub-txt">
                                                 <div class="bd">
                                                 {{if productScheduleDays.richText}}
-                                                {{each parseJson(productScheduleDays.richText) as productScheduleDaysRichText}}
+                                                {{each productScheduleDays.richText as productScheduleDaysRichText}}
                                                     {{if productScheduleDaysRichText.key =='textarea'}}
                                                         {{productScheduleDaysRichText.value}}
-                                                    {{/if}}
-                                                    {{if productScheduleDaysRichText.key =='image'}}
+                                                    {{else if productScheduleDaysRichText.key =='image'}}
                                                         {{each productScheduleDaysRichText.value as productScheduleDaysRichTextImg}}
                                                             <img src="{{productScheduleDaysRichTextImg.pictureUrl}}@750w_80Q" data-picture-id="{{productScheduleDaysRichTextImg.pictureId}}">
                                                         {{/each}}
@@ -330,8 +347,8 @@
         <div class="container bottom-bar">
             <div class="main shopping-tool">
                 <div class="txtcol">
-                    <strong class="" data-prefix="">上海-日本</strong>
-                    <small>产品编号：678909876</small>
+                    <strong class="product-arrive-depart"></strong>
+                    <small class="product-no" data-prefix="产品编号："></small>
                 </div>
                 <div class="btnbox fit">
                     <a class="btn fit popContent" data-target="helpContent" data-content-url="/_res/tpl/tpl_helpcontent.html" href="#">咨询客服</a>
