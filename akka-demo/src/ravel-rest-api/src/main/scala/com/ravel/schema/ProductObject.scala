@@ -34,5 +34,13 @@ object ProductObject {
     }
   }
 
-  case class ProductView(product: Map[String, Any], productExt: Map[String, Any], productOther: Map[String, Any], productPrices: Seq[Map[String, Any]])
+  case class ProductView(productParams: List[Map[String, Any]], product: Map[String, Any], productExt: Map[String, Any], productOther: Map[String, Any], productPrices: Seq[Map[String, Any]])
+
+  object ProductView {
+    def apply(product: Map[String, Any], productExt: Map[String, Any], productOther: Map[String, Any], productPrices: Seq[Map[String, Any]]) = {
+      val productParams = List(Map("name"->"产品编号", "content"->product.getOrElse("teamNo", "")))
+      val productWithMinPrice = product + ("price"-> 8800)
+      new ProductView(productParams, productWithMinPrice, productExt, productOther,  productPrices )
+    }
+  }
 }

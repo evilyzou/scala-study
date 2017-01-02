@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat
 
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
 import com.ravel.schema.GuideObject.GuideView
+import com.ravel.schema.ProductObject
 import com.ravel.schema.ProductObject._
 import org.joda.time.LocalDateTime
 import scala.collection.immutable.Map
@@ -75,6 +76,6 @@ object MyJsonSupport extends  DefaultJsonProtocol with SprayJsonSupport with Pro
 
   implicit val guideViewFormat = jsonFormat8(GuideView)
 
-  implicit val productFormat = jsonFormat4(ProductView)
+  implicit val productFormat = jsonFormat5(ProductView.apply)
 
 }
