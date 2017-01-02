@@ -2,6 +2,8 @@ package com.ravel.resources
 
 import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
 import akka.http.scaladsl.server._
+import com.ravel.resources.JsonResultRoute.JsonResultKeys._
+import com.ravel.resources.JsonResultRoute._
 import com.ravel.resources.MyJsonSupport._
 import com.ravel.services.GuideService
 import spray.json._
@@ -23,8 +25,8 @@ object GuideSearchFilter {
   customTypeMap += ("GuideCustomMS" ->4)
   customTypeMap += ("GuideCustomHX" ->5)
   customTypeMap += ("GuideCustomQJ" ->6)
-  customTypeMap += ("GuideCustomQS" -> -1)
-  customTypeMap += ("GuideCustomWQ" -> -1)
+  customTypeMap += ("GuideCustomQS" -> 7)
+  customTypeMap += ("GuideCustomWQ" -> 8)
   val guideTypeMap = Map("GuideRecord" -> 1, "GuidePage" -> 2)
 
   def apply(systemType:String, customType: String, guideType: String,mainCategory: String = "", subCategory: String = "", start: Int = 0, size: Int = 10): GuideSearchFilter = {
@@ -59,7 +61,9 @@ trait GuideResource extends Directives{
           val guideResult = for(guideFuture <- GuideService.get(id)) yield guideFuture
           onSuccess(guideResult) {
             case guide =>{
-              complete(HttpEntity(ContentTypes.`application/json`, guide.toJson.compactPrint.getBytes("UTF-8")))
+              val map = Map(SingleDataJson.head -> guide )
+              val jsonResult: Result[Map[String, Any]]  = Right(Success(map))
+              complete(toStandardRoute(jsonResult))
             }
           }
         }
