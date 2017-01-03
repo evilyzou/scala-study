@@ -12,7 +12,7 @@ import scala.collection.immutable.Map
  * Created by CloudZou on 12/13/16.
  */
 object GuideService extends QueryService{
-  def list(filter: GuideSearchFilter) : Future[Seq[GuideView]] = {
+  def list(filter: GuideSearchFilter) = {
     GuideSearch.queryGuides(filter)
   }
 

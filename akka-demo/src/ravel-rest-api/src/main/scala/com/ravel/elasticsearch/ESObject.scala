@@ -38,9 +38,9 @@ object ProductSearch {
                   .setExplain(false)
 
     val boolQueryBuilder = QueryBuilders.boolQuery()
-    boolQueryBuilder.must(QueryBuilders.termQuery("systemType", filter.systemType))
-    boolQueryBuilder.must(QueryBuilders.termQuery("customType", filter.customType))
-    boolQueryBuilder.must(QueryBuilders.termQuery("pfunction", filter.pfunction))
+    boolQueryBuilder.must(QueryBuilders.termQuery("systemType", filter.systemType.toLowerCase))
+    boolQueryBuilder.must(QueryBuilders.termQuery("customType", filter.customType.toLowerCase))
+    boolQueryBuilder.must(QueryBuilders.termQuery("pfunction", filter.pfunction.toLowerCase))
     if(!filter.mainCategory.isEmpty) {
       boolQueryBuilder.must(QueryBuilders.termQuery("mainCategory", filter.mainCategory))
     }
@@ -60,7 +60,10 @@ object ProductSearch {
     val responses = respFuture.map { response =>
       import com.ravel.schema.ProductObject._
       val hits = response.getHits
-      (hits.totalHits(), hits.getHits.toSeq.map(e=>mapToSearchProduct(e.sourceAsMap().toMap)))
+      (hits.totalHits(), hits.getHits.toSeq.map(e=>{
+        val t = e.sourceAsMap()
+        mapToSearchProduct(t.toMap)
+      }))
     }
 
     responses recover { case cause => throw new Exception("Something went wrong", cause) }
@@ -71,7 +74,7 @@ object ProductSearch {
 object GuideSearch {
   import ESClient._
 
-  def queryGuides(filter: GuideSearchFilter): Future[Seq[GuideView]] = {
+  def queryGuides(filter: GuideSearchFilter) = {
     val builder = client.prepareSearch(Config.esIndex)
       .setTypes(Config.esTypeGuide)
       .setSearchType(SearchType.DFS_QUERY_THEN_FETCH)
@@ -80,9 +83,9 @@ object GuideSearch {
       .setExplain(false)
 
     val boolQueryBuilder = QueryBuilders.boolQuery()
-    boolQueryBuilder.must(QueryBuilders.termQuery("systemType", filter.systemType))
-    boolQueryBuilder.must(QueryBuilders.termQuery("customType", filter.customType))
-    boolQueryBuilder.must(QueryBuilders.termQuery("guideType", filter.guideType))
+    boolQueryBuilder.must(QueryBuilders.termQuery("systemType", filter.systemType.toLowerCase))
+    boolQueryBuilder.must(QueryBuilders.termQuery("customType", filter.customType.toLowerCase))
+    boolQueryBuilder.must(QueryBuilders.termQuery("guideType", filter.guideType.toLowerCase))
     if(!filter.mainCategory.isEmpty) {
       boolQueryBuilder.must(QueryBuilders.termQuery("mainCategory", filter.mainCategory))
     }
@@ -98,7 +101,8 @@ object GuideSearch {
 
     val responses = respFuture.map { response =>
       import com.ravel.schema.GuideObject._
-      response.getHits.getHits.toSeq.map(e=>mapToSearchGuide(e.sourceAsMap().toMap))
+      val hits = response.getHits
+      (hits.totalHits, hits.getHits.toSeq.map(e=>mapToSearchGuide(e.sourceAsMap().toMap)))
     }
     responses
   }

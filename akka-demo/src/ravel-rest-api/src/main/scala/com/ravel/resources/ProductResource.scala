@@ -18,30 +18,31 @@ trait Pagination {
   def start: Int
   def size: Int
 }
-case class ProductSearchFilter(systemType: Int, customType: Int, pfunction: String, mainCategory: String, subCategory: String) extends Pagination{
+case class ProductSearchFilter(systemType: String, customType: String, pfunction: String, mainCategory: String, subCategory: String) extends Pagination{
   override def start : Int = 0
   override def size: Int = 10
 }
-object ProductSearchFilter {
-  val systemTypeMap = Map("SystemJapan" -> 1, "SystemJiangNan" ->2, "SystemOther" -> -1)
-  var customTypeMap: Map[String, Int] = Map()
-  customTypeMap += ("CustomGG" ->1)
-  customTypeMap += ("CustomHX" ->2)
-  customTypeMap += ("CustomDC" ->3)
-  customTypeMap += ("CustomQX" ->4)
-  customTypeMap += ("CustomQS" ->5)
-  customTypeMap += ("CustomXX" ->6)
-  customTypeMap += ("CustomOther" -> -1)
-  def apply(systemType:String, customType: String, pfunction: String,mainCategory: String = "", subCategory: String = "", start: Int = 0, size: Int = 10): ProductSearchFilter = {
-    val begin = start * size
-    val nubmer = size
-    new ProductSearchFilter(systemTypeMap.get(systemType).getOrElse(-1),
-                          customTypeMap.get(customType).getOrElse(-1), pfunction, mainCategory, subCategory) {
-      override def start = begin
-      override def size = nubmer
-    }
-  }
-}
+//object ProductSearchFilter {
+//  val systemTypeMap = Map("SystemJapan" -> 1, "SystemJiangNan" ->2, "SystemOther" -> 0)
+//  var customTypeMap: Map[String, Int] = Map()
+//  customTypeMap += ("CustomGG" ->1)
+//  customTypeMap += ("CustomHX" ->2)
+//  customTypeMap += ("CustomDC" ->3)
+//  customTypeMap += ("CustomQX" ->4)
+//  customTypeMap += ("CustomQS" ->5)
+//  customTypeMap += ("CustomXX" ->6)
+//  customTypeMap += ("CustomOther" -> 0)
+//  def apply(systemType:String, customType: String, pfunction: String,mainCategory: String = "", subCategory: String = "", start: Int = 0, size: Int = 10): ProductSearchFilter = {
+//    val begin = start * size
+//    val nubmer = size
+////    new ProductSearchFilter(systemTypeMap.get(systemType).getOrElse(-1),
+////                          customTypeMap.get(customType).getOrElse(-1), pfunction, mainCategory, subCategory) {
+////      override def start = begin
+////      override def size = nubmer
+////    }
+//
+//  }
+//}
 
 
 trait ProductResource extends Directives {
@@ -51,7 +52,7 @@ trait ProductResource extends Directives {
         parameters('systemType, 'customType, 'pfunction, 'start ? 0, 'size ? 10) {
           (systemType, customType, pfunction, start, size) => {
             import JsonResultRoute._
-            val filter = ProductSearchFilter(systemType,customType, pfunction)
+            val filter = ProductSearchFilter(systemType,customType, pfunction, "", "")
             val listFuture = ProductSearch.queryProducts(filter)
             onSuccess(listFuture) {
               case list =>{
