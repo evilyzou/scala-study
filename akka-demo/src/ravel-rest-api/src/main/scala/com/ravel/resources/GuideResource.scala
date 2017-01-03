@@ -20,9 +20,10 @@ trait GuideResource extends Directives{
   def guideRoutes: Route = pathPrefix("guide"){
     path("list") {
       get {
-        parameters('systemType, 'customType, 'guideType, 'start ? 0, 'size ? 10) {
-          (systemType, customType, guideType, start, size) => {
-            val filter = GuideSearchFilter(customType, systemType, guideType, "", "")
+        parameters('systemType ? "SystemJiangNan", 'customType ? "GuideCustomQY", 'guideType ? "GuideRecord",
+            'mainCategory ? "", 'subCategory ? "", 'start ? 0, 'size ? 10) {
+          (systemType, customType, guideType, mainCategory, subCategory, start, size) => {
+            val filter = GuideSearchFilter(customType, systemType, guideType, mainCategory, subCategory)
             val flist = GuideService.list(filter)
             onSuccess(flist) {
               case list => {

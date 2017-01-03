@@ -91,7 +91,7 @@ object GuideSearch {
     }
 
     if(!filter.subCategory.isEmpty) {
-      boolQueryBuilder.must(QueryBuilders.queryStringQuery(filter.subCategory).field("subCategory"))
+      boolQueryBuilder.must(QueryBuilders.termQuery("subCategory", filter.subCategory))
     }
 
     builder.setQuery(boolQueryBuilder)
