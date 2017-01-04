@@ -15,7 +15,7 @@ onLoad in Global := (onLoad in Global).value andThen (Command.process("project r
 lazy val ravelRestApi = project.in(file("src/ravel-rest-api")).settings(commonSettings: _*)
   .settings(filterSettings: _*)
   .settings(
-    scalacOptions := Seq("-unchecked", "-deprecation", "feature"),
+    scalacOptions := Seq("-unchecked", "-deprecation", "-feature"),
     mainClass in (Compile, run) := Some("com.ravel.Application"),
     logBuffered in Test := false
   )
