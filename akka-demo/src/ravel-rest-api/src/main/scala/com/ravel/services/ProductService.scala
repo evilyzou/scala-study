@@ -43,12 +43,20 @@ object ProductService extends QueryService{
             }
             case _ => throw new DeserializationException("ProductHotel expected")
           }
-          Some(productHotel)
+          (result, Some(productHotel))
         }
-        case None => None
+        case None => (result, None)
       }
-    } map { productHotel =>
-        productHotel
+    } map { result =>
+      val productHotel = result._2
+      productHotel match {
+        case Some(ph) => {
+          for {
+            infra <- single(infraQuery(ph.infraId))
+            infraDescs <-
+          }
+        }
+      }
     }
   }
   def getProductPrices(productId: Int): Future[Seq[Map[String, Any]]] = {
