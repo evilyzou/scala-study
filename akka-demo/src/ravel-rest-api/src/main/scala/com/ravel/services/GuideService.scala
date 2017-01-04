@@ -1,7 +1,6 @@
 package com.ravel.services
 
 import com.ravel.resources.GuideSearchFilter
-import com.ravel.schema.GuideObject.GuideView
 import com.ravel.elasticsearch.GuideSearch
 
 import scala.collection._

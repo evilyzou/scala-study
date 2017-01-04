@@ -4,14 +4,11 @@ import java.sql.Timestamp
 import java.text.SimpleDateFormat
 
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
-import com.ravel.schema.GuideObject.GuideView
-import com.ravel.schema.ProductObject
-import com.ravel.schema.ProductObject._
+import com.ravel.model.RavelObject._
+import com.ravel.model.RavelObject._
 import org.joda.time.LocalDateTime
 import scala.collection.immutable.Map
-import scala.collection.mutable.ArrayBuffer
 
-//import com.ravel.extension.spray.ProductFormatsExtensionInstances
 import java.util.Date
 
 import spray.json._
@@ -60,6 +57,9 @@ object MyJsonSupport extends  DefaultJsonProtocol with SprayJsonSupport with Pro
       case spv: SearchProductView => searchProductFormat.write(spv)
       case pv: ProductView => productFormat.write(pv)
       case gvf: GuideView => guideViewFormat.write(gvf)
+      case infra: Infra => infraFormat.write(infra)
+      case infraFeature: InfraFeature => infraFeatureFormat.write(infraFeature)
+      case infraDesc: InfraDesc => infraDescFormat.write(infraDesc)
       case _ => JsNull
       case x => serializationError("Do not understand object of type " + x.getClass.getName)
     }
@@ -71,8 +71,13 @@ object MyJsonSupport extends  DefaultJsonProtocol with SprayJsonSupport with Pro
     }
   }
 
-  implicit val searchProductFormat = jsonFormat15(SearchProductView)
-  implicit val guideViewFormat = jsonFormat8(GuideView)
+  implicit val searchProductFormat = jsonFormat15(SearchProductView.apply)
+  implicit val guideViewFormat = jsonFormat8(GuideView.apply)
   implicit val productFormat = jsonFormat5(ProductView.apply)
+  implicit val infraFeatureFormat = jsonFormat2(InfraFeature)
+  implicit val infraDescFormat = jsonFormat2(InfraDesc)
+  implicit val infraFormat = jsonFormat7(Infra)
+  implicit val productHotelFormat = jsonFormat6(ProductHotel)
+
 
 }

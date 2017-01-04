@@ -1,14 +1,14 @@
 package com.ravel.services
 
-import com.github.mauricio.async.db.ResultSet
 import com.ravel.Config._
-import com.ravel.async._
 import com.ravel.elasticsearch.ProductSearch
+import com.ravel.model.RavelObject._
 import com.ravel.resources.ProductSearchFilter
-import com.ravel.schema.ProductObject._
+import spray.json.DeserializationException
 
 import scala.concurrent.Future
-import scala.collection.breakOut
+import com.ravel.resources.MyJsonSupport._
+import spray.json._
 
 /**
  * Created by CloudZou on 12/9/16.
@@ -29,49 +29,51 @@ object ProductService extends QueryService{
 
   def getProductExt(productId: Int) = {
     val query = s"select * from product_ext where product_id=${productId}"
+    single(query) map { productExt =>
+      productExt.get("hotelInfo") match {
+        case Some(x: String) => {
+          import spray.json._
+          val hotels = x.parseJson.convertTo[Seq[ProductHotel]]
+          (productExt, Some(hotels.head))
+        }
+        case _ => (productExt, None)
+      }
+    } flatMap { result =>
+      getProductInfra(result)
+    }
+  }
+  def getProductInfra(result: (Map[String, Any], Option[ProductHotel])): Future[(Map[String, Any], Infra)] = {
     def infraQuery(id: Int) = s"select * from infrastructure where id=${id}"
     def infraDescQuery(id: Int) = s"select * from infrastructure_desc where infra_id=${id}"
 
-    single(query) map { result =>
-      import spray.json._
-      result.get("hotel_info") match {
-        case Some(x: String) => {
-          val jsObject = x.parseJson.asJsObject
-          val productHotel = jsObject.getFields("infraId", "infraName", "bookDay", "roomName", "bedType", "roomType") match {
-            case Seq(JsNumber(infraId), JsString(infraName), JsNumber(bookDay), JsString(roomName), JsString(bedType), JsNumber(roomType)) => {
-              ProductHotel(infraId.toInt, infraName, bookDay.toInt, roomName, bedType, roomType.toInt)
-            }
-            case _ => throw new DeserializationException("ProductHotel expected")
+    result._2 match {
+      case Some(p) => {
+        val infraId = p.infraId.toInt
+        for {
+          infra <- single(infraQuery(infraId))
+          infraDescs <- mulptile(infraDescQuery(infraId))
+        } yield {
+          val infraFeature = infra.get("feature") match {
+            case Some(x: String) =>
+              x.parseJson.convertTo[InfraFeature]
+            case _ => throw new DeserializationException("InfraFeature expected")
           }
-          (result, Some(productHotel))
-        }
-        case None => (result, None)
-      }
-    } map { result =>
-      val productHotel = result._2
-      productHotel match {
-        case Some(ph) => {
-          for {
-            infra <- single(infraQuery(ph.infraId))
-            infraDescs <-
+          val infraDescSeq = infraDescs map { infraDesc =>
+            InfraDesc(infraDesc.get("content"), infraDesc.get("content_picture_url"))
           }
+          val infraObject = Infra(infra.get("type"), infra.get("title"), infra.get("city"), infra.get("address"), infra.get("phone"),
+            infraFeature, infraDescSeq)
+          (result._1, infraObject)
         }
       }
+      case _ => throw new scala.RuntimeException("error product feature")
     }
   }
+
   def getProductPrices(productId: Int): Future[Seq[Map[String, Any]]] = {
     val query =s"select * from product_price_by_team where product_id=${productId}"
-    queryFuture(query) { optionResultSet =>
-      optionResultSet match {
-        case Some(resultSet) if resultSet.size > 0 =>  {
-          resultSet map { result =>
-            resultSet.columnNames.map(x => (capitalizeName(x), result(x)))(breakOut).toMap
-          }
-        }
-        case Some(resultSet) if resultSet.size == 0 => Seq.empty
-        case None => Seq.empty
-      }
-    }
+    mulptile(query)
   }
+
 
 }

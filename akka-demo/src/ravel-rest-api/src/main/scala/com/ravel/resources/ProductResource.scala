@@ -3,7 +3,7 @@ package com.ravel.resources
 import akka.http.scaladsl.model.{HttpEntity, ContentTypes}
 import akka.http.scaladsl.server.{Directives, Route}
 import com.ravel.elasticsearch.ProductSearch
-import com.ravel.schema.ProductObject.{SearchProductView, ProductView}
+import com.ravel.model.RavelObject._
 import com.ravel.services.{ProductService, SettingService}
 import com.ravel.resources.JsonResultRoute._
 import JsonResultRoute.JsonResultKeys._
@@ -22,28 +22,6 @@ case class ProductSearchFilter(systemType: String, customType: String, pfunction
   override def start : Int = 0
   override def size: Int = 10
 }
-//object ProductSearchFilter {
-//  val systemTypeMap = Map("SystemJapan" -> 1, "SystemJiangNan" ->2, "SystemOther" -> 0)
-//  var customTypeMap: Map[String, Int] = Map()
-//  customTypeMap += ("CustomGG" ->1)
-//  customTypeMap += ("CustomHX" ->2)
-//  customTypeMap += ("CustomDC" ->3)
-//  customTypeMap += ("CustomQX" ->4)
-//  customTypeMap += ("CustomQS" ->5)
-//  customTypeMap += ("CustomXX" ->6)
-//  customTypeMap += ("CustomOther" -> 0)
-//  def apply(systemType:String, customType: String, pfunction: String,mainCategory: String = "", subCategory: String = "", start: Int = 0, size: Int = 10): ProductSearchFilter = {
-//    val begin = start * size
-//    val nubmer = size
-////    new ProductSearchFilter(systemTypeMap.get(systemType).getOrElse(-1),
-////                          customTypeMap.get(customType).getOrElse(-1), pfunction, mainCategory, subCategory) {
-////      override def start = begin
-////      override def size = nubmer
-////    }
-//
-//  }
-//}
-
 
 trait ProductResource extends Directives {
   def productRoutes: Route = pathPrefix("product"){
@@ -75,7 +53,8 @@ trait ProductResource extends Directives {
           productOther <- ProductService.getProductOther(id)
           productPriceByTeams <- ProductService.getProductPrices(id)
         } yield {
-            ProductView(product, productExt, productOther, productPriceByTeams)
+            val pe = productExt._1 + ("feature" -> productExt._2)
+            ProductView(product, pe, productOther, productPriceByTeams)
         }
         onSuccess(resultFuture) { case product =>{
             val map = Map(SingleDataJson.head -> product )

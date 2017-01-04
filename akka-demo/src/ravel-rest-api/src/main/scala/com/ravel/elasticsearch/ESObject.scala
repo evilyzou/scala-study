@@ -4,8 +4,6 @@ import java.net.InetAddress
 
 import com.ravel.Config
 import com.ravel.resources.{GuideSearchFilter, ProductSearchFilter}
-import com.ravel.schema.GuideObject.GuideView
-import com.ravel.schema.ProductObject.SearchProductView
 import org.elasticsearch.action.search.{SearchResponse, SearchType}
 import org.elasticsearch.client.Client
 import org.elasticsearch.client.transport.TransportClient
@@ -15,6 +13,8 @@ import org.elasticsearch.index.query.QueryBuilders
 import scala.collection.JavaConversions._
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
+import com.ravel.util.MapConverterImplicits._
+import com.ravel.model.RavelObject._
 
 /**
  * Created by CloudZou on 12/27/2016.
@@ -58,12 +58,8 @@ object ProductSearch {
     }
 
     val responses = respFuture.map { response =>
-      import com.ravel.schema.ProductObject._
       val hits = response.getHits
-      (hits.totalHits(), hits.getHits.toSeq.map(e=>{
-        val t = e.sourceAsMap()
-        mapToSearchProduct(t.toMap)
-      }))
+      (hits.totalHits(), hits.getHits.toSeq.map(e=>e.sourceAsMap().toMap.convert[SearchProductView]))
     }
 
     responses recover { case cause => throw new Exception("Something went wrong", cause) }
@@ -100,9 +96,8 @@ object GuideSearch {
 
 
     respFuture.map { response =>
-      import com.ravel.schema.GuideObject._
       val hits = response.getHits
-      (hits.totalHits, hits.getHits.toSeq.map(e=>mapToSearchGuide(e.sourceAsMap().toMap)))
+      (hits.totalHits, hits.getHits.toSeq.map(e=>e.sourceAsMap().toMap.convert[GuideView]))
     }
   }
 }

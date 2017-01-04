@@ -24,6 +24,20 @@ trait QueryService {
     }
   }
 
+  def mulptile(query: String) = {
+    queryFuture(query) { optionResultSet =>
+      optionResultSet match {
+        case Some(resultSet) if resultSet.size > 0 =>  {
+          resultSet map { result =>
+            resultSet.columnNames.map(x => (capitalizeName(x), result(x)))(breakOut).toMap
+          }
+        }
+        case Some(resultSet) if resultSet.size == 0 => Seq.empty
+        case None => Seq.empty
+      }
+    }
+  }
+
   private[services] def capitalizeName(columnName: String): String = {
     val cn = columnName.split('_').map(_.capitalize).mkString("")
     Character.toLowerCase(cn.charAt(0)) + cn.substring(1)
@@ -35,4 +49,6 @@ trait QueryService {
       future map { queryResult => resultFunc(queryResult.rows) }
     }
   }
+
+
 }
