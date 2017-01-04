@@ -43,5 +43,24 @@ object ProductObject {
       val productWithMinPrice = product + ("price"-> 8800)
       new ProductView(productParams, productWithMinPrice, productExt, productOther,  productPrices )
     }
+
+    def buildProductHotel(hotelInfo: String) {
+      import spray.json._
+      import ProductObject._
+
+
+      if (hotelInfo != "") {
+        val hotelAst = hotelInfo.parseJson
+        val hotelMap = hotelAst.asJsObject.fields
+        ProductHotel(hotelMap.get("infraId"), hotelMap.get("infraName"), hotelMap.get("bookDay"), hotelMap.get("roomName"), hotelMap.get("bedType"),
+                    hotelMap.get("roomType"), Seq.empty)
+      }
+    }
   }
+
+  case class ProductHotel(infraId: Int, infraName: String, bookDay: Int, roomName: String, bedType: String, roomType: Int)
+
+  case class Infra(typ: String, title: String, city: String, address: String, phone: String, feature: InfraFeature, desc: Seq[InfraDesc])
+  case class InfraFeature(content: String, pictureId: String, pictureUrl: String)
+  case class InfraDesc(content: String, pictureUrl: String)
 }

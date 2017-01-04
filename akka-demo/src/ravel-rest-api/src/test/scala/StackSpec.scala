@@ -24,4 +24,13 @@ class StackSpec extends FlatSpec with Matchers{
     val s  = (List(1,2), List(5,5)).zipped.map(_ + _)
     assert (1 === 1)
   }
+
+  it should "yy" in {
+    val s: Option[String] = Some("")
+    s match {
+      case Some(x) => println("empty string")
+      case None => println("none string")
+    }
+    assert (1 === 1)
+  }
 }

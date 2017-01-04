@@ -75,7 +75,7 @@ trait ProductResource extends Directives {
           productOther <- ProductService.getProductOther(id)
           productPriceByTeams <- ProductService.getProductPrices(id)
         } yield {
-          ProductView(product, productExt, productOther, productPriceByTeams)
+            ProductView(product, productExt, productOther, productPriceByTeams)
         }
         onSuccess(resultFuture) { case product =>{
             val map = Map(SingleDataJson.head -> product )

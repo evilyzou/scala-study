@@ -49,7 +49,7 @@ object FilterPropertiesPlugin extends sbt.Plugin {
   }
 
   lazy val filterConfigPaths: Seq[Setting[_]] = Seq(
-    filterDirectory <<= (sourceDirectory, filterDirectoryName) apply { (d, name) =>{println(d / name); d / name  }},
+    filterDirectory <<= (sourceDirectory, filterDirectoryName) apply { (d, name) => d / name  },
     sourceDirectories in filters <<= Seq(filterDirectory).join,
     filters <<={
       val files = collectFiles(sourceDirectories in filters, includeFilter in filters, excludeFilter in filters)
@@ -132,7 +132,7 @@ object FilterPropertiesPlugin extends sbt.Plugin {
     }
 
     def apply(log: Logger, files: Seq[File], props: Map[String, String]): Unit = {
-      log.info("Filter properties: %s" format (props.mkString("{", ", ", "}")))
+//      log.info("Filter properties: %s" format (props.mkString("{", ", ", "}")))
       IO.withTemporaryDirectory { dir =>
         files foreach { src =>
           log debug ("Filtering %s" format src.absolutePath)

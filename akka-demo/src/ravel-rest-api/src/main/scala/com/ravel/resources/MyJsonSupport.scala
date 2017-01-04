@@ -29,7 +29,6 @@ object MyJsonSupport extends  DefaultJsonProtocol with SprayJsonSupport with Pro
 
     def read(json: JsValue) = json match {
       case JsNumber(time) => new Timestamp(time.toLong)
-
       case _ => throw new DeserializationException("Date expected")
     }
   }
@@ -73,9 +72,7 @@ object MyJsonSupport extends  DefaultJsonProtocol with SprayJsonSupport with Pro
   }
 
   implicit val searchProductFormat = jsonFormat15(SearchProductView)
-
   implicit val guideViewFormat = jsonFormat8(GuideView)
-
   implicit val productFormat = jsonFormat5(ProductView.apply)
 
 }

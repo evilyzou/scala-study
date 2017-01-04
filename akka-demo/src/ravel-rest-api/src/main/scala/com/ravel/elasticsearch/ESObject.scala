@@ -42,7 +42,7 @@ object ProductSearch {
     boolQueryBuilder.must(QueryBuilders.termQuery("customType", filter.customType.toLowerCase))
     boolQueryBuilder.must(QueryBuilders.termQuery("pfunction", filter.pfunction.toLowerCase))
     if(!filter.mainCategory.isEmpty) {
-      boolQueryBuilder.must(QueryBuilders.termQuery("mainCategory", filter.mainCategory))
+      boolQueryBuilder.must(QueryBuilders.queryStringQuery(filter.mainCategory).field("mainCategory"))
     }
 
     if(!filter.subCategory.isEmpty) {
@@ -87,11 +87,11 @@ object GuideSearch {
     boolQueryBuilder.must(QueryBuilders.termQuery("customType", filter.customType.toLowerCase))
     boolQueryBuilder.must(QueryBuilders.termQuery("guideType", filter.guideType.toLowerCase))
     if(!filter.mainCategory.isEmpty) {
-      boolQueryBuilder.must(QueryBuilders.termQuery("mainCategory", filter.mainCategory))
+      boolQueryBuilder.must(QueryBuilders.queryStringQuery(filter.mainCategory).field("mainCategory"))
     }
 
     if(!filter.subCategory.isEmpty) {
-      boolQueryBuilder.must(QueryBuilders.termQuery("subCategory", filter.subCategory))
+      boolQueryBuilder.must(QueryBuilders.queryStringQuery(filter.subCategory).field("subCategory"))
     }
 
     builder.setQuery(boolQueryBuilder)
@@ -99,11 +99,10 @@ object GuideSearch {
     val respFuture = RequestExecutor[SearchResponse].execute(builder)
 
 
-    val responses = respFuture.map { response =>
+    respFuture.map { response =>
       import com.ravel.schema.GuideObject._
       val hits = response.getHits
       (hits.totalHits, hits.getHits.toSeq.map(e=>mapToSearchGuide(e.sourceAsMap().toMap)))
     }
-    responses
   }
 }

@@ -27,9 +27,29 @@ object ProductService extends QueryService{
     single(query)
   }
 
-  def getProductExt(productId: Int): Future[Map[String, Any]] = {
+  def getProductExt(productId: Int) = {
     val query = s"select * from product_ext where product_id=${productId}"
-    single(query)
+    def infraQuery(id: Int) = s"select * from infrastructure where id=${id}"
+    def infraDescQuery(id: Int) = s"select * from infrastructure_desc where infra_id=${id}"
+
+    single(query) map { result =>
+      import spray.json._
+      result.get("hotel_info") match {
+        case Some(x: String) => {
+          val jsObject = x.parseJson.asJsObject
+          val productHotel = jsObject.getFields("infraId", "infraName", "bookDay", "roomName", "bedType", "roomType") match {
+            case Seq(JsNumber(infraId), JsString(infraName), JsNumber(bookDay), JsString(roomName), JsString(bedType), JsNumber(roomType)) => {
+              ProductHotel(infraId.toInt, infraName, bookDay.toInt, roomName, bedType, roomType.toInt)
+            }
+            case _ => throw new DeserializationException("ProductHotel expected")
+          }
+          Some(productHotel)
+        }
+        case None => None
+      }
+    } map { productHotel =>
+        productHotel
+    }
   }
   def getProductPrices(productId: Int): Future[Seq[Map[String, Any]]] = {
     val query =s"select * from product_price_by_team where product_id=${productId}"
