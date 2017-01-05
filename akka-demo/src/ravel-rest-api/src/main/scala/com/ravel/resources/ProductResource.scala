@@ -79,22 +79,21 @@ trait ProductResource extends Directives {
   def productRoutes: Route = pathPrefix("product"){
     path("list") {
       get {
-        logResponseTime {
-          parameters('systemType, 'customType, 'pfunction, 'start ? 0, 'size ? 10) {
-            (systemType, customType, pfunction, start, size) => {
-              import JsonResultRoute._
-              val filter = ProductSearchFilter(systemType, customType, pfunction, "", "")
-              val listFuture = ProductSearch.queryProducts(filter)
-              onSuccess(listFuture) {
-                case list => {
-                  val map = (ResultJsonWithPage zip list.productIterator.toList).toMap
-                  val jsonResult: Result[Map[String, Any]] = Right(Success(map))
-                  complete(toStandardRoute(jsonResult))
-                }
+        parameters('systemType, 'customType, 'pfunction, 'start ? 0, 'size ? 10) {
+          (systemType, customType, pfunction, start, size) => {
+            import JsonResultRoute._
+            val filter = ProductSearchFilter(systemType, customType, pfunction, "", "")
+            val listFuture = ProductSearch.queryProducts(filter)
+            onSuccess(listFuture) {
+              case list => {
+                val map = (ResultJsonWithPage zip list.productIterator.toList).toMap
+                val jsonResult: Result[Map[String, Any]] = Right(Success(map))
+                complete(toStandardRoute(jsonResult))
               }
             }
           }
         }
+
       }
     }~
     path(IntNumber) { id =>

@@ -1,5 +1,9 @@
 package com.ravel
 
+import akka.event.Logging.LogLevel
+import akka.event.{Logging, LoggingAdapter}
+import akka.http.scaladsl.server.RouteResult.{Rejected, Complete}
+import akka.http.scaladsl.server.directives.{LoggingMagnet, DebuggingDirectives, LogEntry}
 import akka.http.scaladsl.server.{ExceptionHandler, Route}
 import com.ravel.resources.{BannerResource, GuideResource, ProductResource}
 import akka.http.scaladsl.model._
@@ -30,9 +34,33 @@ object RestInterface extends Resources {
       }
   }
 
+  def akkaResponseTimeLoggingFunction(
+                                       loggingAdapter:   LoggingAdapter,
+                                       requestTimestamp: Long,
+                                       level:            LogLevel       = Logging.DebugLevel)(req: HttpRequest)(res: Any): Unit = {
+    val entry = res match {
+      case Complete(resp) =>
+        val responseTimestamp: Long = System.nanoTime
+        val elapsedTime: Long = (responseTimestamp - requestTimestamp) / 1000000
+        val loggingString = s"""Logged Request:${req.method}:${req.uri}:${resp.status}:${elapsedTime}"""
+        LogEntry(loggingString, level)
+      case Rejected(reason) =>
+        LogEntry(s"Rejected Reason: ${reason.mkString(",")}", level)
+    }
+    entry.logTo(loggingAdapter)
+  }
+  def printResponseTime(log: LoggingAdapter) = {
+    val requestTimestamp = System.nanoTime
+    akkaResponseTimeLoggingFunction(log, requestTimestamp)(_)
+  }
+
+  val logResponseTime = DebuggingDirectives.logRequestResult(LoggingMagnet(printResponseTime(_)))
+
 
   val routes: Route = handleExceptions(customExceptionHandler) {
-    productRoutes ~ testRoutes ~ guideRoutes ~ bannerRoutes
+    logResponseTime {
+      productRoutes ~ testRoutes ~ guideRoutes ~ bannerRoutes
+    }
   }
 }
 
