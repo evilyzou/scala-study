@@ -44,6 +44,7 @@ object MyJsonSupport extends  DefaultJsonProtocol with SprayJsonSupport with Pro
     def write(x: Any) = x match {
       case n: Int => JsNumber(n)
       case n: Long => JsNumber(n)
+      case d: BigDecimal => JsNumber(d)
       case s: String => JsString(s)
       case t: LocalDateTime => JsString(t.toString)
       case b: Boolean => {
@@ -56,10 +57,12 @@ object MyJsonSupport extends  DefaultJsonProtocol with SprayJsonSupport with Pro
       case m: Map[String, _] => mapFormat[String, Any].write(m)
       case spv: SearchProductView => searchProductFormat.write(spv)
       case pv: ProductView => productFormat.write(pv)
-      case gvf: GuideView => guideViewFormat.write(gvf)
+      case sgv: SearchGuideView => searchGuideViewFormat.write(sgv)
       case infra: Infra => infraFormat.write(infra)
       case infraFeature: InfraFeature => infraFeatureFormat.write(infraFeature)
       case infraDesc: InfraDesc => infraDescFormat.write(infraDesc)
+      case gv: GuideView => guideViewFormat.write(gv)
+      case ph: ProductHotel => productHotelFormat.write(ph)
       case _ => JsNull
       case x => serializationError("Do not understand object of type " + x.getClass.getName)
     }
@@ -72,12 +75,14 @@ object MyJsonSupport extends  DefaultJsonProtocol with SprayJsonSupport with Pro
   }
 
   implicit val searchProductFormat = jsonFormat15(SearchProductView.apply)
-  implicit val guideViewFormat = jsonFormat8(GuideView.apply)
+  implicit val searchGuideViewFormat = jsonFormat8(SearchGuideView.apply)
   implicit val productFormat = jsonFormat5(ProductView.apply)
   implicit val infraFeatureFormat = jsonFormat2(InfraFeature)
   implicit val infraDescFormat = jsonFormat2(InfraDesc)
-  implicit val infraFormat = jsonFormat7(Infra)
+  implicit val infraFormat = jsonFormat7(Infra.apply)
   implicit val productHotelFormat = jsonFormat6(ProductHotel)
+  implicit val guideInfraFormat = jsonFormat2(GuideInfra.apply)
+  implicit val guideViewFormat = jsonFormat2(GuideView.apply)
 
 
 }

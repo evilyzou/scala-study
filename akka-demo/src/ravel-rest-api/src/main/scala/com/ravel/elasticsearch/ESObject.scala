@@ -97,7 +97,7 @@ object GuideSearch {
 
     respFuture.map { response =>
       val hits = response.getHits
-      (hits.totalHits, hits.getHits.toSeq.map(e=>e.sourceAsMap().toMap.convert[GuideView]))
+      (hits.totalHits, hits.getHits.toSeq.map(e=>e.sourceAsMap().toMap.convert[SearchGuideView]))
     }
   }
 }

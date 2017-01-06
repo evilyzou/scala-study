@@ -13,7 +13,7 @@ import spray.json._
 /**
  * Created by CloudZou on 12/9/16.
  */
-object ProductService extends QueryService{
+object ProductService extends InfraService{
   def list(filter: ProductSearchFilter) = {
     ProductSearch.queryProducts(filter)
   }
@@ -27,46 +27,43 @@ object ProductService extends QueryService{
     single(query)
   }
 
-  def getProductExt(productId: Int) = {
+  def getProductHotelInfo(productId: Int) = {
     val query = s"select * from product_ext where product_id=${productId}"
     single(query) map { productExt =>
       productExt.get("hotelInfo") match {
         case Some(x: String) => {
-          import spray.json._
-          val hotels = x.parseJson.convertTo[Seq[ProductHotel]]
-          (productExt, Some(hotels.head))
+          x.parseJson.convertTo[Seq[ProductHotel]] match {
+            case Seq(p, xs @ _*) => (productExt, Some(p))
+            case _ => (productExt, None)
+          }
         }
         case _ => (productExt, None)
       }
-    } flatMap { result =>
-      getProductInfra(result)
     }
   }
-  def getProductInfra(result: (Map[String, Any], Option[ProductHotel])): Future[(Map[String, Any], Infra)] = {
-    def infraQuery(id: Int) = s"select * from infrastructure where id=${id}"
-    def infraDescQuery(id: Int) = s"select * from infrastructure_desc where infra_id=${id}"
 
-    result._2 match {
-      case Some(p) => {
-        val infraId = p.infraId.toInt
-        for {
-          infra <- single(infraQuery(infraId))
-          infraDescs <- mulptile(infraDescQuery(infraId))
-        } yield {
-          val infraFeature = infra.get("feature") match {
-            case Some(x: String) =>
-              x.parseJson.convertTo[InfraFeature]
-            case _ => throw new DeserializationException("InfraFeature expected")
-          }
-          val infraDescSeq = infraDescs map { infraDesc =>
-            InfraDesc(infraDesc.get("content"), infraDesc.get("content_picture_url"))
-          }
-          val infraObject = Infra(infra.get("type"), infra.get("title"), infra.get("city"), infra.get("address"), infra.get("phone"),
-            infraFeature, infraDescSeq)
-          (result._1, infraObject)
-        }
+  def getProductExt(productId: Int) = {
+    for {
+      productExtTuple <- getProductInfraId(productId)
+      infra <- getInfra(productExtTuple._2.infraId.toInt)
+    } yield {
+      val productHotel = productExtTuple._2
+      productExtTuple._1 + ( "feature" -> {
+        Map(
+          "infra" -> infra,
+          "detail" -> productHotel
+        )
+      })
+    }
+  }
+
+  def getProductInfraId(productId: Int) = {
+    getProductHotelInfo(productId)  map { case (productExt,hotelOption) =>
+      val productHotel = hotelOption match {
+        case Some(p: ProductHotel) => p
+        case None => throw new DeserializationException("ProductHotelInfro is empty")
       }
-      case _ => throw new scala.RuntimeException("error product feature")
+      (productExt, productHotel)
     }
   }
 

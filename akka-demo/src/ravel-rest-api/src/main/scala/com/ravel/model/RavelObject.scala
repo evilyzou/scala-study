@@ -3,6 +3,7 @@ package com.ravel.model
 import java.util
 
 import com.ravel.util.MapConvert
+import org.joda.time.LocalDateTime
 import scala.collection.JavaConversions._
 
 /**
@@ -40,11 +41,11 @@ object RavelObject {
     }
   }
 
-  case class GuideView(id: Int, title: String, picture: String, mainCategory: String, subCategory: Seq[Any],
+  case class SearchGuideView(id: Int, title: String, picture: String, mainCategory: String, subCategory: Seq[Any],
                        systemType: String, customType: String, guideType: String)
 
-  object GuideView {
-    implicit val searchGuideView = new MapConvert[GuideView] {
+  object SearchGuideView {
+    implicit val searchGuideView = new MapConvert[SearchGuideView] {
       def conv(sp: Map[String, AnyRef]) = {
         val scOption = sp.get("subCategory")
         val scValue = scOption match {
@@ -53,7 +54,7 @@ object RavelObject {
           case None => Seq.empty
         }
 
-        GuideView(sp.get("id"), sp.get("title"), sp.get("picture"), sp.get("mainCategory"),scValue,
+        SearchGuideView(sp.get("id"), sp.get("title"), sp.get("picture"), sp.get("mainCategory"),scValue,
           sp.get("systemType"), sp.get("customType"), sp.get("guideType"))
       }
     }
@@ -65,14 +66,37 @@ object RavelObject {
   object ProductView {
     def apply(product: Map[String, Any], productExt: Map[String, Any], productOther: Map[String, Any], productPrices: Seq[Map[String, Any]]) = {
       val productParams = List(Map("name"->"????", "content"->product.getOrElse("teamNo", "")))
-      val productWithMinPrice = product + ("price"-> 8800)
-      new ProductView(productParams, productWithMinPrice, productExt, productOther,  productPrices )
+      val prices = productPrices map {p => p.get("marketPrice") match {
+        case Some(x: BigDecimal) => x.toInt
+        case _ => Int.MaxValue
+      }}
+      val pricesByDate = productPrices map {p =>
+        Map(
+          "takeOffDate"-> p.get("takeOffDate").get.asInstanceOf[LocalDateTime],
+          "marketPrice" -> p.get("marketPrice").get.asInstanceOf[BigDecimal],
+          "availableCount" -> p.get("availableCount").get.asInstanceOf[Int]
+        )
+      }
+
+      val price = prices.foldLeft(prices(0), prices(0)) {
+        case ((min, max), e) => (math.min(min, e), math.max(max, e))
+      }
+      val productWithMinPrice = product + ("price"-> price._1)
+      new ProductView(productParams, productWithMinPrice, productExt, productOther,  pricesByDate )
     }
   }
 
   case class ProductHotel(infraId: String, infraName: String, bookDay: String, roomName: String, bedType: String, roomType: String)
 
   case class Infra(typ: String, title: String, city: String, address: String, phone: String, feature: InfraFeature, desc: Seq[InfraDesc])
+  object Infra {
+    def empty = {
+      new Infra("","", "", "","", InfraFeature(None, None), Seq.empty)
+    }
+  }
   case class InfraFeature(content: Option[String], pictureUrl: Option[String])
   case class InfraDesc(content: Option[Any], pictureUrl: Option[Any])
+
+  case class GuideInfra(guideInfraType: String, infra: Infra)
+  case class GuideView(guide: Map[String, Any],  guideInfra: Seq[GuideInfra])
 }

@@ -1,809 +1,575 @@
 {
-  "product": {
-    "taocanChildCount": "",
-    "pcomposition": "null",
-    "refundDesc": "",
-    "arriveType": "",
-    "feature": "",
-    "freeTripToTraffic": "",
-    "mainCategory": "",
-    "cruiseRouteCode": "1",
-    "viaPort": "济州岛,釜山",
-    "pfunction": "cruise",
-    "cruiseDeparture": "上海",
-    "image": "[{\"pictureId\":\"0\",\"pictureUrl\":\"http://pic4.40017.cn/cruises/2016/08/10/12/PMDMvw.jpg\",\"title\":\"天海新世纪号\"}]",
-    "createTime": "2016-08-30T09:30:42.000",
-    "subCategory": "",
-    "offlineType": "0",
-    "visa": "",
-    "assembly": "",
-    "productFeatures": "",
-    "isTaocan": "",
-    "night": "",
-    "passengerInfo": "",
-    "attention": "",
-    "arrive": "上海",
-    "servicePhone": "",
-    "recommendation": "<p>“同一个亚洲”釜山文化节</p><p>观看国际烟花庆典<br>炸鸡啤酒免费畅享（一顿餐）<br>免费观看音乐盛典&amp;全明星加盟“梦想演唱会”（50名韩国艺人登台演出 预计参演：EXO/TEAMIN（SHINee）/TAEA B1A4/FIESTAR等等）</p><p>更多釜山文化节信息：http://chi.bof.or.kr/chi/main/</p><p><img src=\"http://pic4.40017.cn/cruises/2016/08/24/16/Rq7aew.jpg\" title=\"11.jpg\" alt=\"11.jpg\"></p>",
-    "groupMethod": "",
-    "scheduleDays": "[{\"transPort\":\"上海\",\"arriveTime\":\"\",\"departureTime\":\"16：00\",\"traffic\":\"邮轮\",\"hotel\":\"邮轮上\",\"description\":\"客人于指定时间地点集合，联系我们的领队，由我们的专业领队一起协助您办理登船手续，您如有大件行李（手提行李除外）可交给邮轮的工作人员帮您办理托运，他们会将行李送至各位贵客所在的客舱。然后就一起排队出关，邮轮将于当天16：00开船，我们将开始这次轻松而又浪漫的邮轮假期之旅。\",\"meals\":[],\"image\":[{\"pictureId\":\"871\",\"pictureUrl\":\"http://img02.exthere.cn/201608/90ED16CE97F748E7AAA7784F0157FF8D.jpg\"}]},{\"transPort\":\"济州\",\"arriveTime\":\"14：00\",\"departureTime\":\"22：00\",\"traffic\":\"邮轮\",\"hotel\":\"邮轮上\",\"description\":\"邮轮预计将于下午14：00抵达韩国济州。靠岸后，根据指示于指定时间地点参加旅行社组织的指定岸上观光行程。济州岛是韩国较大的岛屿，那里四面环海，气候适宜，全年天气温暖，享有“蜜月之岛”、“浪漫之岛”的美称，预计22：00离开韩国济州，继续海上航行。\",\"meals\":[],\"image\":[{\"pictureId\":\"872\",\"pictureUrl\":\"http://img02.exthere.cn/201608/4551C9C41ADA4AFFAA1EF5BBAE1D7283.jpg\"}]},{\"transPort\":\"釜山\",\"arriveTime\":\"10：00\",\"departureTime\":\"\",\"traffic\":\"邮轮\",\"hotel\":\"邮轮上\",\"description\":\"早上抵达韩国釜山港口。釜山是韩国第一港口和第二大城市，历史上一直是东亚大陆和海洋文化交流的纽带和桥梁。釜山位于韩国首尔东南端450公里处，东南滨朝鲜海峡，与日本对马岛相望；西临洛东江。西北山地耸峙，南有群岛屏障，半岛南部门户。\",\"meals\":[],\"image\":[{\"pictureId\":\"873\",\"pictureUrl\":\"http://img02.exthere.cn/201608/086A79BFD9554575BA7606C9CF4C506F.jpg\"}]},{\"transPort\":\"釜山\",\"arriveTime\":\"\",\"departureTime\":\"23：59\",\"traffic\":\"邮轮\",\"hotel\":\"邮轮上\",\"description\":\"昨天一天的岸上游览，只是我们釜山的一部分，今日可以继续体验釜山，根据您的行程，继续感受釜山的魅力，相信经过昨天，您对于釜山已经有了您自己的感知，您的朋友圈应该已经充满了艳羡与惊叹。\",\"meals\":[],\"image\":[{\"pictureId\":\"874\",\"pictureUrl\":\"http://img02.exthere.cn/201608/00B3B921D11648A9804E39C3F159C9B3.jpg\"}]},{\"transPort\":\"海上巡游\",\"arriveTime\":\"\",\"departureTime\":\"\",\"traffic\":\"邮轮\",\"hotel\":\"邮轮上\",\"description\":\"今日我们全天航行在一望无垠的大海，您可以尽情享受新世纪号邮轮的各项娱乐设施。<br>早餐后您可以根据船上娱乐指南的安排，选择您感兴趣的游戏或课程参加。这里有海上冰吧，身心cool无法超越！高空蹦床俯视海面，海上极限超越自我，释放无尽自由能量！国际厨师亲临料理，360度味蕾刺激，绝佳舌尖炫酷体验！星空夜幕影院，悠然自得欣赏热门大片！<br>当然您也可以悠闲地躺在泳池畔的躺椅上，什么都不做，什么都不想，只静静地享受此刻天海一色的美！\",\"meals\":[],\"image\":[{\"pictureId\":\"875\",\"pictureUrl\":\"http://img02.exthere.cn/201608/9D071210066B4667BBF364F0DB49F004.jpg\"}]},{\"transPort\":\"上海\",\"arriveTime\":\"08：30\",\"departureTime\":\"\",\"traffic\":\"邮轮\",\"hotel\":\"邮轮上\",\"description\":\"迎着微微海风的吹拂，您将抵达终点港口。您可以凭海临风，看着邮轮缓缓驶入码头——结束这一难忘的假期。\",\"meals\":[],\"image\":[{\"pictureId\":\"876\",\"pictureUrl\":\"http://img02.exthere.cn/201608/0E4DA289B9724FF2AFD6C6F40C67C1D6.jpg\"}]}]",
-    "customType": "CustomOther",
-    "payway": "",
-    "feeInclude": "",
-    "advanceDayType": "",
-    "taocanRoomCount": "",
-    "taocanAdultCount": "",
-    "freeTripBackTraffic": "",
-    "id": 50067,
-    "systemType": "SystemOther",
-    "offlineStartDate": "",
-    "status": 0,
-    "productTopic": "",
-    "teamType": "",
-    "teamNo": "Y758364",
-    "isTransparentTrip": "",
-    "departure": "上海",
-    "refundId": "",
-    "tip": "",
-    "title": "日韩邮轮【天海新世纪号】2016年10月20日上海-济州-釜山（过夜）-上海 5晚6日游",
-    "promise": "",
-    "advanceDay": 10,
-    "updateTime": "2016-08-30T09:51:10.000",
-    "feeExclude": "",
-    "day": 6,
-    "offlineEndDate": "",
-    "cruiseCode": "2049"
-  },
-  "productExt": {},
-  "productOther": {
-    "createTime": "2016-08-30T09:30:42.000",
-    "visa": "<div class='infobar'><label>签证国家：<span _id='2932' class='p2'>韩国</span></label><label>签证类型：<span _id='156' class='p3'>团队旅游签证</span></label><label>领区：<span _id='179' class='p4'>所有领区</span></label></div><div><div class=\"visatype\"><span _id='177' >所有用户</span></div><div class='visa_body'><div class=\"visatable none\"><table><tr><th width=\"160\">需提交材料</th><th width=\"940\">详细说明</th></tr><tr><td>资产证明</td><td><p>★此项材料我司会对游客信息进行审核，视材料情况会收取以下资产证明：</p><p>1、银行开具的至少5万元/人的定期存款证明原件，需冻结到归国后（证明原件不予退还，到期自动解冻）。</p><p>2、房产证复印件或购房合同复印件或购房发票复印件。</p><p>3、《机动车登记证书》注册登记机动车信息栏的复印件或购车发票复印件或行驶证复印件。</p><p>4、股票交割单复印件需盖证券公司章或理财产品复印件。</p><p>备注：以上材料至少提供一项，如财产证明上的名字并非自己的（如房产、存款等），提供配偶或者父母的财产证明也可，但必须用结婚证或户口簿等证明关系。</p></td></tr><tr><td>老年人补充材料</td><td><p>1、70周岁以上(含70周岁)需提供健康申明和担保书。</p><p>2、75周岁以上(含75周岁)需提供健康申明担保书和近三个月的体检报告复印件。</p><p>3、70-74周岁的游客无70周岁以下成人陪同出游，除健康申明和担保书，还需提供近三个月的体检报告复印件。</p><p>4、75周岁以上的游客需同时有75周岁以下成人陪同出游。</p><p>备注：以上年龄核算方式：按照出游当天年龄。</p><p><a href=\"http://resource.t.17usoft.com/youlun/UploadFile/Cruises/2016/8/22/59e9f0718d8142edbd18af910b1c4245.docx\" title=\"老年旅客邮轮健康申明和担保书.docx\" style=\"color: rgb(0, 102, 204);\">老年旅客邮轮健康申明和担保书.docx</a><br/></p></td></tr><tr><td>未成年补充材料</td><td><p>1、未满18周岁的游客需提供出生证明复印件（出生证明原件建议出游当天自带）。</p><p>2、未满18周岁的游客不与父母一同出行，必须填写未成年授权声明书。</p><p><a href=\"http://img.17u.cn/ly/cn/img/admin/Cruises/2016/8/8/bbe082d00ae54592a70b680e92c2774b.docx\" title=\"天海未成年委托书.docx\" style=\"color: rgb(0, 102, 204);\">天海未成年委托书.docx</a><br/></p></td></tr><tr><td>个人资料表</td><td><p>所有内容需如实、完整、清晰填写，并有本人亲笔签名确认。<a href=\"http://img.17u.cn/ly/cn/img/admin/Cruises/2016/8/8/bcdfe045d2b243318a9b08051ea89b4b.doc\" title=\"个人资料表.doc\" style=\"color: rgb(0, 102, 204);\">个人资料表.doc</a></p></td></tr><tr><td>身份证</td><td><p>身份证正反两面复印在同一张A4纸上，复印内容必须清晰。</p></td></tr><tr><td>护照原件</td><td><p>1、行程结束后至少还有6个月有效期。</p><p>2、护照需至少有两页空白的签证页。</p><p>3、不接收6个月内有日本拒签记录的护照。</p></td></tr></table></div></div></div><p>\n    1、个人因私护照：需在归国后至少还有半年以上有效期，护照至少留有连续2页的空白签证页，不含备注页；\n</p>\n<p>\n    2、我司将对游客的资料进行相应审核，可能会根据您的材料情况要求您增补其他材料，担保金或予以劝退，敬请谅解；\n</p>\n<p>\n    3、如您持港澳台证件或外籍护照前往中国境外，请确保持有再次进入中国大陆的有效签证，如因签证问题造成行程受阻或其他问题，相应损失需自行承担。港澳台客人需携带回乡证或者台胞证原件出行\n</p>\n<p>\n    4、旅游意外险能够给您的出行带来更多安全保障，所以同程旅游强烈建议您购买旅游意外险。如您放弃购买，则行程中的风险和损失将由您自行承担。\n</p>\n<p>\n    5、旅游保证金服务：“创享旅游服务 银行巧管家”，旅游保证金缴纳不烦恼；\n</p>\n<p>\n    <br/>\n</p><p class='special'>特殊说明</p><p>1、本产品所需证件：护照（请确保护照在回国后有效期6个月以上）。</p><p>2、如您持港澳台护照或外籍护照出行，需携带多次进入中国大陆有效的回乡证/台胞证（原件）或入境签证。</p><p>3、<strong>本产品暂不提供签证服务，如您需要办理签证可另行预订相关签证产品。</strong></p>",
-    "attention": "<p>本产品由同程国旅或其关联公司旅行社及具有资质的合作旅行社提供相关服务<br/><br/>1、游客报名应正确填写参团人的姓名、手机。必须保持手机畅通，因游客关机，失去联系，责任自负；当天未在规定时间内出现在集合地点，按自动放弃处理，费用不退；行程确认后，我司将在24小时内通知您收取全款。<br/><br/>2、客人信息一旦确认，一律不予以更改。如遇特殊情况需要修改信息（包括客人中英文姓名、性别、出生年月日），收取300元/人的更名费。<br/><br/>3、因服务能力有限，暂时无法接收不满 6个月以下的婴儿、100周岁以上的老人、怀孕的游客报名，70周岁以上(含70周岁)的游客需提供健康申明担保书，75周岁以上(含75周岁)还需提供近三个月的体检报告；18周岁以下和70周岁以上的游客需同时有70周岁以下成人陪同，85周岁以上老人或其余特殊人群需评估适游状况后方可报名。<br/><br/>4、邮轮行程中所列航班号、时间、岸上观光行程内容及邮轮抵离时间仅供参考，请以给您的确认出团通知书为准，严格遵守时间结点集合，因游客自身原因导致误机、误船，产生必要损失由游客自行承担。<br/><br/>5、需要6个月以上有效期护照及两页空白页，是否给予签证、是否准予出、入境，为有关机关的行政权利。如因您自身原因或因提供材料存在问题不能及时办理签证而影响行程的，以及被有关机关拒发签证或不准出入境的，相关责任和费用由您自行承担。如果您已自备签证，请务必提供有效护照及签证复印件，用于核对姓名和签证有效期。如因如因自备签证问题造成行程受阻，相应损失需自行承担。<br/><br/>6、根据大使馆规定，全体团员在境外须按行程活动，一律不得脱（离）团活动。如擅自脱（离）团，需赔偿我社每人每天的脱团损失费（具体费用现询），并自行承担脱团期间所发生的人身及财产意外以及由此产生的其他任何问题和责任。<br/><br/>7、在下列情况下，船长有权自行对航行范围作出修改、变更停靠港口的顺序和/或省略其中某个或某些停靠港口：<br/>1）因不可抗力或其他超过船长或船主的控制范围的情形；<br/>2）为了旅客和邮轮的安全性而有必要的；<br/>3）为了使邮轮上的任何人获得岸上医疗或手术治疗；<br/>4）任何其他可能发生的紧急情况，包括因特殊情况引起的燃料问题，船长的决定为准。<br/><br/>8、当旅客不适合开始或继续航行，或可能对船上的健康，安全，纪律造成危险的，船长有权利在任何时候，视情况作出任何以下决定： <br/>1） 拒绝该旅客登船；<br/>2）在任意港口让该旅客下船；<br/>3）拒绝该旅客在任何特定港口下船；<br/>4）限制该旅客在邮轮的特定区域或拒绝该旅客参与船上的某些活动。<br/><br/>9、在出发前或航程期间，如遇不可抗力，邮轮公司有权调整或改变行程，对此我司将不承担任何赔偿责任。如导致航线取消，我司将退还全部票款，但不承担赔款责任。<br/><br/>10、当地购物时请慎重考虑，把握好质量与价格；涉及退税商品，请在领队的指引下完成退税手续。<br/><br/>11、旅行过程中如发生客人损坏餐厅用品或其他公共设施的情况时，由客人自行赔偿及承担法律责任。<br/><br/>12、出团时务必带上身份证原件，无身份证者带户口本原件，因个人证件不全所造成损失客人自行承担。因客人自身原因导致不能出入中国海关，产生必要损失由游客自行承担。<br/><br/>13、建议购买境外旅游意外保险；旅游者自行安排活动期间人身、财产权益受到损害的，出境社在事前已尽到必要警示说明义务且事后已尽到必要救助义务的，出境社不承担赔偿责任。<br/><br/>14、邮轮公司默认床型为大床，所有房间均可拆分成两张单人床，如您需两张单人床上船后请联系您的客房服务员操作。<br/><br/>15、天海邮轮提供两人房和家庭房，每位乘客必须占床，儿童价格与成人相同。<br/> <br/>16、天海邮轮船上消费均以美金结算。船上任何消费、购物等均以记账方式（小费与娱乐场除外），下船前以信用卡（VISA卡、MASTER卡）或现金结算。<br/> <br/>17、出团通知书将于出团前1-3个工作日发送，若能提前确定，我们将会及时通知您，收到出团书后，请认真阅读出团通知书，有疑义之处尽快联系客服解决，因未及时阅读出团书，导致不必要的损失，由游客自行承担，出团通知书有详细的集合时间、地点、领队联系方式。</p>",
-    "feeInclude": "<p>1、5晚“新世纪号”邮轮船票。</p><p>2、邮轮税收、港务费。</p><p>3、邮轮港务费用、领队费用邮轮港务费用、领队费用。</p><p>4、赠送指定济州、釜山岸上观光。</p><p>5、邮轮上派对、主题晚会、表演、游戏、比赛等活动（特别注明的收费活动除外）。</p><p><br/></p>",
-    "cancelChangeDes": "<p>1.&nbsp; 若在开航前100天（含第100天）以外确认取消出行，将收取300元/人预订工时费；<br/></p><p>2.&nbsp; 若在开航前99天至60天（含第60天）以内通确认取消出行，收取全额团费的50%；</p><p>3.&nbsp; 若在开航前59天至30天（含第30天）以内通确认取消出行，收取全额团费的70%；</p><p>4.&nbsp; 若在开航前29天至15天（含第15天）以内通确认取消出行，收取全额团费的90%；</p><p>5.&nbsp; 若在开航前14天（含第14天）内通知取消，或没有在开航时准时出现，或在开航前无论以任何理由放弃旅行的，已支付的全额团费将全部损失。</p>",
-    "id": 91,
-    "status": "",
-    "tip": "无",
-    "productId": 50067,
-    "updateTime": "2016-08-30T09:30:42.000",
-    "feeExclude": "<p>1、护照工本费及个人单房差（船票200%）。</p><p>2、出发地至上海码头往返交通费。</p><p>3、全程邮轮小费（船上支付）</p><p>&nbsp; &nbsp; &nbsp;阳台房及以下普通舱房每人每晚12.95美元；</p><p>&nbsp; &nbsp; &nbsp;天海行政套房及蓝天行政套房每人每晚14.50美元；</p><p>&nbsp; &nbsp; &nbsp;总统套房及世纪套房每人每晚15.95美元；</p><p>&nbsp; &nbsp; （2周岁以下儿童免收服务费）。</p><p>4、行程中陆地及邮轮上标明需要额外支付的费用以及旅客的个人消费。</p><p>5、行程“费用包含”中未提及的其他费用。</p><p>6、个人境外旅游意外险。</p><p><br/></p>"
-  },
-  "productPrices": [
-    {
-      "takeOffDate": "2016-10-20T00:00:00.000",
-      "taocanPrice": "",
-      "createTime": "2016-08-30T09:30:42.000",
-      "childPrice": "",
-      "priceDesc": "",
-      "marketPrice": "",
-      "isTaocan": "false",
-      "minBuyCount": 1,
-      "id": 1430,
-      "referenceId": 1354,
-      "availableCount": 10,
-      "adultPrice": "",
-      "status": "0",
-      "roomNum": 1,
-      "qunarPrice": "",
-      "productId": 50067,
-      "containChildPrice": "false",
-      "maxBuyCount": 9,
-      "childPriceDesc": "",
-      "roomSendPrice": "",
-      "updateTime": "2016-08-30T09:30:42.000"
-    },
-    {
-      "takeOffDate": "2016-10-20T00:00:00.000",
-      "taocanPrice": "",
-      "createTime": "2016-08-30T09:30:42.000",
-      "childPrice": "",
-      "priceDesc": "",
-      "marketPrice": "",
-      "isTaocan": "false",
-      "minBuyCount": 1,
-      "id": 1431,
-      "referenceId": 1355,
-      "availableCount": 10,
-      "adultPrice": "",
-      "status": "0",
-      "roomNum": 1,
-      "qunarPrice": "",
-      "productId": 50067,
-      "containChildPrice": "false",
-      "maxBuyCount": 9,
-      "childPriceDesc": "",
-      "roomSendPrice": "",
-      "updateTime": "2016-08-30T09:30:42.000"
-    },
-    {
-      "takeOffDate": "2016-10-20T00:00:00.000",
-      "taocanPrice": "",
-      "createTime": "2016-08-30T09:30:42.000",
-      "childPrice": "",
-      "priceDesc": "",
-      "marketPrice": "",
-      "isTaocan": "false",
-      "minBuyCount": 1,
-      "id": 1432,
-      "referenceId": 1356,
-      "availableCount": 10,
-      "adultPrice": "",
-      "status": "0",
-      "roomNum": 1,
-      "qunarPrice": "",
-      "productId": 50067,
-      "containChildPrice": "false",
-      "maxBuyCount": 9,
-      "childPriceDesc": "",
-      "roomSendPrice": "",
-      "updateTime": "2016-08-30T09:30:42.000"
-    },
-    {
-      "takeOffDate": "2016-10-20T00:00:00.000",
-      "taocanPrice": "",
-      "createTime": "2016-08-30T09:30:42.000",
-      "childPrice": "",
-      "priceDesc": "",
-      "marketPrice": "",
-      "isTaocan": "false",
-      "minBuyCount": 1,
-      "id": 1433,
-      "referenceId": 1357,
-      "availableCount": 10,
-      "adultPrice": "",
-      "status": "0",
-      "roomNum": 1,
-      "qunarPrice": "",
-      "productId": 50067,
-      "containChildPrice": "false",
-      "maxBuyCount": 9,
-      "childPriceDesc": "",
-      "roomSendPrice": "",
-      "updateTime": "2016-08-30T09:30:42.000"
-    },
-    {
-      "takeOffDate": "2016-10-20T00:00:00.000",
-      "taocanPrice": "",
-      "createTime": "2016-08-30T09:30:42.000",
-      "childPrice": "",
-      "priceDesc": "",
-      "marketPrice": "",
-      "isTaocan": "false",
-      "minBuyCount": 1,
-      "id": 1434,
-      "referenceId": 1358,
-      "availableCount": 10,
-      "adultPrice": "",
-      "status": "0",
-      "roomNum": 1,
-      "qunarPrice": "",
-      "productId": 50067,
-      "containChildPrice": "false",
-      "maxBuyCount": 9,
-      "childPriceDesc": "",
-      "roomSendPrice": "",
-      "updateTime": "2016-08-30T09:30:42.000"
-    },
-    {
-      "takeOffDate": "2016-10-20T00:00:00.000",
-      "taocanPrice": "",
-      "createTime": "2016-08-30T09:30:42.000",
-      "childPrice": "",
-      "priceDesc": "",
-      "marketPrice": "",
-      "isTaocan": "false",
-      "minBuyCount": 1,
-      "id": 1435,
-      "referenceId": 1359,
-      "availableCount": 10,
-      "adultPrice": "",
-      "status": "0",
-      "roomNum": 1,
-      "qunarPrice": "",
-      "productId": 50067,
-      "containChildPrice": "false",
-      "maxBuyCount": 9,
-      "childPriceDesc": "",
-      "roomSendPrice": "",
-      "updateTime": "2016-08-30T09:30:42.000"
-    },
-    {
-      "takeOffDate": "2016-10-20T00:00:00.000",
-      "taocanPrice": "",
-      "createTime": "2016-08-30T09:30:42.000",
-      "childPrice": "",
-      "priceDesc": "",
-      "marketPrice": "",
-      "isTaocan": "false",
-      "minBuyCount": 1,
-      "id": 1436,
-      "referenceId": 1360,
-      "availableCount": 10,
-      "adultPrice": "",
-      "status": "0",
-      "roomNum": 1,
-      "qunarPrice": "",
-      "productId": 50067,
-      "containChildPrice": "false",
-      "maxBuyCount": 9,
-      "childPriceDesc": "",
-      "roomSendPrice": "",
-      "updateTime": "2016-08-30T09:30:42.000"
-    },
-    {
-      "takeOffDate": "2016-10-20T00:00:00.000",
-      "taocanPrice": "",
-      "createTime": "2016-08-30T09:30:42.000",
-      "childPrice": "",
-      "priceDesc": "",
-      "marketPrice": "",
-      "isTaocan": "false",
-      "minBuyCount": 1,
-      "id": 1437,
-      "referenceId": 1361,
-      "availableCount": 10,
-      "adultPrice": "",
-      "status": "0",
-      "roomNum": 1,
-      "qunarPrice": "",
-      "productId": 50067,
-      "containChildPrice": "false",
-      "maxBuyCount": 9,
-      "childPriceDesc": "",
-      "roomSendPrice": "",
-      "updateTime": "2016-08-30T09:30:42.000"
-    },
-    {
-      "takeOffDate": "2016-10-20T00:00:00.000",
-      "taocanPrice": "",
-      "createTime": "2016-08-30T09:30:42.000",
-      "childPrice": "",
-      "priceDesc": "",
-      "marketPrice": "",
-      "isTaocan": "false",
-      "minBuyCount": 1,
-      "id": 1438,
-      "referenceId": 1362,
-      "availableCount": 10,
-      "adultPrice": "",
-      "status": "0",
-      "roomNum": 1,
-      "qunarPrice": "",
-      "productId": 50067,
-      "containChildPrice": "false",
-      "maxBuyCount": 9,
-      "childPriceDesc": "",
-      "roomSendPrice": "",
-      "updateTime": "2016-08-30T09:30:42.000"
-    },
-    {
-      "takeOffDate": "2016-10-20T00:00:00.000",
-      "taocanPrice": "",
-      "createTime": "2016-08-30T09:30:42.000",
-      "childPrice": "",
-      "priceDesc": "",
-      "marketPrice": "",
-      "isTaocan": "false",
-      "minBuyCount": 1,
-      "id": 1439,
-      "referenceId": 1363,
-      "availableCount": 10,
-      "adultPrice": "",
-      "status": "0",
-      "roomNum": 1,
-      "qunarPrice": "",
-      "productId": 50067,
-      "containChildPrice": "false",
-      "maxBuyCount": 9,
-      "childPriceDesc": "",
-      "roomSendPrice": "",
-      "updateTime": "2016-08-30T09:30:42.000"
-    },
-    {
-      "takeOffDate": "2016-10-20T00:00:00.000",
-      "taocanPrice": "",
-      "createTime": "2016-08-30T09:30:42.000",
-      "childPrice": "",
-      "priceDesc": "",
-      "marketPrice": "",
-      "isTaocan": "false",
-      "minBuyCount": 1,
-      "id": 1440,
-      "referenceId": 1364,
-      "availableCount": 10,
-      "adultPrice": "",
-      "status": "0",
-      "roomNum": 1,
-      "qunarPrice": "",
-      "productId": 50067,
-      "containChildPrice": "false",
-      "maxBuyCount": 9,
-      "childPriceDesc": "",
-      "roomSendPrice": "",
-      "updateTime": "2016-08-30T09:30:42.000"
-    },
-    {
-      "takeOffDate": "2016-10-20T00:00:00.000",
-      "taocanPrice": "",
-      "createTime": "2016-08-30T09:30:42.000",
-      "childPrice": "",
-      "priceDesc": "",
-      "marketPrice": "",
-      "isTaocan": "false",
-      "minBuyCount": 1,
-      "id": 1441,
-      "referenceId": 1365,
-      "availableCount": 10,
-      "adultPrice": "",
-      "status": "0",
-      "roomNum": 1,
-      "qunarPrice": "",
-      "productId": 50067,
-      "containChildPrice": "false",
-      "maxBuyCount": 9,
-      "childPriceDesc": "",
-      "roomSendPrice": "",
-      "updateTime": "2016-08-30T09:30:42.000"
-    },
-    {
-      "takeOffDate": "2016-10-20T00:00:00.000",
-      "taocanPrice": "",
-      "createTime": "2016-08-30T09:30:42.000",
-      "childPrice": "",
-      "priceDesc": "",
-      "marketPrice": "",
-      "isTaocan": "false",
-      "minBuyCount": 1,
-      "id": 1442,
-      "referenceId": 1366,
-      "availableCount": 10,
-      "adultPrice": "",
-      "status": "0",
-      "roomNum": 1,
-      "qunarPrice": "",
-      "productId": 50067,
-      "containChildPrice": "false",
-      "maxBuyCount": 9,
-      "childPriceDesc": "",
-      "roomSendPrice": "",
-      "updateTime": "2016-08-30T09:30:42.000"
-    },
-    {
-      "takeOffDate": "2016-10-20T00:00:00.000",
-      "taocanPrice": "",
-      "createTime": "2016-08-30T09:30:42.000",
-      "childPrice": "",
-      "priceDesc": "",
-      "marketPrice": "",
-      "isTaocan": "false",
-      "minBuyCount": 1,
-      "id": 1443,
-      "referenceId": 1367,
-      "availableCount": 10,
-      "adultPrice": "",
-      "status": "0",
-      "roomNum": 1,
-      "qunarPrice": "",
-      "productId": 50067,
-      "containChildPrice": "false",
-      "maxBuyCount": 9,
-      "childPriceDesc": "",
-      "roomSendPrice": "",
-      "updateTime": "2016-08-30T09:30:42.000"
-    },
-    {
-      "takeOffDate": "2016-10-20T00:00:00.000",
-      "taocanPrice": "",
-      "createTime": "2016-08-30T09:30:42.000",
-      "childPrice": "",
-      "priceDesc": "",
-      "marketPrice": "",
-      "isTaocan": "false",
-      "minBuyCount": 1,
-      "id": 1444,
-      "referenceId": 1368,
-      "availableCount": 10,
-      "adultPrice": "",
-      "status": "0",
-      "roomNum": 2,
-      "qunarPrice": "",
-      "productId": 50067,
-      "containChildPrice": "false",
-      "maxBuyCount": 9,
-      "childPriceDesc": "",
-      "roomSendPrice": "",
-      "updateTime": "2016-08-30T09:38:40.000"
-    },
-    {
-      "takeOffDate": "2016-10-20T00:00:00.000",
-      "taocanPrice": "",
-      "createTime": "2016-08-30T09:30:42.000",
-      "childPrice": "",
-      "priceDesc": "",
-      "marketPrice": "",
-      "isTaocan": "false",
-      "minBuyCount": 1,
-      "id": 1445,
-      "referenceId": 1369,
-      "availableCount": 10,
-      "adultPrice": "",
-      "status": "0",
-      "roomNum": 1,
-      "qunarPrice": "",
-      "productId": 50067,
-      "containChildPrice": "false",
-      "maxBuyCount": 9,
-      "childPriceDesc": "",
-      "roomSendPrice": "",
-      "updateTime": "2016-08-30T09:30:42.000"
-    },
-    {
-      "takeOffDate": "2016-10-20T00:00:00.000",
-      "taocanPrice": "",
-      "createTime": "2016-08-30T09:30:42.000",
-      "childPrice": "",
-      "priceDesc": "",
-      "marketPrice": "",
-      "isTaocan": "false",
-      "minBuyCount": 1,
-      "id": 1446,
-      "referenceId": 1370,
-      "availableCount": 10,
-      "adultPrice": "",
-      "status": "0",
-      "roomNum": 1,
-      "qunarPrice": "",
-      "productId": 50067,
-      "containChildPrice": "false",
-      "maxBuyCount": 9,
-      "childPriceDesc": "",
-      "roomSendPrice": "",
-      "updateTime": "2016-08-30T09:30:42.000"
-    },
-    {
-      "takeOffDate": "2016-10-20T00:00:00.000",
-      "taocanPrice": "",
-      "createTime": "2016-08-30T09:30:42.000",
-      "childPrice": "",
-      "priceDesc": "",
-      "marketPrice": "",
-      "isTaocan": "false",
-      "minBuyCount": 1,
-      "id": 1447,
-      "referenceId": 1371,
-      "availableCount": 10,
-      "adultPrice": "",
-      "status": "0",
-      "roomNum": 2,
-      "qunarPrice": "",
-      "productId": 50067,
-      "containChildPrice": "false",
-      "maxBuyCount": 9,
-      "childPriceDesc": "",
-      "roomSendPrice": "",
-      "updateTime": "2016-08-30T09:39:44.000"
-    },
-    {
-      "takeOffDate": "2016-10-20T00:00:00.000",
-      "taocanPrice": "",
-      "createTime": "2016-08-30T09:30:42.000",
-      "childPrice": "",
-      "priceDesc": "",
-      "marketPrice": "",
-      "isTaocan": "false",
-      "minBuyCount": 1,
-      "id": 1448,
-      "referenceId": 1372,
-      "availableCount": 12,
-      "adultPrice": "",
-      "status": "0",
-      "roomNum": 3,
-      "qunarPrice": "",
-      "productId": 50067,
-      "containChildPrice": "false",
-      "maxBuyCount": 9,
-      "childPriceDesc": "",
-      "roomSendPrice": "",
-      "updateTime": "2016-08-30T09:40:13.000"
-    },
-    {
-      "takeOffDate": "2016-10-20T00:00:00.000",
-      "taocanPrice": "",
-      "createTime": "2016-08-30T09:30:42.000",
-      "childPrice": "",
-      "priceDesc": "",
-      "marketPrice": "",
-      "isTaocan": "false",
-      "minBuyCount": 1,
-      "id": 1449,
-      "referenceId": 1373,
-      "availableCount": 12,
-      "adultPrice": "",
-      "status": "0",
-      "roomNum": 4,
-      "qunarPrice": "",
-      "productId": 50067,
-      "containChildPrice": "false",
-      "maxBuyCount": 9,
-      "childPriceDesc": "",
-      "roomSendPrice": "",
-      "updateTime": "2016-08-30T09:40:48.000"
-    },
-    {
-      "takeOffDate": "2016-10-20T00:00:00.000",
-      "taocanPrice": "",
-      "createTime": "2016-08-30T09:30:42.000",
-      "childPrice": "",
-      "priceDesc": "",
-      "marketPrice": "",
-      "isTaocan": "false",
-      "minBuyCount": 1,
-      "id": 1450,
-      "referenceId": 1374,
-      "availableCount": 10,
-      "adultPrice": "",
-      "status": "0",
-      "roomNum": 2,
-      "qunarPrice": "",
-      "productId": 50067,
-      "containChildPrice": "false",
-      "maxBuyCount": 9,
-      "childPriceDesc": "",
-      "roomSendPrice": "",
-      "updateTime": "2016-08-30T09:41:23.000"
-    },
-    {
-      "takeOffDate": "2016-10-20T00:00:00.000",
-      "taocanPrice": "",
-      "createTime": "2016-08-30T09:30:42.000",
-      "childPrice": "",
-      "priceDesc": "",
-      "marketPrice": "",
-      "isTaocan": "false",
-      "minBuyCount": 1,
-      "id": 1451,
-      "referenceId": 1375,
-      "availableCount": 12,
-      "adultPrice": "",
-      "status": "0",
-      "roomNum": 3,
-      "qunarPrice": "",
-      "productId": 50067,
-      "containChildPrice": "false",
-      "maxBuyCount": 9,
-      "childPriceDesc": "",
-      "roomSendPrice": "",
-      "updateTime": "2016-08-30T09:41:54.000"
-    },
-    {
-      "takeOffDate": "2016-10-20T00:00:00.000",
-      "taocanPrice": "",
-      "createTime": "2016-08-30T09:30:42.000",
-      "childPrice": "",
-      "priceDesc": "",
-      "marketPrice": "",
-      "isTaocan": "false",
-      "minBuyCount": 1,
-      "id": 1452,
-      "referenceId": 1376,
-      "availableCount": 12,
-      "adultPrice": "",
-      "status": "0",
-      "roomNum": 4,
-      "qunarPrice": "",
-      "productId": 50067,
-      "containChildPrice": "false",
-      "maxBuyCount": 9,
-      "childPriceDesc": "",
-      "roomSendPrice": "",
-      "updateTime": "2016-08-30T09:42:26.000"
-    },
-    {
-      "takeOffDate": "2016-10-20T00:00:00.000",
-      "taocanPrice": "",
-      "createTime": "2016-08-30T09:30:42.000",
-      "childPrice": "",
-      "priceDesc": "",
-      "marketPrice": "",
-      "isTaocan": "false",
-      "minBuyCount": 1,
-      "id": 1453,
-      "referenceId": 1377,
-      "availableCount": 10,
-      "adultPrice": "",
-      "status": "0",
-      "roomNum": 2,
-      "qunarPrice": "",
-      "productId": 50067,
-      "containChildPrice": "false",
-      "maxBuyCount": 9,
-      "childPriceDesc": "",
-      "roomSendPrice": "",
-      "updateTime": "2016-08-30T09:42:50.000"
-    },
-    {
-      "takeOffDate": "2016-10-20T00:00:00.000",
-      "taocanPrice": "",
-      "createTime": "2016-08-30T09:30:42.000",
-      "childPrice": "",
-      "priceDesc": "",
-      "marketPrice": "",
-      "isTaocan": "false",
-      "minBuyCount": 1,
-      "id": 1454,
-      "referenceId": 1378,
-      "availableCount": 12,
-      "adultPrice": "",
-      "status": "0",
-      "roomNum": 3,
-      "qunarPrice": "",
-      "productId": 50067,
-      "containChildPrice": "false",
-      "maxBuyCount": 9,
-      "childPriceDesc": "",
-      "roomSendPrice": "",
-      "updateTime": "2016-08-30T09:43:23.000"
-    },
-    {
-      "takeOffDate": "2016-10-20T00:00:00.000",
-      "taocanPrice": "",
-      "createTime": "2016-08-30T09:30:42.000",
-      "childPrice": "",
-      "priceDesc": "",
-      "marketPrice": "",
-      "isTaocan": "false",
-      "minBuyCount": 1,
-      "id": 1455,
-      "referenceId": 1379,
-      "availableCount": 12,
-      "adultPrice": "",
-      "status": "0",
-      "roomNum": 4,
-      "qunarPrice": "",
-      "productId": 50067,
-      "containChildPrice": "false",
-      "maxBuyCount": 9,
-      "childPriceDesc": "",
-      "roomSendPrice": "",
-      "updateTime": "2016-08-30T09:43:51.000"
-    },
-    {
-      "takeOffDate": "2016-10-20T00:00:00.000",
-      "taocanPrice": "",
-      "createTime": "2016-08-30T09:30:42.000",
-      "childPrice": "",
-      "priceDesc": "",
-      "marketPrice": "",
-      "isTaocan": "false",
-      "minBuyCount": 1,
-      "id": 1456,
-      "referenceId": 1380,
-      "availableCount": 10,
-      "adultPrice": "",
-      "status": "0",
-      "roomNum": 2,
-      "qunarPrice": "",
-      "productId": 50067,
-      "containChildPrice": "false",
-      "maxBuyCount": 9,
-      "childPriceDesc": "",
-      "roomSendPrice": "",
-      "updateTime": "2016-08-30T09:44:14.000"
-    },
-    {
-      "takeOffDate": "2016-10-20T00:00:00.000",
-      "taocanPrice": "",
-      "createTime": "2016-08-30T09:30:42.000",
-      "childPrice": "",
-      "priceDesc": "",
-      "marketPrice": "",
-      "isTaocan": "false",
-      "minBuyCount": 1,
-      "id": 1457,
-      "referenceId": 1381,
-      "availableCount": 12,
-      "adultPrice": "",
-      "status": "0",
-      "roomNum": 3,
-      "qunarPrice": "",
-      "productId": 50067,
-      "containChildPrice": "false",
-      "maxBuyCount": 9,
-      "childPriceDesc": "",
-      "roomSendPrice": "",
-      "updateTime": "2016-08-30T09:45:09.000"
-    },
-    {
-      "takeOffDate": "2016-10-20T00:00:00.000",
-      "taocanPrice": "",
-      "createTime": "2016-08-30T09:30:42.000",
-      "childPrice": "",
-      "priceDesc": "",
-      "marketPrice": "",
-      "isTaocan": "false",
-      "minBuyCount": 1,
-      "id": 1458,
-      "referenceId": 1382,
-      "availableCount": 12,
-      "adultPrice": "",
-      "status": "0",
-      "roomNum": 4,
-      "qunarPrice": "",
-      "productId": 50067,
-      "containChildPrice": "false",
-      "maxBuyCount": 9,
-      "childPriceDesc": "",
-      "roomSendPrice": "",
-      "updateTime": "2016-08-30T09:45:34.000"
-    },
-    {
-      "takeOffDate": "2016-10-20T00:00:00.000",
-      "taocanPrice": "",
-      "createTime": "2016-08-30T09:30:43.000",
-      "childPrice": "",
-      "priceDesc": "",
-      "marketPrice": "",
-      "isTaocan": "false",
-      "minBuyCount": 1,
-      "id": 1459,
-      "referenceId": 1383,
-      "availableCount": 12,
-      "adultPrice": "",
-      "status": "0",
-      "roomNum": 3,
-      "qunarPrice": "",
-      "productId": 50067,
-      "containChildPrice": "false",
-      "maxBuyCount": 9,
-      "childPriceDesc": "",
-      "roomSendPrice": "",
-      "updateTime": "2016-08-30T09:46:03.000"
-    },
-    {
-      "takeOffDate": "2016-10-20T00:00:00.000",
-      "taocanPrice": "",
-      "createTime": "2016-08-30T09:30:43.000",
-      "childPrice": "",
-      "priceDesc": "",
-      "marketPrice": "",
-      "isTaocan": "false",
-      "minBuyCount": 1,
-      "id": 1460,
-      "referenceId": 1384,
-      "availableCount": 10,
-      "adultPrice": "",
-      "status": "0",
-      "roomNum": 4,
-      "qunarPrice": "",
-      "productId": 50067,
-      "containChildPrice": "false",
-      "maxBuyCount": 9,
-      "childPriceDesc": "",
-      "roomSendPrice": "",
-      "updateTime": "2016-08-30T09:46:18.000"
-    },
-    {
-      "takeOffDate": "2016-10-20T00:00:00.000",
-      "taocanPrice": "",
-      "createTime": "2016-08-30T09:30:43.000",
-      "childPrice": "",
-      "priceDesc": "",
-      "marketPrice": "",
-      "isTaocan": "false",
-      "minBuyCount": 1,
-      "id": 1461,
-      "referenceId": 1385,
-      "availableCount": 10,
-      "adultPrice": "",
-      "status": "0",
-      "roomNum": 2,
-      "qunarPrice": "",
-      "productId": 50067,
-      "containChildPrice": "false",
-      "maxBuyCount": 9,
-      "childPriceDesc": "",
-      "roomSendPrice": "",
-      "updateTime": "2016-08-30T09:46:41.000"
+    "success": true,
+    "msg": "",
+    "result": {
+        "data": {
+            "productParams": [
+                {
+                    "name": "????",
+                    "content": ""
+                }
+            ],
+            "productExt": {
+                "feature": {
+                    "infra": {
+                        "city": "富井县",
+                        "desc": [],
+                        "feature": {},
+                        "typ": "Hotel",
+                        "address": "911-0000 福井县勝山市勝山170−70",
+                        "title": "HOTEL HARVEST",
+                        "phone": "\t咨询电话：400-820-1756、18017858071、021-36580516"
+                    },
+                    "detail": {
+                        "bedType": "双床",
+                        "roomType": "2",
+                        "infraId": "97",
+                        "roomName": "标准间",
+                        "infraName": "HOTEL HARVEST",
+                        "bookDay": "4"
+                    }
+                },
+                "createTime": "2016-11-01T10:59:25.000",
+                "assembly": null,
+                "toBackTraffic": "[{\"from\":\"flight\",\"fromFlightNo\":\"MU557\",\"fromDepCity\":\"上海\",\"fromDepAirPort\":\"浦东国际机场\",\"fromDepTime\":\"09：:3\",\"fromPlanType\":\"\",\"fromArrCity\":\"日本\",\"fromArrAirPort\":\"小松机场\",\"fromArrTime\":\"12:35\",\"back\":\"flight\",\"toFlightNo\":\"MU558\",\"toDepCity\":\"日本\",\"toDepAirPort\":\"小松机场\",\"toDepTime\":\"13:30\",\"toPlanType\":\"\",\"toArrCity\":\"上海\",\"toArrAirPort\":\"浦东国际机场\",\"toArrTime\":\"15:30\"}]",
+                "gatherSpot": null,
+                "id": 11,
+                "status": 0,
+                "gatherTime": null,
+                "productId": 50077,
+                "hotelInfo": "[{\"infraId\":\"97\",\"infraName\":\"HOTEL HARVEST\",\"bookDay\":\"4\",\"roomName\":\"标准间\",\"bedType\":\"双床\",\"roomType\":\"2\"}]",
+                "updateTime": "2016-11-01T10:59:25.000",
+                "spotInfo": "[]"
+            },
+            "productPrices": [
+                {
+                    "takeOffDate": "2016-12-12T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2016-12-13T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2016-12-14T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2016-12-15T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2016-12-16T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2016-12-17T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2016-12-18T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2016-12-19T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2016-12-20T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2016-12-21T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2016-12-22T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2016-12-23T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2016-12-24T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2016-12-25T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2016-12-26T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2016-12-27T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2016-12-28T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2016-12-29T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2016-12-30T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2016-12-31T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-01-01T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-01-02T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-01-03T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-01-04T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-01-05T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-01-06T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-01-07T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-01-08T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-01-09T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-01-10T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-01-11T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-01-12T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-01-13T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-01-14T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-01-15T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-01-16T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-01-17T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-01-18T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-01-19T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-01-20T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-01-21T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-01-22T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-01-23T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-01-24T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-01-25T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-01-26T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-01-27T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-01-28T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-01-29T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-01-30T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-01-31T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-02-01T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-02-02T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-02-03T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-02-04T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-02-05T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-02-06T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-02-07T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-02-08T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-02-09T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-02-10T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-02-11T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-02-12T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-02-13T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-02-14T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-02-15T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-02-16T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-02-17T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-02-18T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-02-19T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-02-20T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-02-21T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-02-22T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-02-23T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-02-24T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-02-25T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-02-26T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-02-27T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-02-28T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-03-01T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-03-02T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-03-03T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-03-04T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-03-05T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-03-06T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-03-07T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-03-08T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-03-09T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-03-10T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-03-11T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-03-12T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-03-13T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-03-14T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                },
+                {
+                    "takeOffDate": "2017-03-15T00:00:00.000",
+                    "marketPrice": 1180000,
+                    "availableCount": 9
+                }
+            ],
+            "productOther": {},
+            "product": {
+                "taocanChildCount": "1",
+                "pcomposition": "交通/酒店",
+                "refundDesc": null,
+                "arriveType": "出境游",
+                "feature": null,
+                "freeTripToTraffic": "飞机",
+                "mainCategory": null,
+                "cruiseRouteCode": null,
+                "viaPort": null,
+                "pfunction": "free",
+                "cruiseDeparture": null,
+                "image": "[{\"pictureId\":\"1127\",\"pictureUrl\":\"http://img02.exthere.cn/201611/5D550C22C4B148D1980B46BD410328A0.jpg\"},{\"pictureId\":\"1128\",\"pictureUrl\":\"http://img02.exthere.cn/201611/08C835F8213F449FB30246F047D840AE.jpg\"}]",
+                "createTime": "2016-11-01T10:56:14.000",
+                "subCategory": null,
+                "offlineType": "1",
+                "visa": null,
+                "price": 1180000,
+                "assembly": null,
+                "productFeatures": "最大級滑雪場 Ski in/Ski out滑雪",
+                "isTaocan": "true",
+                "night": 4,
+                "passengerInfo": 1,
+                "attention": null,
+                "arrive": "日本",
+                "servicePhone": "1111",
+                "recommendation": "<p><span style=\"font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px; color: rgb(102, 102, 102);\">• 東急集團旗下的優質滑雪渡假村</span><span style=\"font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\">&nbsp;</span><br style=\"font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\"></p><p style=\"margin-top: 0px; margin-bottom: 0px; padding: 0px; font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\"><span style=\"color: rgb(102, 102, 102);\">• 西日本最大級滑雪場SKIJAM《勝山滑雪場》</span></p><p style=\"margin-top: 0px; margin-bottom: 0px; padding: 0px; font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\"><span style=\"color: rgb(102, 102, 102);\">• 住宿滑雪渡假村Hotel Harvest<br>• Ski in/Ski out滑雪輕鬆便利​</span></p>",
+                "groupMethod": "出发地参团",
+                "scheduleDays": "[{\"city\":\"上海\",\"traffic\":\"flight\",\"hotel\":\"酒店\",\"richText\":[{\"key\":\"textarea\",\"value\":\"<p><span style=\\\"font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\">上海飞小田机场，抵达后咨询前往</span><strong style=\\\"font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\"><span style=\\\"color: rgb(102, 102, 102);\\\">福井县</span></strong><span style=\\\"font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\"></span><span style=\\\"font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\">​酒店办理入住手续。</span><br></p><p><span style=\\\"font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\"><br></span></p><p><span class=\\\"detail_notice\\\" style=\\\"margin-right: 25px; font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\">早餐：<span class=\\\"tips-text\\\" data-node=\\\"ckxc_canyin\\\" style=\\\"position: relative; cursor: pointer; color: rgb(102, 102, 102);\\\">自理</span></span><span style=\\\"font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\">&nbsp;</span><span class=\\\"detail_notice\\\" style=\\\"margin-right: 25px; font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\">午餐：<span class=\\\"tips-text\\\" data-node=\\\"ckxc_canyin\\\" style=\\\"position: relative; cursor: pointer; color: rgb(102, 102, 102);\\\">自理</span></span><span style=\\\"font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\">&nbsp;</span><span class=\\\"detail_notice\\\" style=\\\"margin-right: 25px; font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\">晚餐：<span class=\\\"tips-text\\\" data-node=\\\"ckxc_canyin\\\" style=\\\"position: relative; cursor: pointer; color: rgb(102, 102, 102);\\\">定食</span></span><span style=\\\"font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\"><br></span></p>\"},{\"key\":\"image\",\"value\":[{\"pictureId\":\"1140\",\"pictureUrl\":\"http://img02.exthere.cn/201611/0A72903B9AE9437A837C6DCFC7D03F63.jpg\"},{\"pictureId\":\"1141\",\"pictureUrl\":\"http://img02.exthere.cn/201611/84FFC3F471FE41859D68CD180CADDF7E.jpg\"}]}]},{\"city\":\"日本\",\"traffic\":\"flight\",\"hotel\":\"酒店\",\"richText\":[{\"key\":\"textarea\",\"value\":\"<p><span style=\\\"font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\">最期待的滑雪日&nbsp;<strong>－&nbsp;<span style=\\\"color: rgb(102, 102, 102);\\\">福井县-</span>​</strong><span style=\\\"color: rgb(102, 102, 102);\\\"><strong>勝山滑</strong></span></span><span style=\\\"font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\">&nbsp;</span><span style=\\\"font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px; color: rgb(102, 102, 102);\\\"><strong>雪場</strong></span><br></p><p><span style=\\\"font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px; color: rgb(102, 102, 102);\\\"><strong><br></strong></span></p><p><span class=\\\"detail_notice\\\" style=\\\"margin-right: 25px; font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\">早餐：<span class=\\\"tips-text\\\" data-node=\\\"ckxc_canyin\\\" style=\\\"position: relative; cursor: pointer; color: rgb(102, 102, 102);\\\">包含</span></span><span style=\\\"font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\">&nbsp;</span><span class=\\\"detail_notice\\\" style=\\\"margin-right: 25px; font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\">午餐：<span class=\\\"tips-text\\\" data-node=\\\"ckxc_canyin\\\" style=\\\"position: relative; cursor: pointer; color: rgb(102, 102, 102);\\\">自理</span></span><span style=\\\"font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\">&nbsp;</span><span class=\\\"detail_notice\\\" style=\\\"margin-right: 25px; font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\">晚餐：<span class=\\\"tips-text\\\" data-node=\\\"ckxc_canyin\\\" style=\\\"position: relative; cursor: pointer; color: rgb(102, 102, 102);\\\">包含</span></span><span style=\\\"font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px; color: rgb(102, 102, 102);\\\"><strong><br></strong></span></p>\"},{\"key\":\"image\",\"value\":[{\"pictureId\":\"1142\",\"pictureUrl\":\"http://img02.exthere.cn/201611/51530FF026F048A48AF5DD871E05FF25.jpg\"},{\"pictureId\":\"1143\",\"pictureUrl\":\"http://img02.exthere.cn/201611/FCAB9341562249318FF2A63C83122D1E.jpg\"}]}]},{\"city\":\"日本\",\"traffic\":\"flight\",\"hotel\":\"酒店\",\"richText\":[{\"key\":\"textarea\",\"value\":\"<p><span style=\\\"font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\">最期待的滑雪日&nbsp;<strong>－&nbsp;<span style=\\\"color: rgb(102, 102, 102);\\\">福井县-</span></strong><span style=\\\"color: rgb(102, 102, 102);\\\"><strong>勝山滑</strong></span></span><span style=\\\"font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\">&nbsp;</span><span style=\\\"font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px; color: rgb(102, 102, 102);\\\"><strong>雪場</strong></span><br></p><p><span style=\\\"font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px; color: rgb(102, 102, 102);\\\"><strong><br></strong></span></p><p><span class=\\\"detail_notice\\\" style=\\\"margin-right: 25px; font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\">早餐：<span class=\\\"tips-text\\\" data-node=\\\"ckxc_canyin\\\" style=\\\"position: relative; cursor: pointer; color: rgb(102, 102, 102);\\\">包含</span></span><span style=\\\"font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\">&nbsp;</span><span class=\\\"detail_notice\\\" style=\\\"margin-right: 25px; font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\">午餐：<span class=\\\"tips-text\\\" data-node=\\\"ckxc_canyin\\\" style=\\\"position: relative; cursor: pointer; color: rgb(102, 102, 102);\\\">自理</span></span><span style=\\\"font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\">&nbsp;</span><span class=\\\"detail_notice\\\" style=\\\"margin-right: 25px; font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\">晚餐：<span class=\\\"tips-text\\\" data-node=\\\"ckxc_canyin\\\" style=\\\"position: relative; cursor: pointer; color: rgb(102, 102, 102);\\\">包含</span></span><span style=\\\"font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px; color: rgb(102, 102, 102);\\\"><strong><br></strong></span></p>\"},{\"key\":\"image\",\"value\":[{\"pictureId\":\"1144\",\"pictureUrl\":\"http://img02.exthere.cn/201611/22F6D171FC47409CACB430AFBFE0030E.jpg\"},{\"pictureId\":\"1145\",\"pictureUrl\":\"http://img02.exthere.cn/201611/43E858EE658E48DDB7F298892EAF33EE.jpg\"}]}]},{\"city\":\"日本\",\"traffic\":\"flight\",\"hotel\":\"酒店\",\"richText\":[{\"key\":\"textarea\",\"value\":\"<p><span style=\\\"font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\">最期待的滑雪日&nbsp;<strong>－&nbsp;<span style=\\\"color: rgb(102, 102, 102);\\\">福井县-</span></strong><span style=\\\"color: rgb(102, 102, 102);\\\"><strong>勝山滑</strong></span></span><span style=\\\"font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\">&nbsp;</span><span style=\\\"font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px; color: rgb(102, 102, 102);\\\"><strong>雪場</strong></span><br></p><p><span style=\\\"font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px; color: rgb(102, 102, 102);\\\"><strong><br></strong></span></p><p><span class=\\\"detail_notice\\\" style=\\\"margin-right: 25px; font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\">早餐：<span class=\\\"tips-text\\\" data-node=\\\"ckxc_canyin\\\" style=\\\"position: relative; cursor: pointer; color: rgb(102, 102, 102);\\\">包含</span></span><span style=\\\"font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\">&nbsp;</span><span class=\\\"detail_notice\\\" style=\\\"margin-right: 25px; font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\">午餐：<span class=\\\"tips-text\\\" data-node=\\\"ckxc_canyin\\\" style=\\\"position: relative; cursor: pointer; color: rgb(102, 102, 102);\\\">自理</span></span><span style=\\\"font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\">&nbsp;</span><span class=\\\"detail_notice\\\" style=\\\"margin-right: 25px; font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\">晚餐：<span class=\\\"tips-text\\\" data-node=\\\"ckxc_canyin\\\" style=\\\"position: relative; cursor: pointer; color: rgb(102, 102, 102);\\\">包含</span></span><span style=\\\"font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px; color: rgb(102, 102, 102);\\\"><strong><br></strong></span></p>\"},{\"key\":\"image\",\"value\":[{\"pictureId\":\"1146\",\"pictureUrl\":\"http://img02.exthere.cn/201611/E788E15436814742B326DA04143B51A1.jpg\"},{\"pictureId\":\"1147\",\"pictureUrl\":\"http://img02.exthere.cn/201611/44F55AB7077C4B7198D2D8F54895443A.jpg\"},{\"pictureId\":\"1148\",\"pictureUrl\":\"http://img02.exthere.cn/201611/D298336ACC8C4F42AA0B73B40834E87D.jpg\"}]}]},{\"city\":\"日本\",\"traffic\":\"flight\",\"hotel\":\"酒店\",\"richText\":[{\"key\":\"textarea\",\"value\":\"<p><span style=\\\"font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\">自行退房，前往机场返回上海。</span><br></p><p><span style=\\\"font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\"><br></span></p><p><span class=\\\"detail_notice\\\" style=\\\"margin-right: 25px; font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\">早餐：<span class=\\\"tips-text\\\" data-node=\\\"ckxc_canyin\\\" style=\\\"position: relative; cursor: pointer; color: rgb(102, 102, 102);\\\">自理</span></span><span style=\\\"font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\">&nbsp;</span><span class=\\\"detail_notice\\\" style=\\\"margin-right: 25px; font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\">午餐：<span class=\\\"tips-text\\\" data-node=\\\"ckxc_canyin\\\" style=\\\"position: relative; cursor: pointer; color: rgb(102, 102, 102);\\\">自理</span></span><span style=\\\"font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\">&nbsp;</span><span class=\\\"detail_notice\\\" style=\\\"margin-right: 25px; font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\">晚餐：<span class=\\\"tips-text\\\" data-node=\\\"ckxc_canyin\\\" style=\\\"position: relative; cursor: pointer; color: rgb(102, 102, 102);\\\">自理</span></span><span style=\\\"font-family: arial, 微软雅黑, sans-serif; font-size: 14px; line-height: 24px;\\\"><br></span></p>\"}]}]",
+                "customType": "CustomOther",
+                "payway": "确认后支付",
+                "feeInclude": null,
+                "advanceDayType": "工作日",
+                "taocanRoomCount": "1",
+                "taocanAdultCount": "1",
+                "freeTripBackTraffic": "飞机",
+                "id": 50077,
+                "systemType": "SystemOther",
+                "offlineStartDate": "2016-12-12T00:00:00.000",
+                "status": 0,
+                "productTopic": "滑雪",
+                "teamType": null,
+                "teamNo": "",
+                "isTransparentTrip": "1",
+                "departure": "上海",
+                "refundId": null,
+                "tip": null,
+                "title": "【自由行】【滑雪季】享乐勝山滑雪自由行",
+                "promise": "如实描述",
+                "advanceDay": 20,
+                "updateTime": "2016-11-01T10:56:14.000",
+                "feeExclude": null,
+                "day": 5,
+                "offlineEndDate": "2017-03-15T00:00:00.000",
+                "cruiseCode": null
+            }
+        }
     }
-  ]
 }

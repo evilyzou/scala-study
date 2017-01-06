@@ -2,6 +2,7 @@ package com.ravel.services
 
 import com.github.mauricio.async.db.ResultSet
 import com.ravel.async.RavelDB
+import com.ravel.model.RavelObject.{Infra, InfraDesc, InfraFeature}
 import scala.collection.immutable.Map
 
 import scala.collection._
@@ -49,6 +50,29 @@ trait QueryService {
       future map { queryResult => resultFunc(queryResult.rows) }
     }
   }
+}
 
+trait InfraService extends QueryService{
+  def infraDescQuery(id: Int) = s"select * from infrastructure_desc where infra_id=${id}"
+  def infraQuery(id: Int) = s"select * from infrastructure where id=${id}"
 
+  def getInfra(infraId: Int) = {
+    import spray.json._
+    import com.ravel.model.RavelObject._
+    import com.ravel.resources.MyJsonSupport._
+
+    for {
+      infra <- single(infraQuery(infraId))
+      infraDescs <- mulptile(infraDescQuery(infraId))
+    } yield {
+      val infraFeature = infra.get("feature") match {
+        case Some(x: String) => x.parseJson.convertTo[InfraFeature]
+        case _ => throw new DeserializationException("InfraFeature expected")
+      }
+      val infraDescSeq = infraDescs map { infraDesc =>
+        InfraDesc(infraDesc.get("content"), infraDesc.get("content_picture_url"))
+      }
+      Infra(infra.get("type"), infra.get("title"), infra.get("city"), infra.get("address"), infra.get("phone"), infraFeature, infraDescSeq)
+    }
+  }
 }

@@ -27,55 +27,7 @@ case class ProductSearchFilter(systemType: String, customType: String, pfunction
   override def size: Int = 10
 }
 
-object DebuggingSupport {
-  DebuggingDirectives.logRequestResult("ravel-request")
-  DebuggingDirectives.logRequestResult(("ravel-request", Logging.DebugLevel))
-
-  def requestMethodAndResponseStatusAsInfo(req: HttpRequest): RouteResult => Option[LogEntry] = {
-    case RouteResult.Complete(res) => Some(LogEntry(req.method.name + ": " + res.status, Logging.InfoLevel))
-    case _ => None
-  }
-  DebuggingDirectives.logRequestResult(requestMethodAndResponseStatusAsInfo _)
-
-//  val rejectionLogger: HttpRequest ? RouteResult ? Option[LogEntry] = req ? {
-//    case Rejected(rejections) ? Some(LogEntry(s"Request: $req\nwas rejected with rejections:\n$rejections", Logging.DebugLevel))
-//    case _                    ? None
-//  }
-//  DebuggingDirectives.logRequestResult(rejectionLogger)
-
-
-  def printRequestMethodAndResponseStatus(req: HttpRequest)(res: RouteResult): Unit =
-    println(requestMethodAndResponseStatusAsInfo(req)(res).map(_.obj.toString).getOrElse(""))
-  val logRequestResultPrintln = DebuggingDirectives.logRequestResult(LoggingMagnet(_ => printRequestMethodAndResponseStatus))
-
-
-  def akkaResponseTimeLoggingFunction(
-                                       loggingAdapter:   LoggingAdapter,
-                                       requestTimestamp: Long,
-                                       level:            LogLevel       = Logging.DebugLevel)(req: HttpRequest)(res: Any): Unit = {
-    val entry = res match {
-      case Complete(resp) =>
-        val responseTimestamp: Long = System.nanoTime
-        val elapsedTime: Long = (responseTimestamp - requestTimestamp) / 1000000
-        val loggingString = s"""Logged Request:${req.method}:${req.uri}:${resp.status}:${elapsedTime}"""
-        LogEntry(loggingString, level)
-      case Rejected(reason) =>
-        LogEntry(s"Rejected Reason: ${reason.mkString(",")}", level)
-    }
-    entry.logTo(loggingAdapter)
-  }
-  def printResponseTime(log: LoggingAdapter) = {
-    val requestTimestamp = System.nanoTime
-    akkaResponseTimeLoggingFunction(log, requestTimestamp)(_)
-  }
-
-  val logResponseTime = DebuggingDirectives.logRequestResult(LoggingMagnet(printResponseTime(_)))
-
-
-}
-
 trait ProductResource extends Directives {
-  import DebuggingSupport._
   def productRoutes: Route = pathPrefix("product"){
     path("list") {
       get {
@@ -93,7 +45,6 @@ trait ProductResource extends Directives {
             }
           }
         }
-
       }
     }~
     path(IntNumber) { id =>
@@ -106,8 +57,7 @@ trait ProductResource extends Directives {
           productOther <- ProductService.getProductOther(id)
           productPriceByTeams <- ProductService.getProductPrices(id)
         } yield {
-            val pe = productExt._1 + ("feature" -> productExt._2)
-            ProductView(product, pe, productOther, productPriceByTeams)
+            ProductView(product, productExt, productOther, productPriceByTeams)
         }
         onSuccess(resultFuture) { case product =>{
             val map = Map(SingleDataJson.head -> product )
