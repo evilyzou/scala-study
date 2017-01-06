@@ -7,7 +7,7 @@ import com.ravel.resources.ProductSearchFilter
 import spray.json.DeserializationException
 
 import scala.concurrent.Future
-import com.ravel.resources.MyJsonSupport._
+import com.ravel.resources.RavelJsonSupport._
 import spray.json._
 
 /**
@@ -44,8 +44,13 @@ object ProductService extends InfraService{
 
   def getProductExt(productId: Int) = {
     for {
-      productExtTuple <- getProductInfraId(productId)
-      infra <- getInfra(productExtTuple._2.infraId.toInt)
+      productExtTuple <- getProductHotelInfo(productId)
+      infra <- {
+        productExtTuple._2 match {
+          case Some(p) => getInfra(p.infraId.toInt)
+          case None => Future{ Infra.empty}
+        }
+      }
     } yield {
       val productHotel = productExtTuple._2
       productExtTuple._1 + ( "feature" -> {
@@ -54,16 +59,6 @@ object ProductService extends InfraService{
           "detail" -> productHotel
         )
       })
-    }
-  }
-
-  def getProductInfraId(productId: Int) = {
-    getProductHotelInfo(productId)  map { case (productExt,hotelOption) =>
-      val productHotel = hotelOption match {
-        case Some(p: ProductHotel) => p
-        case None => throw new DeserializationException("ProductHotelInfro is empty")
-      }
-      (productExt, productHotel)
     }
   }
 

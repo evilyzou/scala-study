@@ -16,7 +16,7 @@ import spray.json._
 /**
  * Created by CloudZou on 12/11/16.
  */
-object MyJsonSupport extends  DefaultJsonProtocol with SprayJsonSupport with ProductFormatsExtensionInstances with NullOptions{
+object RavelJsonSupport extends  DefaultJsonProtocol with SprayJsonSupport with ProductFormatsExtensionInstances with NullOptions{
 
   implicit object TimestampFormat extends JsonFormat[Timestamp] {
     def write(obj: Timestamp) = obj match{
@@ -80,7 +80,7 @@ object MyJsonSupport extends  DefaultJsonProtocol with SprayJsonSupport with Pro
   implicit val infraFeatureFormat = jsonFormat2(InfraFeature)
   implicit val infraDescFormat = jsonFormat2(InfraDesc)
   implicit val infraFormat = jsonFormat7(Infra.apply)
-  implicit val productHotelFormat = jsonFormat6(ProductHotel)
+  implicit val productHotelFormat = jsonFormat6(ProductHotel.apply)
   implicit val guideInfraFormat = jsonFormat2(GuideInfra.apply)
   implicit val guideViewFormat = jsonFormat2(GuideView.apply)
 

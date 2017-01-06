@@ -4,7 +4,7 @@ import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
 import akka.http.scaladsl.server._
 import com.ravel.resources.JsonResultRoute.JsonResultKeys._
 import com.ravel.resources.JsonResultRoute._
-import com.ravel.resources.MyJsonSupport._
+import com.ravel.resources.RavelJsonSupport._
 import com.ravel.services.GuideService
 import com.ravel.model.RavelObject._
 import spray.json._

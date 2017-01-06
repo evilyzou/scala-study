@@ -59,7 +59,7 @@ trait InfraService extends QueryService{
   def getInfra(infraId: Int) = {
     import spray.json._
     import com.ravel.model.RavelObject._
-    import com.ravel.resources.MyJsonSupport._
+    import com.ravel.resources.RavelJsonSupport._
 
     for {
       infra <- single(infraQuery(infraId))

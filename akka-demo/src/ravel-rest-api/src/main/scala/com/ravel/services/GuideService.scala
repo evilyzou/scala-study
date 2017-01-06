@@ -10,7 +10,7 @@ import scala.collection._
 import scala.concurrent.Future
 import scala.collection.immutable.Map
 import scala.concurrent.ExecutionContext.Implicits.global
-import com.ravel.resources.MyJsonSupport._
+import com.ravel.resources.RavelJsonSupport._
 
 /**
  * Created by CloudZou on 12/13/16.

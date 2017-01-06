@@ -87,6 +87,11 @@ object RavelObject {
   }
 
   case class ProductHotel(infraId: String, infraName: String, bookDay: String, roomName: String, bedType: String, roomType: String)
+  object ProductHotel {
+    def empty = {
+
+    }
+  }
 
   case class Infra(typ: String, title: String, city: String, address: String, phone: String, feature: InfraFeature, desc: Seq[InfraDesc])
   object Infra {
