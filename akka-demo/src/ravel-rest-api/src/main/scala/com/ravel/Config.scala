@@ -1,11 +1,13 @@
 package com.ravel
 
-import akka.actor.ActorSystem
+import akka.actor.{Props, ActorSystem}
 import akka.event.Logging
+import akka.util.Timeout
+import com.ravel.actors.{Starter, RavelActor}
 import com.ravel.async.RavelConnectionPool
 import com.typesafe.config.ConfigFactory
 import scalikejdbc.ConnectionPool
-;
+import scala.concurrent.duration._
 
 /**
  * Created by CloudZou on 12/12/16.
@@ -28,4 +30,9 @@ object Config{
 
   ConnectionPool.singleton(config.getString("mysql.jdbc.url"), config.getString("mysql.jdbc.user"), config.getString("mysql.jdbc.password"))
   RavelConnectionPool.singleton(config.getString("mysql.jdbc.url"), config.getString("mysql.jdbc.user"), config.getString("mysql.jdbc.password"))
+
+  val starter = system.actorOf(Props[Starter], name = "main")
+  val ravelActor = system.actorOf(Props[RavelActor], "ravel")
+
+  implicit val ravelActorTimeout = Timeout(5 seconds)
 }

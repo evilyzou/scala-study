@@ -2,12 +2,15 @@ package com.ravel.resources
 
 import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
 import akka.http.scaladsl.server._
+import com.ravel.message.MessageObject.GuideMessageObject.GuideList
 import com.ravel.resources.JsonResultRoute.JsonResultKeys._
 import com.ravel.resources.JsonResultRoute._
 import com.ravel.resources.RavelJsonSupport._
 import com.ravel.services.GuideService
 import com.ravel.model.RavelObject._
 import spray.json._
+import com.ravel.Config._
+import akka.pattern.ask
 
 /**
  * Created by CloudZou on 12/21/16.
@@ -25,9 +28,11 @@ trait GuideResource extends Directives{
             'mainCategory ? "", 'subCategory ? "", 'start ? 0, 'size ? 10) {
           (systemType, customType, guideType, mainCategory, subCategory, start, size) => {
             val filter = GuideSearchFilter(customType, systemType, guideType, mainCategory, subCategory)
-            val flist = GuideService.list(filter)
-            onSuccess(flist) {
-              case list => {
+//            val flist = GuideService.list(filter)
+            val res = ravelActor ? GuideList(filter)
+            onSuccess(res) {
+              case r => {
+                val list = r.asInstanceOf[Tuple2[Long, Seq[SearchGuideView]]]
                 val map = (ResultJsonWithPage zip list.productIterator.toList).toMap
                 val jsonResult: Result[Map[String, Any]]  = Right(Success(map))
                 complete(toStandardRoute(jsonResult))

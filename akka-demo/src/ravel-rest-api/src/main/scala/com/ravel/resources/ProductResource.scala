@@ -13,6 +13,7 @@ import com.ravel.resources.JsonResultRoute._
 import JsonResultRoute.JsonResultKeys._
 import spray.json._
 import RavelJsonSupport._
+import com.ravel.Config._
 
 /**
  * Created by CloudZou on 12/9/2016.

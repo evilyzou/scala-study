@@ -1,6 +1,6 @@
 package com.ravel.actors
 
-import akka.actor.{Actor, ActorLogging}
+import akka.actor.{ActorRef, Actor, ActorLogging}
 import akka.event.{LoggingAdapter, Logging}
 import akka.event.Logging.LogLevel
 import akka.http.scaladsl.Http
@@ -10,6 +10,7 @@ import akka.http.scaladsl.server._
 import akka.http.scaladsl.server.directives.{LoggingMagnet, DebuggingDirectives, LogEntry}
 import akka.stream.scaladsl.Sink
 import akka.stream.{Materializer, ActorMaterializer}
+import com.ravel.model.RavelObject.SearchProductView
 import com.ravel.{Config => C, RestInterface}
 
 import scala.concurrent.{Future, ExecutionContext}
@@ -47,5 +48,8 @@ class Starter extends Actor with ActorLogging{
       } recover {
         case ex => log.info(s"REST interface could not bind to ${C.host}:${C.port}", ex)
       }
+    case x: Tuple2[Long, Seq[SearchProductView]] => {
+      println("xx")
+    }
   }
 }
