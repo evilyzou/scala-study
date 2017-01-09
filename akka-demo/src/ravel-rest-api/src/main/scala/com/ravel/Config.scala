@@ -19,7 +19,7 @@ object Config{
   val port = config.getInt("http.port")
 
   implicit val system = ActorSystem("ravel-app")
-  implicit val executionContext = system.dispatcher
+  implicit val executionContext = system.dispatchers.lookup("ravel-dispatcher")
   val log = Logging.getLogger(system.eventStream, this.getClass)
 
   val esHost = config.getString("elasticsearch.host")
