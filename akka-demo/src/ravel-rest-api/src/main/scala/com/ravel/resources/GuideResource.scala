@@ -28,9 +28,9 @@ trait GuideResource extends Directives{
             'mainCategory ? "", 'subCategory ? "", 'start ? 0, 'size ? 10) {
           (systemType, customType, guideType, mainCategory, subCategory, start, size) => {
             val filter = GuideSearchFilter(customType, systemType, guideType, mainCategory, subCategory)
-//            val flist = GuideService.list(filter)
-            val res = ravelActor ? GuideList(filter)
-            onSuccess(res) {
+            val flist = GuideService.list(filter)
+//            val res = ravelActor ? GuideList(filter)
+            onSuccess(flist) {
               case r => {
                 val list = r.asInstanceOf[Tuple2[Long, Seq[SearchGuideView]]]
                 val map = (ResultJsonWithPage zip list.productIterator.toList).toMap

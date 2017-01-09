@@ -26,7 +26,7 @@ abstract class RavelConnectionPool(val settings: RavelConnectionPoolSettings = R
 }
 
 
-case class RavelConnectionPoolSettings(maxPoolSize: Int = 8, maxQueueSize: Int = 8, maxIdleMillis: Long = 1000L)
+case class RavelConnectionPoolSettings(maxPoolSize: Int = 20, maxQueueSize: Int = 10, maxIdleMillis: Long = 10 * 1000L)
 
 object RavelConnectionPool {
   type ConcurrentMap[A, B] = scala.collection.concurrent.TrieMap[A, B]
