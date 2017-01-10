@@ -2,6 +2,7 @@ package com.ravel
 
 import akka.actor.{Props, ActorSystem}
 import akka.event.Logging
+import akka.routing.RoundRobinPool
 import akka.util.Timeout
 import com.ravel.actors.{Starter, RavelActor}
 import com.ravel.async.RavelConnectionPool
@@ -19,7 +20,7 @@ object Config{
   val port = config.getInt("http.port")
 
   implicit val system = ActorSystem("ravel-app")
-  implicit val executionContext = system.dispatchers.lookup("ravel-dispatcher")
+  implicit val executionContext = system.dispatcher
   val log = Logging.getLogger(system.eventStream, this.getClass)
 
   val esHost = config.getString("elasticsearch.host")
@@ -34,5 +35,9 @@ object Config{
   val starter = system.actorOf(Props[Starter], name = "main")
   val ravelActor = system.actorOf(Props[RavelActor], "ravel")
 
+  val ravelRouter = system.actorOf(RoundRobinPool(10).props(Props[RavelActor]), "ravelRouter")
+
   implicit val ravelActorTimeout = Timeout(5 seconds)
+
+  var cache = Array.empty[Byte]
 }

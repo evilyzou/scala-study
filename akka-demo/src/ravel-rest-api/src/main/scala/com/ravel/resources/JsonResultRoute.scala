@@ -61,7 +61,11 @@ object JsonResultRoute {
   def toStandardRoute(result: Result[Map[String, Any]]) = {
     import RavelJsonSupport._
     import spray.json._
+    import com.ravel.Config.cache
+    if (cache.size == 0) {
+      cache = result.toJson.compactPrint.getBytes("UTF-8")
+    }
 
-    HttpEntity(ContentTypes.`application/json`, result.toJson.compactPrint.getBytes("UTF-8"))
+    HttpEntity(ContentTypes.`application/json`, cache)
   }
 }
