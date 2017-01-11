@@ -1,6 +1,6 @@
 package com.ravel.resources
 
-import akka.actor.Props
+import akka.actor.{ActorContext, Props}
 import akka.event.Logging.LogLevel
 import akka.event.{LoggingAdapter, Logging}
 import akka.http.scaladsl.model.{HttpRequest, HttpEntity, ContentTypes}
@@ -16,6 +16,8 @@ import spray.json._
 import RavelJsonSupport._
 import com.ravel.Config._
 
+import scala.concurrent.Future
+
 /**
  * Created by CloudZou on 12/9/2016.
  */
@@ -29,7 +31,7 @@ case class ProductSearchFilter(systemType: String, customType: String, pfunction
   override def size: Int = 10
 }
 
-trait ProductResource extends Directives with PerRequestCreator{
+trait ProductResource extends Directives{
   def productRoutes: Route = pathPrefix("product"){
     path("list") {
       get {
@@ -87,18 +89,19 @@ trait ProductResource extends Directives with PerRequestCreator{
     }
   }
 
-  def testRoutes =
+  def testRoutes(context: ActorContext) =
     path("hello") {
       get {
 //        complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "<h1>say hello to akka-http</h1>"))
-        testPerRequest(RestMessage("xx"))
+        testPerRequest(context, RestMessage("xx"))
       }
     }
 
-  def testPerRequest(message: RestMessage): Route = {
+  def testPerRequest(context: ActorContext, message: RestMessage): Route = {
     import com.ravel.resources.PerRequest._
+    import com.ravel.resources.PerRequestCreator._
     import akka.pattern.ask
 
-    context => { perRequest(context, Props(new TestPerRequestActor()), message) ? RestMessage("test") }
+    ctx => {  (perRequest(context, ctx, Props(new TestPerRequestActor()), message) ? RestMessage("test")).asInstanceOf[Future[RouteResult]] }
   }
 }

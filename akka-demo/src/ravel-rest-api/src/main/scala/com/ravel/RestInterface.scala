@@ -1,5 +1,6 @@
 package com.ravel
 
+import akka.actor.ActorContext
 import akka.event.Logging.LogLevel
 import akka.event.{Logging, LoggingAdapter}
 import akka.http.scaladsl.server.RouteResult.{Rejected, Complete}
@@ -57,9 +58,9 @@ object RestInterface extends Resources {
   val logResponseTime = DebuggingDirectives.logRequestResult(LoggingMagnet(printResponseTime(_)))
 
 
-  val routes: Route = handleExceptions(customExceptionHandler) {
+  def routes(context: ActorContext): Route = handleExceptions(customExceptionHandler) {
     logResponseTime {
-      productRoutes ~ testRoutes ~ guideRoutes ~ bannerRoutes
+      productRoutes ~ testRoutes(context) ~ guideRoutes ~ bannerRoutes
     }
   }
 }

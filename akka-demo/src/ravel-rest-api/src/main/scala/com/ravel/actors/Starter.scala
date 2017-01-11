@@ -11,6 +11,7 @@ import akka.http.scaladsl.server.directives.{LoggingMagnet, DebuggingDirectives,
 import akka.stream.scaladsl.Sink
 import akka.stream.{Materializer, ActorMaterializer}
 import com.ravel.model.RavelObject.SearchProductView
+import com.ravel.resources.RestMessage
 import com.ravel.{Config => C, RestInterface}
 
 import scala.concurrent.{Future, ExecutionContext}
@@ -35,7 +36,7 @@ class Starter extends Actor with ActorLogging{
 
   def receive: Receive = {
     case Start =>
-      Http().bindAndHandle(routes, C.host, C.port) map { binding =>
+      Http().bindAndHandle(routes(context), C.host, C.port) map { binding =>
         log.info(s"REST interface bound to ${binding.localAddress}")
 
         Thread.sleep(1000 * 3)
@@ -50,6 +51,12 @@ class Starter extends Actor with ActorLogging{
       }
     case x: Tuple2[Long, Seq[SearchProductView]] => {
       println("xx")
+    }
+    case message: RestMessage => {
+      println("xxxx")
+    }
+    case _ => {
+      println("here")
     }
   }
 }

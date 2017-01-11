@@ -1,7 +1,7 @@
 package com.ravel.resources
 
 import akka.actor.SupervisorStrategy.Stop
-import akka.actor.{Props, OneForOneStrategy, ActorRef, Actor}
+import akka.actor._
 import akka.http.scaladsl.model.StatusCodes._
 import akka.http.scaladsl.model.{ContentTypes, HttpEntity, StatusCode}
 import akka.http.scaladsl.server.RequestContext
@@ -23,15 +23,29 @@ trait PerRequest extends Actor {
   def message: RestMessage
 
   setReceiveTimeout(2.seconds)
-  target ! message
+  //target ! message
 
-  def receive = {
-    case res: RestMessage => complete(OK, "<h1>say hello to akka-http</h1>")
+  def receive: Receive = {
+    case res: RestMessage => {
+      val future = complete(OK, "<h1>say hello to akka-http</h1>")
+
+      val _sender = sender()
+      future onSuccess {
+        case result => _sender ! result
+      }
+      future onFailure {
+        case e: Throwable => throw e
+      }
+    }
+    case _ => {
+      println("xxxx here")
+    }
   }
 
   def complete[T <: AnyRef](status: StatusCode, obj: T) = {
-    complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "<h1>say hello to akka-http</h1>"))
+    val routeResult = r.complete(HttpEntity("<h1>say hello to akka-http</h1>"))
     stop(self)
+    routeResult
   }
 
   override val supervisorStrategy =
@@ -50,22 +64,19 @@ object PerRequest {
   }
 }
 
-trait PerRequestCreator {
-  this: Actor =>
-
-  def perRequest(r: RequestContext, target: ActorRef, message: RestMessage) =
+object PerRequestCreator {
+  def perRequest(context: ActorContext, r: RequestContext, target: ActorRef, message: RestMessage) =
     context.actorOf(Props(new WithActorRef(r, target, message)))
 
-  def perRequest(r: RequestContext, props: Props, message: RestMessage) =
+  def perRequest(context: ActorContext,r: RequestContext, props: Props, message: RestMessage) = {
     context.actorOf(Props(new WithProps(r, props, message)))
+  }
 }
-
-case class TestMessage(msg: String)
 
 class TestPerRequestActor extends Actor {
   def receive = {
-    case t: TestMessage => {
-      sender() ! t.msg
+    case t: RestMessage => {
+      context.parent ! RestMessage("message from TestPerRequestActor")
     }
   }
 }
