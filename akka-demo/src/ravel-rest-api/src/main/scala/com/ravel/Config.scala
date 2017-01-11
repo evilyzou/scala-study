@@ -35,9 +35,10 @@ object Config{
   val starter = system.actorOf(Props[Starter], name = "main")
   val ravelActor = system.actorOf(Props[RavelActor], "ravel")
 
-  val ravelRouter = system.actorOf(RoundRobinPool(10).props(Props[RavelActor]), "ravelRouter")
+  val ravelRouter = system.actorOf(RoundRobinPool(1000).props(Props[RavelActor]), "ravelRouter")
 
   implicit val ravelActorTimeout = Timeout(5 seconds)
+
 
   var cache = Array.empty[Byte]
 }

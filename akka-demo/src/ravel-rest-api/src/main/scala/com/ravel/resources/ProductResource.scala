@@ -1,5 +1,6 @@
 package com.ravel.resources
 
+import akka.actor.Props
 import akka.event.Logging.LogLevel
 import akka.event.{LoggingAdapter, Logging}
 import akka.http.scaladsl.model.{HttpRequest, HttpEntity, ContentTypes}
@@ -28,7 +29,7 @@ case class ProductSearchFilter(systemType: String, customType: String, pfunction
   override def size: Int = 10
 }
 
-trait ProductResource extends Directives {
+trait ProductResource extends Directives with PerRequestCreator{
   def productRoutes: Route = pathPrefix("product"){
     path("list") {
       get {
@@ -89,8 +90,15 @@ trait ProductResource extends Directives {
   def testRoutes =
     path("hello") {
       get {
-        complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "<h1>say hello to akka-http</h1>"))
+//        complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "<h1>say hello to akka-http</h1>"))
+        testPerRequest(RestMessage("xx"))
       }
     }
 
+  def testPerRequest(message: RestMessage): Route = {
+    import com.ravel.resources.PerRequest._
+    import akka.pattern.ask
+
+    context => { perRequest(context, Props(new TestPerRequestActor()), message) ? RestMessage("test") }
+  }
 }
