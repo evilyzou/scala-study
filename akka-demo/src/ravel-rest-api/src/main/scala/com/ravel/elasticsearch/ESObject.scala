@@ -15,6 +15,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 import com.ravel.util.MapConverterImplicits._
 import com.ravel.model.RavelObject._
+import scala.collection.JavaConversions._
 
 /**
  * Created by CloudZou on 12/27/2016.
@@ -59,7 +60,7 @@ object ProductSearch {
 
     val responses = respFuture.map { response =>
       val hits = response.getHits
-      (hits.totalHits(), hits.getHits.toSeq.map(e=>e.sourceAsMap().toMap.convert[SearchProductView]))
+      (hits.totalHits(), hits.getHits.toSeq.map(e=>e.getSource.toMap.convert[SearchProductView]))
     }
 
     responses recover { case cause => throw new Exception("Something went wrong", cause) }

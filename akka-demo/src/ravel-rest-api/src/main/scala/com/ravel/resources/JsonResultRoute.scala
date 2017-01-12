@@ -1,6 +1,7 @@
 package com.ravel.resources
 
-import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
+import akka.http.scaladsl.model.{HttpEntity, ContentTypes}
+import com.ravel.Config._
 import spray.json._
 
 /**
@@ -65,6 +66,12 @@ object JsonResultRoute {
     if (cache.size == 0) {
       cache = result.toJson.compactPrint.getBytes("UTF-8")
     }
+
+    HttpEntity(ContentTypes.`application/json`, cache)
+  }
+
+  def toDefaultRoute() = {
+    import com.ravel.Config.cache
 
     HttpEntity(ContentTypes.`application/json`, cache)
   }

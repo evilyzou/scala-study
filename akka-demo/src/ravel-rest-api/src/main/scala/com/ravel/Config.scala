@@ -4,7 +4,7 @@ import akka.actor.{Props, ActorSystem}
 import akka.event.Logging
 import akka.routing.RoundRobinPool
 import akka.util.Timeout
-import com.ravel.actors.{Starter, RavelActor}
+import com.ravel.actors.{Starter}
 import com.ravel.async.RavelConnectionPool
 import com.typesafe.config.ConfigFactory
 import scalikejdbc.ConnectionPool
@@ -33,12 +33,6 @@ object Config{
   RavelConnectionPool.singleton(config.getString("mysql.jdbc.url"), config.getString("mysql.jdbc.user"), config.getString("mysql.jdbc.password"))
 
   val starter = system.actorOf(Props[Starter], name = "main")
-  val ravelActor = system.actorOf(Props[RavelActor], "ravel")
-
-  val ravelRouter = system.actorOf(RoundRobinPool(1000).props(Props[RavelActor]), "ravelRouter")
-
-  implicit val ravelActorTimeout = Timeout(5 seconds)
-
 
   var cache = Array.empty[Byte]
 }

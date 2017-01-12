@@ -93,15 +93,10 @@ trait ProductResource extends Directives{
     path("hello") {
       get {
 //        complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "<h1>say hello to akka-http</h1>"))
-        testPerRequest(context, RestMessage("xx"))
+        import RequestHandler._
+        imperativelyComplete { ctx =>
+          context.actorOf(Props[RequestHandler]) ! RequestHandler.Handle(ctx)
+        }
       }
     }
-
-  def testPerRequest(context: ActorContext, message: RestMessage): Route = {
-    import com.ravel.resources.PerRequest._
-    import com.ravel.resources.PerRequestCreator._
-    import akka.pattern.ask
-
-    ctx => {  (perRequest(context, ctx, Props(new TestPerRequestActor()), message) ? RestMessage("test")).asInstanceOf[Future[RouteResult]] }
-  }
 }
