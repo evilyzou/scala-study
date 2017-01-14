@@ -18,16 +18,34 @@ $color-main: #38b3b3;
 //}
 
 #header {
-    background: $color-main;
+    // background: $color-main;
     
     .title {
 
-        text-indent: -999px;
-        overflow: hidden;
-        background-image: url(#{$path-img}/even/logo_white.png);
-        background-repeat: no-repeat;
-        background-position: ($padding-base * 2) center;
-        background-size: contain;
+        // text-indent: -999px;
+        // overflow: hidden;
+        // background-image: url(#{$path-img}/even/logo_white.png);
+        // background-repeat: no-repeat;
+        // background-position: ($padding-base * 2) center;
+        // background-size: contain;
+
+        .logo {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            margin-right: 5px;
+            vertical-align: middle;
+
+            background-image: url(#{$path-img}/logo.jpg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+        }
+
+        .name {
+            display: inline-block;
+            vertical-align: middle;
+        }
     }
 }
 

@@ -4,87 +4,152 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
-    <title>设置</title>
+    <title>个人资料</title>
     <link rel="shortcut icon" type="image/x-icon" href="../_res/images/favicon.ico" />
     <link rel="stylesheet" href="../_res/css/common.css?ver=1.2.1">
     <link rel="stylesheet" id="themeStyle" href="../_res/css/theme.css?ver=1.2.1">
 
-    <script style="text/javascript" src="../_res/js/global.js?ver=1.2.2"></script>
+    <script style="text/javascript" src="../_res/js/global.js"></script>
     
 </head>
 <body class="p-user">
 
-<div id="wrap" class="wrap">
+<main class="wrap slidepage-wrap">
 
-    <aside class="container aside" id="aside">
-        <div class="logo"></div>
-        <ul class="sidebar">
-            <li><a class="icon cssicon cart white" href="../cart/index.html">购物车</a></li>
-            <li><a href="../">首页</a></li>
-            <li><a href="order.html">我的订单</a></li>
-            <li><a href="myaddress.html">收货地址</a></li>
-            <li><a href="../user/index.html">登录</a></li>
-        </ul>
-    </aside>
+    <div class="container container-main slidepage-page">
+    
+        <header id="header" class="header" role="banner">
+            <a class="icon cssicon back" href="../user/index.html">返回</a>
+            <h2 class="title">个人资料</h2>
+        </header>
 
-    <div class="container container-main">
+        <div class="maincontent">
+
+            <div class="line-box info" id="user_info">
+            </div>
+
+            <script type="text/html" id="user_info_template">
+                <a class="item" href="#p-1">
+                    <span class="label">头像</span>
+                    <div class="content">
+                        <div class="face member-face">
+                            {{if headIcon}}
+                            <div class="img" style="background-image: url({{headIcon}})"></div>
+                            {{else}}
+                            <div class="img" style=""></div>
+                            {{/if}}
+                        </div>
+                    </div>
+                    <div class="addon">
+                        <span class="icon arrow-right"></span>
+                    </div>
+                </a>
+            
+                <a class="item" href="#p-2">
+                    <span class="label">昵称</span>
+                    <div class="content member-nick">{{nick}}</div>
+                    <div class="addon">
+                        <span class="icon arrow-right"></span>
+                    </div>
+                </a>
+            </script>
+        </div>
+
+    </div><!-- end 个人资料 -->
+
+    <div class="container container-main slidepage-page">
+
+        <header id="header" class="header" role="banner">
+            <a class="icon cssicon back" href="#">返回</a>
+            <h2 class="title">设置头像</h2>
+        </header>
+
+        <div class="maincontent">
+
+            <div id="faceupload">
+                <form class="content item upimg-item" method="post" enctype="multipart/form-data">
+                    <div class="addface">
+                        <label class="addbtn icon cssicon user" for="upImg0">
+                            <img class="ImgPr" id="ImgPr0" src="" style="display: none" >
+                            <input class="upImg" id="upImg0" type="file" data-no="0"/>
+                            <input name="file" type="hidden" value="" />
+                        </label>
+                        <div class="progress-box" style="display: none;">
+                            <div class="progress"><div class="progress-bar"></div></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="line-box info">
+                <label class="item" for="upImg0">
+                    <span class="label">从相册选择一张</span>
+                    <div class="content">
+                    </div>
+                </label>
+            </div>
+
+        </div>
+
+    </div><!-- end 设置头像 -->
+
+    <div class="container container-main slidepage-page">
     
         <header id="header" class="header" role="banner">
             <a class="icon cssicon back" href="#">返回</a>
-            <h1 class="title">设置</h1>
-            <a class="icon cssicon cart" href="../cart/index.html"></a>
+            <h2 class="title">昵称</h2>
         </header>
 
-        <main id="main" role="main">
+        <div class="maincontent">
 
-            <div class="region">
-
-                <div class="line-box multi">
-                    <a class="item" href="setting2.html">
-                        <span class="label-icon member"></span>
-                        <span class="content">个人资料</span>
-                        <div class="addon">
-                            <span class="icon arrow-right"></span>
-                        </div>
-                    </a>
+            <form class="line-box form-box">
+                <div class="item">
+                    <span class="label">昵称</span>
+                    <span class="content"><input type="text" class="nickname" name="nickname" placeholder=""></span>
                 </div>
+            </form>
 
-                <div class="line-box multi">
-                    <a class="item" href="password.html">
-                        <span class="label-icon account"></span>
-                        <span class="content">账号与安全</span>
-                        <div class="addon">
-                            <span class="icon arrow-right"></span>
-                        </div>
-                    </a>
+        </div>
+
+    </div><!-- end 昵称 -->
+
+    <!--<div class="container container-main slidepage-page">
+    
+        <header id="header" class="header" role="banner">
+            <a class="icon cssicon back" href="#">返回</a>
+            <h2 class="title">性别</h2>
+        </header>
+
+        <div class="maincontent">
+
+            <div class="line-box selectBox">
+                <div class="item selected">
+                    <span class="label">男</span>
                 </div>
-
-                <div class="line-box multi">
-                    <a class="item" href="myaddress.html">
-                        <span class="label-icon address"></span>
-                        <span class="content">外卖地址</span>
-                        <div class="addon">
-                            <span class="icon arrow-right"></span>
-                        </div>
-                    </a>
+                <div class="item">
+                    <span class="label">女</span>
                 </div>
-
-                <div class="foot">
-                    <button class="btn btn-second" type="button">退出登录</button>
-                </div>
-
             </div>
 
-        </main>
+        </div>
 
-    </div>
-</div>
+    </div>--><!-- end 性别 -->
+
+</main>
 
 <script type="text/javascript" src="../_res/libs/jquery/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../_res/js/art-template.js"></script>
+<script type="text/javascript" src="../_res/js/art-template-helper.js"></script>
+<script type="text/javascript" src="../_res/js/plugins/img/mobileBUGFix.mini.js"></script>
+<script type="text/javascript" src="../_res/js/plugins/LocalResizeIMG/1.0/jquery.LocalResizeIMG.js"></script>
+<script type="text/javascript" src="../_res/js/plugins/jquery.form/3.51.0/jquery.form.js"></script>
+
 
 <script type="text/javascript" src="../_res/js/common/util.js"></script>
 <script type="text/javascript" src="../_res/js/common/stats.js?v1.2.0"></script>
 <script type="text/javascript" src="../_res/js/common.js?ver=1.1.0"></script>
+<script type="text/javascript" src="../_res/js/common/addimgbox.js"></script>
+<script type="text/javascript" src="../_res/js/user/user.edit.js"></script>
 <script type="text/javascript">
     var WEBP = window.WEBP || {}
     try {

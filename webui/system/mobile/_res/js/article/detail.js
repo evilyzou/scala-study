@@ -46,3 +46,12 @@ if (article_id) CONTENT_DETAIL.get(article_id, function(response) {
         CONTENT_DETAIL.vendor(response)
     });
 });
+
+
+// header background-color
+$('.maincontent').on('scroll', function(e) {
+    var _opacity = (e.currentTarget.scrollTop <= 160) ? e.currentTarget.scrollTop / 200 : 0.95
+    var _header = $(this).prev('.header')
+    _header.css('background-color', 'rgba(255,255,255,' + _opacity + ')')
+    _header.find('.title').css('color', 'rgba(51,51,51,' + _opacity + ')')
+});

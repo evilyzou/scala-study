@@ -319,6 +319,11 @@ strong small { font-weight: normal; }
 .txtlink { color: $color-main; }
 .close { cursor: pointer; }
 
+.img {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
 
 // text style
 .text-left {text-align: left}

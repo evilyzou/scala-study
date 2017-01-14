@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <title>商品详情</title>
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="../_res/images/favicon.ico" /> -->
+    <link rel="stylesheet" href="../_res/css/common.css?ver=1.2.1">
+    <link rel="stylesheet" id="themeStyle" href="../_res/css/theme.css?ver=1.2.1">
+    <link rel="stylesheet" href="../_res/css/article.css?ver=1.2.1">
+
+    <script type="text/javascript" src="../_res/js/global.js?ver=1.2.2"></script>
+    <!-- <script type="text/javascript" src="../_res/js/common/getLoginState.js?ver=1.0.2"></script> -->
+    <!-- <script type="text/javascript">
+        var XLJ = window.XLJ || {};
+        XLJ.isLoginCheck = false;
+        XLJ.getLoginState();
+    </script> -->
+    <script type="text/javascript">
+        (function () {
+            var getQueryString = function(name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null) return unescape(r[2]);
+                return null;
+            }
+
+            var pid = window.pid = getQueryString('id') || ''
+            // if (!pid) return window.location.href = XLJ.rootPath
+        })();
+    </script>
+
+</head>
+<body class="p-article-detail">
+
+<div id="wrap" class="wrap">
+
+    <div class="container container-main">
+
+        <header id="header" class="header" role="banner">
+            <a class="icon-back back" href="#">返回</a>
+            <h1 class="title">【滑雪季】享乐勝山滑雪自由行</h1>
+            <!--<a class="icon cssicon cart" href="../cart/index.html"></a>-->
+        </header>
+
+        <div class="maincontent">
+            <article class="region content_box">
+
+                <div class="head">
+                    <h2 class="title">【滑雪季】享乐勝山滑雪自由行</h2>
+                    <span class="tagtxt">自由行</span>
+                </div>
+
+                <div class="main content">
+                    <div>• 東急集團旗下的優質滑雪渡假村<br>• 西日本最大級滑雪場SKIJAM《勝山滑雪場》<br>• 住宿滑雪渡假村Hotel Harvest<br>• Ski in/Ski out滑雪輕鬆便利&#8203;<br><img data-lazy="http://img1.qunarzz.com/p/tts0/1610/70/02a50c18fe10c302.jpg_r_750x500x90_adae6cf8.jpg" alt="" src="http://img1.qunarzz.com/p/tts0/1610/70/02a50c18fe10c302.jpg_r_750x500x90_adae6cf8.jpg" class="loaded"><img data-lazy="http://img1.qunarzz.com/p/tts4/1610/4b/412b45f32e639502.jpg_r_750x500x90_949db0e6.jpg" alt="" src="http://img1.qunarzz.com/p/tts4/1610/4b/412b45f32e639502.jpg_r_750x500x90_949db0e6.jpg" class="loaded"><img data-lazy="http://img1.qunarzz.com/p/tts6/1610/74/9f4b7fb9aacdc202.jpg_r_750x500x90_03f3b9a6.jpg" alt="" src="http://img1.qunarzz.com/p/tts6/1610/74/9f4b7fb9aacdc202.jpg_r_750x500x90_03f3b9a6.jpg" class="loaded"></div>
+                </div>
+            </article>
+        </div><!-- end main content-->
+
+    </div>
+</div>
+
+<script type="text/javascript" src="../_res/libs/jquery/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../_res/libs/swiper/3.2.5/js/swiper.min.js"></script>
+<script type="text/javascript" src="../_res/libs/artTemplate/3.0/template.js"></script>
+<script type="text/javascript" src="../_res/libs/artTemplate/3.0/template-helper.js"></script>
+
+<script type="text/javascript" src="../_res/js/common/util.js"></script>
+<script type="text/javascript" src="../_res/js/common/stats.js?v1.2.0"></script>
+
+<script type="text/javascript" src="../_res/js/common.js?ver=1.1.0"></script>
+
+<script type="text/javascript" src="../_res/js/module/loadcontent.js"></script>
+<script type="text/javascript" src="../_res/js/article/detail.js"></script>
+<!-- <script type="text/javascript">
+    var WEBP = window.WEBP || {}
+    try {
+        var WEBPStats = WEBP.Stats()
+        WEBPStats.init('from_wechat');
+        WEBP.PageLoad().updatePageLoadEndTimestamp();
+        WEBPStats.upload(30, window.location.pathname);
+
+        if (window.pid) WEBPStats.upload(10, pid);
+    } catch(e) {
+        console.log(e);
+    }
+</script> -->
+</body>
+</html>

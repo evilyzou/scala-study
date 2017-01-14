@@ -26,6 +26,8 @@
 .userinfo .tel,
 .userinfo .address {font-size: 12px; color: #999;}
 
+.content img { max-width: 100%; }
+
 .g-flexbox {
     -webkit-box-align: center;
     -webkit-align-items: center;
@@ -169,6 +171,10 @@ span.picon {display: inline-block;}
         display: block;
         font-size: 20px;
     }
+
+    &.with-txt {
+        text-align: left;
+    }
 }
 
 .header .link {width: auto;padding: 0 15px;}
@@ -177,7 +183,7 @@ span.picon {display: inline-block;}
 .header .with-txt[class*="icon-"],
 .header .icon.with-txt { white-space: nowrap; overflow: visible; }
 .header .with-txt[class*="icon-"]:before,
-.header .icon.with-txt:before { display: inline-block; margin-top: -2px; vertical-align: middle; }
+.header .icon.with-txt:before { display: inline-block; vertical-align: middle; }
 .header .icon:before { margin-top: 12px; }
 .header .cssicon.cart:before { width: 26px; height: 26px; margin-top: 8px; background-size: 28px auto; }
 
@@ -222,14 +228,16 @@ span.picon {display: inline-block;}
     border-radius: 0 99px 99px 0;
     width: 36px;
     height: 32px;
-    line-height: 32px;
+    line-height: 30px;
     margin-top: 6px;
 }
+
+.header .icon-location:before { font-size: 14px; }
 
 //h1.title {}
 
 .maincontent { padding-bottom: 50px; }
-#footer { position: absolute; z-index: 8; width: 100%; bottom: 0; height: 50px; box-sizing: border-box; }
+#footer { position: absolute; z-index: 8; width: 100%; bottom: 0; height: 49px; box-sizing: border-box; }
 #footer.min { height: 38px; }
 
 .maincontent #footer { position: fixed; bottom: 0; }
@@ -2121,6 +2129,7 @@ textarea.form-control { height: auto; }
 /* ---------------------------
    pages
    - - - - - - - - - - - - - */
+.p-home > .wrap .header+.maincontent { padding-bottom: $bottom-height * 2; }
 //.p-user .line-box .item:last-child { border-bottom-color: #f5f5f5; }
 .p-user-home h1.title { line-height: 9; overflow: hidden; }
 .p-user-home #header .icon,
@@ -3027,6 +3036,98 @@ textarea.form-control { height: auto; }
         text-align: center;
         background-color: #333;
     }
+}
+
+
+.category_tags {
+    width: 100%;
+    overflow: hidden;
+    overflow-x: auto;
+
+    .tags {
+        padding: 0 15px;
+        white-space: nowrap;
+    }
+
+    .tag {
+        display: inline-block;
+        margin: 10px 5px;
+        text-align: center;
+    }
+
+    .name {
+        display: block;
+        margin-top: 3px;
+    }
+
+    .img {
+        display: block;
+        width: 68px;
+        height: 68px;
+        margin: auto;
+    }
+}
+
+.category_list {
+
+
+    .item {
+        position: relative;
+
+        .head {
+            .title {
+                position: relative;
+                top: 18px;
+
+                display: block;
+                width: 25px;
+                height: 25px;
+                margin: auto;
+                text-align: center;
+                line-height: 9;
+                overflow: hidden;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;
+            }
+        }
+
+        .main {
+            display: table;
+            width: 100%;
+        }
+
+        .cell {
+            display: table-cell;
+            width: 50%;
+
+            .title {
+                margin-left: 15px;
+                margin-right: 15px;
+                margin-bottom: 5px;
+            }
+
+            &:last-child {
+                .title {
+                    text-align: right;
+                }
+            }
+        }
+
+        .img {
+            width: 100%;
+            background-image: url(#{$path-img}/ejp/_res/images/ejp/space_375x200.png);
+        }
+
+        img {
+            max-width: 100%;
+        }
+    }
+
+    .title_spring { background-image: url(#{$path-img}/ejp/category_type_1.jpg); }
+    .title_summer { background-image: url(#{$path-img}/ejp/category_type_2.jpg); }
+    .title_autumn { background-image: url(#{$path-img}/ejp/category_type_3.jpg); }
+    .title_winter { background-image: url(#{$path-img}/ejp/category_type_4.jpg); }
 }
 
 
