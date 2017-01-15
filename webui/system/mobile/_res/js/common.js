@@ -1490,6 +1490,88 @@ XLJ.scrolltab = window.XLJ.scrolltab || function() {
     $scrolltab.off('click', 'li', li_click).on('click', 'li', li_click)
 };
 
+/*!
+ *  Create Date: 2017-01
+ *  Author: zihan
+ *  varsion: 1.0.1
+ */
+
+XLJ.urlParamsImpress = window.XLJ.urlParamsImpress || function(options) {
+    this.options            = options                       || {}
+    this._elname            = this.options.elname           || 'a'
+    this._containerElname   = this.options.containerElname  || document.body
+    this.initStatus         = this.options.initStatus
+
+    this.debug = false
+
+    // init start
+    if (this.initStatus !== false) this.init()
+}
+XLJ.urlParamsImpress.prototype = {
+
+    urlParams: function(urlSearch) {
+        if (urlSearch) {
+            var _this_paramStart = urlSearch.indexOf('?'),
+                _this_urlSearch = (_this_paramStart != -1) ? urlSearch.substring(_this_paramStart + 1) : urlSearch
+            urlSearch = _this_urlSearch
+        } else {
+            urlSearch = window.location.search
+            if (urlSearch) urlSearch = urlSearch.substring(1)
+        }
+
+        if (!urlSearch) return {}
+
+        var _paramGroup = urlSearch.split('&'),
+            _params = {}
+
+        for (var i = 0; i < _paramGroup.length; i++) {
+            var d = _paramGroup[i], a = d.split('=')
+            _params[a[0]] = encodeURIComponent(decodeURIComponent(decodeURIComponent(a[1])))
+        }
+        return _params
+    },
+
+    setUrl: function(url, params) {
+        for (var key in params) {
+            url = XLJ.setUrlParam(url, key, params[key])
+        }
+        return url
+    },
+
+    linkWithUrlParams: function(_this) {
+        var root = this
+
+        var $this = $(_this),
+            _href = $this.attr('href'),
+            _url  = _href
+
+        if (!_href || _href == '#') return
+
+        var _urlParams = root.urlParams(),
+            _this_paramStart = _href.indexOf('?'),
+            _this_urlParams = root.urlParams(_href),
+            _this_path = (_this_paramStart != -1) ? _url.substring(0, _this_paramStart) : _href
+
+        _urlParams = $.extend({}, _urlParams, _this_urlParams)
+        _url = root.setUrl(_this_path, _urlParams)
+
+        console.log(_url)
+        window.location.href = _url
+    },
+
+    init: function() {
+        var root = this
+
+        var _fn = function(e) {
+            e.preventDefault()
+            root.linkWithUrlParams(this)
+        }
+        $(root._containerElname)
+            .off('click', root._elname, _fn)
+            .on('click', root._elname, _fn)
+    }
+
+};
 
 
 /* -----------------------
@@ -2345,6 +2427,12 @@ XLJ.docReady(function() {
 
     // init scrolltab
     XLJ.scrolltab()
+
+    // init link urlParamsImpress
+    var UrlParamsImpress = new XLJ.urlParamsImpress({
+        elname:          'a[class*="icon-home"]',
+        containerElname: '.mainnav'
+    })
 });
 
 

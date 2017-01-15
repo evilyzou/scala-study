@@ -9,6 +9,48 @@
 ;(function(){
 
     var WEBP = window.WEBP = window.WEBP || {}
+    WEBP.keyMap = {
+        "GuideCustomCH" : "春花",
+        "GuideCustomQY" : "秋野",
+        "GuideCustomWM" : "乐园",
+        "GuideCustomMS" : "美食",
+        "GuideCustomHX" : "滑雪",
+        "GuideCustomQJ" : "骑迹",
+        "GuideCustomQS" : "亲水",
+        "GuideCustomWQ" : "温泉",
+
+        "CustomGG":       "观光",
+        "CustomHX":       "滑雪",
+        "CustomDC":       "单车",
+        "CustomQX" :      "温泉",
+        "CustomQS" :      "亲水",
+        "CustomXX" :      "休闲",
+        "CustomOther" :   "其他",
+
+        "SysteJapan":     "日本",
+        "SystemJiangNan": "中国江南",
+
+        "GuideRecord":    "典藏",
+        "GuidePage":      "笔记",
+
+        "GuideInfraWan":   "玩",
+        "GuideInfraXiang": "享",
+        "GuideInfraSu":    "宿",
+
+        "Hotel":           "酒店",
+        "Spot":            "景点",
+        "XiangLe":         "享乐"
+    }
+    WEBP.keyMap.get = function(key) {
+        return WEBP.keyMap[key] || key
+    }
+
+})();
+
+
+;(function(){
+
+    var WEBP = window.WEBP = window.WEBP || {}
     var coinSymbol = { "zh_cn":"￥","zh_CN":"￥","zh_hk":"HK$","zh_HK":"HK$","en_us":"$","en_US":"$" };
 
     function init() {

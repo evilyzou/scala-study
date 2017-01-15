@@ -62,5 +62,5 @@ template.helper('getDay', function (data, prefix) {
 });
 
 template.helper('parseJson', function (data) {
-    return JSON.parse(data)
+    return (data) ? JSON.parse(data) : []
 });

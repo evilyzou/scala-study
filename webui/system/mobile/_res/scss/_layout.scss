@@ -13,7 +13,7 @@
          display: inline-block;
 
          font-family: "iconfont" !important;
-        //  font-size: 24px;
+         // font-size: 24px;
          font-style: normal;
          color: $color-main;
 
@@ -26,7 +26,6 @@
 .userinfo .tel,
 .userinfo .address {font-size: 12px; color: #999;}
 
-.content img { max-width: 100%; }
 
 .g-flexbox {
     -webkit-box-align: center;
@@ -169,7 +168,7 @@ span.picon {display: inline-block;}
 
     &:before {
         display: block;
-        font-size: 20px;
+        font-size: 18px;
     }
 
     &.with-txt {
@@ -177,7 +176,7 @@ span.picon {display: inline-block;}
     }
 }
 
-.header .link {width: auto;padding: 0 15px;}
+.header .link {width: auto;padding: 0 10px;}
 .header .link.operation {color: #fcfb01;}
 
 .header .with-txt[class*="icon-"],
@@ -210,9 +209,19 @@ span.picon {display: inline-block;}
 }
 
 // .header .title a { color: #fff; }
-.header .title:first-child { margin-left: $header-height }
-.header .title:last-child { margin-right: $header-height }
-.header .showaside + .title:last-child { margin-left: $header-height }
+// .header .title:first-child { margin-left: $header-height }
+// .header .title:last-child { margin-right: $header-height }
+// .header .title:last-child { margin-right: $header-height }
+.header .showaside + .title:last-child { padding-left: $header-height }
+.header .title {
+    &:first-child {padding-left: $header-height;}
+    &:last-child  {padding-right: $header-height;}
+    &:first-child:last-child {padding-left:0;padding-right: 0;}
+    &:nth-child(3):nth-last-child(1) {padding-right: $header-height * 2;}
+    &:nth-child(3):nth-last-child(2) {padding-right: $header-height;}
+    &:nth-child(1):nth-last-child(3) {padding-left: $header-height * 2;}
+    &:nth-child(2):nth-last-child(3) {padding-left: $header-height;}
+}
 
 .header .tabtool { display: inline-block; width: auto; font-size: 15px; background: none; }
 .header .tabtool li { margin: 0 10px; }
@@ -230,8 +239,13 @@ span.picon {display: inline-block;}
     height: 32px;
     line-height: 30px;
     margin-top: 6px;
+
+    + .link {
+        padding-left: 5px;
+    }
 }
 
+.header .icon-location { font-size: 13px; }
 .header .icon-location:before { font-size: 14px; }
 
 //h1.title {}
@@ -2944,12 +2958,27 @@ textarea.form-control { height: auto; }
 
 .mod-content {
     margin-top: 15px;
-    padding: $padding-base * 2;
+    padding: $padding-base * 8 $padding-base * 5;
     border-top: solid 1px rgba(0,0,0,.08);
+    line-height: 2;
     background-color: #fff;
 
+    img {
+        width: 100vw;
+        max-width: 640px;
+        margin-left:  -$padding-base * 5;
+        margin-right: -$padding-base * 5;
+        margin-top: $padding-base * 3;
+        margin-bottom: $padding-base * 3;
+
+        + img {
+            margin-top: -$padding-base * 6;
+        }
+    }
+
     > .head {
-        padding: ($padding-base * 2);
+        padding: 0;
+        text-align: center;
         line-height: $line-height-computed;
         //background: $color-base;
 
@@ -2992,6 +3021,30 @@ textarea.form-control { height: auto; }
         //color: $brand-light;
     }
 
+    .title {
+        margin-bottom: 20px;
+        font-size: 20px;
+        font-weight: 300;
+        text-align: center;
+    }
+
+    .content {
+        font-weight: 300;
+
+        img {
+            width: 100vw;
+            max-width: 640px;
+            margin-left:  -$padding-base * 5;
+            margin-right: -$padding-base * 5;
+            margin-top: $padding-base * 3;
+            margin-bottom: $padding-base * 3;
+
+            + img {
+                margin-top: -$padding-base * 6;
+            }
+        }
+    }
+
     &.grid-gallery {
         > .head {
             margin: 0 (-$padding-base) $padding-base (-$padding-base);
@@ -3015,10 +3068,25 @@ textarea.form-control { height: auto; }
         margin: 3px 0px 5px 0px;
         line-height: 20px;
     }
+
+    .mod-traffic {
+        padding-left: 3rem;
+    }
+
+    .include {
+        font-size: 12px;
+    }
+
+    .sub-title {
+        margin-bottom: 10px;
+    }
+
 }
 // end mod-content
+.mod-content .detail-container-params { padding-left: 0; padding-right: 0; }
 
-
+.headtitle:before{content:attr(data-prefix);margin-right: 5px;color:#47c1d0;}
+// .headtitle:after{content:"";color:#47c1d0}
 
 .line-time {
     text-align: right;

@@ -5,45 +5,51 @@ var CONTENT_DETAIL = (function(root, window) {
     var document = window.document, $ = window.$
     
     root.get = function(id, callback) {
-        var url = '/CmsCategories/'
-        if (id) url += id
+        if (!id) return
+        var url = '../_res/data/article.json'
+        // var url = '/guide/' + id
         XLJ.ajaxData(url, function(response) {
             console.log(response)
             if (callback) callback(response)
         })
     }
 
-    root.vendor = function(data) {
-        var data = data.result.cmsCategory
-        var html = data.content
+    root.vendor = function(data, callback) {
 
-        var $article_box = $('#article_box')
-        $('.header .title').html(data.title)
-        
-        if (data.content.indexOf('<body') != -1) {
-            var $html = $('<div>' + data.content + '</div>')
-            html = $html.find('.maincontent').html()
+        // custom artTemplate function for get key param name
+        template.helper('keyMap', function (keyname) {
+            return (WEBP && WEBP.keyMap) ? WEBP.keyMap[keyname] : keyname
+        });
+
+        // escape for content html
+        template.config("escape", false);
+
+
+        var _article_base_html = template('tpl_article_detail_base', data)
+        $('#articleBase').html(_article_base_html)
+
+        var _article_detail_html = ''
+        // if guideType == 'GuidePage', just onlye show content
+        if (data.data.guide.guideType == 'GuidePage') {
+            _article_detail_html = template('tpl_article_detail_content_guidePage', data)
+        } else {
+            _article_detail_html = template('tpl_article_detail_content', data)
         }
+        $('#articleContents').html(_article_detail_html)
+        $('#header .title').text(data.data.guide.title)
 
-        $article_box.find('.main').html(html)
-    }
-
-    root.vendorList = function(data, callback) {
-        if (!data.result || !data.result.data.length > 0) return
-        var html = template('aside_list_item_template', data.result)
-        $('#aside_list').html(html)
-        if (callback) callback()
+        if (callback) callback(data)
     }
 
     return root
 }(CONTENT_DETAIL || {}, typeof window !== 'undefined' ? window : this));
 
 
-var article_id = XLJ.getQueryString('id') || ''
+var article_id = XLJ.getQueryString('id') || XLJ.getQueryString('articleId') || ''
 
 if (article_id) CONTENT_DETAIL.get(article_id, function(response) {
     $(function() {
-        CONTENT_DETAIL.vendor(response)
+        CONTENT_DETAIL.vendor(response.result)
     });
 });
 

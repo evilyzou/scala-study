@@ -4,7 +4,7 @@ var WEBP = window.WEBP || {}
 
 
 var _global = {
-    systemType:    XLJ.getQueryString('systemType')    || 1,
+    systemType:    XLJ.getQueryString('systemType')    || 'SysteJapan',
     customType:    XLJ.getQueryString('customType')    || '',
     pfunction:     XLJ.getQueryString('pfunction')     || 'free',                         //group|free
     mainCategory:  decodeURIComponent(XLJ.getQueryString('mainCategory'))  || '',      //guideCategoryJiangNan|guideCategoryJapan,
@@ -34,24 +34,16 @@ var HOME_PAGE = (function(root, window) {
                 boxId:     'area-selector'
             })
             ProductSelector.init(popcontentLoadedCB)
+        } else {
+            console.log('%cCan not find the XLJ.selectorWin function', 'color:#c00')
         }
     }
 
     root.action = function() {
-
-        var $category_tags = $('.category_tags')
-        $category_tags.on(XLJ.clickType, function(e) {
-            e.preventDefault()
-
-            var $this = $(this),
-                _href = $this.attr('href'),
-                _url  = _href
-
-            _url = XLJ.setUrlParam(_url, 'systemType', _global.systemType)
-            _url = XLJ.setUrlParam(_url, 'pfunction', _global.pfunction)
-            _url = XLJ.setUrlParam(_url, 'subCategory', _global.subCategory)
-
-            window.location.href = _url
+        // init link urlParamsImpress
+        var UrlParamsImpress = new XLJ.urlParamsImpress({
+            elname:          'a',
+            containerElname: '.clinks'
         })
     }
 
@@ -84,9 +76,9 @@ $(function() {
             })
             .html(_loadingHtml)
 
-        HOME_PAGE.getList($list, '', function() {
-            $listData.find('.mod-loading').remove()
-        })
+        // HOME_PAGE.getList($list, '', function() {
+        //     $listData.find('.mod-loading').remove()
+        // })
         $('#area-selector').find('.header .close').trigger(XLJ.clickType)
 
         // set header text
@@ -96,4 +88,11 @@ $(function() {
         window.history.pushState('', '', _newUrl)
     });
 
+
+    // set selectArea
+    if (_global.subCategory) $('.selectArea').find('.icon-location').text(_global.subCategory)
+    var _pagename = (WEBP && WEBP.keyMap) ? WEBP.keyMap[_global.systemType] : _global.systemType
+    if (_pagename) _pagename = 'E上' + _pagename
+    $('title').text(_pagename || 'E上旅游')
+    $('.header').find('.title .name').text(_pagename || 'E上旅游')
 });

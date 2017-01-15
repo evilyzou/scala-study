@@ -54,6 +54,9 @@ input:checked + label.icon:before,
             color: #333;
         }
     }
+    .title {
+        color: $color-main;
+    }
 }
 
 .mainnav {
@@ -77,13 +80,5 @@ input:checked + label.icon:before,
         .icon-guide:before { content: "\e60b"; }
         .icon-manage:before { content: "\e60b"; }
         .icon-user:before { content: "\e60b"; }
-    }
-}
-
-.p-product-detail {
-    .mod-content {
-        .title {
-            color: $color-main;
-        }
     }
 }

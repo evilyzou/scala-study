@@ -1,0 +1,61 @@
+{
+    "success": true,
+    "msg": "",
+    "result": {
+        "totalCount": 4,
+        "data": [
+            {
+                "mainCategory": "中国江南",
+                "guideType": "GuideRecord",
+                "subCategory": [
+                    "上海",
+                    "浙江"
+                ],
+                "customType": "GuideCustomQY",
+                "id": 2,
+                "systemType": "SystemJapan",
+                "picture": "[\"http://akka.exthere.net/_res/images/demo/pic01.jpg\"]",
+                "title": "sdfdsf"
+            },
+            {
+                "mainCategory": "中国江南",
+                "guideType": "GuideRecord",
+                "subCategory": [
+                    "上海",
+                    "浙江"
+                ],
+                "customType": "GuideCustomQY",
+                "id": 1,
+                "systemType": "SystemJapan",
+                "picture": "[]",
+                "title": "sdfdsf"
+            },
+            {
+                "mainCategory": "中国江南",
+                "guideType": "GuideRecord",
+                "subCategory": [
+                    "上海",
+                    "浙江"
+                ],
+                "customType": "GuideCustomQY",
+                "id": 3,
+                "systemType": "SystemJapan",
+                "picture": "[]",
+                "title": "sdfdsf"
+            },
+            {
+                "mainCategory": "中国江南",
+                "guideType": "GuideRecord",
+                "subCategory": [
+                    "上海",
+                    "安徽"
+                ],
+                "customType": "GuideCustomQY",
+                "id": 11,
+                "systemType": "SystemJapan",
+                "picture": "",
+                "title": "zz"
+            }
+        ]
+    }
+}

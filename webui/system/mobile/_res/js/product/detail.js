@@ -25,11 +25,11 @@ var PRODUCT_DETAIL = (function(root, window) {
     root.vendor = function(data, callback) {
 
         var _product_base_html = template('tpl_product_detail_base', data)
-        $('#product').html(_product_base_html)
+        $('#productBase').html(_product_base_html)
 
         template.config("escape", false);
-        var _product_base_html = template('tpl_product_detail_contents', data)
-        $('#productContents').html(_product_base_html)
+        var _product_detail_html = template('tpl_product_detail_contents', data)
+        $('#productContents').html(_product_detail_html)
 
         $('#header .title').text(data.data.product.departure + '-' + data.data.product.arrive)
         var $shoppingTool = $('.shopping-tool')
@@ -46,7 +46,7 @@ var PRODUCT_DETAIL = (function(root, window) {
 
 var boxShowFlag = false;
 var $skubox = $('#skubox');
-var $product = $('#product');
+var $product = $('#productBase');
 
 var productID = XLJ.getQueryString('id');
 PRODUCT_DETAIL.getDetail(productID, function(response) {
@@ -99,7 +99,7 @@ PRODUCT_DETAIL.getDetail(productID, function(response) {
 //             tpl += rowTpl
 //         }
 //
-//         var $photos = $('#product .photos')
+//         var $photos = $('#productBase .photos')
 //         $photos.html(tpl)
 //         var swiper = new Swiper('.swiper-container', {
 //             pagination: '.swiper-pagination',
