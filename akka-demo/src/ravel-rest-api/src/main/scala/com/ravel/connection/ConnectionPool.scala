@@ -1,6 +1,7 @@
 package com.ravel.connection
 
-import akka.actor.Actor
+import akka.actor.{Props, ActorLogging, Actor}
+import com.github.mauricio.async.db.Connection
 import com.github.mauricio.async.db.pool.{PoolExhaustedException, ObjectFactory, PoolConfiguration}
 
 import scala.collection.mutable
@@ -16,16 +17,19 @@ object ConnectionPool {
   case class Ticker() extends PoolCommand
   case class Borrow() extends PoolCommand
   case class GiveBack() extends PoolCommand
+
+  val defaultTimeOut = 10 seconds
 }
 
-class ConnectionPool[T](val factory: ObjectFactory[T], val configuration: PoolConfiguration) extends Actor{
+class ConnectionPool[T](val factory: ObjectFactory[T], val configuration: PoolConfiguration) extends Actor with ActorLogging{
   import ConnectionPool._
 
   private val checkouts = new ArrayBuffer[T]()
   private val waitQueue = new mutable.Queue[Promise[T]]()
-  private var poolables = new Stack[T]()
+  private val poolables = new Stack[T]()
 
-  private lazy val scheduler = context.system.scheduler
+  private val system = context.system
+  private lazy val scheduler = system.scheduler
 
   override def preStart(): Unit = {
     scheduler.schedule(500.millisecond, 30 seconds, self, Ticker)
@@ -33,7 +37,7 @@ class ConnectionPool[T](val factory: ObjectFactory[T], val configuration: PoolCo
 
   def receive = {
     case Ticker => {
-
+      log.info("ticker scheduler")
     }
     case Borrow => {
       val promise = Promise[T]
@@ -42,7 +46,10 @@ class ConnectionPool[T](val factory: ObjectFactory[T], val configuration: PoolCo
       } else {
         createOrReturnItem(promise)
       }
-      promise.future
+      promise.future map { f =>
+        val connection = f.asInstanceOf[Connection]
+        system.actorOf(Props(classOf[MySqlConnectionActor], connection, defaultTimeOut))
+      }
     }
     case _ => None
   }

@@ -1,6 +1,6 @@
 package com.ravel.connection
 
-import akka.actor.Actor
+import akka.actor.{Terminated, Actor}
 import com.github.mauricio.async.db.pool.ConnectionPool
 import com.github.mauricio.async.db.{QueryResult, Connection}
 import com.ravel.async.RavelGlobal._
@@ -27,6 +27,7 @@ class MySqlConnectionActor(val underlying: Connection, val defaultTimeout: Durat
       
       queryResultFuture.map(buildQueryResult(_))
     }
+    case Terminated => context.stop(self)
   }
 
   protected[this] def buildQueryResult(queryResult: QueryResult): RavelQueryResult = {
