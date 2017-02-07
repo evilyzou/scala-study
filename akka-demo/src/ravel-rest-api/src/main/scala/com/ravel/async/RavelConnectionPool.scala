@@ -21,7 +21,7 @@ abstract class RavelConnectionPool(val settings: RavelConnectionPoolSettings = R
    * Gives back the connection.
    * @param conn connection
    */
-  def giveBack(conn: NonSharedRavelConnection): Unit
+  def giveBack(conn: PoolableRavelConnection): Unit
 
 }
 
@@ -71,7 +71,7 @@ object RavelConnectionPool {
     pool.borrow()
   }
 
-  def giveBack(connection: NonSharedRavelConnection, name: Any = DEFAULT_NAME): Unit = {
+  def giveBack(connection: PoolableRavelConnection, name: Any = DEFAULT_NAME): Unit = {
     val pool = get(name)
     log.debug(s"Gave back previously borrowed connection from pool $name")
     pool.giveBack(connection)

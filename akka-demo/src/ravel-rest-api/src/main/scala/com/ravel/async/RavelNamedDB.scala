@@ -28,18 +28,4 @@ case class RavelNamedDB(name: Any = RavelConnectionPool.DEFAULT_NAME) {
    * @return shared session
    */
   def sharedSession: SharedRavelDBSession = SharedRavelDBSession(RavelConnectionPool(name).borrow())
-
-  /**
-   * Provides a future world within a transaction.
-   *
-   * @param op operation
-   * @param context execution context
-   * @tparam A return type
-   * @return a future value
-   */
-  def localTx[A](op: (TxRavelDBSession) => Future[A])(implicit context: ExecutionContextExecutor = ECGlobal): Future[A] = {
-    RavelConnectionPool(name).borrow().toNonSharedConnection()
-      .flatMap(conn => RavelTx.inTransaction[A](TxRavelDBSession(conn), op))
-  }
-
 }

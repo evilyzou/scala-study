@@ -20,23 +20,3 @@ abstract class RavelQueryResult(
   val generatedKey: Future[Option[Long]]
 
 }
-
-//
-//trait RavelResultSet extends WrappedResultSet {
-//
-//  def next(): Boolean
-//
-//  def tail(): RavelResultSet
-//}
-//
-//class RavelResultSetImpl(rows: IndexedSeq[RowData])
-//  extends WrappedResultSet(new RowDataResultSet(rows.headOption, rows.drop(1)), null, 0)
-//  with RavelResultSet {
-//
-//  // RavelResultSet API
-//  override def next(): Boolean = rows.headOption.isDefined
-//  override def tail(): RavelResultSet = new RavelResultSetImpl(rows.tail)
-//
-//}
-//
-//

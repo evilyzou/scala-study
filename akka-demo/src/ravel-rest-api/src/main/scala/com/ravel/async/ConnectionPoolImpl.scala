@@ -43,8 +43,8 @@ abstract class RavelConnectionPoolCommonImpl[T <: Connection](
 
   override def close(): Unit = pool.disconnect
 
-  override def giveBack(conn: NonSharedRavelConnection): Unit = conn match {
-    case conn: NonSharedRavelConnectionImpl => pool.giveBack(conn.underlying.asInstanceOf[T])
+  override def giveBack(conn: PoolableRavelConnection): Unit = conn match {
+    case conn: PoolableRavelConnection => pool.giveBack(conn.underlying.asInstanceOf[T])
     case _ => log.debug("You don't need to give back this connection to the pool.")
   }
 }
