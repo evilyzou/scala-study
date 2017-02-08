@@ -30,7 +30,7 @@ object Config{
   val esTypeGuide = config.getString("elasticsearch.type.guide")
 
   ConnectionPool.singleton(config.getString("mysql.jdbc.url"), config.getString("mysql.jdbc.user"), config.getString("mysql.jdbc.password"))
-  RavelConnectionPool.singleton(config.getString("mysql.jdbc.url"), config.getString("mysql.jdbc.user"), config.getString("mysql.jdbc.password"))
+//  RavelConnectionPool.singleton(config.getString("mysql.jdbc.url"), config.getString("mysql.jdbc.user"), config.getString("mysql.jdbc.password"))
 
   val starter = system.actorOf(Props[Starter], name = "main")
 

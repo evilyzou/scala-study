@@ -19,4 +19,8 @@ abstract class RavelQueryResult(
 
   val generatedKey: Future[Option[Long]]
 
+  override def toString(): String = {
+    s"rowsAffected: ${rowsAffected}, statusMessage: ${statusMessage}, rows: ${rows}"
+  }
+
 }

@@ -21,7 +21,7 @@ abstract class RavelConnectionPool(val settings: RavelConnectionPoolSettings = R
    * Gives back the connection.
    * @param conn connection
    */
-  def giveBack(conn: PoolableRavelConnection): Unit
+  def giveBack(conn: RavelConnection): Unit
 
 }
 
@@ -71,11 +71,11 @@ object RavelConnectionPool {
     pool.borrow()
   }
 
-  def giveBack(connection: PoolableRavelConnection, name: Any = DEFAULT_NAME): Unit = {
-    val pool = get(name)
-    log.debug(s"Gave back previously borrowed connection from pool $name")
-    pool.giveBack(connection)
-  }
+//  def giveBack(connection: PoolableRavelConnection, name: Any = DEFAULT_NAME): Unit = {
+//    val pool = get(name)
+//    log.debug(s"Gave back previously borrowed connection from pool $name")
+//    pool.giveBack(connection)
+//  }
 
   def close(name: Any = DEFAULT_NAME): Unit = pools.remove(name).foreach(_.close())
 
@@ -99,8 +99,8 @@ object RavelConnectionPoolFactory extends RavelConnectionPoolFactory {
                      settings: RavelConnectionPoolSettings = RavelConnectionPoolSettings()): RavelConnectionPool = {
 
     url match {
-      case _ if url.startsWith("jdbc:mysql://") =>
-        new MySQLConnectionPoolImpl(url, user, password, settings)
+//      case _ if url.startsWith("jdbc:mysql://") =>
+//        new MySQLConnectionPoolImpl(url, user, password, settings)
       case _ =>
         throw new UnsupportedOperationException("This RDBMS is not supported yet.")
     }

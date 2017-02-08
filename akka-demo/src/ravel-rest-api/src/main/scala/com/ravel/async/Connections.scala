@@ -110,7 +110,7 @@ trait MySQLConnectionImpl extends RavelConnectionCommonImpl {
   }
 }
 
-abstract class PoolableRavelConnection[T <: Connection](val pool: ConnectionPool[T])
+class PoolableRavelConnection[T <: Connection](val pool: ConnectionPool[T])
   extends RavelConnectionCommonImpl {
   val underlying: Connection = pool
 
@@ -121,5 +121,15 @@ abstract class PoolableRavelConnection[T <: Connection](val pool: ConnectionPool
     pool.asInstanceOf[ConnectionPool[Connection]].giveBack(underlying)
   }
 
+  /**
+   * Extracts generated key.
+   *
+   * @param queryResult query result
+   * @param executor  execution context
+   * @return optional generated key
+   */
+  override protected def extractGeneratedKey(queryResult: QueryResult)(implicit executor: ExecutionContextExecutor): Future[Option[Long]] = {
+    throw new Exception("error")
+  }
 }
 

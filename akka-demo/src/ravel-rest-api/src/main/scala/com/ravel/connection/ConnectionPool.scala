@@ -2,12 +2,13 @@ package com.ravel.connection
 
 import akka.actor.{Props, ActorLogging, Actor}
 import com.github.mauricio.async.db.Connection
-import com.github.mauricio.async.db.pool.{PoolExhaustedException, ObjectFactory, PoolConfiguration}
+import com.github.mauricio.async.db.pool.{PoolExhaustedException, PoolConfiguration}
 
 import scala.collection.mutable
 import scala.collection.mutable.{Stack, ArrayBuffer}
 import scala.concurrent.Promise
 import scala.concurrent.duration._
+import scala.concurrent.ExecutionContext.Implicits.global
 
 /**
  * Created by CloudZou on 2/7/2017.
@@ -32,7 +33,7 @@ class ConnectionPool[T](val factory: ObjectFactory[T], val configuration: PoolCo
   private lazy val scheduler = system.scheduler
 
   override def preStart(): Unit = {
-    scheduler.schedule(500.millisecond, 30 seconds, self, Ticker)
+    scheduler.schedule(500.millisecond, 30.seconds, self, Ticker)
   }
 
   def receive = {
@@ -40,6 +41,7 @@ class ConnectionPool[T](val factory: ObjectFactory[T], val configuration: PoolCo
       log.info("ticker scheduler")
     }
     case Borrow => {
+      val _sender = sender()
       val promise = Promise[T]
       if (isFull) {
         enqueuePromise(promise)
@@ -48,7 +50,12 @@ class ConnectionPool[T](val factory: ObjectFactory[T], val configuration: PoolCo
       }
       promise.future map { f =>
         val connection = f.asInstanceOf[Connection]
-        system.actorOf(Props(classOf[MySqlConnectionActor], connection, defaultTimeOut))
+        connection.connect map { c=>
+          checkouts += f
+          log.info("Borrow here")
+          val actorRef = system.actorOf(Props(classOf[MySqlConnectionActor], c, defaultTimeOut))
+          _sender ! actorRef
+        }
       }
     }
     case _ => None
@@ -65,21 +72,20 @@ class ConnectionPool[T](val factory: ObjectFactory[T], val configuration: PoolCo
   }
 
   private def createOrReturnItem(promise: Promise[T]) {
-    if (this.poolables.isEmpty) {
+    if (poolables.isEmpty) {
       try {
-        val item = this.factory.create
-        this.checkouts += item
-        promise.success(item)
+        val item = factory.create
+        promise.completeWith(item)
       } catch {
         case e: Exception => promise.failure(e)
       }
     } else {
-      val item = this.poolables.pop()
-      this.checkouts += item
+      val item = poolables.pop()
+      checkouts += item
       promise.success(item)
     }
   }
 
-  private def isFull: Boolean = checkouts.size == configuration.maxObjects
+  private def isFull: Boolean = poolables.isEmpty && checkouts.size == configuration.maxObjects
 
 }
