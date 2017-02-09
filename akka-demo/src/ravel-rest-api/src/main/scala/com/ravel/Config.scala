@@ -2,10 +2,13 @@ package com.ravel
 
 import akka.actor.{Props, ActorSystem}
 import akka.event.Logging
-import akka.routing.RoundRobinPool
+import akka.routing.{RandomPool, RoundRobinPool}
 import akka.util.Timeout
+import com.github.mauricio.async.db.Configuration
+import com.github.mauricio.async.db.pool.PoolConfiguration
 import com.ravel.actors.{Starter}
 import com.ravel.async.RavelConnectionPool
+import com.ravel.connection.{MySQLConnectionPool, MySQLConnectionActor}
 import com.typesafe.config.ConfigFactory
 import scalikejdbc.ConnectionPool
 import scala.concurrent.duration._
@@ -33,6 +36,14 @@ object Config{
 //  RavelConnectionPool.singleton(config.getString("mysql.jdbc.url"), config.getString("mysql.jdbc.user"), config.getString("mysql.jdbc.password"))
 
   val starter = system.actorOf(Props[Starter], name = "main")
+
+  implicit val timeout = Timeout(5 seconds)
+  val configuration = Configuration(username = "root", host ="127.0.0.1", port = 3306, password = Option("ex299295"), database = Option("ravel"))
+
+  val pcf = new PoolConfiguration(30, 4, 10)
+  val poolActorRef = system.actorOf(Props(classOf[MySQLConnectionPool], pcf), "pool-connection-actor")
+  val randomRouter = system.actorOf(Props(classOf[MySQLConnectionActor], poolActorRef, configuration, 5.seconds).withRouter(RandomPool(10)))
+
 
   var cache = Array.empty[Byte]
 }

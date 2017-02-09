@@ -11,13 +11,13 @@ import scala.concurrent.Future
 /**
  * Query Result
  */
-abstract class RavelQueryResult(
+ class RavelQueryResult(
                                  val rowsAffected: Option[Long],
                                  val statusMessage: Option[String],
                                  val rows: Option[ResultSet]
                                  ) {
 
-  val generatedKey: Future[Option[Long]]
+  //val generatedKey: Future[Option[Long]]
 
   override def toString(): String = {
     s"rowsAffected: ${rowsAffected}, statusMessage: ${statusMessage}, rows: ${rows}"

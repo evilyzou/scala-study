@@ -1,14 +1,15 @@
 package com.ravel.services
 
 import com.github.mauricio.async.db.ResultSet
-import com.ravel.async.RavelDB
+import com.ravel.async.{RavelQueryResult, RavelDB}
+import com.ravel.model.QueryStatement
 import com.ravel.model.RavelObject.{Infra, InfraDesc, InfraFeature}
 import scala.collection.immutable.Map
 
 import scala.collection._
 import scala.concurrent.Future
-import scala.concurrent.ExecutionContext.Implicits.global
-
+import com.ravel.Config._
+import akka.pattern.ask
 /**
  * Created by CloudZou on 12/31/16.
  */
@@ -45,9 +46,12 @@ trait QueryService {
   }
 
   def queryFuture[T](query: String)(resultFunc: (Option[ResultSet]) => T): Future[T] = {
-    RavelDB.withPool { session =>
-      val future = session.connection.sendQuery(query)
-      future map { queryResult => resultFunc(queryResult.rows) }
+//    RavelDB.withPool { session =>
+//      val future = session.connection.sendQuery(query)
+//      future map { queryResult => resultFunc(queryResult.rows) }
+//    }
+    randomRouter ? QueryStatement(query) map { queryResult =>
+      resultFunc(queryResult.asInstanceOf[RavelQueryResult].rows)
     }
   }
 }

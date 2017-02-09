@@ -16,7 +16,7 @@ lazy val ravelRestApi = project.in(file("src/ravel-rest-api")).settings(commonSe
   .settings(filterSettings: _*)
   .settings(
     scalacOptions := Seq("-unchecked", "-deprecation", "-feature"),
-    mainClass in (Compile, run) := Some("com.ravel.connection.ConnectionTest"),
+    mainClass in (Compile, run) := Some("com.ravel.Application"),
     logBuffered in Test := false
   )
   .enablePlugins(JavaAppPackaging)

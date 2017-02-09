@@ -9,4 +9,5 @@ package object model {
   case class QueryStatement(statement: String)
   case class QueryStatementWithParameters(statement: String, parameters: Any*)
   case class ConnectionClose()
+  case class CheckConnectionIdle()
 }
