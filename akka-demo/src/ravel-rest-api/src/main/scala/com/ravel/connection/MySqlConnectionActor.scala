@@ -24,6 +24,7 @@ class MySQLConnectionActor(val poolActorRef: ActorRef, val configuration: Config
 
   private var lastQueryTimestamp = System.currentTimeMillis()
   private val maxIdle =  30 * 1000  //30s
+  implicit val timeout = Timeout(5 seconds)
 
   override def preStart() = {
     scheduler.schedule(10.seconds, 30.seconds, self, CheckConnectionIdle)
@@ -43,11 +44,12 @@ class MySQLConnectionActor(val poolActorRef: ActorRef, val configuration: Config
 //        }
 //      }
     }
-    case QueryStatement(statement) => {
+    case QueryStatement(statement, index) => {
       val _sender = sender()
       preQuery().onComplete {
         case Success(connection: Connection) => {
           connection.sendQuery(statement).map { result =>
+            println(s"index:${index}")
             poolActorRef ! GiveBack(connection)
 
             _sender ! buildQueryResult(result)
@@ -55,7 +57,7 @@ class MySQLConnectionActor(val poolActorRef: ActorRef, val configuration: Config
         }
         case Failure(_) => {
           log.info("connection is closed, will be stop actor")
-          context.stop(self)
+
         }
       }
     }
@@ -97,12 +99,7 @@ class MySQLConnectionActor(val poolActorRef: ActorRef, val configuration: Config
 
   private def preQuery(): Future[Connection] = {
     resetLastQueryTimestamp
-    implicit val timeout = Timeout(5 seconds)
-
-
-    poolActorRef ? Borrow map { conn =>
-      conn.asInstanceOf[Connection]
-    }
+    (poolActorRef ? Borrow).mapTo[Connection]
   }
 
   private def resetLastQueryTimestamp =  {

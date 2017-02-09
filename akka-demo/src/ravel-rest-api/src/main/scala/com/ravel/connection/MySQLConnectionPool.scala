@@ -5,9 +5,10 @@ import akka.actor.Actor.Receive
 import com.github.mauricio.async.db.{Configuration, Connection}
 import com.github.mauricio.async.db.mysql.MySQLConnection
 import com.github.mauricio.async.db.pool.PoolConfiguration
-import com.ravel.connection.MySQLConnectionPool.{Tick, GiveBack, ConnectionState, Borrow}
+import com.ravel.connection.MySQLConnectionPool._
 
-import scala.concurrent.Await
+import scala.collection.mutable.Queue
+import scala.concurrent.{Promise, Future, Await}
 import scala.util.{Failure, Success}
 import scala.concurrent.duration._
 import scala.concurrent.ExecutionContext.Implicits.global
@@ -21,6 +22,7 @@ object MySQLConnectionPool {
   case class Borrow() extends PoolCommand
   case class GiveBack(connection: Connection) extends PoolCommand
   case class Tick() extends PoolCommand
+  case class Test() extends PoolCommand
 
   object ConnectionState extends Enumeration {
     val NotUsed, Used = Value
@@ -30,6 +32,7 @@ object MySQLConnectionPool {
 
 class MySQLConnectionPool(val poolConfiguration: PoolConfiguration = PoolConfiguration.Default) extends Actor with ActorLogging{
   private var connectionMap: Map[Connection, ConnectionState.Value] = Map()
+  private val waitQueue = new Queue[Promise[Connection]]()
 
   val scheduler = context.system.scheduler
 
@@ -42,27 +45,44 @@ class MySQLConnectionPool(val poolConfiguration: PoolConfiguration = PoolConfigu
   override def receive: Receive =  {
     case Borrow =>  {
       val _sender = sender()
-      getConnection() match {
-        case Some(conn) => _sender ! conn
-        case _ => log.info("get connection failed")
+      getConnection() map { conn =>
+        _sender ! conn
       }
     }
     case GiveBack(conn) => {
-      connectionMap += (conn -> ConnectionState.NotUsed)
+      if (waitQueue.nonEmpty) {
+        waitQueue.dequeue().success(conn)
+      } else {
+        connectionMap += (conn -> ConnectionState.NotUsed)
+      }
     }
     case Tick => {
-      log.info(s"connection status: ${connectionMap}")
+      val notUsedCount = connectionMap.values.count(_ == ConnectionState.NotUsed)
+      val usedCount = connectionMap.size - notUsedCount
+      log.info(s"connection status: notused count(${notUsedCount}), used count(${usedCount}})")
     }
   }
 
-  private def getConnection(): Option[Connection] = {
-    for((conn, connectionState) <- connectionMap) {
-      if (connectionState == ConnectionState.NotUsed) {
-        connectionMap += (conn -> ConnectionState.Used)
-        return Some(conn)
+  private def getConnection(): Future[Connection] = {
+    val promise = Promise[Connection]()
+
+    if (isFull()) {
+      waitQueue += promise
+      log.info("pool is full, must be wait")
+    } else {
+      for((conn, connectionState) <- connectionMap) {
+        if (connectionState == ConnectionState.NotUsed) {
+          connectionMap += (conn -> ConnectionState.Used)
+          promise.success(conn)
+          return promise.future
+        }
       }
     }
-    None
+    promise.future
+  }
+
+  private def isFull(): Boolean = {
+    !connectionMap.values.exists(_ == ConnectionState.NotUsed)
   }
 
   private def initConnections() = {

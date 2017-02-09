@@ -13,7 +13,7 @@ import akka.pattern.ask
 /**
  * Created by CloudZou on 12/31/16.
  */
-trait QueryService {
+trait QueryActor {
   def single(query: String): Future[Map[String, Any]] = {
     queryFuture(query) { optionResultSet =>
       optionResultSet match {
@@ -46,17 +46,13 @@ trait QueryService {
   }
 
   def queryFuture[T](query: String)(resultFunc: (Option[ResultSet]) => T): Future[T] = {
-//    RavelDB.withPool { session =>
-//      val future = session.connection.sendQuery(query)
-//      future map { queryResult => resultFunc(queryResult.rows) }
-//    }
     randomRouter ? QueryStatement(query) map { queryResult =>
       resultFunc(queryResult.asInstanceOf[RavelQueryResult].rows)
     }
   }
 }
 
-trait InfraService extends QueryService{
+trait InfraService extends QueryActor{
   def infraDescQuery(id: Int) = s"select * from infrastructure_desc where infra_id=${id}"
   def infraQuery(id: Int) = s"select * from infrastructure where id=${id}"
 

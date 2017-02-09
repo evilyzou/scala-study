@@ -6,7 +6,7 @@ package com.ravel
 package object model {
 
   case class ConnectionIsActive()
-  case class QueryStatement(statement: String)
+  case class QueryStatement(statement: String, index: Int = 0)
   case class QueryStatementWithParameters(statement: String, parameters: Any*)
   case class ConnectionClose()
   case class CheckConnectionIdle()

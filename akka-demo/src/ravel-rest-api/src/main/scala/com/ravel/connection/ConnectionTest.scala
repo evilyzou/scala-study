@@ -5,6 +5,7 @@ import akka.pattern.ask
 import akka.util.Timeout
 import com.github.mauricio.async.db.Configuration
 import com.github.mauricio.async.db.pool.PoolConfiguration
+import com.ravel.connection.MySQLConnectionPool.{Borrow, Test}
 import com.ravel.model.QueryStatement
 import scala.concurrent.Future
 import scala.concurrent.duration._
@@ -37,7 +38,14 @@ object ConnectionTest extends App{
 
   val poolActorRef = system.actorOf(Props(classOf[MySQLConnectionPool], PoolConfiguration.Default), "pool-connection-actor")
   val connectionActor = system.actorOf(Props(classOf[MySQLConnectionActor], poolActorRef, configuration, 5.seconds))
-  1 to 20 foreach {
-    _ => connectionActor ? QueryStatement("select * from product limit 1")
+  1 to 40 foreach {
+    i => connectionActor ? QueryStatement("select * from product limit 1", i)
   }
+//  val f = poolActorRef ? Borrow
+//  f onSuccess {
+//    case t => println(s"xx:${t}")
+//  }
+//  f onFailure {
+//    case _ => println("error occured")
+//  }
 }

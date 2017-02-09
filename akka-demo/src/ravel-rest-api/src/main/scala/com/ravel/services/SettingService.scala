@@ -7,7 +7,7 @@ import scala.collection.breakOut
 /**
  * Created by CloudZou on 12/31/16.
  */
-object SettingService extends QueryService{
+object SettingService extends QueryActor{
   def getSubCateogry(mainCategory: String): Future[Seq[Map[String, Any]]] = {
     val query =s"select * from system_constant where const_key='guideSubCategory' and const_category='${mainCategory}'"
     mulptile(query)

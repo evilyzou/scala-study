@@ -1,5 +1,6 @@
 package com.ravel.services
 
+import akka.actor.{ActorLogging, Actor}
 import com.ravel.model.RavelObject.{Infra, InfraDesc, InfraFeature}
 import com.ravel.resources.GuideSearchFilter
 import com.ravel.elasticsearch.GuideSearch
@@ -15,7 +16,22 @@ import com.ravel.resources.RavelJsonSupport._
 /**
  * Created by CloudZou on 12/13/16.
  */
-object GuideService extends InfraService{
+
+object GuideService {
+  sealed trait Query
+  case class ListQuery(filter: GuideSearchFilter) extends Query
+  case class SingleQuery(id: Int) extends Query
+  case class GuideInfrasQuery(guideId: Int) extends Query
+}
+
+class GuideService extends Actor with ActorLogging {
+
+  def receive = {
+    case _ =>
+  }
+}
+
+object GuideService2 extends InfraService{
   def list(filter: GuideSearchFilter) = {
     GuideSearch.queryGuides(filter)
   }
