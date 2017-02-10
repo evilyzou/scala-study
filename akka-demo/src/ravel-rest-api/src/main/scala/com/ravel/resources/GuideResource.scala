@@ -6,8 +6,8 @@ import com.ravel.message.MessageObject.GuideMessageObject.GuideList
 import com.ravel.resources.JsonResultRoute.JsonResultKeys._
 import com.ravel.resources.JsonResultRoute._
 import com.ravel.resources.RavelJsonSupport._
-import com.ravel.services.GuideService
 import com.ravel.model.RavelObject._
+import com.ravel.services.Mediator.{GetGuideCommand, GuideSearchCommand}
 import spray.json._
 import com.ravel.Config._
 import akka.pattern.ask
@@ -28,32 +28,29 @@ trait GuideResource extends Directives{
             'mainCategory ? "", 'subCategory ? "", 'start ? 0, 'size ? 10) {
           (systemType, customType, guideType, mainCategory, subCategory, start, size) => {
             val filter = GuideSearchFilter(customType, systemType, guideType, mainCategory, subCategory)
-            val flist = GuideService.list(filter)
-              onSuccess(flist) {
-                case r => {
-                  val list = r.asInstanceOf[Tuple2[Long, Seq[SearchGuideView]]]
-                  val map = (ResultJsonWithPage zip list.productIterator.toList).toMap
-                  val jsonResult: Result[Map[String, Any]]  = Right(Success(map))
-                  complete(toStandardRoute(jsonResult))
-                }
+            val resultFuture = (mediator ? GuideSearchCommand(filter)).mapTo[Tuple2[Long, Seq[SearchGuideView]]]
+            onSuccess(resultFuture) {
+              case list => {
+                val map = (ResultJsonWithPage zip list.productIterator.toList).toMap
+                val jsonResult: Result[Map[String, Any]]  = Right(Success(map))
+                complete(toStandardRoute(jsonResult))
               }
-          }
-        }
-      }
-    } ~
-      path(IntNumber) { id =>
-        get {
-          import com.ravel.Config.executionContext
-
-          val guideResult = for(guideFuture <- GuideService.get(id)) yield guideFuture
-          onSuccess(guideResult) {
-            case guide =>{
-              val map = Map(SingleDataJson.head -> guide )
-              val jsonResult: Result[Map[String, Any]]  = Right(Success(map))
-              complete(toStandardRoute(jsonResult))
             }
           }
         }
       }
+    } ~
+    path(IntNumber) { id =>
+      get {
+        val guideResult = (mediator ? GetGuideCommand(id)).mapTo[GuideView]
+        onSuccess(guideResult) {
+          case guide =>{
+            val map = Map(SingleDataJson.head -> guide )
+            val jsonResult: Result[Map[String, Any]]  = Right(Success(map))
+            complete(toStandardRoute(jsonResult))
+          }
+        }
+      }
+    }
   }
 }

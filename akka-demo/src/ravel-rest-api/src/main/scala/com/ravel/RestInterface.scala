@@ -60,7 +60,7 @@ object RestInterface extends Resources {
 
   def routes(context: ActorContext): Route = handleExceptions(customExceptionHandler) {
     logResponseTime {
-      productRoutes ~ testRoutes(context) ~ guideRoutes ~ bannerRoutes
+      productRoutes  ~ guideRoutes ~ bannerRoutes
     }
   }
 }

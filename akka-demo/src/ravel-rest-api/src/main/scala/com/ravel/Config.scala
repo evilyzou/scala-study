@@ -7,10 +7,9 @@ import akka.util.Timeout
 import com.github.mauricio.async.db.Configuration
 import com.github.mauricio.async.db.pool.PoolConfiguration
 import com.ravel.actors.{Starter}
-import com.ravel.async.RavelConnectionPool
 import com.ravel.connection.{MySQLConnectionPool, MySQLConnectionActor}
+import com.ravel.services.Mediator
 import com.typesafe.config.ConfigFactory
-import scalikejdbc.ConnectionPool
 import scala.concurrent.duration._
 
 /**
@@ -19,7 +18,6 @@ import scala.concurrent.duration._
 object Config{
   val config = ConfigFactory.load()
   val host = config.getString("http.host")
-  println(host)
   val port = config.getInt("http.port")
 
   implicit val system = ActorSystem("ravel-app")
@@ -32,9 +30,6 @@ object Config{
   val esTypeProduct = config.getString("elasticsearch.type.product")
   val esTypeGuide = config.getString("elasticsearch.type.guide")
 
-  ConnectionPool.singleton(config.getString("mysql.jdbc.url"), config.getString("mysql.jdbc.user"), config.getString("mysql.jdbc.password"))
-//  RavelConnectionPool.singleton(config.getString("mysql.jdbc.url"), config.getString("mysql.jdbc.user"), config.getString("mysql.jdbc.password"))
-
   val starter = system.actorOf(Props[Starter], name = "main")
 
   implicit val timeout = Timeout(5 seconds)
@@ -44,5 +39,5 @@ object Config{
   val poolActorRef = system.actorOf(Props(classOf[MySQLConnectionPool], pcf), "pool-connection-actor")
   val randomRouter = system.actorOf(Props(classOf[MySQLConnectionActor], poolActorRef, configuration, 5.seconds).withRouter(RoundRobinPool(30)))
 
-  var cache = Array.empty[Byte]
+  val mediator = system.actorOf(Mediator.props)
 }

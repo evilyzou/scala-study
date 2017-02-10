@@ -9,7 +9,8 @@ import akka.http.scaladsl.server.directives.{LoggingMagnet, LogEntry, DebuggingD
 import akka.http.scaladsl.server.{RouteResult, Directives, Route}
 import com.ravel.elasticsearch.ProductSearch
 import com.ravel.model.RavelObject._
-import com.ravel.services.{ProductService, SettingService}
+import com.ravel.services.Mediator.GetProductCommand
+import com.ravel.services.{SettingService}
 import com.ravel.resources.JsonResultRoute._
 import JsonResultRoute.JsonResultKeys._
 import spray.json._
@@ -17,6 +18,7 @@ import RavelJsonSupport._
 import com.ravel.Config._
 
 import scala.concurrent.Future
+import akka.pattern._
 
 /**
  * Created by CloudZou on 12/9/2016.
@@ -54,19 +56,12 @@ trait ProductResource extends Directives{
     path(IntNumber) { id =>
       get {
         import com.ravel.Config.executionContext
-
-        val resultFuture = for {
-          product <- ProductService.get(id)
-          productExt <- ProductService.getProductExt(id)
-          productOther <- ProductService.getProductOther(id)
-          productPriceByTeams <- ProductService.getProductPrices(id)
-        } yield {
-            ProductView(product, productExt, productOther, productPriceByTeams)
-        }
+        val resultFuture = (mediator ? GetProductCommand(id)).mapTo[ProductView]
         onSuccess(resultFuture) { case product =>{
-            val map = Map(SingleDataJson.head -> product )
-            val jsonResult: Result[Map[String, Any]]  = Right(Success(map))
-            complete(toStandardRoute(jsonResult))
+          val map = Map(SingleDataJson.head -> product )
+          val jsonResult: Result[Map[String, Any]]  = Right(Success(map))
+          log.info(s"jsonResult:${jsonResult}")
+          complete(toStandardRoute(jsonResult))
           }
         }
       }
@@ -89,14 +84,14 @@ trait ProductResource extends Directives{
     }
   }
 
-  def testRoutes(context: ActorContext) =
-    path("hello") {
-      get {
-//        complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "<h1>say hello to akka-http</h1>"))
-        import RequestHandler._
-        imperativelyComplete { ctx =>
-          context.actorOf(Props[RequestHandler]) ! RequestHandler.Handle(ctx)
-        }
-      }
-    }
+//  def testRoutes(context: ActorContext) =
+//    path("hello") {
+//      get {
+////        complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, "<h1>say hello to akka-http</h1>"))
+//        import RequestHandler._
+//        imperativelyComplete { ctx =>
+//          context.actorOf(Props[RequestHandler]) ! RequestHandler.Handle(ctx)
+//        }
+//      }
+//    }
 }

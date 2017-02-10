@@ -49,7 +49,7 @@ class MySQLConnectionActor(val poolActorRef: ActorRef, val configuration: Config
       preQuery().onComplete {
         case Success(connection: Connection) => {
           connection.sendQuery(statement).map { result =>
-            println(s"index:${index}")
+            println(s"current time: ${System.currentTimeMillis()}")
             poolActorRef ! GiveBack(connection)
 
             _sender ! buildQueryResult(result)

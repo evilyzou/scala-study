@@ -13,7 +13,7 @@ import akka.pattern.ask
 /**
  * Created by CloudZou on 12/31/16.
  */
-trait QueryActor {
+trait QueryService {
   def single(query: String): Future[Map[String, Any]] = {
     queryFuture(query) { optionResultSet =>
       optionResultSet match {
@@ -52,7 +52,7 @@ trait QueryActor {
   }
 }
 
-trait InfraService extends QueryActor{
+trait InfraService extends QueryService{
   def infraDescQuery(id: Int) = s"select * from infrastructure_desc where infra_id=${id}"
   def infraQuery(id: Int) = s"select * from infrastructure where id=${id}"
 
