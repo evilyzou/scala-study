@@ -25,7 +25,7 @@ object Mediator {
   final case class GetProductCommand(id: Int) extends MediatorCommand
   final case class ProductSearchCommand(filter: ProductSearchFilter) extends MediatorCommand
 
-  def props: Props = Props(classOf[Mediator]).withRouter(RandomPool(1))
+  def props: Props = Props(classOf[Mediator]).withRouter(RandomPool(20))
 }
 class Mediator extends Actor with ActorLogging{
   var guideActorMap: Map[Int, ActorRef] = Map()

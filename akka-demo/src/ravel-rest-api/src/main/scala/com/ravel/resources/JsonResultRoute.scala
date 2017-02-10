@@ -67,9 +67,4 @@ object JsonResultRoute {
     HttpEntity(ContentTypes.`application/json`, response)
   }
 
-  def toDefaultRoute() = {
-    import com.ravel.Config.cache
-
-    HttpEntity(ContentTypes.`application/json`, cache)
-  }
 }
