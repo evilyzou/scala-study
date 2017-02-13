@@ -5,6 +5,7 @@ import java.util
 import com.ravel.util.MapConvert
 import org.joda.time.LocalDateTime
 import scala.collection.JavaConversions._
+import spray.json.DefaultJsonProtocol._
 
 /**
  * Created by CloudZou on 1/4/17.
@@ -103,5 +104,11 @@ object RavelObject {
   case class InfraDesc(content: Option[Any], pictureUrl: Option[Any])
 
   case class GuideInfra(guideInfraType: String, infra: Infra)
+
+  object GuideView {
+    import spray.json._
+
+//    implicit val guideViewFormat = jsonFormat2(GuideView.apply)
+  }
   case class GuideView(guide: Map[String, Any],  guideInfra: Seq[GuideInfra])
 }

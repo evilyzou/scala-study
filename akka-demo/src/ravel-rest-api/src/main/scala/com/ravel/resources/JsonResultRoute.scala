@@ -2,6 +2,7 @@ package com.ravel.resources
 
 import akka.http.scaladsl.model.{HttpEntity, ContentTypes}
 import com.ravel.Config._
+import com.ravel.model.RavelObject.ProductView
 import spray.json._
 
 /**
@@ -60,6 +61,14 @@ object JsonResultRoute {
 
 
   def toStandardRoute(result: Result[Map[String, Any]]) = {
+    import RavelJsonSupport._
+    import spray.json._
+
+    val response = result.toJson.compactPrint.getBytes("UTF-8")
+    HttpEntity(ContentTypes.`application/json`, response)
+  }
+
+  def toStandardRoute2(result: Result[Map[String, ProductView]]) = {
     import RavelJsonSupport._
     import spray.json._
 

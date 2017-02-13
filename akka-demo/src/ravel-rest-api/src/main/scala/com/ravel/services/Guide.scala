@@ -23,10 +23,10 @@ import scala.util.{Failure, Success}
  */
 
 object Guide {
-  sealed trait Query
-  case object SingleQuery extends Query
+  sealed trait GuideQuery
+  case object GetGuideQuery extends GuideQuery
 
-  case object UpdateCacheQuery extends Query
+  case object UpdateCacheQuery extends GuideQuery
 
   def props(id: Int): Props = Props(classOf[Guide], id)
 }
@@ -44,7 +44,7 @@ class Guide(id: Int) extends Actor with ActorLogging with GuideQuery{
   }
 
   def receive = {
-    case SingleQuery => {
+    case GetGuideQuery => {
       val _sender = sender()
       guideView match {
         case Some(gv) => _sender ! gv

@@ -1,16 +1,18 @@
 package com.ravel.services
 
+import java.util.concurrent.TimeoutException
+
 import akka.actor.{Props, ActorRef, ActorLogging, Actor}
 import akka.routing.RandomPool
 import akka.util.Timeout
 import com.ravel.elasticsearch.{ProductSearch, GuideSearch}
-import com.ravel.model.RavelObject.ProductView
+import com.ravel.model.RavelObject.{GuideView, ProductView}
 import com.ravel.resources.{ProductSearchFilter, GuideSearchFilter}
-import com.ravel.services.Guide.SingleQuery
+import com.ravel.services.Guide.{GetGuideQuery}
 import com.ravel.services.Mediator.{ProductSearchCommand, GuideSearchCommand, GetProductCommand, GetGuideCommand}
 import akka.pattern._
 import com.ravel.services.Product._
-import scala.concurrent.Future
+import scala.concurrent.{Promise, Future}
 import scala.concurrent.duration._
 
 /**
@@ -34,6 +36,7 @@ class Mediator extends Actor with ActorLogging{
   implicit val dispatcher = context.dispatcher
 
   val system = context.system
+  val scheduler = system.scheduler
 
   def receive = handleGuide orElse handleProduct
 
@@ -42,10 +45,7 @@ class Mediator extends Actor with ActorLogging{
       if (!guideActorMap.contains(id)) {
         guideActorMap += (id -> system.actorOf(Guide.props(id)))
       }
-      log.info(s"guide id : ${id}")
-      guideActorMap.get(id) match {
-        case Some(actorRef) => (actorRef ? SingleQuery).pipeTo(sender())
-      }
+      fetchObject[Option[GuideView]](guideActorMap.get(id), GetGuideQuery).pipeTo(sender())
     }
     case GuideSearchCommand(filter: GuideSearchFilter) => {
       GuideSearch.queryGuides(filter).pipeTo(sender())
@@ -57,22 +57,32 @@ class Mediator extends Actor with ActorLogging{
       if (!productActorMap.contains(id)) {
         productActorMap += (id -> system.actorOf(Product.props(id)))
       }
-      log.info(s"id:${id}")
-      productActorMap.get(id) match {
-        case Some(actorRef) => {
-          val resultFuture = for {
-            product <- (actorRef ? GetProductQuery).mapTo[Map[String, Any]]
-            productExt <- (actorRef ? GetProductExtQuery).mapTo[Map[String, Any]]
-            productOther <- (actorRef ? GetProductOtherQuery).mapTo[Map[String, Any]]
-            productPriceByTeams <- (actorRef ? GetProductPricesQuery).mapTo[Seq[Map[String, Any]]]
-          } yield {
-            ProductView.apply(product, productExt, productOther, productPriceByTeams)
-          }
-          resultFuture.pipeTo(sender())
-        }
-      }
+      fetchObject[Option[ProductView]](productActorMap.get(id), GetProductQuery).pipeTo(sender())
     }
     case ProductSearchCommand(filter: ProductSearchFilter) => ProductSearch.queryProducts(filter).pipeTo(sender())
-    case _ =>
   }
+
+  def fetchObject[T](actorRefOption: Option[ActorRef], message: AnyRef): Future[T] = {
+    val promise = Promise[T]
+    actorRefOption match {
+      case Some(actorRef) => {
+        scheduler.scheduleOnce(5.seconds) {
+          promise tryFailure new TimeoutException
+        }
+
+        actorRef ! message
+        context.become(objectReceive(promise))
+      }
+      case None => promise tryFailure new Exception("actor ref is null")
+    }
+    promise.future
+  }
+
+  def objectReceive[T](promise: Promise[T]): Receive = {
+    case obj: T@unchecked => {
+      promise.success(obj)
+      context.unbecome()
+    }
+  }
+
 }

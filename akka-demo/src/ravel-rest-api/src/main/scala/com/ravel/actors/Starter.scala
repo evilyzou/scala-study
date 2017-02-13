@@ -48,7 +48,7 @@ class Starter extends Actor with ActorLogging{
       } recover {
         case ex => log.info(s"REST interface could not bind to ${C.host}:${C.port}", ex)
       }
-    case x: Tuple2[Long, Seq[SearchProductView]] => {
+    case x=> {
       println("xx")
     }
   }

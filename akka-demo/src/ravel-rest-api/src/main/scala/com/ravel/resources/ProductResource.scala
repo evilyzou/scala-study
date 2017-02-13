@@ -56,12 +56,12 @@ trait ProductResource extends Directives{
     path(IntNumber) { id =>
       get {
         import com.ravel.Config.executionContext
-        val resultFuture = (mediator ? GetProductCommand(id)).mapTo[ProductView]
-        onSuccess(resultFuture) { case product =>{
+        val resultFuture = (mediator ? GetProductCommand(id)).mapTo[Option[ProductView]]
+        onSuccess(resultFuture) { case Some(product) =>{
           val map = Map(SingleDataJson.head -> product )
-          val jsonResult: Result[Map[String, Any]]  = Right(Success(map))
-          log.info(s"jsonResult:${jsonResult}")
-          complete(toStandardRoute(jsonResult))
+          val jsonResult: Result[Map[String, ProductView]]  = Right(Success(map))
+//          log.info(s"jsonResult:${jsonResult}")
+          complete(toStandardRoute2(jsonResult))
           }
         }
       }

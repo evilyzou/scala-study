@@ -22,11 +22,7 @@ import scala.util.{Failure, Success}
 object Product {
   sealed trait ProductQuery
   final case object GetProductQuery extends ProductQuery
-  final case object GetProductOtherQuery extends ProductQuery
   final case object GetProductHotelInfoQuery extends  ProductQuery
-  final case object GetProductExtQuery extends ProductQuery
-  final case object GetProductPricesQuery extends ProductQuery
-
   final case object UpdateCacheQuery extends ProductQuery
 
   def props(id: Int): Props = Props(classOf[Product], id)
@@ -38,32 +34,39 @@ class Product(id: Int) extends Actor with ActorLogging with ProductQuery{
   val system = context.system
   val scheduler = system.scheduler
 
-  var productCache: Option[Map[String, Any]] = None
+  var productCache: Option[ProductView] = None
 
   override def preStart() = {
-    scheduler.schedule(0.seconds, 60.seconds, self, UpdateCacheQuery)
+    scheduler.schedule(60.seconds, 60.seconds, self, UpdateCacheQuery)
   }
 
   def receive = {
     case GetProductQuery => {
       val _sender = sender()
       productCache match {
-        case Some(product: Map[String, Any]) => _sender ! product
-        case None => get(id).pipeTo(_sender)
+        case Some(product) => _sender ! Some(product)
+        case None => getProduct.pipeTo(_sender)
       }
     }
-    case GetProductOtherQuery => {
-      getProductOther(id).pipeTo(sender())
-    }
     case GetProductHotelInfoQuery => getProductHotelInfo(id).pipeTo(sender())
-    case GetProductExtQuery => getProductExt(id).pipeTo(sender())
-    case GetProductPricesQuery => getProductPrices(id).pipeTo(sender())
     case UpdateCacheQuery => {
-      get(id) onComplete {
-        case Success(product: Map[String, Any]) => productCache = Some(product)
+      getProduct onComplete {
+        case Success(product: Option[ProductView]) => productCache = product
         case Failure(_) =>{ log.info("update product cache failed"); None}
       }
     }
+  }
+
+  def getProduct = {
+    val productFuture = for {
+      product <- get(id)
+      productExt <- getProductExt(id)
+      productOther <- getProductOther(id)
+      productPriceByTeams <- getProductPrices(id)
+    } yield {
+      Some(ProductView.apply(product, productExt, productOther, productPriceByTeams))
+    }
+    productFuture
   }
 }
 
