@@ -20,8 +20,7 @@ object RavelJsonSupport extends  DefaultJsonProtocol with SprayJsonSupport with 
 
   implicit object TimestampFormat extends JsonFormat[Timestamp] {
     def write(obj: Timestamp) = obj match{
-      case t => JsString(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(obj))
-      case _ => JsString("1970-01-01")
+      case _ => JsString(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(obj))
     }
 
     def read(json: JsValue) = json match {
@@ -31,8 +30,7 @@ object RavelJsonSupport extends  DefaultJsonProtocol with SprayJsonSupport with 
   }
   implicit object DateFormat extends JsonFormat[Date] {
     def write(obj: Date) = obj match {
-      case t => JsString(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(obj))
-      case _ => JsString("1970-01-01")
+      case _ => JsString(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(obj))
     }
     def read(json: JsValue) = json match {
       case JsNumber(time) => new Date(1970,1,1)
@@ -54,23 +52,13 @@ object RavelJsonSupport extends  DefaultJsonProtocol with SprayJsonSupport with 
           JsFalse
       }
       case x: Seq[_] => seqFormat[Any].write(x)
-      case m: Map[String, _] => mapFormat[String, Any].write(m)
+      case m: Map[String, _]@unchecked => mapFormat[String, Any].write(m)
       case spv: SearchProductView => searchProductFormat.write(spv)
-//      case pv: ProductView => productFormat.write(pv)
       case sgv: SearchGuideView => searchGuideViewFormat.write(sgv)
-//      case infra: Infra => infraFormat.write(infra)
-//      case infraFeature: InfraFeature => infraFeatureFormat.write(infraFeature)
-//      case infraDesc: InfraDesc => infraDescFormat.write(infraDesc)
-//      case gv: GuideView => guideViewFormat.write(gv)
-      case ph: ProductHotel => productHotelFormat.write(ph)
       case _ => JsNull
-      case x => serializationError("Do not understand object of type " + x.getClass.getName)
     }
     def read(value: JsValue) = value match {
-      case JsNumber(n) => n.intValue()
-      case JsString(s) => s
-      case JsTrue => true
-      case JsFalse => false
+      case _ =>
     }
   }
 

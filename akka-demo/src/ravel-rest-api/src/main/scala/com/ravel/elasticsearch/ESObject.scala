@@ -53,18 +53,10 @@ object ProductSearch {
     builder.setQuery(boolQueryBuilder)
 
     val respFuture = RequestExecutor[SearchResponse].execute(builder)
-
-    respFuture onFailure {
-      case casue => { println("xx"); casue}
-    }
-
-    val responses = respFuture.map { response =>
+    respFuture map { response =>
       val hits = response.getHits
       (hits.totalHits(), hits.getHits.toSeq.map(e=>e.getSource.toMap.convert[SearchProductView]))
     }
-
-    responses recover { case cause => throw new Exception("Something went wrong", cause) }
-    responses
   }
 }
 

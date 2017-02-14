@@ -3,14 +3,14 @@ package com.ravel.resources
 import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
 import akka.http.scaladsl.server._
 import com.ravel.message.MessageObject.GuideMessageObject.GuideList
-import com.ravel.resources.JsonResultRoute.JsonResultKeys._
-import com.ravel.resources.JsonResultRoute._
 import com.ravel.resources.RavelJsonSupport._
 import com.ravel.model.RavelObject._
 import com.ravel.services.Mediator.{GetGuideCommand, GuideSearchCommand}
 import spray.json._
 import com.ravel.Config._
 import akka.pattern.ask
+import com.ravel.util.JsonResult._
+import com.ravel.util.JsonResult.JsonResultKeys._
 
 /**
  * Created by CloudZou on 12/21/16.
@@ -32,8 +32,8 @@ trait GuideResource extends Directives{
             onSuccess(resultFuture) {
               case list => {
                 val map = (ResultJsonWithPage zip list.productIterator.toList).toMap
-                val jsonResult: Result[Map[String, Any]]  = Right(Success(map))
-                complete(toStandardRoute(jsonResult))
+                val jsonResult: JsonResult[Map[String, Any]]  = Right(JsonResultSuccess(map))
+                complete(jsonResult.toJson)
               }
             }
           }
@@ -46,8 +46,8 @@ trait GuideResource extends Directives{
         onSuccess(guideResult) {
           case guide =>{
             val map = Map(SingleDataJson.head -> guide )
-            val jsonResult: Result[Map[String, Any]]  = Right(Success(map))
-            complete(toStandardRoute(jsonResult))
+            val jsonResult: JsonResult[Map[String, Any]]  = Right(JsonResultSuccess(map))
+            complete(jsonResult.toJson)
           }
         }
       }

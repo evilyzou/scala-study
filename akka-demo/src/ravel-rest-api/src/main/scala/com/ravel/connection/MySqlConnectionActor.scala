@@ -2,10 +2,7 @@ package com.ravel.connection
 
 import akka.actor.{ActorRef, ActorLogging, Terminated, Actor}
 import akka.util.Timeout
-import com.github.mauricio.async.db.mysql.MySQLConnection
-import com.github.mauricio.async.db.pool.PoolConfiguration
 import com.github.mauricio.async.db.{Configuration, QueryResult, Connection}
-import com.ravel.async.RavelQueryResult
 import com.ravel.connection.MySQLConnectionPool.{GiveBack, Borrow}
 import com.ravel.model._
 
@@ -23,7 +20,6 @@ class MySQLConnectionActor(val poolActorRef: ActorRef, val configuration: Config
   private lazy val scheduler = system.scheduler
 
   private var lastQueryTimestamp = System.currentTimeMillis()
-  private val maxIdle =  30 * 1000  //30s
   implicit val timeout = Timeout(5 seconds)
 
   override def preStart() = {
@@ -31,19 +27,6 @@ class MySQLConnectionActor(val poolActorRef: ActorRef, val configuration: Config
   }
 
   def receive = {
-//    case _ :ConnectionIsActive => sender() ! connection.isConnected
-    case CheckConnectionIdle => {
-//      if (isConnected) {
-//        val timeElapsed = System.currentTimeMillis() - lastQueryTimestamp
-//        if (timeElapsed > maxIdle) {
-//          log.info(s"Connection was idle for ${timeElapsed}, maxIdle is ${maxIdle}, close it.")
-//          connection.disconnect onComplete {
-//            case Success(_) => log.info(s"actor: ${self},connection closed success")
-//            case Failure(_) => log.info(s"actor: ${self}, connection closed failed")
-//          }
-//        }
-//      }
-    }
     case QueryStatement(statement, index) => {
       val _sender = sender()
       preQuery().onComplete {
@@ -84,17 +67,7 @@ class MySQLConnectionActor(val poolActorRef: ActorRef, val configuration: Config
 
   protected[this] def buildQueryResult(queryResult: QueryResult): RavelQueryResult = {
     new RavelQueryResult(Option(queryResult.rowsAffected), Option(queryResult.statusMessage), queryResult.rows) {
-//      lazy val generatedKey = throw new Exception("rr")
     }
-  }
-
-  protected[this] def extractGeneratedKey(queryResult: QueryResult): Future[Option[Long]] = {
-//    connection.sendQuery("SELECT LAST_INSERT_ID()").map { result =>
-//      result.rows.headOption.flatMap { rows =>
-//        rows.headOption.map { row => row(0).asInstanceOf[Long] }
-//      }
-//    }
-    throw new Exception("error")
   }
 
   private def preQuery(): Future[Connection] = {
@@ -106,17 +79,4 @@ class MySQLConnectionActor(val poolActorRef: ActorRef, val configuration: Config
     lastQueryTimestamp = System.currentTimeMillis()
   }
 
-//  private def checkConnection(): Future[Connection] = {
-////    if (!isConnected) {
-////      connection = new MySQLConnection(configuration)
-////      connection.connect
-////    } else {
-////      Future.successful(connection)
-////    }
-//    poolActorRef ? Borrow map { conn =>
-//      conn.asInstanceOf[Connection]
-//    }
-//  }
-
-//  private def isConnected = connection != null &&  connection.isConnected
 }

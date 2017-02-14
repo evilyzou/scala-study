@@ -9,7 +9,7 @@ import com.github.mauricio.async.db.pool.PoolConfiguration
 import com.ravel.actors.{Starter}
 import com.ravel.connection.{MySQLConnectionPool, MySQLConnectionActor}
 import com.ravel.services.Mediator
-import com.typesafe.config.ConfigFactory
+import com.typesafe.config.{Config, ConfigFactory}
 import scala.concurrent.duration._
 
 /**
@@ -33,11 +33,22 @@ object Config{
   val starter = system.actorOf(Props[Starter], name = "main")
 
   implicit val timeout = Timeout(5 seconds)
-  val configuration = Configuration(username = "root", host ="127.0.0.1", port = 3306, password = Option("ex299295"), database = Option("ravel"))
 
-  val pcf = new PoolConfiguration(50, 4, 10)
-  val poolActorRef = system.actorOf(Props(classOf[MySQLConnectionPool], pcf), "pool-connection-actor")
+  val mysqlUser = config.getString("mysql.user")
+
+
+  val configuration = getMySqlConfiguration(config)
+  val poolActorRef = system.actorOf(Props(classOf[MySQLConnectionPool], PoolConfiguration.Default), "pool-connection-actor")
   val randomRouter = system.actorOf(Props(classOf[MySQLConnectionActor], poolActorRef, configuration, 5.seconds).withRouter(RoundRobinPool(30)))
 
   val mediator = system.actorOf(Mediator.props)
+
+  def getMySqlConfiguration(config: Config) = {
+    val user = config.getString("mysql.user")
+    val host = config.getString("mysql.host")
+    val port = config.getInt("mysql.port")
+    val password = config.getString("password")
+    val database = config.getString("database")
+    Configuration(username = user, host = host, port = port, password = Option(password), database = Option(database))
+  }
 }

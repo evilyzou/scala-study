@@ -11,8 +11,8 @@ import com.ravel.elasticsearch.ProductSearch
 import com.ravel.model.RavelObject._
 import com.ravel.services.Mediator.GetProductCommand
 import com.ravel.services.{SettingService}
-import com.ravel.resources.JsonResultRoute._
-import JsonResultRoute.JsonResultKeys._
+import com.ravel.util.JsonResult._
+import com.ravel.util.JsonResult.JsonResultKeys._
 import spray.json._
 import RavelJsonSupport._
 import com.ravel.Config._
@@ -39,14 +39,13 @@ trait ProductResource extends Directives{
       get {
         parameters('systemType, 'customType, 'pfunction, 'start ? 0, 'size ? 10) {
           (systemType, customType, pfunction, start, size) => {
-            import JsonResultRoute._
             val filter = ProductSearchFilter(systemType, customType, pfunction, "", "")
             val listFuture = ProductSearch.queryProducts(filter)
             onSuccess(listFuture) {
               case list => {
                 val map = (ResultJsonWithPage zip list.productIterator.toList).toMap
-                val jsonResult: Result[Map[String, Any]] = Right(Success(map))
-                complete(toStandardRoute(jsonResult))
+                val jsonResult: JsonResult[Map[String, Any]] = Right(JsonResultSuccess(map))
+                complete(jsonResult.toJson)
               }
             }
           }
@@ -55,13 +54,16 @@ trait ProductResource extends Directives{
     }~
     path(IntNumber) { id =>
       get {
-        import com.ravel.Config.executionContext
         val resultFuture = (mediator ? GetProductCommand(id)).mapTo[Option[ProductView]]
-        onSuccess(resultFuture) { case Some(product) =>{
-          val map = Map(SingleDataJson.head -> product )
-          val jsonResult: Result[Map[String, ProductView]]  = Right(Success(map))
-//          log.info(s"jsonResult:${jsonResult}")
-          complete(toStandardRoute2(jsonResult))
+        onSuccess(resultFuture) {
+          case Some(product) =>{
+            val map = Map(SingleDataJson.head -> product )
+            val jsonResult: JsonResult[Map[String, ProductView]]  = Right(JsonResultSuccess(map))
+            complete(jsonResult.toJson)
+          }
+          case None => {
+            val jsonResult: JsonResult[Map[String, ProductView]]  = Left(JsonResultFailure("not found"))
+            complete(jsonResult.toJson)
           }
         }
       }
@@ -74,8 +76,8 @@ trait ProductResource extends Directives{
             onSuccess(subCategoryFuture) {
               case list =>{
                 val map = Map(SingleDataJson.head -> list )
-                val jsonResult: Result[Map[String, Any]]  = Right(Success(map))
-                complete(toStandardRoute(jsonResult))
+                val jsonResult: JsonResult[Map[String, Any]]  = Right(JsonResultSuccess(map))
+                complete(jsonResult.toJson)
               }
             }
           }

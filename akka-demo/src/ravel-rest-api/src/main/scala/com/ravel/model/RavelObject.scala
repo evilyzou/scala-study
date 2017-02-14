@@ -20,7 +20,7 @@ object RavelObject {
     option match {
       case Some(x) => {
         x match {
-          case i: T => x.asInstanceOf[T]
+          case i: T@unchecked => x.asInstanceOf[T]
           case _  => defaultValue
         }
       }

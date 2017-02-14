@@ -1,7 +1,7 @@
 package com.ravel.services
 
 import com.github.mauricio.async.db.ResultSet
-import com.ravel.async.{RavelQueryResult, RavelDB}
+import com.ravel.connection.RavelQueryResult
 import com.ravel.model.QueryStatement
 import com.ravel.model.RavelObject.{Infra, InfraDesc, InfraFeature}
 import scala.collection.immutable.Map

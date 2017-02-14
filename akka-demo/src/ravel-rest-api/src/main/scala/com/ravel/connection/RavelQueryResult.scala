@@ -1,4 +1,4 @@
-package com.ravel.async
+package com.ravel.connection
 
 import com.github.mauricio.async.db.ResultSet
 
