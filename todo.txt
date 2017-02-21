@@ -1,0 +1,43 @@
+页面布局问题：
+1.地区的icon 在顶部的右边(跟首页那样有位置icon，旁边再加上 "地区" 2个字) 方便点击
+2.底部的Tab 内容只需要 首页，商品(列表页)，指南(列表页)  (目前)， (商品，指南 进入的链接都是首页里面列举的其中第一个分类)
+
+
+
+其他:
+1.首页(index.html)页面 顶部banner图 跟商品列表的顶部banner内容一致
+1.典藏内容  在标题下方要显示产品特点和产品图片，页面布局要更美观。。(参考微信)
+3.group/free 英文类型的替换
+4.商品详情页面缺少商品价格列表选择和查看
+5.商品详情页面的 酒店内容跟 典藏里面的 宿部分的内容显示一致
+
+
+
+
+git 使用方式:(下载地址: https://git-for-windows.github.io/)
+
+使用Git Bash 方式 
+git clone https://github.com/evilyzou/scala-study.git
+
+//每次获取远程最新文件方式是git pull origin master
+
+//新增文件之后需要
+cd /scala-study 
+git add .
+
+//提交修改文件到本地仓库
+git commit . -m 'xx'
+
+//提交代码到远程
+git push origin master
+
+//会提示用户名和密码
+
+409492828@qq.com
+a123456789
+
+
+
+
+商品跟指南的对应关系(TODO)
+
