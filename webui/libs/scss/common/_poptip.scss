@@ -16,120 +16,81 @@
         background-color: rgba(255,255,255,.75);
     }
 }
+/* ---------------------------
+   Pop Tip v2 (Create Date: 2016-06-27, Author: zihan)
+   - - - - - - - - - - - - - */
+
+/* box base */
 .poptip {
+
+    display: table;
+
     position: fixed;
-    z-index: 29;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    min-height: 40px;
-    margin-top: -120px;
-    margin-left: 0;
-    padding: 0;
-    border: solid 1px #000;
-    overflow: hidden;
-    background-color: #fff;
-    /*background-color: rgba(0,0,0,.9);*/
-    box-sizing: border-box;
+    right: 0;
+    bottom: 40px;
+    z-index: 999;
 
-    @include box-shadow(0 0 3px rgba(0,0,0,.2));
-    @include flexbox();
-    @include flex-flow(column wrap);
-//    @include translate3d(0, 33vh, 0);
-    @include transition(all .5s ease);
+    width:            300px;
+    min-height:       20px;
+    padding-top:      10px;
+    padding-bottom:   10px;
 
-    .cssicon.close:before,
-    .cssicon.close:after { @include opacity(.8); background-color: #666; }
+    margin-right: -300px;
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
+    border-radius: 5px 0 0 5px;
+    color: #fff;
 
-    /*&:before {
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: 2;
-        content: "";
-        background-color: rgba(0,0,0,0.75);
-    }*/
+    -webkit-transform: translate3d(0, 0, 0);
+    -webkit-transition: all .3s linear;
+    transform: translate3d(0, 0, 0);
+    transition: all .3s linear;
 
-    > .head {
-        position: relative;
-        z-index: 8;
-        line-height: 30px;
-        
-        .close { float: right; cursor: pointer; }
-        .close:hover { background-color: #fafafa; }
-        .close:active { background-color: #f2f2f2; }
-    }
+    background-color: rgba(0,0,0,.75);
 
     > .main {
-        @include flex(1);
-        position: relative;
-        z-index: 8;
-        width: 400px;
-        min-height: 30px;
-        /*color: #fff;*/
-        padding-left: 30px;
-        padding-right: 30px;
-        padding-top: 30px;
-        padding-bottom: 20px;
-        text-align: center;
-        box-sizing: border-box;
-
-        > .content {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            overflow-y: auto;
-            color: #666;
-        }
-        
-        > .title {
-            font-size: 18px;
-            margin-bottom: 20px;
-        }
-    }
-
-    > .foot {
-        @include flexbox();
-        position: relative;
-        z-index: 8;
-        padding-left: 30px;
-        padding-right: 30px;
-        padding-top: 10px;
-        padding-bottom: 20px;
-        color: #fff;
-        
-        .btn {
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
-        }
-    }
-
-    .btn {
-        @include flex(1);
-        padding-left: 20px;
+        display: table-cell;
         padding-right: 20px;
-        color: #666;
-        border: solid 1px #666;
-        /*border: solid 1px rgba(255,255,255,.85);*/
-        box-sizing: border-box;
-        background-color: #fff;
+        word-break: break-all;
+        line-height: 24px;
+    }
 
-        + .btn {
-            margin-left: 20px;
+    > .head {
+        display: table-cell;
+        width: 50px;
+        height: 24px;
+        line-height: 24px;
+        vertical-align: middle;
+        text-align: center;
+
+        &:before {
+            display: block;
+            width: 10px;
+            height: 10px;
+            margin: auto;
+            content: "";
+            border-radius: 100%;
+            background-color: #45DC5F;
         }
 
-        &.default { color: #fff; background-color: #000; }
+        .close { display: none; }
     }
 
-    &.show {
-//        @include translate3d(0, 0, 0);
-//        bottom: 50px;
+    > .foot { display: table-cell; }
 
-        width: 400px;
-        margin-left: -200px;
+    a {
+        color: #fff;
+        text-decoration: underline;
+
+        &:hover { color: #fafafa; }
+        &.btn-default { color: #555; }
     }
+
+    &.success { > .head:before { background-color: #45DC5F; } }
+    &.warning { > .head:before { background-color: #ECDD20; } }
+    &.error { > .head:before { background-color: #E85117; } }
+
+    //&.show { transform: translate3d(-300px, 0, 0); }
+    &.show { margin-right: 0; }
+    &.hide {display:inline-block;@include scale(1.2);}
+
 }
-// end poptip

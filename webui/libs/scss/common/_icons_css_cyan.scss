@@ -1,0 +1,88 @@
+
+/*
+.cssicon.menu:before             { @include cssicon-menu(); }
+
+.cssicon.cart:before             { @include cssicon-cart(); }
+.cssicon.cart.white:before       { @include cssicon-cart-white(); }
+
+.cssicon.search:before           { @include cssicon-search(); }
+.cssicon.search.white:before     { @include cssicon-search-white(); }
+
+.cssicon.tick:before             { @include cssicon-tick(); }
+.cssicon.tick.white:before       { @include cssicon-tick-white(); }
+
+.cssicon.user:before             { @include cssicon-user(); }
+.cssicon.passport:before         { @include cssicon-passport(); }
+.cssicon.arrow-down:before       { @include cssicon-arrow-down(); }
+
+//.cssicon.increase:before         { @include cssicon-increase(); }
+//.cssicon.decrease:before         { @include cssicon-decrease(); }
+
+.cssicon.fav:before              { @include cssicon-fav(); }
+.cssicon.fav-fill:before         { @include cssicon-fav-fill(); }
+
+.cssicon.camra:before            { @include cssicon-camra(); }
+*/
+
+
+
+.cssicon.home:before             { @extend %cssicon-cyan-home; }
+.cssicon.menu:before             { @extend %cssicon-cyan-menu; }
+
+.cssicon.cart:before             { @extend %cssicon-cyan-cart; }
+.cssicon.cart.white:before       { @extend %cssicon-cyan-cart-white; }
+
+.cssicon.search:before           { @extend %cssicon-cyan-search; }
+.cssicon.search.white:before     { @extend %cssicon-cyan-search-white; }
+
+.cssicon.tick:before             { @extend %cssicon-cyan-tick; }
+.cssicon.tick.white:before       { @extend %cssicon-cyan-tick-white; }
+
+.cssicon.user:before             { @extend %cssicon-cyan-user; }
+.cssicon.passport:before         { @extend %cssicon-cyan-passport; }
+.cssicon.arrow-down:before       { @extend %cssicon-cyan-arrow-down; }
+
+//.cssicon.increase:before         { @extend %cssicon-cyan-increase; }
+//.cssicon.decrease:before         { @extend %cssicon-cyan-decrease; }
+
+.cssicon.fav:before              { @extend %cssicon-cyan-fav; }
+.cssicon.fav-fill:before         { @extend %cssicon-cyan-fav-fill; }
+
+.cssicon.camra:before            { @extend %cssicon-cyan-camra; }
+.cssicon.coupon:before           { @extend %cssicon-cyan-coupon; }
+.cssicon.back:before             { @extend %cssicon-cyan-arrow-left; }
+
+.cssicon.bookmark:before         { @extend %cssicon-cyan-bookmark; }
+.cssicon.trash:before            { @extend %cssicon-trash; }
+.cssicon.location:before         { @extend %cssicon-cyan-location; }
+.cssicon.money-bag:before        { @extend %cssicon-cyan-money-bag; }
+.cssicon.category:before         { @extend %cssicon-cyan-category; }
+.cssicon.contact:before          { @extend %cssicon-cyan-contact; }
+
+
+.cssicon.close {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    padding-left: 30px;
+    line-height: 30px;
+    box-sizing: border-box;
+}
+.cssicon.close:before,
+.cssicon.close:after {
+    display: block;
+    position: absolute;
+    top: 50%;
+//    left: 50%;
+    left: 0;
+    width:  16px;
+    height: 2px;
+    margin-top: -1px;
+//    margin-left: -10px;
+    margin-left: 7px;
+    content: "";
+    background-color: #000;
+}
+
+.cssicon.close:before { @include rotate(45deg); }
+.cssicon.close:after { @include rotate(-45deg); }

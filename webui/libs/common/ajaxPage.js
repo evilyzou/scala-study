@@ -1,7 +1,7 @@
 /*!
  *  Create Date: 2016-02-13
  *  Author: zihan
- *  verstion: 1.1.0
+ *  verstion: 1.1.1
  */
 
 
@@ -200,6 +200,8 @@ XLJ.ajaxPage.prototype = {
     },
 
     loadpage: function(url, parent) {
+        if (!url || url.indexOf('#') == 0) return
+
         var root = this
 
         var uObj = root.helper.urlObj(url) || {},
@@ -250,6 +252,7 @@ XLJ.ajaxPage.prototype = {
         });
 
         setTimeout(function() {
+            html = $($.parseHTML(html, document, true));
 
             $.when(request).done(function() {
                 target.html(html)

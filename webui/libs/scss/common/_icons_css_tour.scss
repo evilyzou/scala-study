@@ -1,0 +1,93 @@
+
+/*
+.cssicon.menu:before             { @include cssicon-menu(); }
+
+.cssicon.cart:before             { @include cssicon-cart(); }
+.cssicon.cart.white:before       { @include cssicon-cart-white(); }
+
+.cssicon.search:before           { @include cssicon-search(); }
+.cssicon.search.white:before     { @include cssicon-search-white(); }
+
+.cssicon.tick:before             { @include cssicon-tick(); }
+.cssicon.tick.white:before       { @include cssicon-tick-white(); }
+
+.cssicon.user:before             { @include cssicon-user(); }
+.cssicon.passport:before         { @include cssicon-passport(); }
+.cssicon.arrow-down:before       { @include cssicon-arrow-down(); }
+
+//.cssicon.increase:before         { @include cssicon-increase(); }
+//.cssicon.decrease:before         { @include cssicon-decrease(); }
+
+.cssicon.fav:before              { @include cssicon-fav(); }
+.cssicon.fav-fill:before         { @include cssicon-fav-fill(); }
+
+.cssicon.camra:before            { @include cssicon-camra(); }
+*/
+
+
+
+.cssicon.home.black:before       { @extend %cssicon-tour-home-black; }
+.cssicon.home:before             { @extend %cssicon-tour-home; }
+.cssicon.menu:before             { @extend %cssicon-tour-menu; }
+
+.cssicon.cart:before             { @extend %cssicon-tour-cart; }
+.cssicon.cart.white:before       { @extend %cssicon-tour-cart-white; }
+.cssicon.cart.black:before       { @extend %cssicon-tour-cart-black; }
+
+.cssicon.search:before           { @extend %cssicon-tour-search; }
+.cssicon.search.white:before     { @extend %cssicon-tour-search-white; }
+.cssicon.search.black:before     { @extend %cssicon-tour-search-black; }
+
+.cssicon.tick:before             { @extend %cssicon-tour-tick; }
+.cssicon.tick.white:before       { @extend %cssicon-tour-tick-white; }
+
+.cssicon.user:before             { @extend %cssicon-tour-user; }
+.cssicon.user.black:before       { @extend %cssicon-tour-user-black; }
+
+.cssicon.passport:before         { @extend %cssicon-tour-passport; }
+.cssicon.arrow-down:before       { @extend %cssicon-tour-arrow-down; }
+
+//.cssicon.increase:before         { @extend %cssicon-tour-increase; }
+//.cssicon.decrease:before         { @extend %cssicon-tour-decrease; }
+
+.cssicon.fav:before              { @extend %cssicon-tour-fav; }
+.cssicon.fav-fill:before         { @extend %cssicon-tour-fav-fill; }
+
+.cssicon.camra:before            { @extend %cssicon-tour-camra; }
+.cssicon.coupon:before           { @extend %cssicon-tour-coupon; }
+.cssicon.back:before             { @extend %cssicon-tour-arrow-left; }
+
+.cssicon.bookmark:before         { @extend %cssicon-tour-bookmark; }
+.cssicon.trash:before            { @extend %cssicon-trash; }
+.cssicon.location:before         { @extend %cssicon-tour-location; }
+.cssicon.money-bag:before        { @extend %cssicon-tour-money-bag; }
+.cssicon.category:before         { @extend %cssicon-tour-category; }
+.cssicon.contact:before          { @extend %cssicon-tour-contact; }
+
+
+.cssicon.close {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    padding-left: 30px;
+    line-height: 30px;
+    box-sizing: border-box;
+}
+.cssicon.close:before,
+.cssicon.close:after {
+    display: block;
+    position: absolute;
+    top: 50%;
+//    left: 50%;
+    left: 0;
+    width:  16px;
+    height: 2px;
+    margin-top: -1px;
+//    margin-left: -10px;
+    margin-left: 7px;
+    content: "";
+    background-color: #000;
+}
+
+.cssicon.close:before { @include rotate(45deg); }
+.cssicon.close:after { @include rotate(-45deg); }

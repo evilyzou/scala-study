@@ -1,3 +1,7 @@
+/*!
+ * Create by zihan on 2016
+ * verstion: 1.0.0
+ */
 
 XLJ.debug = window.XLJ.debug || (function() {
     var debug = XLJ.getQueryString('debug') || ''

@@ -1,11 +1,11 @@
 /*!
  * Create by zihan on 2015-12-22
- * v1.1.4
+ * v1.2.3
  */
 
 $.fn.extend({
     formobj: function(type) {
-        var obj = '{'
+        var obj = '{', serialize = ''
         var input = $(this).find('[name]')
         input.each(function(i) {
             var _this = $(this)
@@ -17,15 +17,21 @@ $.fn.extend({
             var _val = (_this.val() || '').trim()
             var _valfinal = (/^[0-9]+([\.0-9]+)?$/.test((1 * _val))) ? Number(_val) : '"' + _val + '"'
             if (_val === '') _valfinal = '""'
-            obj += _this.attr('name') + ':' + _valfinal
-            if (i < input.length - 1) obj += ','
+
+            if (type && type == 'string') {
+                if (serialize !== '') serialize += '&'
+                serialize += _this.attr('name') + '=' + _val
+            } else {
+                if (obj !== '{') obj += ','
+                obj += '"' + _this.attr('name') + '"' + ':' + _valfinal
+            }
         })
         obj += '}'
 
         if (type && type == 'string') {
-            return obj
+            return serialize
         } else {
-            return eval('(' + obj +')')
+            return JSON.parse(obj)
         }
     }
 });

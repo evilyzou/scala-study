@@ -1,7 +1,7 @@
 /*!
  *  Create Date: 2016-06
  *  Author: zihan
- *  verstion: 1.3.1
+ *  verstion: 1.4.3
  */
 
 XLJ.ajaxData = window.XLJ.ajaxData || function(url, type, data, callback, returnTip, errorCallBack) {
@@ -20,7 +20,7 @@ XLJ.ajaxData = window.XLJ.ajaxData || function(url, type, data, callback, return
         callback = data
     }
 
-    if (type && (type === 'GET' || type === 'POST' || type === 'PUT' || type === 'DELETE')) {
+    if (type && /GET|POST|PUT|DELETE/.test(type)) {
         _type = type || 'GET'
     } else if (typeof type !== 'function') {
         data = type
@@ -41,6 +41,7 @@ XLJ.ajaxData = window.XLJ.ajaxData || function(url, type, data, callback, return
             xhr.setRequestHeader('System-Type', XLJ.systemType)
             xhr.setRequestHeader('Content-Type', XLJ.contentType)
             xhr.setRequestHeader('Current-Url', window.location.href)
+            if (XLJ.RequestType) xhr.setRequestHeader('Request-Type', XLJ.RequestType)
         },
         complete: function(xhr, status) {
             if (status == 'timeout') return;
@@ -49,6 +50,13 @@ XLJ.ajaxData = window.XLJ.ajaxData || function(url, type, data, callback, return
             if (response.apiCode && response.apiCode == 8002 && XLJ.loginPath) {
                 // ban all http request
                 XLJ.httpRequestDisabled = true
+
+                // for call app
+                if (typeof XLJ.CallApp == 'object' && XLJ.CallApp.check()) {
+                    XLJ.httpRequestDisabled = false
+                    return XLJ.CallApp.postMessage({type: 'loginPanel', value: {}, call: true})
+                }
+
                 var backURL = encodeURIComponent(decodeURIComponent(window.location.href))
                 return window.location.href = XLJ.rootPath + XLJ.loginPath + '?backURL=' + backURL;
             }

@@ -1,33 +1,38 @@
 /*!
  * Create by zihan on 2016-07-11
- * verstion: 1.0.2
+ * verstion: 1.3.1
  */
-//
 
 XLJ.remTool = XLJ.remTool || (function(root, window) {
 
     'use strict'
 
-    // sandbox model
     var document = window.document
-    var $ = window.jQuery
 
-    var
-        $doc         = $(document),
-        $docBody     = $(document.body),
-        docBody_w    = $docBody.width(),
-        baseFontSize = 10,
-        baseWidth    = 320,
-        winW         = $docBody.width,
+    function baseFontSize() {
+        var
+            // _docBody_w    = document.body.clientWidth,
+            _docBody_w    = window.innerWidth,
+            _baseFontSize = 10,
+            _baseWidth    = 320
 
-        ua = navigator.userAgent,
-        dpr = window.devicePixelRatio
+        // ,ua = navigator.userAgent
+        // ,dpr = window.devicePixelRatio
 
-    if (docBody_w > 640) docBody_w = 640
-    baseFontSize = (docBody_w / baseWidth) * baseFontSize
+        if (_docBody_w > 640) _docBody_w = 640
+        return _docBody_w * _baseFontSize / _baseWidth
+    }
 
+    root.init = (function() {
+        var $html = document.getElementsByTagName('html')
+        if (!$html || $html.length == 0) return
 
-    $('html').css('font-size', baseFontSize)
+        $html[0].style.fontSize = baseFontSize() + 'px'
+
+        window.addEventListener('resize', function() {
+            $html[0].style.fontSize = baseFontSize() + 'px'
+        }, false)
+    })();
 
     return root;
 
