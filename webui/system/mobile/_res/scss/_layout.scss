@@ -176,7 +176,7 @@ span.picon {display: inline-block;}
     }
 }
 
-.header .link {width: auto;padding: 0 10px;}
+.header .link {width: auto;min-width: 44px;padding: 0 5px;}
 .header .link.operation {color: #fcfb01;}
 
 .header .with-txt[class*="icon-"],
@@ -206,6 +206,7 @@ span.picon {display: inline-block;}
     position: relative;
     top: 13px;
     margin-left: 5px;
+    margin-right: -15px;
 }
 
 // .header .title a { color: #fff; }
@@ -3138,7 +3139,6 @@ textarea.form-control { height: auto; }
 
 .category_list {
 
-
     .item {
         position: relative;
 
@@ -3184,7 +3184,14 @@ textarea.form-control { height: auto; }
 
         .img {
             width: 100%;
+            padding: percentage(200 / 375 / 2) 0;
             background-image: url(#{$path-img}/ejp/_res/images/ejp/space_375x200.png);
+
+            img {
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
         }
 
         img {
@@ -3196,6 +3203,19 @@ textarea.form-control { height: auto; }
     .title_summer { background-image: url(#{$path-img}/ejp/category_type_2.jpg); }
     .title_autumn { background-image: url(#{$path-img}/ejp/category_type_3.jpg); }
     .title_winter { background-image: url(#{$path-img}/ejp/category_type_4.jpg); }
+}
+
+.mod_photos {
+    .swiper-slide {
+        padding: percentage(375 / 750 / 2) 0;
+
+        img {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+        }
+    }
 }
 
 

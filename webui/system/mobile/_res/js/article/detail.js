@@ -6,8 +6,8 @@ var CONTENT_DETAIL = (function(root, window) {
     
     root.get = function(id, callback) {
         if (!id) return
-        var url = '../_res/data/article.json'
-        // var url = '/guide/' + id
+        // var url = '../_res/data/article.json'
+        var url = '/guide/' + id
         XLJ.ajaxData(url, function(response) {
             console.log(response)
             if (callback) callback(response)

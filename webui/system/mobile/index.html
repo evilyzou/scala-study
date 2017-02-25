@@ -38,20 +38,23 @@
 
         <header id="header" class="header" role="banner">
             <!-- <a class="icon-back back" href="#"></a> -->
-            <a class="link selectArea" data-target="#area-selector" href="#"><span class="icon-location with-txt">地区</span></a>
             <div class="title" data-target="pfunction">
                 <span class="logo"></span><span class="name"></span>
             </div>
+            <a class="link selectArea" data-target="#area-selector" href="#"><span class="icon-location with-txt">地区</span></a>
         </header>
 
         <div class="maincontent">
 
-            <div class="mod_photos swiper-container">
+
+
+            <div id="banners"></div>
+            <!-- <div class="mod_photos swiper-container">
                 <div class="photos swiper-wrapper">
                     <div class="photo swiper-slide"><img src="_res/images/ejp/banner_01.jpg" alt=""></div>
                 </div>
                 <div class="swiper-pagination"></div>
-            </div>
+            </div> -->
 
             <div class="category_tags clinks">
                 <div class="tags">
@@ -136,10 +139,10 @@
             <nav id="nav" class="mainnav">
                 <ul>
                     <li class="current"><a class="icon-home-active" href="../index.html"><span class="navname">首页</span></a></li>
-                    <li><a class="icon-plane-active" href="#"><span class="navname">分类</span></a></li>
-                    <li><a class="icon-guide-active" href="#"><span class="navname">指南</span></a></li>
-                    <li><a class="icon-manage-active" href="#"><span class="navname">管理</span></a></li>
-                    <li><a class="icon-user-active" href="#"><span class="navname">我的</span></a></li>
+                    <li><a class="icon-plane-active" href="../product/list.html"><span class="navname">商品</span></a></li>
+                    <li><a class="icon-guide-active" href="../article/list.html"><span class="navname">指南</span></a></li>
+                    <!-- <li><a class="icon-manage-active" href="#"><span class="navname">管理</span></a></li> -->
+                    <!-- <li><a class="icon-user-active" href="#"><span class="navname">我的</span></a></li> -->
                 </ul>
             </nav>
         </footer>
@@ -147,6 +150,7 @@
 </div>
 
 <script type="text/javascript" src="_res/libs/jquery/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="_res/libs/swiper/3.2.5/js/swiper.min.js"></script>
 <script type="text/javascript" src="_res/libs/artTemplate/3.0/template.js"></script>
 <script type="text/javascript" src="_res/libs/artTemplate/3.0/template-helper.js"></script>
 
@@ -154,6 +158,7 @@
 <script type="text/javascript" src="_res/js/common/stats.js?v1.2.0"></script>
 <script type="text/javascript" src="_res/js/common.js?ver=1.1.0"></script>
 <script type="text/javascript" src="_res/js/module/selectorWin.js"></script>
+<script type="text/javascript" src="../_res/js/module/banner.js"></script>
 <script type="text/javascript" src="_res/js/home/index.js"></script>
 
 <script type="text/javascript">

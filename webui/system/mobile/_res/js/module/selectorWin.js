@@ -1,7 +1,7 @@
 /*!
  *  Create Date: 2016-06-14
  *  Author: zihan
- *  verstion: 1.4.6
+ *  verstion: 1.4.7a
  */
 /*
  * ex.:
@@ -221,79 +221,98 @@ XLJ.selectorWin.prototype = {
             $tpl   = $source.find(root.config.listTplElname),
             t
 
+        function el_cfn(e) {
+            e.preventDefault()
+
+            var _this = $(this),
+                _target = _this.attr('data-target'),
+                $target = (_target) ? $(_this.attr('data-target')) : $source
+
+            if (!$target || !$target.length > 0) return
+
+            $target.addClass('show')
+            $dbody.addClass('noscroll')
+
+            clearTimeout(t)
+            t = setTimeout(function() {
+                root.createDatalist({
+                    url:     root.config.dataURL,
+                    $target: $source.find('.datalist').eq(0),
+                    $tpl:    $tpl,
+                    data:    root.config.dataOption
+                }, '', callback)
+            }, 500)
+            //if (callback) callback()
+        }
+
+        function tl_cfn(e) {
+            e.preventDefault()
+
+            var _this       = $(this),
+                _dataUrl    = _this.attr('data-dataUrl'),
+                _dataOption = _this.attr('data-dataOption') || {},
+                _dataTpl    = _this.attr('data-dataTpl'),
+                _target     = _this.attr('href')
+
+            var $dataTpl = $('[data-tpl-name="' + _dataTpl + '"]')
+            if (!$dataTpl || $dataTpl.length ==0) $dataTpl = $tpl
+
+            root.createDatalist({
+                url:     XLJ.rootPath + _dataUrl,
+                $target: $source.find(_target).find('.datalist'),
+                $tpl:    $dataTpl,
+                data:    _dataOption
+            }, '', callback)
+        }
+
+        function close_cfn(e) {
+            e.preventDefault()
+
+            $dbody.removeClass('noscroll');
+            $(this).closest('.popcontent').removeClass('show');
+        }
+
+        function sbox_cfn(e) {
+            var _this       = $(this),
+                _parent     = _this.closest('.container'),
+                _dataUrl    = _this.attr('data-dataUrl'),
+                _dataOption = {kw: _this.find('[name="name"]').val() || ''},
+                _dataTpl    = _this.attr('data-dataTpl')
+
+            var $dataTpl = $(_dataTpl)
+            if (!$dataTpl || $dataTpl.length ==0) $dataTpl = $tpl
+
+            root.createDatalist({
+                url:     XLJ.rootPath + _dataUrl,
+                $target: _parent.find('.datalist'),
+                $tpl:    $dataTpl,
+                data:    _dataOption,
+                create:  true
+            }, $.get, callback)
+        }
+
         $dbody
-            .off(XLJ.clickType, elname)
-            .on(XLJ.clickType, elname, function(e) {
-                e.preventDefault()
-
-                var _this = $(this),
-                    _target = _this.attr('data-target'),
-                    $target = (_target) ? $(_this.attr('data-target')) : $source
-
-                if (!$target || !$target.length > 0) return
-
-                $target.addClass('show')
-                $dbody.addClass('noscroll')
-
-                clearTimeout(t)
-                t = setTimeout(function() {
-                    root.createDatalist({
-                        url:     root.config.dataURL,
-                        $target: $source.find('.datalist').eq(0),
-                        $tpl:    $tpl,
-                        data:    root.config.dataOption
-                    }, '', callback)
-                }, 500)
-                //if (callback) callback()
-            })
+            .off(XLJ.clickType, elname, el_cfn)
+            .on(XLJ.clickType, elname, el_cfn)
 
         $source
-            .off(XLJ.clickType, root.config.tabbarItem)
-            .on(XLJ.clickType, root.config.tabbarItem, function(e) {
-                var _this       = $(this),
-                    _dataUrl    = _this.attr('data-dataUrl'),
-                    _dataOption = _this.attr('data-dataOption') || {},
-                    _dataTpl    = _this.attr('data-dataTpl'),
-                    _target     = _this.attr('href')
-
-                var $dataTpl = $('[data-tpl-name="' + _dataTpl + '"]')
-                if (!$dataTpl || $dataTpl.length ==0) $dataTpl = $tpl
-
-                root.createDatalist({
-                    url:     XLJ.rootPath + _dataUrl,
-                    $target: $source.find(_target).find('.datalist'),
-                    $tpl:    $dataTpl,
-                    data:    _dataOption
-                }, '', callback)
-            })
+            .off(XLJ.clickType, root.config.tabbarItem, tl_cfn)
+            .on(XLJ.clickType, root.config.tabbarItem, tl_cfn)
 
             // popcontent close
-            .off(XLJ.clickType, '.close')
-            .on(XLJ.clickType, '.close', function() {
-                $dbody.removeClass('noscroll');
-                $(this).closest('.popcontent').removeClass('show');
-            })
+            .off(XLJ.clickType, '.close', close_cfn)
+            .on(XLJ.clickType, '.close', close_cfn)
 
             // popcontent close
-            .off('submit', '.searchbox')
-            .on('submit', '.searchbox', function() {
-                var _this       = $(this),
-                    _parent     = _this.closest('.container'),
-                    _dataUrl    = _this.attr('data-dataUrl'),
-                    _dataOption = {kw: _this.find('[name="name"]').val() || ''},
-                    _dataTpl    = _this.attr('data-dataTpl')
+            .off('submit', '.searchbox', sbox_cfn)
+            .on('submit', '.searchbox', sbox_cfn)
 
-                var $dataTpl = $(_dataTpl)
-                if (!$dataTpl || $dataTpl.length ==0) $dataTpl = $tpl
 
-                root.createDatalist({
-                    url:     XLJ.rootPath + _dataUrl,
-                    $target: _parent.find('.datalist'),
-                    $tpl:    $dataTpl,
-                    data:    _dataOption,
-                    create:  true
-                }, $.get, callback)
-            })
+        if (XLJ.clickType != 'click') {
+            $dbody.on('click', elname, function(e) {e.preventDefault()})
+            $source.on('click', root.config.tabbarItem, function(e) {e.preventDefault()})
+            $source.on('click', '.close', function(e) {e.preventDefault()})
+        }
     },
 
     render: function(source, callback, winloadfn) {

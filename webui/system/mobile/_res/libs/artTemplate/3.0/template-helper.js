@@ -64,3 +64,9 @@ template.helper('getDay', function (data, prefix) {
 template.helper('parseJson', function (data) {
     return (data) ? JSON.parse(data) : []
 });
+
+
+// custom artTemplate function for get key param name
+template.helper('keyMap', function (keyname) {
+    return (WEBP && WEBP.keyMap) ? ((WEBP.keyMap[keyname]) ? WEBP.keyMap[keyname] : keyname) : keyname
+});

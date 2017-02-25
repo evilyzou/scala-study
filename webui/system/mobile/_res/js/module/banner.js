@@ -34,7 +34,8 @@ var BANNER = (function(root, window) {
 
     root.init = function(option) {
         var opt = {
-            dataUrl: XLJ.rootPath + '_res/data/bannerList.json',
+            // dataUrl: XLJ.rootPath + '_res/data/bannerList.json',
+            dataUrl: XLJ.rootPath + 'banner/list',
             tplUrl: XLJ.rootPath + '_res/tpl/tpl_banners.html',
             tplElname: '#tpl_banners',
             targetElname: '#banners',
@@ -67,4 +68,3 @@ var BANNER = (function(root, window) {
 
     return root
 }(BANNER || {}, typeof window !== 'undefined' ? window : this));
-
