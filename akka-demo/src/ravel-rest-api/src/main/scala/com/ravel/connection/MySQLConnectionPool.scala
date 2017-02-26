@@ -86,7 +86,7 @@ class MySQLConnectionPool(val poolConfiguration: PoolConfiguration = PoolConfigu
   }
 
   private def initConnections() = {
-    val configuration = Configuration(username = "root", host ="127.0.0.1", port = 3306, password = Option("ex299295"), database = Option("ravel"))
+    val configuration = com.ravel.Config.configuration
     1 to poolConfiguration.maxObjects foreach {
       _ => {
         val connection = (new MySQLConnection(configuration = configuration)).connect
