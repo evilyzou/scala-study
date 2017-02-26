@@ -61,7 +61,7 @@
                 <div class="detail-box" id="product-detail">
                     <h2 class="title">{{data.product.title}}</h2>
                     <div class="tags">
-                        <span class="tagtxt">{{data.product.pfunction}}</span>
+                        <span class="tagtxt">{{keyMap(data.product.pfunction)}}</span>
                     </div>
                     <strong class="price" data-prefix="￥">{{price(data.product.price)}}</strong>起
                 </div>
@@ -82,6 +82,33 @@
                 {{/if}}
             </script>
             <!-- end product_detail_base -->
+
+
+            <div class="line-box tabtool-slide" style="display: none;" id="productPrices">
+                <div class="head">
+                    建议至少在2天前的23:59分前预订
+                </div>
+                <div class="main datalist">
+                </div>
+                <div class="foot">
+                    <span class="showmore popContent" data-target="productPricesBox">更多团期</span>
+                </div>
+            </div>
+            <script type="text/html" id="tpl_product_prices">
+                <ul>
+                    {{each productPrices as item}}
+                    <li>
+                        <fieldset class="price-box">
+                            <legend class="row-stock">剩余<span class="num">{{item.availableCount}}</span></legend>
+                            <div class="row-date">{{weekdate(item.takeOffDate)}}</div>
+                            <div class="row-price"><strong class="price" data-prefix="￥">{{price(item.marketPrice)}}</strong></div>
+                        </fieldset>
+                    </li>
+                    {{/each}}
+                    <li class="space"></li>
+                </ul>
+            </script>
+
 
             <div id="productContents"></div>
             <script type="text/html" id="tpl_product_detail_contents">
@@ -130,15 +157,17 @@
                             <h3 class="title">线路特色</h3>
                         </div>
                         <div class="main content">
-                            {{each data.productExt.feature as productFeature}}
-                                <!-- { {if productFeature.key =='textarea'}}
-                                    { {productFeature.value}}
-                                { {else if productFeature.key =='image'}}
-                                    { {each productFeature.value as productFeatureImg}}
-                                        <img src="{ {productFeatureImg.pictureUrl}}@750w_80Q" data-picture-id="{ {productFeatureImg.pictureId}}">
-                                    { {/each}}
-                                { {/if}} -->
+                            {{if typeof data.productExt.feature =='string'}}
+                            {{each parseJson(data.productExt.feature) as productFeature}}
+                                {{if productFeature.key && productFeature.key =='textarea'}}
+                                    {{productFeature.value}}
+                                {{else if productFeature.key && productFeature.key =='image'}}
+                                    {{each productFeature.value as productFeatureImg}}
+                                        <img src="{{productFeatureImg.pictureUrl}}@750w_80Q" data-picture-id="{{productFeatureImg.pictureId}}">
+                                    {{/each}}
+                                {{/if}}
                             {{/each}}
+                            {{/if}}
                         </div>
                     </div>
                     {{/if}}
@@ -357,6 +386,16 @@
 
 
     </div>
+
+    <div class="singleContent" id="productPricesBox">
+        <div class="header">
+            <div class="icon close"></div>
+            <h1 class="title"></h1>
+        </div>
+        <div class="main datalist priceboxs">
+        </div>
+    </div>
+
 </div>
 
 <script type="text/javascript" src="../_res/libs/jquery/jquery-1.11.1.min.js"></script>
