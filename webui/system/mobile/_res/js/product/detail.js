@@ -36,6 +36,16 @@ var PRODUCT_DETAIL = (function(root, window) {
         $shoppingTool.find('.product-arrive-depart').text(data.data.product.departure + '-' + data.data.product.arrive)
         $shoppingTool.find('.product-no').text(data.data.product.teamNo)
 
+
+        if (data.data.productPrices) {
+            var _product_prices_html = template('tpl_product_prices', data.data)
+            var $productPrices = $('#productPrices')
+            $productPrices.find('.datalist').html(_product_prices_html)
+            $productPrices.show()
+
+            $('#productPricesBox .datalist').html(_product_prices_html)
+        }
+
         if (callback) callback(data)
     }
 
@@ -58,56 +68,6 @@ PRODUCT_DETAIL.getDetail(productID, function(response) {
         if (typeof XLJ.scrolltab != 'undefined') XLJ.scrolltab()
     });
 });
-
-
-// function failProcess(data) {
-//     if (!data) return false;
-//
-//     if (data.apiCode && data.apiCode == 8002 && XLJ.loginPath) {
-//         var backURL = encodeURIComponent(decodeURIComponent(window.location.href))
-//         return window.location.href = XLJ.rootPath + XLJ.loginPath + '?backURL=' + backURL;
-//     }
-//
-//     if (!data.success) {
-//
-//         if (data.apiCode == 1302 && data.result && data.result.Location) {
-//             return window.location.href = data.result.Location;
-//         } else if (!boxShowFlag && data.msg) {
-//             XLJ.tip(data.msg);
-//             boxShowFlag = true;
-//             setTimeout(function() {
-//                 window.location.href = XLJ.rootPath;
-//             }, 1000);
-//         }
-//         return false;
-//     }
-//     return true;
-// }
-//
-// function bindProductPicture(data) {
-//     if (!failProcess(data)) return
-//
-//     var photos = data.result.data;
-//     if (photos && photos.length > 0) {
-//         var tpl = ''
-//         var imgDomain = data.result.imgDomain
-//         for (var i = 0; i < photos.length; i++) {
-//             var d = photos[i]
-//             var dataSrc = ''
-//             if (i == 0) dataSrc = 'data-src="' + imgDomain + '/' + d + '@750w_90Q"'
-//             var rowTpl = '<div class="photo swiper-slide"><img src="' + imgDomain + '/' + d + '@750w_90Q" alt="" ' + dataSrc + '></div>'
-//             tpl += rowTpl
-//         }
-//
-//         var $photos = $('#productBase .photos')
-//         $photos.html(tpl)
-//         var swiper = new Swiper('.swiper-container', {
-//             pagination: '.swiper-pagination',
-//             paginationClickable: true
-//         });
-//
-//     }
-// }
 
 
 (function() {

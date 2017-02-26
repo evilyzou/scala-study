@@ -1345,10 +1345,18 @@ XLJ.popContent = window.XLJ.popContent || (function() {
         }, 20);
     }
 
-    $(document.body).on(XLJ.clickType, '.popContent', function() {
+    function popc_fn() {
         var _target = $(this).attr('data-target')
         open($(_target))
-    });
+    }
+    $(document.body)
+        .off(XLJ.clickType, '.popContent', popc_fn)
+        .on(XLJ.clickType, '.popContent', popc_fn)
+
+    if (XLJ.clickType != 'click') {
+        $(document.body)
+            .on('click', '.popContent', function(e) {e.preventDefault();});
+    }
 
     // keep the main body content in the current posistion when open this win
     var currentTop = $('body').scrollTop();

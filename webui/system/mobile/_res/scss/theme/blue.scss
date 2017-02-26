@@ -83,3 +83,17 @@ input:checked + label.icon:before,
         .icon-user:before { content: "\e60b"; }
     }
 }
+
+.price-box {
+    .row-stock {
+        color: $color-main;
+    }
+}
+
+#productPrices {
+    .foot {
+        .showmore {
+            color: $color-main;
+        }
+    }
+}

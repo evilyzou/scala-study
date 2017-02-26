@@ -54,10 +54,11 @@ template.helper('parcelData', function (data, name) {
 
 template.helper('getDay', function (data, prefix) {
     var data = data || ''
+        ,_d  = new Date(data)
     if (prefix) {
-        return prefix + "日一二三四五六".split("")[new Date(data).getDay()];
+        return prefix + "日一二三四五六".split("")[_d.getDay()];
     } else {
-        return new Date().getDay(data);
+        return _d.getDay();
     }
 });
 
@@ -65,8 +66,16 @@ template.helper('parseJson', function (data) {
     return (data) ? JSON.parse(data) : []
 });
 
-
 // custom artTemplate function for get key param name
 template.helper('keyMap', function (keyname) {
     return (WEBP && WEBP.keyMap) ? ((WEBP.keyMap[keyname]) ? WEBP.keyMap[keyname] : keyname) : keyname
+});
+
+// custom artTemplate function for get key param name
+template.helper('weekdate', function (date, prefix) {
+    var _d = new Date(date)
+        ,_date = (_d.getMonth() + 1) + '-' + _d.getDate()
+        ,_week = (prefix || '周') + "日一二三四五六".split("")[_d.getDay()]
+
+    return _date + ' ' + _week
 });

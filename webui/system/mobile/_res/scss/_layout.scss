@@ -3218,6 +3218,64 @@ textarea.form-control { height: auto; }
     }
 }
 
+.price-box {
+    margin: 5px 0;
+    padding: 5px;
+    border: solid 1px #ddd;
+    text-align: center;
+    font-size: 12px;
+
+    .row-stock {
+        text-align: center;
+        color: $color-main;
+    }
+
+    .row-date {
+        color: #666;
+
+        .date {
+            color: #666;
+        }
+    }
+
+    .price {
+        color: #666;
+        font-size: 13px;
+    }
+}
+
+#productPrices {
+    position: relative;
+    .head {
+        padding: 10px;
+        font-size: 12px;
+    }
+    .main {
+        .space {
+            width: 80px;
+        }
+    }
+
+    .foot {
+        position: absolute;
+        top: 27px;
+        right: 0;
+        bottom: 0;
+
+        padding: 20px 15px 15px 15px;
+        border-left: solid 1px #ddd;
+        box-shadow: -10px 0 5px rgba(255,255,255,.75);
+        background: #fff;
+
+        .showmore {
+            display: block;
+            width: 35px;
+            font-size: 15px;
+            color: $color-main;
+        }
+    }
+}
+
 
 
 /* ---------------------------
