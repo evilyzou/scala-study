@@ -47,8 +47,8 @@ object Config{
     val user = config.getString("mysql.user")
     val host = config.getString("mysql.host")
     val port = config.getInt("mysql.port")
-    val password = config.getString("password")
-    val database = config.getString("database")
+    val password = config.getString("mysql.password")
+    val database = config.getString("mysql.database")
     Configuration(username = user, host = host, port = port, password = Option(password), database = Option(database))
   }
 }
