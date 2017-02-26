@@ -45,6 +45,14 @@
 
     }
 
+    &.regular {
+        margin: -$padding-base * 1.5;
+
+        > .item {
+            width: 195px;
+        }
+    }
+
     .cell {
         display: block;
         width: 100%;

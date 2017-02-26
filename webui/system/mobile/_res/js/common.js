@@ -1512,7 +1512,7 @@ XLJ.urlParamsImpress.prototype = {
     urlParams: function(urlSearch) {
         if (urlSearch) {
             var _this_paramStart = urlSearch.indexOf('?'),
-                _this_urlSearch = (_this_paramStart != -1) ? urlSearch.substring(_this_paramStart + 1) : urlSearch
+                _this_urlSearch = (_this_paramStart != -1) ? urlSearch.substring(_this_paramStart + 1) : ''
             urlSearch = _this_urlSearch
         } else {
             urlSearch = window.location.search
@@ -1962,12 +1962,12 @@ $.fn.extend({
 
 /*!
  * Create by zihan on 2015-12-22
- * v1.1.4
+ * v1.2.3
  */
 
 $.fn.extend({
     formobj: function(type) {
-        var obj = '{'
+        var obj = '{', serialize = ''
         var input = $(this).find('[name]')
         input.each(function(i) {
             var _this = $(this)
@@ -1979,18 +1979,25 @@ $.fn.extend({
             var _val = (_this.val() || '').trim()
             var _valfinal = (/^[0-9]+([\.0-9]+)?$/.test((1 * _val))) ? Number(_val) : '"' + _val + '"'
             if (_val === '') _valfinal = '""'
-            obj += _this.attr('name') + ':' + _valfinal
-            if (i < input.length - 1) obj += ','
+
+            if (type && type == 'string') {
+                if (serialize !== '') serialize += '&'
+                serialize += _this.attr('name') + '=' + _val
+            } else {
+                if (obj !== '{') obj += ','
+                obj += '"' + _this.attr('name') + '"' + ':' + _valfinal
+            }
         })
         obj += '}'
 
         if (type && type == 'string') {
-            return obj
+            return serialize
         } else {
-            return eval('(' + obj +')')
+            return JSON.parse(obj)
         }
     }
 });
+
 
 
 
@@ -2189,6 +2196,10 @@ XLJ.docReady(function() {
 
             // go from prev page jump, don't do back
             var _current_back = XLJ.getQueryString('backURL') || ''
+                ,_userKey = XLJ.getQueryString('userKey') || XLJ.getQueryString('userKey', document.referrer)
+                ,_home = '/'
+            if (_userKey) _home = '/?userKey=' + _userKey
+
             if (_current_back && _current_back == document.referrer) {
                 return window.history.go(-2);
             }
@@ -2197,13 +2208,25 @@ XLJ.docReady(function() {
 
             // if have not prev page in history, try referrer first
             if (window.history.length < 2) {
-                if (document.referrer)
-                    return window.location.href = document.referrer
-                return window.location.href = '/';
+                if (document.referrer) return window.location.href = document.referrer
+                return window.location.href = _home;
             }
 
+            // if go back with # hash, jump to referrer
+            var _hashFn = function() {
+                var _hash_name = window.location.hash
+                console.log(_hash_name);
+                if (!_hash_name || _hash_name == '#') {
+                    if (document.referrer) return window.location.href = document.referrer
+                    return window.location.href = _home;
+                }
+            }
+            window.removeEventListener('hashchange', _hashFn, false);
+            window.addEventListener('hashchange', _hashFn, false);
+
+
             // default
-            return window.history.back();
+            window.history.back();
         }
     });
 

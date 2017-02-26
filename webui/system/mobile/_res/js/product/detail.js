@@ -9,8 +9,8 @@ var PRODUCT_DETAIL = (function(root, window) {
     var data = {}
 
     root.getDetail = function(id, callback) {
-        return XLJ.ajaxData(XLJ.rootPath + '_res/data/product.json', function(response) {
-        // return XLJ.ajaxData(XLJ.rootPath + 'product/' + id, function(response) {
+        // return XLJ.ajaxData(XLJ.rootPath + '_res/data/product.json', function(response) {
+        return XLJ.ajaxData(XLJ.rootPath + 'product/' + id, function(response) {
             if (callback) callback(response)
         })
     }

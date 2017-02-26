@@ -2,7 +2,7 @@
 1. 指南列表接口：
 http://localhost:5000/guide/list?systemType=SystemJapan&customType=GuideCustomQY&guideType=GuideRecord&subCategory=上海
 
-systemType= SysteJapan | SystemJiangNan (日本|中国江南)
+systemType= SystemJapan | SystemJiangNan (日本|中国江南)
 customType = {
  	"GuideCustomCH" : "春花",
     "GuideCustomQY" : "秋野",

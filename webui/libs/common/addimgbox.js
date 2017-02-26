@@ -6,7 +6,7 @@ var XLJ = window.XLJ = window.XLJ || {}
 
 /* LRIMG Image Upload
  * Create by zihan on 2016-01-16
- * verstion: 1.0.3
+ * verstion: 1.1.0
  * must import lib:
                     LocalResizeIMG 1.0
                     AjaxForm 3.51.0
@@ -154,7 +154,7 @@ XLJ.Addimgbox.prototype = {
         })
     },
 
-    LocalResizeIMG: function(target, callback) {
+    LocalResizeIMG: function(target, callback, beforeSend) {
         var root = this
 
         var _parent = target.parent(),
@@ -189,6 +189,7 @@ XLJ.Addimgbox.prototype = {
                         return false
                     }
                 }
+                if (beforeSend) beforeSend(obj, blob, file)
             },
             success: function (result) {
                 //_imgPr.show();

@@ -1,5 +1,5 @@
 /* Create by zihan no 2015-12-31 */
-/* v1.2.3 */
+/* v1.3.2 */
 /*
  * EXP:
 
@@ -76,10 +76,12 @@ XLJ.ScrollData.prototype = {
         if (!$target || $target.length <= 0) return console.log('找不到数据容器')
 
         // scroll to bottom gono function
-        var _loading = $target.attr('data-loading') || 'false',
+        var
+            // _loading = $target.attr('data-loading') || 'false'
             _hasNext = $target.attr('data-hasNext') || 'true'
-        if (_loading == 'true' || _hasNext == 'false') return   // lock
-        $target.attr('data-loading', 'true')
+        // if (_loading == 'true' || _hasNext == 'false') return   // lock
+        if (_hasNext == 'false') return   // lock
+        // $target.attr('data-loading', 'true')
 
         var _pageNo = parseFloat($target.attr('data-pageNo') || root.page || 1)
 
@@ -99,14 +101,15 @@ XLJ.ScrollData.prototype = {
         data = $.extend({}, root.data, data)
 
         var model = root.requestModel || $.get
-        model(root.url, data, function(response) {
+        return model(root.url, data, function(response) {
             if (root.debug) console.log(response)
 
             // custome callback fn
             if (callback) return callback(response, $target, _pageNo)
 
             if (!response.success) {
-                $target.attr({'data-hasNext': 'false', 'data-loading': 'false'})
+                // $target.attr({'data-hasNext': 'false', 'data-loading': 'false'})
+                $target.attr({'data-hasNext': 'false'})
             }
 
             root.page += 1
@@ -125,7 +128,7 @@ XLJ.ScrollData.prototype = {
             }
             $target.attr({
                 'data-hasNext': _hasNext,
-                'data-loading': 'false',
+                // 'data-loading': 'false',
                 'data-pageNo':  _pageNo + 1
             })
             $loadmore.css('visibility', 'hidden')
@@ -156,29 +159,38 @@ XLJ.ScrollData.prototype = {
             mainH = $body.height()
         })
 
+        var t
         $mainBox.on('scroll', function () {
-            if ($mainContent.attr('data-loading') == 'true') return
-            if ($mainContent.attr('data-hasNext') == 'false') return $mainBox.off('scroll'), $win.off('resize')
+            clearTimeout(t)
+            var _this = this
 
-            var _this  = $(this),
-                mainST = _this.scrollTop(),
-                conH   = $mainContent.height();
+            t = setTimeout(function() {
+                // if ($mainContent.attr('data-loading') == 'true') return
+                if ($mainContent.attr('data-hasNext') == 'false') return $mainBox.off('scroll'), $win.off('resize')
 
-            if (root.debug) console.log('main scrolltop + main height:' + (mainST + mainH) + '------ content height:' + conH)
-            if ((mainST + mainH) >= (conH - 100)) {
-                if (callback) callback()
-            }
+                var $this  = $(_this),
+                    mainST = $this.scrollTop(),
+                    conH   = $mainContent.height();
+
+                if (root.debug) console.log('main scrolltop:' + mainST + ' + main height:' + mainH + '; ' + (mainST + mainH) + '------ content height:' + conH)
+                if ((mainST + mainH) >= (conH - 100)) {
+                    if (callback) callback()
+                }
+            }, 80);
         })
     },
 
     init: function() {
         var root = this
+        var _r = ''
 
         if (!root.url) return console.log('%cNeed a real request URL !', 'color: #c00; font-weight: bold;')
-        if (root.page == 1) root.request()
+        if (root.page == 1) r = root.request()
 
         root.scroll(function() {
-            root.request()
+            $.when(_r).always(function() {
+                _r = root.request()
+            })
         })
     }
 }

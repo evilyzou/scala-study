@@ -3,7 +3,7 @@
 
 XLJ.setPageClass = window.XLJ.setPageClass || (function() {
     var ua = navigator.userAgent.toLowerCase()
-    if (/bringbuys/.test(ua)) {
+    if (/bringbuys|ola/.test(ua)) {
         document.getElementsByTagName('html')[0].classList.add('inApp');
     }
 })();

@@ -70,7 +70,7 @@
                 <div class="line-box detail-container-params">
                 <table class="table-params">
                     <tbody>
-                        {{each parseJson(data.productParams) as productParams}}
+                        {{each data.productParams as productParams}}
                         <tr>
                             <td>{{productParams.name}}</td>
                             <td>{{productParams.content}}</td>
@@ -130,14 +130,14 @@
                             <h3 class="title">线路特色</h3>
                         </div>
                         <div class="main content">
-                            {{each parseJson(data.productExt.feature) as productFeature}}
-                                {{if productFeature.key =='textarea'}}
-                                    {{productFeature.value}}
-                                {{else if productFeature.key =='image'}}
-                                    {{each productFeature.value as productFeatureImg}}
-                                        <img src="{{productFeatureImg.pictureUrl}}@750w_80Q" data-picture-id="{{productFeatureImg.pictureId}}">
-                                    {{/each}}
-                                {{/if}}
+                            {{each data.productExt.feature as productFeature}}
+                                <!-- { {if productFeature.key =='textarea'}}
+                                    { {productFeature.value}}
+                                { {else if productFeature.key =='image'}}
+                                    { {each productFeature.value as productFeatureImg}}
+                                        <img src="{ {productFeatureImg.pictureUrl}}@750w_80Q" data-picture-id="{ {productFeatureImg.pictureId}}">
+                                    { {/each}}
+                                { {/if}} -->
                             {{/each}}
                         </div>
                     </div>

@@ -1,0 +1,88 @@
+
+/*
+.cssicon.menu:before             { @include cssicon-menu(); }
+
+.cssicon.cart:before             { @include cssicon-cart(); }
+.cssicon.cart.white:before       { @include cssicon-cart-white(); }
+
+.cssicon.search:before           { @include cssicon-search(); }
+.cssicon.search.white:before     { @include cssicon-search-white(); }
+
+.cssicon.tick:before             { @include cssicon-tick(); }
+.cssicon.tick.white:before       { @include cssicon-tick-white(); }
+
+.cssicon.user:before             { @include cssicon-user(); }
+.cssicon.passport:before         { @include cssicon-passport(); }
+.cssicon.arrow-down:before       { @include cssicon-arrow-down(); }
+
+//.cssicon.increase:before         { @include cssicon-increase(); }
+//.cssicon.decrease:before         { @include cssicon-decrease(); }
+
+.cssicon.fav:before              { @include cssicon-fav(); }
+.cssicon.fav-fill:before         { @include cssicon-fav-fill(); }
+
+.cssicon.camra:before            { @include cssicon-camra(); }
+*/
+
+
+
+.cssicon.home:before             { @extend %cssicon-ticket-home; }
+.cssicon.menu:before             { @extend %cssicon-ticket-menu; }
+
+.cssicon.cart:before             { @extend %cssicon-ticket-cart; }
+.cssicon.cart.white:before       { @extend %cssicon-ticket-cart-white; }
+
+.cssicon.search:before           { @extend %cssicon-ticket-search; }
+.cssicon.search.white:before     { @extend %cssicon-ticket-search-white; }
+
+.cssicon.tick:before             { @extend %cssicon-ticket-tick; }
+.cssicon.tick.white:before       { @extend %cssicon-ticket-tick-white; }
+
+.cssicon.user:before             { @extend %cssicon-ticket-user; }
+.cssicon.passport:before         { @extend %cssicon-ticket-passport; }
+.cssicon.arrow-down:before       { @extend %cssicon-ticket-arrow-down; }
+
+//.cssicon.increase:before         { @extend %cssicon-ticket-increase; }
+//.cssicon.decrease:before         { @extend %cssicon-ticket-decrease; }
+
+.cssicon.fav:before              { @extend %cssicon-ticket-fav; }
+.cssicon.fav-fill:before         { @extend %cssicon-ticket-fav-fill; }
+
+.cssicon.camra:before            { @extend %cssicon-ticket-camra; }
+.cssicon.coupon:before           { @extend %cssicon-ticket-coupon; }
+.cssicon.back:before             { @extend %cssicon-ticket-arrow-left; }
+
+.cssicon.bookmark:before         { @extend %cssicon-ticket-bookmark; }
+.cssicon.trash:before            { @extend %cssicon-trash; }
+.cssicon.location:before         { @extend %cssicon-ticket-location; }
+.cssicon.money-bag:before        { @extend %cssicon-ticket-money-bag; }
+.cssicon.category:before         { @extend %cssicon-ticket-category; }
+.cssicon.contact:before          { @extend %cssicon-ticket-contact; }
+
+
+.cssicon.close {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    padding-left: 30px;
+    line-height: 30px;
+    box-sizing: border-box;
+}
+.cssicon.close:before,
+.cssicon.close:after {
+    display: block;
+    position: absolute;
+    top: 50%;
+//    left: 50%;
+    left: 0;
+    width:  16px;
+    height: 2px;
+    margin-top: -1px;
+//    margin-left: -10px;
+    margin-left: 7px;
+    content: "";
+    background-color: #000;
+}
+
+.cssicon.close:before { @include rotate(45deg); }
+.cssicon.close:after { @include rotate(-45deg); }

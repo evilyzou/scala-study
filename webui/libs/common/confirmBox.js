@@ -22,7 +22,7 @@ XLJ.confirmBox = window.XLJ.confirmBox || function(text, callback, buttondom) {
     }
 
     var popTPL = '<div>'
-               + '<div class="popmark cancel"></div>'
+               + '<div class="popmark"></div>'
                + '<div class="popbox">'
                + '  <div class="head">' + _head + '<div class="cssicon close"></div><div class="title"></div></div>'
                + '  <div class="main">'

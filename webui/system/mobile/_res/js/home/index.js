@@ -3,11 +3,11 @@ var XLJ = window.XLJ = window.XLJ || {}
 var WEBP = window.WEBP || {}
 
 
-var _global = {
-    systemType:    XLJ.getQueryString('systemType')    || 'SysteJapan',
+var _global = window._global || {
+    systemType:    XLJ.getQueryString('systemType')    || 'SystemJiangNan',
     customType:    XLJ.getQueryString('customType')    || '',
-    pfunction:     XLJ.getQueryString('pfunction')     || 'free',                         //group|free
-    mainCategory:  decodeURIComponent(XLJ.getQueryString('mainCategory'))  || '',      //guideCategoryJiangNan|guideCategoryJapan,
+    pfunction:     XLJ.getQueryString('pfunction')     || 'free',                                           //group|free
+    mainCategory:  decodeURIComponent(XLJ.getQueryString('mainCategory'))  || 'guideCategoryJiangNan',      //guideCategoryJiangNan|guideCategoryJapan,
     subCategory:   decodeURIComponent(XLJ.getQueryString('subCategory'))   || ''
 }
 
@@ -25,8 +25,8 @@ var HOME_PAGE = (function(root, window) {
                 })
             }
             var ProductSelector = new XLJ.selectorWin({
-                // dataURL:   XLJ.rootPath + 'product/subCategorys?mainCategory=' + _global.mainCategory,
-                dataURL:   XLJ.rootPath + '_res/data/subCategorys.json?mainCategory=' + _global.mainCategory,
+                dataURL:   XLJ.rootPath + 'product/subCategorys?mainCategory=' + _global.mainCategory,
+                // dataURL:   XLJ.rootPath + '_res/data/subCategorys.json?mainCategory=' + _global.mainCategory,
                 tplURL:    XLJ.rootPath + '_res/tpl/tpl_area-selector.html',
                 optElname: '.selectArea',   // class name of button for open this selector win
                 checkType: 'radio',
@@ -95,4 +95,17 @@ $(function() {
     if (_pagename) _pagename = 'E上' + _pagename
     $('title').text(_pagename || 'E上旅游')
     $('.header').find('.title .name').text(_pagename || 'E上旅游')
+
+
+    if (typeof BANNER == 'object') {
+        BANNER.init({
+            dataUrl: XLJ.rootPath + 'banner/list',
+            tplUrl: XLJ.rootPath + '_res/tpl/tpl_banners.html',
+            tplElname: '#tpl_banners',
+            targetElname: '#banners',
+            success: function($target) {
+                BANNER.swiper('.swiper-container', '.swiper-pagination')
+            }
+        })
+    }
 });

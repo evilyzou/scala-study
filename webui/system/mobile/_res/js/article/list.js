@@ -3,11 +3,11 @@ var XLJ = window.XLJ = window.XLJ || {}
 var WEBP = window.WEBP || {}
 
 
-var _global = {
-    systemType:    XLJ.getQueryString('systemType')    || 1,
+var _global = window._global || {
+    systemType:    XLJ.getQueryString('systemType')    || 'SystemJiangNan',
     customType:    XLJ.getQueryString('customType')    || '',
-    pfunction:     XLJ.getQueryString('pfunction')     || 'free',                         //group|free
-    mainCategory:  decodeURIComponent(XLJ.getQueryString('mainCategory'))  || '',      //guideCategoryJiangNan|guideCategoryJapan,
+    pfunction:     XLJ.getQueryString('pfunction')     || 'free',                                           //group|free
+    mainCategory:  decodeURIComponent(XLJ.getQueryString('mainCategory'))  || 'guideCategoryJiangNan',      //guideCategoryJiangNan|guideCategoryJapan,
     subCategory:   decodeURIComponent(XLJ.getQueryString('subCategory'))   || ''
 }
 
@@ -25,7 +25,8 @@ var ARTICLE_LIST = (function(root, window) {
          * scroll to load more content
          */
         var scrollData_usable = new XLJ.ScrollData({
-            url:          XLJ.rootPath + '_res/data/articleList.json',                       // data url put here
+            url:          XLJ.rootPath + 'guide/list',                       // data url put here
+            // url:          XLJ.rootPath + '_res/data/articleList.json',                       // data url put here
             data:         {
                             systemType:  _global.systemType,
                             customType:  _global.customType,
@@ -53,8 +54,8 @@ var ARTICLE_LIST = (function(root, window) {
                 })
             }
             var ProductSelector = new XLJ.selectorWin({
-                // dataURL:   XLJ.rootPath + 'product/subCategorys?mainCategory=' + _global.mainCategory,
-                dataURL:   XLJ.rootPath + '_res/data/subCategorys.json?mainCategory=' + _global.mainCategory,
+                dataURL:   XLJ.rootPath + 'product/subCategorys?mainCategory=' + _global.mainCategory,
+                // dataURL:   XLJ.rootPath + '_res/data/subCategorys.json?mainCategory=' + _global.mainCategory,
                 tplURL:    XLJ.rootPath + '_res/tpl/tpl_area-selector.html',
                 optElname: '.selectArea',   // class name of button for open this selector win
                 checkType: 'radio',
@@ -85,7 +86,7 @@ $(function() {
 
     if (typeof BANNER == 'object') {
         BANNER.init({
-            dataUrl: XLJ.rootPath + '_res/data/bannerList.json',
+            dataUrl: XLJ.rootPath + 'banner/list',
             tplUrl: XLJ.rootPath + '_res/tpl/tpl_banners.html',
             tplElname: '#tpl_banners',
             targetElname: '#banners',
