@@ -55,6 +55,7 @@ object RavelJsonSupport extends  DefaultJsonProtocol with SprayJsonSupport with 
       case m: Map[String, _]@unchecked => mapFormat[String, Any].write(m)
       case spv: SearchProductView => searchProductFormat.write(spv)
       case sgv: SearchGuideView => searchGuideViewFormat.write(sgv)
+      case guideView: GuideView => guideViewFormat.write(guideView)
       case _ => JsNull
     }
     def read(value: JsValue) = value match {

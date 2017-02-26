@@ -106,7 +106,7 @@ trait ProductQuery extends InfraService{
       }
     } yield {
       val productHotel = productExtTuple._2
-      productExtTuple._1 + ( "feature" -> {
+      productExtTuple._1 + ("productFeatures" -> productExtTuple._1.get("feature").getOrElse("")) + ( "feature" -> {
         Map(
           "infra" -> infra,
           "detail" -> productHotel
