@@ -17,13 +17,12 @@ lazy val ravelRestApi = project.in(file("src/ravel-rest-api")).settings(commonSe
   .settings(
     scalacOptions := Seq("-unchecked", "-deprecation", "-feature", "-language:postfixOps", "-language:implicitConversions"),
     mainClass in (Compile, run) := Some("com.ravel.Application"),
-    logBuffered in Test := false
+    logBuffered in Test := false,
+    Keys.mainClass in (Compile) := Some("com.ravel.Application")
   )
   .enablePlugins(JavaServerAppPackaging)
-
-
-
-
+//
+//
 lazy val akkaStreamStudy = project.in(file("src/ravel-akka-stream")).settings(commonSettings: _*)
   .settings(filterSettings: _*)
   .settings(
@@ -31,4 +30,4 @@ lazy val akkaStreamStudy = project.in(file("src/ravel-akka-stream")).settings(co
     mainClass in (Compile, run) := Some("com.ravel.akka.stream.Application"),
     logBuffered in Test := false
   )
-  .enablePlugins(JavaAppPackaging)
+  .enablePlugins(JavaServerAppPackaging)
