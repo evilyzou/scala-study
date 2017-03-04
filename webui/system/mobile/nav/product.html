@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <title>E上旅游</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../_res/images/favicon.ico" />
+    <link rel="stylesheet" href="../_res/css/common.css?ver=1.2.1">
+    <link rel="stylesheet" href="../_res/css/index.css?ver=1.2.0">
+    <link rel="stylesheet" id="themeStyle" href="../_res/css/theme.css">
+
+    <style>
+        table img {display: block;float: left;}
+        /*.maincontent {background-color: #d6b97d;}*/
+        .row .col {float: left;}
+        .row img {width: 100%;display: block;}
+        /*.headsearch {position: relative;}
+        .searchBox {
+            position: absolute;
+
+        }*/
+    </style>
+    <script type="text/javascript">var XLJ = window.XLJ = window.XLJ || {}; XLJ.rootPath = '../';</script>
+    <script type="text/javascript" src="../_res/js/global.js?ver=1.2.2"></script>
+    <!--<script type="text/javascript" src="../_res/js/common/getLoginState.js?ver=1.0.2"></script>
+    <script type="text/javascript">
+        var XLJ = window.XLJ || {};
+        XLJ.isLoginCheck = false;
+        XLJ.getLoginState();
+    </script>-->
+</head>
+<body class="p-home">
+
+<div id="wrap" class="wrap">
+
+    <div class="container container-main">
+
+        <header id="header" class="header" role="banner">
+            <!-- <a class="icon-back back" href="#"></a> -->
+            <div class="title" data-target="pfunction">
+                <span class="logo"></span><span class="name"></span>
+            </div>
+            <a class="link selectArea" data-target="#area-selector" href="#"><span class="icon-location with-txt">地区</span></a>
+        </header>
+
+        <div class="maincontent">
+
+            <div class="category_list clinks">
+                <div class="item">
+                    <div class="main">
+                        <a class="cell" href="../product/list.html?customType=CustomGG">
+                            <h4 class="title">观光赏景</h4>
+                            <div class="img" style="background-image: url(../_res/images/ejp/tag_01.jpg);"></div>
+                        </a>
+                    </div>
+                    <div class="main">
+                        <a class="cell" href="../product/list.html?customType=CustomHX">
+                            <h4 class="title">滑雪度假</h4>
+                            <div class="img" style="background-image: url(../_res/images/ejp/tag_02.jpg);"></div>
+                        </a>
+                    </div>
+                    <div class="main">
+                        <a class="cell" href="../product/list.html?customType=CustomDC">
+                            <h4 class="title">单车骑行</h4>
+                            <div class="img" style="background-image: url(../_res/images/ejp/tag_03.jpg);"></div>
+                        </a>
+                    </div>
+                    <div class="main">
+                        <a class="cell" href="../product/list.html?customType=CustomQX">
+                            <h4 class="title">泉享养生</h4>
+                            <div class="img" style="background-image: url(../_res/images/ejp/tag_04.jpg);"></div>
+                        </a>
+                    </div>
+                    <div class="main">
+                        <a class="cell" href="../product/list.html?customType=CustomQS">
+                            <h4 class="title">亲水海趣</h4>
+                            <div class="img" style="background-image: url(../_res/images/ejp/tag_05.jpg);"></div>
+                        </a>
+                    </div>
+                    <div class="main">
+                        <a class="cell" href="../product/list.html?customType=CustomXX">
+                            <h4 class="title">都市休闲</h4>
+                            <div class="img" style="background-image: url(../_res/images/ejp/tag_06.jpg);"></div>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <footer id="footer" class="footer">
+            <nav id="nav" class="mainnav">
+                <ul>
+                    <li><a class="icon-home-active" href="../index.html"><span class="navname">首页</span></a></li>
+                    <li class="current"><a class="icon-plane-active" href="../nav/product.html"><span class="navname">商品</span></a></li>
+                    <li><a class="icon-guide-active" href="../nav/article.html"><span class="navname">指南</span></a></li>
+                    <!-- <li><a class="icon-manage-active" href="#"><span class="navname">管理</span></a></li> -->
+                    <!-- <li><a class="icon-user-active" href="#"><span class="navname">我的</span></a></li> -->
+                </ul>
+            </nav>
+        </footer>
+    </div>
+</div>
+
+<script type="text/javascript" src="../_res/libs/jquery/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../_res/libs/swiper/3.2.5/js/swiper.min.js"></script>
+<script type="text/javascript" src="../_res/libs/artTemplate/3.0/template.js"></script>
+<script type="text/javascript" src="../_res/libs/artTemplate/3.0/template-helper.js"></script>
+
+<script type="text/javascript" src="../_res/js/common/util.js"></script>
+<script type="text/javascript" src="../_res/js/common/stats.js?v1.2.0"></script>
+<script type="text/javascript" src="../_res/js/common.js?ver=1.1.0"></script>
+<script type="text/javascript" src="../_res/js/module/selectorWin.js"></script>
+<script type="text/javascript" src="../_res/js/home/index.js"></script>
+
+<script type="text/javascript">
+    var _winW = $(window).width()
+    if (_winW > 640) _winW = 640
+    var _ratio = _winW / 751
+
+    /*$('#__01 img').each(function() {
+        var _this = $(this),
+            _w = _this.attr('width'),
+            _h = _this.attr('height')
+
+        //var _w_n = Math.round(_w * _ratio),
+        //    _h_n = Math.round(_h * _ratio)
+
+        var _w_n = (_w * _ratio),
+            _h_n = (_h * _ratio)
+
+        _this.removeAttr('width')
+        _this.removeAttr('height')
+
+        _this.parent().css({
+            width: (_w_n / _winW) * 100 + '%',
+            height: (_h_n / _winW) * 100 + '%'
+        })
+    });*/
+</script>
+
+<script type="text/javascript">
+    var XLJ = window.XLJ || {}
+    $('img.lazy').lazyload({
+        effect : "fadeIn",
+        container: $(".maincontent")
+    });
+</script>
+
+<!-- <script type="text/javascript">
+    var WEBP = window.WEBP || {}
+    try {
+        WEBP.Stats().init('from_wechat');
+        WEBP.PageLoad().updatePageLoadEndTimestamp();
+        WEBP.Stats().upload(30, window.location.pathname);
+    } catch(e) {
+        console.log(e);
+    }
+</script> -->
+</body>
+</html>

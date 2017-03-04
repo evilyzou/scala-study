@@ -38,7 +38,7 @@ class MySQLConnectionPool(val poolConfiguration: PoolConfiguration = PoolConfigu
 
   override def preStart() = {
     initConnections()
-
+    Future
     scheduler.schedule(0.seconds, 30.seconds, self, Tick)
   }
 

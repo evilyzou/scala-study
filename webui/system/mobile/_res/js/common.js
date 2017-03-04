@@ -2238,6 +2238,13 @@ XLJ.docReady(function() {
         }
     });
 
+    if (XLJ.clickType != 'click') {
+        $body.on('click', '.back', function(e) {
+            var thisHref = $(this).attr('href');
+            if (!thisHref || thisHref == '#') {e.preventDefault();}
+        });
+    }
+
 
     /* min tab
      */

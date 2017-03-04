@@ -151,14 +151,14 @@
                     </div>
                     {{/if}}
 
-                    {{if data.productExt && data.productExt.feature}}
+                    {{if data.productExt && data.productExt.productFeatures}}
                     <div class="region tab_content mod-content">
                         <div class="head">
                             <h3 class="title">线路特色</h3>
                         </div>
                         <div class="main content">
-                            {{if typeof data.productExt.feature =='string'}}
-                            {{each parseJson(data.productExt.feature) as productFeature}}
+                            {{if typeof data.productExt.productFeatures =='string'}}
+                            {{each parseJson(data.productExt.productFeatures) as productFeature}}
                                 {{if productFeature.key && productFeature.key =='textarea'}}
                                     {{productFeature.value}}
                                 {{else if productFeature.key && productFeature.key =='image'}}
@@ -249,44 +249,49 @@
                         <div class="main">
                             <div class="mod-hotel">
                                 <div class="list">
-                                    {{each parseJson(data.productExt.hotelInfo) as productHotelInfo}}
-                                    <div class="item" data-infra-id="{{productHotelInfo.infraId}}">
-                                        <div class="name">{{productHotelInfo.infraName}}</div>
-                                        <div class="imglist g-flexbox">
-                                            {{if productHotelInfo.infraImage}}{{productHotelInfo.infraImage}}{{/if}}
-                                            <!-- <img src="http://img1.qunarzz.com/p/tts2/1610/da/42d6d801cfc83e02.jpg_r_440x293x90_bec63224.jpg" alt="酒店" class="pic"> -->
-                                            <div class="info">
-                                                <h4 class="sub-title">{{productHotelInfo.roomName}}</h4>
-                                                <p class="sub-cont"><span class="txt">{{productHotelInfo.bedType}}</span></p>
-                                                <!-- <div class="include">
-                                                    <span class="icon-breakfast"></span>
-                                                    <span class="sub-cont-regular">西式早餐（免费）</span>
-                                                    <span class="icon-wifi"></span>
-                                                    <span class="sub-cont-regular">无网络</span>
-                                                </div> -->
-                                            </div>
+                                    {{if data.productExt.feature.hotelInfra}}
+                                    <div class="item" data-infra-id="">
+                                    <h2 class="headtitle" data-prefix="{{keyMap(data.productExt.feature.hotelInfra.typ)}}">{{data.productExt.feature.hotelInfra.title}}</h2>
+
+                                        <div class="detail-container-params">
+                                            <table class="table-params">
+                                                <colgroup></colgroup>
+                                                <tbody>
+                                                    {{if data.productExt.feature.hotelInfra.city}}<tr><td>城市</td><td>{{data.productExt.feature.hotelInfra.city}}</td></tr>{{/if}}
+                                                    <!-- {{if data.productExt.feature.hotelInfra.typ}}<tr><td>类型</td><td>{{keyMap(data.productExt.feature.hotelInfra.typ)}}</td></tr>{{/if}} -->
+                                                    {{if data.productExt.feature.hotelInfra.phone}}<tr><td>电话</td><td>{{data.productExt.feature.hotelInfra.phone}}</td></tr>{{/if}}
+                                                    {{if data.productExt.feature.hotelInfra.address}}<tr><td>地址</td><td>{{data.productExt.feature.hotelInfra.address}}</td></tr>{{/if}}
+                                                </tbody>
+                                            </table>
                                         </div>
-                                        <!-- <div class="location"><span class="icon-location"></span><span class="sub-cont-regular">911-0000 福井県勝山市勝山170−70</span></div> -->
-                                        <!-- <h4 class="sub-title">参考往返交通</h4> -->
-                                        <div class="desc content">
-                                            {{each productHotelInfo.richText as productHotelInfoRichText}}
-                                                {{if productHotelInfoRichText.key =='textarea'}}
-                                                    {{productHotelInfoRichText.value}}
-                                                {{else if productHotelInfoRichText.key =='image'}}
-                                                    {{each productHotelInfoRichText.value as productHotelInfoRichTextImg}}
-                                                        <img src="{{productHotelInfoRichTextImg.pictureUrl}}@750w_80Q" data-picture-id="{{productHotelInfoRichTextImg.pictureId}}">
-                                                    {{/each}}
-                                                {{/if}}
+
+                                        {{if data.productExt.feature.hotelInfra.feature}}
+                                        <div>
+                                            <h4 class="sub-title">设施特点</h4>
+                                            {{if data.productExt.feature.hotelInfra.feature.pictureUrl}}<p class=""><img src="{{data.productExt.feature.hotelInfra.feature.pictureUrl}}"></p>{{/if}}
+                                            <p class="">{{data.productExt.feature.hotelInfra.feature.content}}</p>
+                                        </div>
+                                        {{/if}}
+                                        
+                                        {{if data.productExt.feature.hotelInfra.desc && data.productExt.feature.hotelInfra.desc.length > 0}}
+                                        <div>
+                                            {{each data.productExt.feature.hotelInfra.desc as guideInfraDesc}}
+                                                {{if guideInfraDesc.pictureUrl}}<p class=""><img src="{{guideInfraDesc.pictureUrl}}"></p>{{/if}}
+                                                <p class="">{{guideInfraDesc.content}}</p>
                                             {{/each}}
                                         </div>
+                                        {{/if}}
+
                                     </div>
-                                    {{/each}}
+                                    {{/if}}
                                 </div>
 
                             </div>
                         </div>
                     </div>
                     {{/if}}
+
+
 
 
                     {{if data.product && data.product.scheduleDays}}
@@ -390,7 +395,7 @@
     <div class="singleContent" id="productPricesBox">
         <div class="header">
             <div class="icon close"></div>
-            <h1 class="title"></h1>
+            <h1 class="title">团期</h1>
         </div>
         <div class="main datalist priceboxs">
         </div>

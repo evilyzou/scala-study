@@ -17,11 +17,19 @@ body>.wrap .header+.maincontent {
 }
 
 .priceboxs {
-    .price-box {
+
+    li {
         float: left;
-        width: 65px;
-        margin: 10px;
+        width: 33.33%; 
+        padding: 10px;
+        @include box-sizing(border-box);
     }
+
+    .price-box {
+        width: 100%;
+        @include box-sizing(border-box);
+    }
+
 }
 
 .p-product-detail .mod_photos { min-height: 160px; /*margin-top: -$header-height;*/ }
@@ -32,7 +40,7 @@ body>.wrap .header+.maincontent {
 
 .p-product-detail {
 
-    .header {
+    .container-main > .header {
         background-color: rgba(255,255,255,0);
 
         .title {

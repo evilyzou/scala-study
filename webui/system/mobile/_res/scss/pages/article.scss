@@ -9,44 +9,6 @@
 @import '../mixins';
 
 
-.content_box {
-    
-    > .head {
-        margin-bottom: $padding-base * 10;
-        text-align: center;
-
-        .title {
-            font-size: 16px;
-        }
-
-        .tagtxt {
-        	margin-top: 10px;
-        }
-    }
-
-    > .main {
-        // padding-left: 15px;
-        // padding-right: 15px;
-        // line-height: 2;
-
-        > div,
-        > p {
-            // margin-left: -15px;
-            // margin-right: -15px;
-            box-sizing: border-box;
-
-            > img {
-            }
-        }
-    }
-
-    .headtitle:before{padding-right: 5px; border-right: 2px solid;}
-
-    .table-params tr>td:first-child {
-        width: 40px;
-    }
-}
-
 .p-article-detail {
 	.header {
 		.title {
