@@ -108,8 +108,7 @@ trait ProductQuery extends InfraService{
       val productHotel = productExtTuple._2
       productExtTuple._1 + ("productFeatures" -> productExtTuple._1.get("feature").getOrElse("")) + ( "feature" -> {
         Map(
-          "infra" -> infra,
-          "detail" -> productHotel
+          "hotelInfra" -> infra
         )
       })
     }
