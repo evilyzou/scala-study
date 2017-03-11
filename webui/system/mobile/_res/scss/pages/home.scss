@@ -13,8 +13,8 @@ $color-main: #38b3b3;
 
 .maintitle {
     margin: auto;
-    margin-top: 20px;
-    width: 50px;
+    margin-top: 10px;
+    // width: 50px;
     text-align: center;
 
     .name {
@@ -38,13 +38,14 @@ $color-main: #38b3b3;
         white-space: nowrap;
 
         // @include flexbox();
+        padding: 10px 0;
     }
 
     li {
         // @include flex(1);
 
         // width: 50%;
-        padding: 20px;
+        padding: 10px 20px;
         @include box-sizing(border-box);
 
         a {
