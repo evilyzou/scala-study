@@ -7,7 +7,7 @@
     <title>E上旅游</title>
     <link rel="shortcut icon" type="image/x-icon" href="_res/images/favicon.ico" />
     <link rel="stylesheet" href="_res/css/common.css?ver=1.2.1">
-    <link rel="stylesheet" href="_res/css/index.css?ver=1.2.0">
+    <link rel="stylesheet" href="_res/css/home.css?ver=1.2.0">
     <link rel="stylesheet" id="themeStyle" href="_res/css/theme.css">
 
     <style>
@@ -36,116 +36,43 @@
 
     <div class="container container-main">
 
-        <header id="header" class="header" role="banner">
-            <!-- <a class="icon-back back" href="#"></a> -->
-            <div class="title" data-target="pfunction">
-                <span class="logo"></span><span class="name"></span>
-            </div>
-            <a class="link selectArea" data-target="#area-selector" href="#"><span class="icon-location with-txt">地区</span></a>
-        </header>
-
         <div class="maincontent">
 
+            <div class="maintitle">
+                <div class="logo"></div>
+                <h1 class="name">E上旅行</h1>
+            </div>
 
-
-            <div id="banners"></div>
-            <!-- <div class="mod_photos swiper-container">
-                <div class="photos swiper-wrapper">
-                    <div class="photo swiper-slide"><img src="_res/images/ejp/banner_01.jpg" alt=""></div>
-                </div>
-                <div class="swiper-pagination"></div>
-            </div> -->
-
-            <div class="category_tags clinks">
-                <div class="tags">
-                    <a class="tag" href="product/list.html?customType=CustomGG"><div class="img" style="background-image: url(_res/images/ejp/tag_01.jpg);"></div><span class="name">观光赏景</span></a>
-                    <a class="tag" href="product/list.html?customType=CustomHX"><div class="img" style="background-image: url(_res/images/ejp/tag_02.jpg);"></div><span class="name">滑雪度假</span></a>
-                    <a class="tag" href="product/list.html?customType=CustomDC"><div class="img" style="background-image: url(_res/images/ejp/tag_03.jpg);"></div><span class="name">单车骑行</span></a>
-                    <a class="tag" href="product/list.html?customType=CustomQX"><div class="img" style="background-image: url(_res/images/ejp/tag_04.jpg);"></div><span class="name">泉享养生</span></a>
-                    <a class="tag" href="product/list.html?customType=CustomQS"><div class="img" style="background-image: url(_res/images/ejp/tag_05.jpg);"></div><span class="name">亲水海趣</span></a>
-                    <a class="tag" href="product/list.html?customType=CustomXX"><div class="img" style="background-image: url(_res/images/ejp/tag_06.jpg);"></div><span class="name">都市休闲</span></a>
+            <div class="theme_area">
+                <div class="main">
+                    <ul>
+                        <li>
+                            <a href="nav/index.html?systemType=SystemJiangNan">
+                                <div class="img cover" style="background-image: url(_res/images/home/akka_jn01.jpg);"></div>
+                                <div class="photos">
+                                    <div class="photo"><div class="img" style="background-image: url(_res/images/home/akka_jn02.jpg);"></div></div>
+                                    <div class="photo"><div class="img" style="background-image: url(_res/images/home/akka_jn03.jpg);"></div></div>
+                                </div>
+                                <div class="title">E上江南</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="nav/index.html?systemType=SystemJapan">
+                                <div class="img cover" style="background-image: url(_res/images/home/akka_jp01.jpg);"></div>
+                                <div class="photos">
+                                    <div class="photo"><div class="img" style="background-image: url(_res/images/home/akka_jp02.jpg);"></div></div>
+                                    <div class="photo"><div class="img" style="background-image: url(_res/images/home/akka_jp03.jpg);"></div></div>
+                                </div>
+                                <div class="title">E上日本</div>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
 
-            <div class="category_list clinks">
-                <div class="item">
-                    <div class="head">
-                        <div class="title title_winter">冬</div>
-                    </div>
-                    <div class="main">
-                        <a class="cell" href="article/list.html?customType=GuideCustomHX">
-                            <h4 class="title">雪の乐</h4>
-                            <div class="img" style="background-image: url(_res/images/ejp/category_4_1.jpg);"></div>
-                        </a>
-                        <a class="cell" href="article/list.html?customType=GuideCustomWQ">
-                            <h4 class="title">泉の养</h4>
-                            <div class="img" style="background-image: url(_res/images/ejp/category_4_2.jpg);"></div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div class="head">
-                        <div class="title title_spring">春</div>
-                    </div>
-                    <div class="main">
-                        <a class="cell" href="article/list.html?customType=GuideCustomCH">
-                            <h4 class="title">花の径</h4>
-                            <div class="img" style="background-image: url(_res/images/ejp/category_1_1.jpg);"></div>
-                        </a>
-                        <a class="cell" href="article/list.html?customType=GuideCustomWM">
-                            <h4 class="title">物の嬉</h4>
-                            <div class="img" style="background-image: url(_res/images/ejp/category_1_2.jpg);"></div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div class="head">
-                        <div class="title title_summer">夏</div>
-                    </div>
-                    <div class="main">
-                        <a class="cell" href="article/list.html?customType=GuideCustomQJ">
-                            <h4 class="title">车の迹</h4>
-                            <div class="img" style="background-image: url(_res/images/ejp/category_2_1.jpg);"></div>
-                        </a>
-                        <a class="cell" href="article/list.html?customType=GuideCustomQS">
-                            <h4 class="title">水の亲</h4>
-                            <div class="img" style="background-image: url(_res/images/ejp/category_2_2.jpg);"></div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div class="head">
-                        <div class="title title_autumn">秋</div>
-                    </div>
-                    <div class="main">
-                        <a class="cell" href="article/list.html?customType=GuideCustomQY">
-                            <h4 class="title">山の染</h4>
-                            <div class="img" style="background-image: url(_res/images/ejp/category_3_1.jpg);"></div>
-                        </a>
-                        <a class="cell" href="article/list.html?customType=GuideCustomMS">
-                            <h4 class="title">食の秘</h4>
-                            <div class="img" style="background-image: url(_res/images/ejp/category_3_2.jpg);"></div>
-                        </a>
-                    </div>
-                </div>
-            </div>
 
         </div>
 
-        <footer id="footer" class="footer">
-            <nav id="nav" class="mainnav">
-                <ul>
-                    <li class="current"><a class="icon-home-active" href="../index.html"><span class="navname">首页</span></a></li>
-                    <li><a class="icon-plane-active" href="../nav/product.html"><span class="navname">商品</span></a></li>
-                    <li><a class="icon-guide-active" href="../nav/article.html"><span class="navname">指南</span></a></li>
-                    <!-- <li><a class="icon-manage-active" href="#"><span class="navname">管理</span></a></li> -->
-                    <!-- <li><a class="icon-user-active" href="#"><span class="navname">我的</span></a></li> -->
-                </ul>
-            </nav>
-        </footer>
     </div>
 </div>
 
@@ -159,7 +86,7 @@
 <script type="text/javascript" src="_res/js/common.js?ver=1.1.0"></script>
 <script type="text/javascript" src="_res/js/module/selectorWin.js"></script>
 <script type="text/javascript" src="../_res/js/module/banner.js"></script>
-<script type="text/javascript" src="_res/js/home/index.js"></script>
+<script type="text/javascript" src="_res/js/common/uiAction.js"></script>
 
 <script type="text/javascript">
     var _winW = $(window).width()

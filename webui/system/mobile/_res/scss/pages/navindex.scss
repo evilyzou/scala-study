@@ -29,19 +29,6 @@ $color-main: #38b3b3;
         // background-position: ($padding-base * 2) center;
         // background-size: contain;
 
-        .logo {
-            display: inline-block;
-            width: 24px;
-            height: 24px;
-            margin-right: 5px;
-            vertical-align: middle;
-
-            background-image: url(#{$path-img}/logo.jpg);
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: contain;
-        }
-
         .name {
             display: inline-block;
             vertical-align: middle;

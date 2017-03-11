@@ -35,7 +35,7 @@ var _global = window._global || {
         "CustomOther" :   "其他",
 
         "SystemJapan":    "日本",
-        "SystemJiangNan": "中国江南",
+        "SystemJiangNan": "江南",
 
         "GuideRecord":    "典藏",
         "GuidePage":      "笔记",

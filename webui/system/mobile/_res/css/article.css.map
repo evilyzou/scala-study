@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AAaE,gCAAO,CACN,KAAK,CAAE,gBAAgB",
+"mappings": "AAUA,kBAAmB,CAClB,UAAU,CAAE,mBAAmB,CAE/B,+BAAc,CACb,WAAW,CAAE,CAAC,CAMd,gCAAO,CACN,KAAK,CAAE,gBAAgB,CAMxB,qCAAO,CACN,aAAa,CAAE,IAAI,CACnB,OAAO,CAAE,KAAK,CACd,gBAAgB,CAAE,eAAc",
 "sources": ["../scss/pages/article.scss"],
 "names": [],
 "file": "article.css"

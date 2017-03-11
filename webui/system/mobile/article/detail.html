@@ -47,13 +47,18 @@
         <article class="maincontent content_box">
 
             <div class="head" id="articleBase"></div>
+
             <script type="text/html" id="tpl_article_detail_base">
+
+                {{if data.guide.picture}}
+                <div class="cover img" style="background-image: url({{parseJson(data.guide.picture)[0].pictureUrl}}@750w_375h_80Q_1e_1c);"></div>
+                {{/if}}
                 <h2 class="title">{{data.guide.title}}</h2>
                 <span class="tagtxt">{{keyMap(data.guide.guideType)}}</span>
             </script>
 
-            <div class="main" id="articleContents">
-            </div>
+            <div class="main" id="articleContents"></div>
+
             <script type="text/html" id="tpl_article_detail_content">
                 {{each data.guideInfra as guideInfra}}
                 <div class="mod-content">
@@ -117,6 +122,7 @@
 <script type="text/javascript" src="../_res/js/common.js?ver=1.1.0"></script>
 
 <script type="text/javascript" src="../_res/js/module/loadcontent.js"></script>
+<script type="text/javascript" src="../_res/js/common/uiAction.js"></script>
 <script type="text/javascript" src="../_res/js/article/detail.js"></script>
 <!-- <script type="text/javascript">
     var WEBP = window.WEBP || {}

@@ -13,38 +13,11 @@ var _global = {
 }
 
 
-var ARTICLE_LIST = (function(root, window) {
+var PRODUCT_LIST = (function(root, window) {
     var document = window.document, $ = window.$
 
     var data = {}
     var emptyTxt = '没有相关的内容'
-
-    root.getList = function($target, pfunction, callback) {
-
-        console.log(_global)
-        /*
-         * scroll to load more content
-         */
-        var scrollData_usable = new XLJ.ScrollData({
-            url:          XLJ.rootPath + 'guide/list',                       // data url put here
-            // url:          XLJ.rootPath + '_res/data/articleList.json',                       // data url put here
-            data:         {
-                            systemType:  _global.systemType,
-                            customType:  _global.customType,
-                            guideType:   _global.guideType,
-                            pfunction:   pfunction || _global.pfunction,
-                            subCategory: _global.subCategory
-                          },
-            container:    $target,
-            target:       $target.find('.datalist'),
-            requestModel: XLJ.ajaxData,
-            emptyTxt:     emptyTxt,
-            success: function(response, $target) {
-                root.vendor(response, $target)
-                if (callback) callback()
-            }
-        });
-    }
 
 
     root.vendor = function(data, $target, callback) {
@@ -56,26 +29,10 @@ var ARTICLE_LIST = (function(root, window) {
     }
 
     return root
-}(ARTICLE_LIST || {}, typeof window !== 'undefined' ? window : this));
+}(PRODUCT_LIST || {}, typeof window !== 'undefined' ? window : this));
 
 
 $(function() {
-
-
-    // init
-    ARTICLE_LIST.getList($('#list-travel'), _global.pfunction)
-
-    if (typeof BANNER == 'object') {
-        BANNER.init({
-            dataUrl: XLJ.rootPath + 'banner/list',
-            tplUrl: XLJ.rootPath + '_res/tpl/tpl_banners.html',
-            tplElname: '#tpl_banners',
-            targetElname: '#banners',
-            success: function($target) {
-                BANNER.swiper('.swiper-container', '.swiper-pagination')
-            }
-        })
-    }
 
     // set page title
     var _pageTilte = ''
@@ -103,6 +60,5 @@ $(function() {
 
         window.location.href = _url
     });
-
 
 });

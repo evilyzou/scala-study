@@ -20,7 +20,7 @@
 
         <header id="header" class="header" role="banner">
             <a class="icon-back back" href="#"></a>
-            <div class="title css-arrow-down popContent" data-target="pfunction"></div>
+            <div class="title css-arrow-down popContent" data-target="guideType"></div>
             <a class="link selectArea" data-target="#area-selector" href="#"><span class="icon-location with-txt">地区</span></a>
         </header>
 
@@ -84,7 +84,7 @@
         <footer id="footer" class="footer">
             <nav id="nav" class="mainnav">
                 <ul>
-                    <li><a class="icon-home-active" href="../index.html"><span class="navname">首页</span></a></li>
+                    <li><a class="icon-home-active" href="../nav/index.html"><span class="navname">首页</span></a></li>
                     <li><a class="icon-plane-active" href="../nav/product.html"><span class="navname">商品</span></a></li>
                     <li class="current"><a class="icon-guide-active" href="../nav/article.html"><span class="navname">指南</span></a></li>
                     <!-- <li><a class="icon-manage-active" href="#"><span class="navname">管理</span></a></li> -->
@@ -105,7 +105,9 @@
                     {{if item.pfunction}}<span class="tagtxt">{{keyMap(item.pfunction)}}</span>{{/if}}
                 </div>
                 <div class="photo">
-                    <img src="{{parseJson(item.picture)[0]}}@750w_375h_80Q_1e_1c" alt="">
+                    {{if item.picture}}
+                    <img src="{{parseJson(item.picture)[0].pictureUrl}}@750w_375h_80Q_1e_1c" alt="">
+                    {{/if}}
                 </div>
             </div>
         </a>
@@ -113,17 +115,17 @@
     </script>
 
 
-    <div class="singleContent" id="pfunction">
+    <div class="singleContent" id="guideType">
         <div class="header">
             <div class="icon close"></div>
             <h1 class="title">选择主题</h1>
         </div>
         <div class="main datalist line-box">
-            <a class="item" href="#" data-pfunction="free">
-                <span class="label">自由行</span>
+            <a class="item" href="#" data-type="GuidePage">
+                <span class="label">笔记</span>
             </a>
-            <a class="item" href="#" data-pfunction="group">
-                <span class="label">旅行团</span>
+            <a class="item" href="#" data-type="GuideRecord">
+                <span class="label">典藏</span>
             </a>
         </div>
     </div>
@@ -141,6 +143,7 @@
 
 <script type="text/javascript" src="../_res/js/module/selectorWin.js"></script>
 <script type="text/javascript" src="../_res/js/module/banner.js"></script>
+<script type="text/javascript" src="../_res/js/common/uiAction.js"></script>
 <script type="text/javascript" src="../_res/js/article/list.js"></script>
 
 <!-- <script type="text/javascript">

@@ -3,9 +3,10 @@ var XLJ = window.XLJ = window.XLJ || {}
 var WEBP = window.WEBP || {}
 
 
-var _global = window._global || {
+var _global = {
     systemType:    XLJ.getQueryString('systemType')    || 'SystemJiangNan',
     customType:    XLJ.getQueryString('customType')    || '',
+    guideType:     XLJ.getQueryString('guideType')     || 'GuidePage',                                      //GuidePage|GuideRecord
     pfunction:     XLJ.getQueryString('pfunction')     || 'free',                                           //group|free
     mainCategory:  decodeURIComponent(XLJ.getQueryString('mainCategory'))  || 'guideCategoryJiangNan',      //guideCategoryJiangNan|guideCategoryJapan,
     subCategory:   decodeURIComponent(XLJ.getQueryString('subCategory'))   || ''
@@ -96,16 +97,4 @@ $(function() {
     $('title').text(_pagename || 'E上旅游')
     $('.header').find('.title .name').text(_pagename || 'E上旅游')
 
-
-    if (typeof BANNER == 'object') {
-        BANNER.init({
-            dataUrl: XLJ.rootPath + 'banner/list',
-            tplUrl: XLJ.rootPath + '_res/tpl/tpl_banners.html',
-            tplElname: '#tpl_banners',
-            targetElname: '#banners',
-            success: function($target) {
-                BANNER.swiper('.swiper-container', '.swiper-pagination')
-            }
-        })
-    }
 });

@@ -7,7 +7,7 @@
     <title>E上旅游</title>
     <link rel="shortcut icon" type="image/x-icon" href="../_res/images/favicon.ico" />
     <link rel="stylesheet" href="../_res/css/common.css?ver=1.2.1">
-    <link rel="stylesheet" href="../_res/css/index.css?ver=1.2.0">
+    <link rel="stylesheet" href="../_res/css/navindex.css?ver=1.2.0">
     <link rel="stylesheet" id="themeStyle" href="../_res/css/theme.css">
 
     <style>
@@ -21,7 +21,6 @@
 
         }*/
     </style>
-    <script type="text/javascript">var XLJ = window.XLJ = window.XLJ || {}; XLJ.rootPath = '../';</script>
     <script type="text/javascript" src="../_res/js/global.js?ver=1.2.2"></script>
     <!--<script type="text/javascript" src="../_res/js/common/getLoginState.js?ver=1.0.2"></script>
     <script type="text/javascript">
@@ -37,12 +36,33 @@
     <div class="container container-main">
 
         <header id="header" class="header" role="banner">
-            <a class="icon-back back" href="#"></a>
-            <div class="title css-arrow-down popContent" data-target="guideType"></div>
+            <!-- <a class="icon-back back" href="#"></a> -->
+            <div class="title" data-target="pfunction">
+                <span class="logo"></span><span class="name"></span>
+            </div>
             <a class="link selectArea" data-target="#area-selector" href="#"><span class="icon-location with-txt">地区</span></a>
         </header>
 
         <div class="maincontent">
+
+            <div id="banners"></div>
+            <!-- <div class="mod_photos swiper-container">
+                <div class="photos swiper-wrapper">
+                    <div class="photo swiper-slide"><img src="../_res/images/ejp/banner_01.jpg" alt=""></div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div> -->
+
+            <div class="category_tags clinks">
+                <div class="tags">
+                    <a class="tag" href="../product/list.html?customType=CustomGG"><div class="img" style="background-image: url(../_res/images/ejp/tag_01.jpg);"></div><span class="name">观光赏景</span></a>
+                    <a class="tag" href="../product/list.html?customType=CustomHX"><div class="img" style="background-image: url(../_res/images/ejp/tag_02.jpg);"></div><span class="name">滑雪度假</span></a>
+                    <a class="tag" href="../product/list.html?customType=CustomDC"><div class="img" style="background-image: url(../_res/images/ejp/tag_03.jpg);"></div><span class="name">单车骑行</span></a>
+                    <a class="tag" href="../product/list.html?customType=CustomQX"><div class="img" style="background-image: url(../_res/images/ejp/tag_04.jpg);"></div><span class="name">泉享养生</span></a>
+                    <a class="tag" href="../product/list.html?customType=CustomQS"><div class="img" style="background-image: url(../_res/images/ejp/tag_05.jpg);"></div><span class="name">亲水海趣</span></a>
+                    <a class="tag" href="../product/list.html?customType=CustomXX"><div class="img" style="background-image: url(../_res/images/ejp/tag_06.jpg);"></div><span class="name">都市休闲</span></a>
+                </div>
+            </div>
 
             <div class="category_list clinks">
                 <div class="item">
@@ -54,8 +74,6 @@
                             <h4 class="title">雪の乐</h4>
                             <div class="img" style="background-image: url(../_res/images/ejp/category_4_1.jpg);"></div>
                         </a>
-                    </div>
-                    <div class="main">
                         <a class="cell" href="../article/list.html?customType=GuideCustomWQ">
                             <h4 class="title">泉の养</h4>
                             <div class="img" style="background-image: url(../_res/images/ejp/category_4_2.jpg);"></div>
@@ -72,8 +90,6 @@
                             <h4 class="title">花の径</h4>
                             <div class="img" style="background-image: url(../_res/images/ejp/category_1_1.jpg);"></div>
                         </a>
-                    </div>
-                    <div class="main">
                         <a class="cell" href="../article/list.html?customType=GuideCustomWM">
                             <h4 class="title">物の嬉</h4>
                             <div class="img" style="background-image: url(../_res/images/ejp/category_1_2.jpg);"></div>
@@ -90,8 +106,6 @@
                             <h4 class="title">车の迹</h4>
                             <div class="img" style="background-image: url(../_res/images/ejp/category_2_1.jpg);"></div>
                         </a>
-                    </div>
-                    <div class="main">
                         <a class="cell" href="../article/list.html?customType=GuideCustomQS">
                             <h4 class="title">水の亲</h4>
                             <div class="img" style="background-image: url(../_res/images/ejp/category_2_2.jpg);"></div>
@@ -108,8 +122,6 @@
                             <h4 class="title">山の染</h4>
                             <div class="img" style="background-image: url(../_res/images/ejp/category_3_1.jpg);"></div>
                         </a>
-                    </div>
-                    <div class="main">
                         <a class="cell" href="../article/list.html?customType=GuideCustomMS">
                             <h4 class="title">食の秘</h4>
                             <div class="img" style="background-image: url(../_res/images/ejp/category_3_2.jpg);"></div>
@@ -123,33 +135,15 @@
         <footer id="footer" class="footer">
             <nav id="nav" class="mainnav">
                 <ul>
-                    <li><a class="icon-home-active" href="../nav/index.html"><span class="navname">首页</span></a></li>
+                    <li class="current"><a class="icon-home-active" href="../nav/index.html"><span class="navname">首页</span></a></li>
                     <li><a class="icon-plane-active" href="../nav/product.html"><span class="navname">商品</span></a></li>
-                    <li class="current"><a class="icon-guide-active" href="../nav/article.html"><span class="navname">指南</span></a></li>
+                    <li><a class="icon-guide-active" href="../nav/article.html"><span class="navname">指南</span></a></li>
                     <!-- <li><a class="icon-manage-active" href="#"><span class="navname">管理</span></a></li> -->
                     <!-- <li><a class="icon-user-active" href="#"><span class="navname">我的</span></a></li> -->
                 </ul>
             </nav>
         </footer>
     </div>
-
-
-
-    <div class="singleContent" id="guideType">
-        <div class="header">
-            <div class="icon close"></div>
-            <h1 class="title">选择主题</h1>
-        </div>
-        <div class="main datalist line-box">
-            <a class="item" href="#" data-type="GuidePage">
-                <span class="label">笔记</span>
-            </a>
-            <a class="item" href="#" data-type="GuideRecord">
-                <span class="label">典藏</span>
-            </a>
-        </div>
-    </div>
-
 </div>
 
 <script type="text/javascript" src="../_res/libs/jquery/jquery-1.11.1.min.js"></script>
@@ -161,33 +155,21 @@
 <script type="text/javascript" src="../_res/js/common/stats.js?v1.2.0"></script>
 <script type="text/javascript" src="../_res/js/common.js?ver=1.1.0"></script>
 <script type="text/javascript" src="../_res/js/module/selectorWin.js"></script>
+<script type="text/javascript" src="../_res/js/module/banner.js"></script>
 <script type="text/javascript" src="../_res/js/common/uiAction.js"></script>
-<script type="text/javascript" src="../_res/js/article/index.js"></script>
 
 <script type="text/javascript">
-    var _winW = $(window).width()
-    if (_winW > 640) _winW = 640
-    var _ratio = _winW / 751
-
-    /*$('#__01 img').each(function() {
-        var _this = $(this),
-            _w = _this.attr('width'),
-            _h = _this.attr('height')
-
-        //var _w_n = Math.round(_w * _ratio),
-        //    _h_n = Math.round(_h * _ratio)
-
-        var _w_n = (_w * _ratio),
-            _h_n = (_h * _ratio)
-
-        _this.removeAttr('width')
-        _this.removeAttr('height')
-
-        _this.parent().css({
-            width: (_w_n / _winW) * 100 + '%',
-            height: (_h_n / _winW) * 100 + '%'
+    if (typeof BANNER == 'object') {
+        BANNER.init({
+            dataUrl: XLJ.rootPath + 'banner/list',
+            tplUrl: XLJ.rootPath + '_res/tpl/tpl_banners.html',
+            tplElname: '#tpl_banners',
+            targetElname: '#banners',
+            success: function($target) {
+                BANNER.swiper('.swiper-container', '.swiper-pagination')
+            }
         })
-    });*/
+    }
 </script>
 
 <script type="text/javascript">

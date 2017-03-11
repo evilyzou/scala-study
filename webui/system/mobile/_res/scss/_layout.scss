@@ -263,6 +263,19 @@ span.picon {display: inline-block;}
 
 
 
+.logo {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+    vertical-align: middle;
+
+    background-image: url(#{$path-img}/logo.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
 .container.aside {
 //    position: absolute;
 //    top: 0;

@@ -2468,7 +2468,7 @@ XLJ.docReady(function() {
 
     // init link urlParamsImpress
     var UrlParamsImpress = new XLJ.urlParamsImpress({
-        elname:          'a[class*="icon-home"]',
+        elname:          'a[class*="icon-"]',
         containerElname: '.mainnav'
     })
 });
